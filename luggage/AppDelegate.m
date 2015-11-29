@@ -7,15 +7,12 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
-#import "LiveViewController.h"
-#import "SocketViewController.h"
+#import "ViewController.h"
+#import "LocateViewController.h"
 #import <MAMapKit/MAMapKit.h>
 @interface AppDelegate ()
 {
-    MainViewController * _mainVC;
-    LiveViewController *_liveVC;
-    SocketViewController *_socketVC;
+    ViewController * _mainVC;
 }
 @end
 
@@ -24,9 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    _mainVC = [[MainViewController alloc] init];
-    _liveVC = [[LiveViewController alloc]init];
-    _socketVC = [[SocketViewController alloc]init];
+    _mainVC = [[ViewController alloc] init];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = _mainVC;
