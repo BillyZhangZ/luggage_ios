@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F881AFB7AC922C391D5AE8168267D7A5AB18C7F5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6853A7C77A3F56E0A8CB3A5DDA2F1D4F6E9F82BD" : 0,
+    "F881AFB7AC922C391D5AE8168267D7A5AB18C7F5" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "52554608-DF11-4405-890C-382344EFDF6C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6853A7C77A3F56E0A8CB3A5DDA2F1D4F6E9F82BD" : "DJ",
+    "F881AFB7AC922C391D5AE8168267D7A5AB18C7F5" : "luggage_ios\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "dji",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "dji.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/BillyZhangZ\/dji.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6853A7C77A3F56E0A8CB3A5DDA2F1D4F6E9F82BD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/BillyZhangZ\/luggage_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F881AFB7AC922C391D5AE8168267D7A5AB18C7F5"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 //
-//  djiTests.m
-//  djiTests
+//  luggageTests.m
+//  luggageTests
 //
 //  Created by 张志阳 on 11/22/15.
 //  Copyright (c) 2015 张志阳. All rights reserved.
@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface djiTests : XCTestCase
+@interface luggageTests : XCTestCase
 
 @end
 
-@implementation djiTests
+@implementation luggageTests
 
 - (void)setUp {
     [super setUp];
