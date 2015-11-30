@@ -10,11 +10,16 @@
 #define Pao123_config_h
 #define IOS_DEVICE 1
 #define ANDROID_DEVICE 2
-#define SERVER @"http://www.123yd.cn"
+#define SERVER @"http://121.40.128.16/api"
 
 #define MOBILE_PHONE_NUMBER  @"^1(3[0-9]|7[0-9]|5[0-35-9]|8[0125-9])\\d{8}$"
 #define ACCEPT_FRIEND 1
 #define REJECT_FRIEND 2
+
+#define URL_USER_LOGIN SERVER @"/user/"
+#define URL_USER_REGISTER SERVER @"/user/"
+#define URL_GET_GPS SERVER @"/gps/"
+
 #define REMOTE_SERVER  SERVER @"/xingjiansport/V1/Workout/saveWorkoutSegment/"
 #define URL_GET_WORKOUT SERVER @"/xingjiansport/V1/Workout/getWorkoutInfo/id/"
 #define URL_GET_WORKOUT_LIST SERVER @"/xingjiansport/V1/Workout/listWorkout/userid/"

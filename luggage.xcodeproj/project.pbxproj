@@ -54,6 +54,13 @@
 		83465F9C1C0B0EF50039C86C /* HelloViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83465F9A1C0B0EF50039C86C /* HelloViewController.m */; };
 		83465F9D1C0B0EF50039C86C /* HelloViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F9B1C0B0EF50039C86C /* HelloViewController.xib */; };
 		83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83465F9E1C0B1E780039C86C /* MapKit.framework */; };
+		83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931601C0C73ED00DB1AA2 /* ZZYUser.m */; };
+		83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931631C0C740400DB1AA2 /* ZZYGps.m */; };
+		83E931671C0C7F9500DB1AA2 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E931661C0C7F9500DB1AA2 /* empty.png */; };
+		83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m */; };
+		83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib */; };
+		83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m */; };
+		83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +132,19 @@
 		83465F9A1C0B0EF50039C86C /* HelloViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelloViewController.m; path = ViewController/HelloViewController.m; sourceTree = "<group>"; };
 		83465F9B1C0B0EF50039C86C /* HelloViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelloViewController.xib; path = ViewController/HelloViewController.xib; sourceTree = "<group>"; };
 		83465F9E1C0B1E780039C86C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		83E9315F1C0C73ED00DB1AA2 /* ZZYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUser.h; path = Model/ZZYUser.h; sourceTree = "<group>"; };
+		83E931601C0C73ED00DB1AA2 /* ZZYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYUser.m; path = Model/ZZYUser.m; sourceTree = "<group>"; };
+		83E931621C0C740400DB1AA2 /* ZZYGps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYGps.h; path = Model/ZZYGps.h; sourceTree = "<group>"; };
+		83E931631C0C740400DB1AA2 /* ZZYGps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYGps.m; path = Model/ZZYGps.m; sourceTree = "<group>"; };
+		83E931661C0C7F9500DB1AA2 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = empty.png; path = images/empty.png; sourceTree = "<group>"; };
+		83E931681C0C82E100DB1AA2 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApi.h; path = luggage/Framework/WechatShare/WXApi.h; sourceTree = "<group>"; };
+		83E931691C0C82E100DB1AA2 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = luggage/Framework/WechatShare/WXApiObject.h; sourceTree = "<group>"; };
+		83E9316A1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSMSLoginViewController.h; path = ViewController/ZZYSMSLoginViewController.h; sourceTree = "<group>"; };
+		83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSMSLoginViewController.m; path = ViewController/ZZYSMSLoginViewController.m; sourceTree = "<group>"; };
+		83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYSMSLoginViewController.xib; path = ViewController/ZZYSMSLoginViewController.xib; sourceTree = "<group>"; };
+		83E9316F1C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSMSLoginVerifyViewController.h; path = ViewController/ZZYSMSLoginVerifyViewController.h; sourceTree = "<group>"; };
+		83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSMSLoginVerifyViewController.m; path = ViewController/ZZYSMSLoginVerifyViewController.m; sourceTree = "<group>"; };
+		83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYSMSLoginVerifyViewController.xib; path = ViewController/ZZYSMSLoginVerifyViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +212,7 @@
 		83013E281C018E190065B5C2 /* luggage */ = {
 			isa = PBXGroup;
 			children = (
+				83E931651C0C7F8600DB1AA2 /* images */,
 				83465F7C1C0B07D70039C86C /* icons */,
 				83013E791C01E7B10065B5C2 /* Model */,
 				83013E781C01E7A80065B5C2 /* ViewController */,
@@ -233,6 +254,8 @@
 		83013E5F1C01D98B0065B5C2 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83E931681C0C82E100DB1AA2 /* WXApi.h */,
+				83E931691C0C82E100DB1AA2 /* WXApiObject.h */,
 				83465F9E1C0B1E780039C86C /* MapKit.framework */,
 				83465F781C0B02180039C86C /* SMS_SDK.framework */,
 				83465F761C0B00370039C86C /* MAMapKit.framework */,
@@ -265,6 +288,12 @@
 		83013E781C01E7A80065B5C2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				83E9316F1C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.h */,
+				83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m */,
+				83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib */,
+				83E9316A1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.h */,
+				83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m */,
+				83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib */,
 				83013E7A1C01E7E50065B5C2 /* LocateViewController.h */,
 				83013E7B1C01E7E50065B5C2 /* LocateViewController.m */,
 				83013E7C1C01E7E50065B5C2 /* LocateViewController.xib */,
@@ -285,6 +314,10 @@
 			isa = PBXGroup;
 			children = (
 				83013E821C01ED260065B5C2 /* config.h */,
+				83E9315F1C0C73ED00DB1AA2 /* ZZYUser.h */,
+				83E931601C0C73ED00DB1AA2 /* ZZYUser.m */,
+				83E931621C0C740400DB1AA2 /* ZZYGps.h */,
+				83E931631C0C740400DB1AA2 /* ZZYGps.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -303,6 +336,14 @@
 				83465F7F1C0B08330039C86C /* Icon-60@3x.png */,
 			);
 			name = icons;
+			sourceTree = "<group>";
+		};
+		83E931651C0C7F8600DB1AA2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				83E931661C0C7F9500DB1AA2 /* empty.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,7 +434,9 @@
 			files = (
 				83465F801C0B08330039C86C /* Icon-60.png in Resources */,
 				83465F8E1C0B08550039C86C /* Icon-Small@3x.png in Resources */,
+				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib in Resources */,
 				83465F8C1C0B08550039C86C /* Icon-Small.png in Resources */,
+				83E931671C0C7F9500DB1AA2 /* empty.png in Resources */,
 				83465F881C0B08430039C86C /* Icon-Spotlight-40@3x.png in Resources */,
 				83465F871C0B08430039C86C /* Icon-Spotlight-40@2x.png in Resources */,
 				83465F981C0B0D8A0039C86C /* LoginViewController.xib in Resources */,
@@ -405,6 +448,7 @@
 				83465F9D1C0B0EF50039C86C /* HelloViewController.xib in Resources */,
 				83465F861C0B08430039C86C /* Icon-Spotlight-40.png in Resources */,
 				83465F8D1C0B08550039C86C /* Icon-Small@2x.png in Resources */,
+				83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib in Resources */,
 				83013E371C018E190065B5C2 /* Images.xcassets in Resources */,
 				83465F811C0B08330039C86C /* Icon-60@2x.png in Resources */,
 			);
@@ -426,10 +470,14 @@
 			files = (
 				83013E2F1C018E190065B5C2 /* AppDelegate.m in Sources */,
 				83013E7D1C01E7E50065B5C2 /* LocateViewController.m in Sources */,
+				83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */,
 				83013E2C1C018E190065B5C2 /* main.m in Sources */,
 				83465F9C1C0B0EF50039C86C /* HelloViewController.m in Sources */,
+				83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */,
 				83465F921C0B0D2F0039C86C /* ViewController.m in Sources */,
 				83465F971C0B0D8A0039C86C /* LoginViewController.m in Sources */,
+				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m in Sources */,
+				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +606,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/luggage/Framework/Mamap",
 					"$(PROJECT_DIR)/luggage/Framework/Sms",
+					"$(PROJECT_DIR)/luggage/Framework/WechatShare",
 				);
 				INFOPLIST_FILE = luggage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -589,6 +638,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/luggage/Framework/Mamap",
 					"$(PROJECT_DIR)/luggage/Framework/Sms",
+					"$(PROJECT_DIR)/luggage/Framework/WechatShare",
 				);
 				INFOPLIST_FILE = luggage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

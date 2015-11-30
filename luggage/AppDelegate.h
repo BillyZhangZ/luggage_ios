@@ -12,6 +12,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
+//微信分享接口声明
+- (void) sendTextContent: (NSString *)text withScene:(int)scene;
+- (void) sendImageContent: (UIImage*)viewImage withScene:(int)scene;
+-(void)jumpToMainVC;
+void say(NSString *sth);
 @end
 
