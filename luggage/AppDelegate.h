@@ -15,6 +15,9 @@
 //微信分享接口声明
 - (void) sendTextContent: (NSString *)text withScene:(int)scene;
 - (void) sendImageContent: (UIImage*)viewImage withScene:(int)scene;
+- (void) hideMenu;
+- (void) showMenu;
+- (void) onMenuItemClicked:(NSString *)itemName;
 -(void)jumpToMainVC;
 void say(NSString *sth);
 @end

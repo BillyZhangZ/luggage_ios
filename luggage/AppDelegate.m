@@ -11,6 +11,8 @@
 #import "LocateViewController.h"
 #import "ZZYSMSLoginViewController.h"
 #import "WXApi.h"
+#import "config.h"
+#import "XJMenuView.h"
 #import <SMS_SDK/SMS_SDK.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AVFoundation/AVFoundation.h>
@@ -19,6 +21,7 @@
 {
     ViewController * _mainVC;
     ZZYSMSLoginViewController *_loginVC;
+    XJMenuView *_menuView;
 }
 @end
 
@@ -29,8 +32,17 @@
     
     _mainVC = [[ViewController alloc] init];
     _loginVC = [[ZZYSMSLoginViewController alloc]init];
+    CGRect rc = [[UIScreen mainScreen] bounds];
+    _menuView = [[XJMenuView alloc]initWithFrame:rc];
     [WXApi registerApp:@"wx9d60ab46bfa2d903" withDescription:@"luggage"];
     [SMS_SDK registerApp:@"cdabbcf0f504"  withSecret:@"ccbe1fa6a1f8f17075f03951b29d1618"];
+
+    // let voice can be heard when app is at background, and use MIX to prevent pausing music player
+    NSError *error = NULL;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback
+             withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&error];
+    
 
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -60,6 +72,94 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void) showMenu
+{
+#if 0
+    // update menu content
+    if (self.accountManager.currentAccount.nickName == nil) {
+        _menuView.lblName.text = self.accountManager.currentAccount.user;
+    }
+    else
+        _menuView.lblName.text = self.accountManager.currentAccount.nickName;
+#else
+        _menuView.lblName.text = @"用户名";
+#endif
+    CGRect rc = _menuView.frame;
+    rc.origin.x = - lo_menu_width * rate_pixel_to_point;
+    _menuView.frame = rc;
+    [self.window addSubview:_menuView];
+    
+    // 动画执行开始
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationRepeatAutoreverses:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.window cache:YES];
+    [UIView setAnimationDuration:0.7];
+    // 设置要变化的frame 推入与推出修改对应的frame即可
+    rc.origin.x = 0;
+    _menuView.frame = rc;
+    // 执行动画
+    [UIView commitAnimations];
+}
+
+- (void) hideMenu
+{
+    CGRect rc = _menuView.frame;
+    rc.origin.x = - lo_menu_width * rate_pixel_to_point;
+    _menuView.frame = rc;
+    [_menuView removeFromSuperview];
+}
+
+- (void) onMenuItemClicked:(NSString *)itemName
+{
+    if([itemName compare:@"User"] == NSOrderedSame)
+    {
+#if 0
+        if (_accountManager.currentAccount == _accountManager.guestAccount) {
+            _window.rootViewController = _loginVC;
+        }
+        else
+        {
+            _window.rootViewController = _userVC;
+        }
+#endif
+    }
+    else if([itemName compare:@"足迹"] == NSOrderedSame)
+    {
+        //_window.rootViewController = _mainVC;
+        LocateViewController *vc = [[LocateViewController alloc]init];
+        [_window.rootViewController presentViewController:vc animated:YES completion:nil];
+    }
+    else if([itemName compare:@"航班信息"] == NSOrderedSame)
+    {
+       // _window.rootViewController = _histVC;
+    }
+    else if([itemName compare:@"预留1"] == NSOrderedSame)
+    {
+#if 0
+        if (_accountManager.currentAccount == _accountManager.guestAccount) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"请点击左上角图标登陆" message:@"游客身份无法通过其他跑友验证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        else _window.rootViewController = _realplayListVC;
+#endif
+    }
+    else if([itemName compare:@"好友们"] == NSOrderedSame)
+    {
+        
+    }
+    else if([itemName compare:@"预留2"] == NSOrderedSame)
+    {
+        
+    }
+    else if([itemName compare:@"设置"] == NSOrderedSame)
+    {
+       // _window.rootViewController = _settingsVC;
+    }
+    
+    [self hideMenu];
 }
 
 

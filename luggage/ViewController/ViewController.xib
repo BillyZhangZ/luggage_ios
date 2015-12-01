@@ -22,7 +22,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Rat-hY-hcv"/>
                     </constraints>
-                    <state key="normal" title="位置">
+                    <state key="normal" title="luggage定位">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -41,7 +41,19 @@
                     </textAttributes>
                     <items>
                         <navigationItem title="Luggage" id="11O-6F-Tmh">
-                            <barButtonItem key="rightBarButtonItem" style="plain" id="oAA-30-YK5">
+                            <barButtonItem key="leftBarButtonItem" style="plain" id="1ds-KU-Pn8">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XGK-2N-4iQ">
+                                    <rect key="frame" x="20" y="7" width="40" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="菜单">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onMenuButton:" destination="-1" eventType="touchUpInside" id="7Z7-Q7-aJ0"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" id="oAA-30-YK5">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nH1-Md-X7b">
                                     <rect key="frame" x="540" y="7" width="40" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -61,16 +73,19 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="7UQ-Xg-aal"/>
                     </constraints>
-                    <state key="normal" title="设置">
+                    <state key="normal" title="远程开锁">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="onRemoteUnlock:" destination="-1" eventType="touchUpInside" id="Bme-Vl-C0q"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c93-3U-GQO">
                     <rect key="frame" x="0.0" y="84" width="600" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="m9X-Jh-EoI"/>
                     </constraints>
-                    <state key="normal" title="配对">
+                    <state key="normal" title="蓝牙开锁">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>

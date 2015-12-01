@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 XingJian Software. All rights reserved.
 //
 
-#ifndef Pao123_config_h
-#define Pao123_config_h
+#ifndef __config_h
+#define __config_h
 #define IOS_DEVICE 1
 #define ANDROID_DEVICE 2
 #define SERVER @"http://121.40.128.16/api"
@@ -32,9 +32,6 @@
 
 #define URL_PULL_REALTIME_WORKOUT SERVER @"/xingjiansport/V1/Workout/getLatestData/userid/"
 
-#define URL_USER_REGISTER SERVER @"/xingjiansport/V1/User/registerUser/"
-#define URL_USER_LOGIN SERVER @"/xingjiansport/V1/User/login"
-
 #define URL_SEARCH_USER_BY_NAME SERVER @"/xingjiansport/V1/User/searchUserByName/name/"
 #define URL_SEARCH_USERS_BY_NAME_LIST SERVER @"/xingjiansport/V1/User/searchUserByNameList/name/"
 #define URL_ADD_FRIEND SERVER @"/xingjiansport/V1/User/addFriends/id/"
@@ -53,6 +50,25 @@
 #define URL_APPROVE_JOIN_RUN_GROUP      SERVER @"/xingjiansport/V1/Rungroup/approveJoinRungroup/"
 
 
+//---- Menu ----
+#define  rate_pixel_to_point  1.0
+#define lo_menu_width   793/4
+#define lo_menu_header_height   590/4
+#define lo_menu_photo_y_offset   97/4
+#define lo_menu_photo_diameter   272/4
+#define lo_menu_nickname_y_offset   422/4
+#define lo_menu_nickname_height   54/4
+#define lo_menu_item_size   305/4
+
+#define MENU_NICKNAME_FONT_COLOR [UIColor whiteColor]
+#define MENU_USER_NICKNAME_FONT_SIZE (23*2*rate_pixel_to_point/4)
+#define MENU_ITEM_ICON_SIZE (96/2/4)
+#define MENU_ITEM_TITLE_FONT_SIZE (21*2*rate_pixel_to_point/4)
+
+// Parameters for settings
+#define SETTINGS_NICKNAME_FONT_SIZE (22*2*rate_pixel_to_point)
+#define SETTINGS_CELL_TITLE_FONT_SIZE (20*2*rate_pixel_to_point)
+#define SETTINGS_CELL_SUBTITLE_FONT_SIZE (16*2*rate_pixel_to_point)
 
 #define USERID 14
 

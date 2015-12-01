@@ -54,6 +54,7 @@
 		83465F9C1C0B0EF50039C86C /* HelloViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83465F9A1C0B0EF50039C86C /* HelloViewController.m */; };
 		83465F9D1C0B0EF50039C86C /* HelloViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F9B1C0B0EF50039C86C /* HelloViewController.xib */; };
 		83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83465F9E1C0B1E780039C86C /* MapKit.framework */; };
+		8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8348E1111C0DE69300E34C6B /* XJMenuView.m */; };
 		83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931601C0C73ED00DB1AA2 /* ZZYUser.m */; };
 		83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931631C0C740400DB1AA2 /* ZZYGps.m */; };
 		83E931671C0C7F9500DB1AA2 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E931661C0C7F9500DB1AA2 /* empty.png */; };
@@ -132,6 +133,8 @@
 		83465F9A1C0B0EF50039C86C /* HelloViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelloViewController.m; path = ViewController/HelloViewController.m; sourceTree = "<group>"; };
 		83465F9B1C0B0EF50039C86C /* HelloViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelloViewController.xib; path = ViewController/HelloViewController.xib; sourceTree = "<group>"; };
 		83465F9E1C0B1E780039C86C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8348E1101C0DE69300E34C6B /* XJMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMenuView.h; path = ViewController/XJMenuView.h; sourceTree = "<group>"; };
+		8348E1111C0DE69300E34C6B /* XJMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMenuView.m; path = ViewController/XJMenuView.m; sourceTree = "<group>"; };
 		83E9315F1C0C73ED00DB1AA2 /* ZZYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUser.h; path = Model/ZZYUser.h; sourceTree = "<group>"; };
 		83E931601C0C73ED00DB1AA2 /* ZZYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYUser.m; path = Model/ZZYUser.m; sourceTree = "<group>"; };
 		83E931621C0C740400DB1AA2 /* ZZYGps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYGps.h; path = Model/ZZYGps.h; sourceTree = "<group>"; };
@@ -288,6 +291,8 @@
 		83013E781C01E7A80065B5C2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8348E1101C0DE69300E34C6B /* XJMenuView.h */,
+				8348E1111C0DE69300E34C6B /* XJMenuView.m */,
 				83E9316F1C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.h */,
 				83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m */,
 				83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib */,
@@ -477,6 +482,7 @@
 				83465F921C0B0D2F0039C86C /* ViewController.m in Sources */,
 				83465F971C0B0D8A0039C86C /* LoginViewController.m in Sources */,
 				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m in Sources */,
+				8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */,
 				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
