@@ -65,7 +65,7 @@
     return NO;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -94,9 +94,9 @@
                     }
                     else
                     {
-                        UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"登陆失败" message:@"" delegate:self  cancelButtonTitle:nil otherButtonTitles:nil, nil];
-                        [alert show];
-                        [self performSelector:@selector(dismissAlert:) withObject:alert afterDelay:1.0];
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登陆失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                        [self presentViewController:alert animated:YES completion:nil];
+                        
                     }
                // }];
 
@@ -104,18 +104,13 @@
             else if(0==state)
             {
                 NSLog(@"验证失败");
-                UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"验证失败" message:@"" delegate:self  cancelButtonTitle:nil otherButtonTitles:nil, nil];
-                [alert show];
-                [self performSelector:@selector(dismissAlert:) withObject:alert afterDelay:1.0];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"验证失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                [self presentViewController:alert animated:YES completion:nil];
+                
             }
         }];
     }
    
-}
-
--(void)dismissAlert:(UIAlertView *)alert
-{
-    [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -142,12 +137,7 @@
 {
     [self.verifyTextFiled resignFirstResponder];
 }
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        self.verifyTextFiled.text = @"";
-    }
-}
+
 - (IBAction)tapGestureOccured:(id)sender {
     [self.verifyTextFiled resignFirstResponder];
 }

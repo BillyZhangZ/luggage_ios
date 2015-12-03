@@ -14,9 +14,8 @@
 #import "AppDelegate.h"
 #import <SMS_SDK/SMS_SDK.h>
 //#import "PrivateViewController.h"
-@interface ZZYSMSLoginViewController ()<UIAlertViewDelegate>
+@interface ZZYSMSLoginViewController ()
 {
-    UIAlertView *_phoneNumberErrorAlert;
 }
 @end
 
@@ -67,7 +66,7 @@
     return NO;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -89,10 +88,6 @@
     return YES;
 }
 
--(void)delayPresentNextPage:(UIAlertView *)alert
-{
-    [alert dismissWithClickedButtonIndex:0 animated:NO];
-}
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if ([self isMobileNumber:textField.text]) {
@@ -113,15 +108,8 @@
              
          }];
     }else if([textField.text length] == 11){
-        _phoneNumberErrorAlert =
-        [[UIAlertView alloc]
-         initWithTitle:@"对不起"
-         message:[NSString stringWithFormat:@"请确认您的手机号码格式"]
-         delegate:self
-         cancelButtonTitle:@"确定"
-         otherButtonTitles:nil, nil]
-        ;
-        [_phoneNumberErrorAlert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"对不起" message:@"请确认您的手机格式" preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -192,16 +180,6 @@
     //[self presentViewController:vc animated:NO completion:nil];
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
     [app jumpToMainVC];
-}
-
-#pragma mark - alert view delegate
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView == _phoneNumberErrorAlert) {
-        if (buttonIndex == 0) {
-            self.phoneNumberText.text  = @"";
-        }
-    }
 }
 
 

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="locateButton" destination="gH0-JF-AE6" id="ohf-nZ-rfy"/>
+                <outlet property="lostButton" destination="xCB-Cv-j5u" id="Xni-fD-ffV"/>
                 <outlet property="navigatorBar" destination="yZn-N6-e7X" id="u8L-ug-EpX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,7 +24,7 @@
                         <constraint firstAttribute="height" constant="60" id="Rat-hY-hcv"/>
                     </constraints>
                     <state key="normal" title="luggage定位">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
                     <connections>
                         <action selector="onLocateButton:" destination="-1" eventType="touchUpInside" id="GbG-xZ-RKB"/>
@@ -37,16 +38,16 @@
                     </constraints>
                     <color key="tintColor" red="0.2256591365" green="0.41020442969999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <textAttributes key="titleTextAttributes">
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </textAttributes>
                     <items>
                         <navigationItem title="Luggage" id="11O-6F-Tmh">
-                            <barButtonItem key="leftBarButtonItem" style="plain" id="1ds-KU-Pn8">
+                            <barButtonItem key="leftBarButtonItem" id="1ds-KU-Pn8">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XGK-2N-4iQ">
                                     <rect key="frame" x="20" y="7" width="40" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="菜单">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="onMenuButton:" destination="-1" eventType="touchUpInside" id="7Z7-Q7-aJ0"/>
@@ -58,7 +59,7 @@
                                     <rect key="frame" x="540" y="7" width="40" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="分享">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="onShareButton:" destination="-1" eventType="touchUpInside" id="IRv-MX-ExF"/>
@@ -74,7 +75,7 @@
                         <constraint firstAttribute="height" constant="40" id="7UQ-Xg-aal"/>
                     </constraints>
                     <state key="normal" title="远程开锁">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="onRemoteUnlock:" destination="-1" eventType="touchUpInside" id="Bme-Vl-C0q"/>
@@ -82,17 +83,32 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c93-3U-GQO">
                     <rect key="frame" x="0.0" y="84" width="600" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="m9X-Jh-EoI"/>
                     </constraints>
                     <state key="normal" title="蓝牙开锁">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCB-Cv-j5u">
+                    <rect key="frame" x="0.0" y="194" width="600" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="WZJ-Wq-VOU"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Xxr-iA-cQJ"/>
+                    </constraints>
+                    <state key="normal" title="防丢模式">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="onLostButton:" destination="-1" eventType="touchUpInside" id="78d-RE-dNs"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="0.79451358299836328" blue="0.21677502401332149" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="yZn-N6-e7X" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="1nS-sL-9rx"/>
+                <constraint firstAttribute="trailing" secondItem="xCB-Cv-j5u" secondAttribute="trailing" id="4FJ-sv-NFD"/>
                 <constraint firstItem="c93-3U-GQO" firstAttribute="top" secondItem="yZn-N6-e7X" secondAttribute="bottom" constant="20" id="ASk-Op-EcD"/>
                 <constraint firstAttribute="bottom" secondItem="gH0-JF-AE6" secondAttribute="bottom" id="D7n-Q3-LOd"/>
                 <constraint firstItem="c93-3U-GQO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dz5-e9-te0"/>
@@ -100,6 +116,8 @@
                 <constraint firstAttribute="trailing" secondItem="cbK-yB-v1j" secondAttribute="trailing" id="Sw2-6w-ved"/>
                 <constraint firstItem="gH0-JF-AE6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aWo-gf-pji"/>
                 <constraint firstAttribute="trailing" secondItem="c93-3U-GQO" secondAttribute="trailing" id="bXg-KV-JHn"/>
+                <constraint firstItem="xCB-Cv-j5u" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iAE-yp-TGy"/>
+                <constraint firstItem="xCB-Cv-j5u" firstAttribute="top" secondItem="cbK-yB-v1j" secondAttribute="bottom" constant="10" id="oWb-Nh-9Bh"/>
                 <constraint firstItem="cbK-yB-v1j" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qKg-yk-vpM"/>
                 <constraint firstItem="yZn-N6-e7X" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uup-Kq-0CD"/>
                 <constraint firstAttribute="trailing" secondItem="yZn-N6-e7X" secondAttribute="trailing" id="yni-Bw-NGA"/>

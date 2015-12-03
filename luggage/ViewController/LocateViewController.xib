@@ -22,10 +22,11 @@
                     </constraints>
                     <items>
                         <navigationItem title="追踪" id="ceo-8P-mWq">
-                            <barButtonItem key="leftBarButtonItem" style="plain" id="yvU-Nl-n24">
+                            <barButtonItem key="leftBarButtonItem" id="yvU-Nl-n24">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DaC-Db-FaC">
                                     <rect key="frame" x="20" y="7" width="44" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                     <state key="normal" title="返回"/>
                                     <connections>
                                         <action selector="onBackButton:" destination="-1" eventType="touchUpInside" id="CrL-em-aQS"/>

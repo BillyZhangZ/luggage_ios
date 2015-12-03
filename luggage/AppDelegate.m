@@ -138,13 +138,7 @@
     }
     else if([itemName compare:@"预留1"] == NSOrderedSame)
     {
-#if 0
-        if (_accountManager.currentAccount == _accountManager.guestAccount) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"请点击左上角图标登陆" message:@"游客身份无法通过其他跑友验证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-        else _window.rootViewController = _realplayListVC;
-#endif
+
     }
     else if([itemName compare:@"好友们"] == NSOrderedSame)
     {

@@ -11,15 +11,20 @@
 #import "ViewController.h"
 #import "LocateViewController.h"
 #import <MessageUI/MFMessageComposeViewController.h>
-
-@interface ViewController ()<MFMessageComposeViewControllerDelegate>
-
+#import "BLEDevice.h"
+@interface ViewController ()<MFMessageComposeViewControllerDelegate, LuggageDelegate>
+{
+    LuggageDevice *_luggageDevice;
+    BOOL _enableLostMode;
+}
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _luggageDevice = [[LuggageDevice alloc]init:self];
+    _enableLostMode = false;
     // Do any additional setup after loading the view from its nib.
     [self.navigatorBar setBackgroundImage:[UIImage imageNamed:@"empty.png"] forBarMetrics:UIBarMetricsDefault];
 
@@ -28,6 +33,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    if (_enableLostMode) {
+        [self.lostButton setTitle:@"关闭防丢模式" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.lostButton setTitle:@"开启防丢模式" forState:UIControlStateNormal];
+    }
    // say(@"welcome");
 }
 - (void)didReceiveMemoryWarning {
@@ -50,6 +62,17 @@
 - (IBAction)onLocateButton:(id)sender {
     LocateViewController *vc = [[LocateViewController alloc]init];
     [self presentViewController:vc animated:YES completion:nil];
+}
+- (IBAction)onLostButton:(id)sender {
+    if (_enableLostMode) {
+        _enableLostMode = false;
+        [(UIButton *)sender setTitle:@"开启防丢模式" forState:UIControlStateNormal];
+    }
+    else
+    {
+        _enableLostMode = true;
+        [(UIButton *)sender setTitle:@"关闭防丢模式" forState:UIControlStateNormal];
+    }
 }
 
 #pragma sms delegate
@@ -87,4 +110,30 @@
         NSLog(@"Message failed");
 }
 
+#pragma luggage device delegate
+-(void)onLuggageDeviceConected
+{
+#if 0
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"luggage已连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+#endif
+}
+
+-(void)onLuggageDeviceDissconnected
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"luggage已断开连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)onLuggageNtfChar:(NSString *)recData
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"收到数据" message:recData preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 @end

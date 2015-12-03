@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		836855C01B8DCB65001CF4E5 /* BLEDevice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 836855BF1B8DCB65001CF4E5 /* BLEDevice.h */; };
+		836855C21B8DCB65001CF4E5 /* BLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 836855C11B8DCB65001CF4E5 /* BLEDevice.m */; };
+		836855C81B8DCB65001CF4E5 /* libBLEDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 836855BC1B8DCB65001CF4E5 /* libBLEDevice.a */; };
+		836855D71B8DCBA5001CF4E5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836855D61B8DCBA5001CF4E5 /* CoreBluetooth.framework */; };
+		836855D91B8DCBB6001CF4E5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836855D81B8DCBB6001CF4E5 /* CoreFoundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		836855C91B8DCB65001CF4E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 836855B41B8DCB65001CF4E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 836855BB1B8DCB65001CF4E5;
+			remoteInfo = BLEDevice;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		836855BA1B8DCB65001CF4E5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "../include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				836855C01B8DCB65001CF4E5 /* BLEDevice.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		836855BC1B8DCB65001CF4E5 /* libBLEDevice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBLEDevice.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		836855BF1B8DCB65001CF4E5 /* BLEDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEDevice.h; sourceTree = "<group>"; };
+		836855C11B8DCB65001CF4E5 /* BLEDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLEDevice.m; sourceTree = "<group>"; };
+		836855C71B8DCB65001CF4E5 /* BLEDeviceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLEDeviceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		836855CD1B8DCB65001CF4E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		836855D61B8DCBA5001CF4E5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		836855D81B8DCBB6001CF4E5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		836855E51B8DCC34001CF4E5 /* BLEService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEService.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		836855B91B8DCB65001CF4E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836855D91B8DCBB6001CF4E5 /* CoreFoundation.framework in Frameworks */,
+				836855D71B8DCBA5001CF4E5 /* CoreBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836855C41B8DCB65001CF4E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836855C81B8DCB65001CF4E5 /* libBLEDevice.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		836855B31B8DCB65001CF4E5 = {
+			isa = PBXGroup;
+			children = (
+				836855D81B8DCBB6001CF4E5 /* CoreFoundation.framework */,
+				836855D61B8DCBA5001CF4E5 /* CoreBluetooth.framework */,
+				836855BE1B8DCB65001CF4E5 /* BLEDevice */,
+				836855CB1B8DCB65001CF4E5 /* BLEDeviceTests */,
+				836855BD1B8DCB65001CF4E5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		836855BD1B8DCB65001CF4E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				836855BC1B8DCB65001CF4E5 /* libBLEDevice.a */,
+				836855C71B8DCB65001CF4E5 /* BLEDeviceTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		836855BE1B8DCB65001CF4E5 /* BLEDevice */ = {
+			isa = PBXGroup;
+			children = (
+				836855E51B8DCC34001CF4E5 /* BLEService.h */,
+				836855BF1B8DCB65001CF4E5 /* BLEDevice.h */,
+				836855C11B8DCB65001CF4E5 /* BLEDevice.m */,
+			);
+			path = BLEDevice;
+			sourceTree = "<group>";
+		};
+		836855CB1B8DCB65001CF4E5 /* BLEDeviceTests */ = {
+			isa = PBXGroup;
+			children = (
+				836855CC1B8DCB65001CF4E5 /* Supporting Files */,
+			);
+			path = BLEDeviceTests;
+			sourceTree = "<group>";
+		};
+		836855CC1B8DCB65001CF4E5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				836855CD1B8DCB65001CF4E5 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		836855BB1B8DCB65001CF4E5 /* BLEDevice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 836855D01B8DCB65001CF4E5 /* Build configuration list for PBXNativeTarget "BLEDevice" */;
+			buildPhases = (
+				836855B81B8DCB65001CF4E5 /* Sources */,
+				836855B91B8DCB65001CF4E5 /* Frameworks */,
+				836855BA1B8DCB65001CF4E5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BLEDevice;
+			productName = BLEDevice;
+			productReference = 836855BC1B8DCB65001CF4E5 /* libBLEDevice.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		836855C61B8DCB65001CF4E5 /* BLEDeviceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 836855D31B8DCB65001CF4E5 /* Build configuration list for PBXNativeTarget "BLEDeviceTests" */;
+			buildPhases = (
+				836855C31B8DCB65001CF4E5 /* Sources */,
+				836855C41B8DCB65001CF4E5 /* Frameworks */,
+				836855C51B8DCB65001CF4E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				836855CA1B8DCB65001CF4E5 /* PBXTargetDependency */,
+			);
+			name = BLEDeviceTests;
+			productName = BLEDeviceTests;
+			productReference = 836855C71B8DCB65001CF4E5 /* BLEDeviceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		836855B41B8DCB65001CF4E5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "张志阳";
+				TargetAttributes = {
+					836855BB1B8DCB65001CF4E5 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					836855C61B8DCB65001CF4E5 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = 836855B71B8DCB65001CF4E5 /* Build configuration list for PBXProject "BLEDevice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 836855B31B8DCB65001CF4E5;
+			productRefGroup = 836855BD1B8DCB65001CF4E5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				836855BB1B8DCB65001CF4E5 /* BLEDevice */,
+				836855C61B8DCB65001CF4E5 /* BLEDeviceTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		836855C51B8DCB65001CF4E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		836855B81B8DCB65001CF4E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836855C21B8DCB65001CF4E5 /* BLEDevice.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836855C31B8DCB65001CF4E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		836855CA1B8DCB65001CF4E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 836855BB1B8DCB65001CF4E5 /* BLEDevice */;
+			targetProxy = 836855C91B8DCB65001CF4E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		836855CE1B8DCB65001CF4E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				VALID_ARCHS = armv7;
+			};
+			name = Debug;
+		};
+		836855CF1B8DCB65001CF4E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
+			};
+			name = Release;
+		};
+		836855D11B8DCB65001CF4E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		836855D21B8DCB65001CF4E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		836855D41B8DCB65001CF4E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BLEDeviceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		836855D51B8DCB65001CF4E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BLEDeviceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		836855B71B8DCB65001CF4E5 /* Build configuration list for PBXProject "BLEDevice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836855CE1B8DCB65001CF4E5 /* Debug */,
+				836855CF1B8DCB65001CF4E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		836855D01B8DCB65001CF4E5 /* Build configuration list for PBXNativeTarget "BLEDevice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836855D11B8DCB65001CF4E5 /* Debug */,
+				836855D21B8DCB65001CF4E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		836855D31B8DCB65001CF4E5 /* Build configuration list for PBXNativeTarget "BLEDeviceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836855D41B8DCB65001CF4E5 /* Debug */,
+				836855D51B8DCB65001CF4E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 836855B41B8DCB65001CF4E5 /* Project object */;
+}

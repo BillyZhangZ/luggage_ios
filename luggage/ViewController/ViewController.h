@@ -11,5 +11,6 @@
 @interface ViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *locateButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *lostButton;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigatorBar;
 @end

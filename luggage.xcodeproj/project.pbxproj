@@ -55,6 +55,9 @@
 		83465F9D1C0B0EF50039C86C /* HelloViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F9B1C0B0EF50039C86C /* HelloViewController.xib */; };
 		83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83465F9E1C0B1E780039C86C /* MapKit.framework */; };
 		8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8348E1111C0DE69300E34C6B /* XJMenuView.m */; };
+		839458CE1C107B8A00020561 /* BLETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 839458CC1C107B8A00020561 /* BLETableViewController.m */; };
+		839458CF1C107B8A00020561 /* BLETableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839458CD1C107B8A00020561 /* BLETableViewController.xib */; };
+		839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839458D11C107E0500020561 /* libBLEDevice.a */; };
 		83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931601C0C73ED00DB1AA2 /* ZZYUser.m */; };
 		83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931631C0C740400DB1AA2 /* ZZYGps.m */; };
 		83E931671C0C7F9500DB1AA2 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E931661C0C7F9500DB1AA2 /* empty.png */; };
@@ -135,6 +138,11 @@
 		83465F9E1C0B1E780039C86C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8348E1101C0DE69300E34C6B /* XJMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMenuView.h; path = ViewController/XJMenuView.h; sourceTree = "<group>"; };
 		8348E1111C0DE69300E34C6B /* XJMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMenuView.m; path = ViewController/XJMenuView.m; sourceTree = "<group>"; };
+		839458CB1C107B8A00020561 /* BLETableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLETableViewController.h; path = ViewController/BLETableViewController.h; sourceTree = "<group>"; };
+		839458CC1C107B8A00020561 /* BLETableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLETableViewController.m; path = ViewController/BLETableViewController.m; sourceTree = "<group>"; };
+		839458CD1C107B8A00020561 /* BLETableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLETableViewController.xib; path = ViewController/BLETableViewController.xib; sourceTree = "<group>"; };
+		839458D01C107D8200020561 /* BLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEDevice.h; path = BLEDevice/BLEDevice/BLEDevice.h; sourceTree = "<group>"; };
+		839458D11C107E0500020561 /* libBLEDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBLEDevice.a; path = "BLEDevice/build/Debug-iphoneos/libBLEDevice.a"; sourceTree = "<group>"; };
 		83E9315F1C0C73ED00DB1AA2 /* ZZYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUser.h; path = Model/ZZYUser.h; sourceTree = "<group>"; };
 		83E931601C0C73ED00DB1AA2 /* ZZYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYUser.m; path = Model/ZZYUser.m; sourceTree = "<group>"; };
 		83E931621C0C740400DB1AA2 /* ZZYGps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYGps.h; path = Model/ZZYGps.h; sourceTree = "<group>"; };
@@ -155,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */,
 				83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */,
 				83465F791C0B02180039C86C /* SMS_SDK.framework in Frameworks */,
 				83465F0F1C04BCD50039C86C /* AudioToolbox.framework in Frameworks */,
@@ -195,6 +204,8 @@
 		83013E1D1C018E190065B5C2 = {
 			isa = PBXGroup;
 			children = (
+				839458D11C107E0500020561 /* libBLEDevice.a */,
+				839458D01C107D8200020561 /* BLEDevice.h */,
 				83465F7A1C0B03A00039C86C /* AMap.bundle */,
 				83013E5F1C01D98B0065B5C2 /* frameworks */,
 				83013E281C018E190065B5C2 /* luggage */,
@@ -311,6 +322,9 @@
 				83465F991C0B0EF50039C86C /* HelloViewController.h */,
 				83465F9A1C0B0EF50039C86C /* HelloViewController.m */,
 				83465F9B1C0B0EF50039C86C /* HelloViewController.xib */,
+				839458CB1C107B8A00020561 /* BLETableViewController.h */,
+				839458CC1C107B8A00020561 /* BLETableViewController.m */,
+				839458CD1C107B8A00020561 /* BLETableViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -438,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83465F801C0B08330039C86C /* Icon-60.png in Resources */,
+				839458CF1C107B8A00020561 /* BLETableViewController.xib in Resources */,
 				83465F8E1C0B08550039C86C /* Icon-Small@3x.png in Resources */,
 				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib in Resources */,
 				83465F8C1C0B08550039C86C /* Icon-Small.png in Resources */,
@@ -474,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83013E2F1C018E190065B5C2 /* AppDelegate.m in Sources */,
+				839458CE1C107B8A00020561 /* BLETableViewController.m in Sources */,
 				83013E7D1C01E7E50065B5C2 /* LocateViewController.m in Sources */,
 				83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */,
 				83013E2C1C018E190065B5C2 /* main.m in Sources */,
@@ -623,6 +639,7 @@
 					"$(PROJECT_DIR)/luggage/Framework/WechatShare",
 					"$(PROJECT_DIR)/luggage/Framework/JPush",
 					"$(PROJECT_DIR)/luggage/Framework/RTSP",
+					"$(PROJECT_DIR)/BLEDevice/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -630,6 +647,8 @@
 				PRODUCT_NAME = luggage;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../BLEDevice/**";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;
@@ -655,6 +674,7 @@
 					"$(PROJECT_DIR)/luggage/Framework/WechatShare",
 					"$(PROJECT_DIR)/luggage/Framework/JPush",
 					"$(PROJECT_DIR)/luggage/Framework/RTSP",
+					"$(PROJECT_DIR)/BLEDevice/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -662,6 +682,7 @@
 				PRODUCT_NAME = luggage;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../BLEDevice/BLEDevice";
 				VALID_ARCHS = armv7;
 			};
 			name = Release;

@@ -183,14 +183,15 @@
         if(data == nil)
         {
             NSLog(@"获取gps数据失败%d",userId);
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"获取位置失败" message:@"请再试一下下" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-            [alert show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"获取位置失败" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
+                        
+            [self presentViewController:alert animated:YES completion:nil];
             return;
         }
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"位置数据格式错误" message:@"请再试一下下" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-            [alert show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
+             [self presentViewController:alert animated:YES completion:nil];
         }
         _latitude = [[dict valueForKey:@"latitude"] floatValue];
         _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
@@ -230,6 +231,6 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return UIDeviceOrientationPortrait;
+    return UIInterfaceOrientationMaskPortrait;
 }
 @end

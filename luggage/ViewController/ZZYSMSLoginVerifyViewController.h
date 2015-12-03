@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZZYSMSLoginViewController.h"
-@interface ZZYSMSLoginVerifyViewController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate,UIAlertViewDelegate>
+@interface ZZYSMSLoginVerifyViewController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *verifyTextFiled;
 @property (weak, nonatomic) IBOutlet UIButton *verifyButton;
 @property NSString *phoneNumber;
