@@ -193,8 +193,18 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
              [self presentViewController:alert animated:YES completion:nil];
         }
-        _latitude = [[dict valueForKey:@"latitude"] floatValue];
-        _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
+        //GPGGA ddmm.mm -> ddd.ddddd
+        float lat = [[dict valueForKey:@"latitude"] floatValue];
+        _latitude = ((int)lat)/100;
+        lat = ((int)(lat*10000))%1000000;
+        lat /= (60*10000);
+        _latitude += lat;
+        
+        float lon = [[dict valueForKey:@"longtitude"] floatValue];
+        _longtitude = ((int)lon)/100;
+        lon = ((int)(lon*10000))%1000000;
+        lon /= (60*10000);
+        _longtitude += lon;
         [self zoomToAnnotations];
         NSLog(@"gps raw data %@",dict);
     };

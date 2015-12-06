@@ -32,7 +32,7 @@
         leftPart = frame;
         leftPart.size.width = lo_menu_width * rate_pixel_to_point;
         _maskArea = [[UILabel alloc] initWithFrame:leftPart];
-        _maskArea.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
+        _maskArea.backgroundColor = [UIColor orangeColor];//[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
         [self addSubview:_maskArea];
 
         UIImageView *bk = [[UIImageView alloc] initWithFrame:leftPart];
@@ -122,7 +122,7 @@
 
     switch(index) {
         case 0:
-            icon.image = [UIImage imageNamed:@"icon1.png"];
+            icon.image = [UIImage imageNamed:@"location.png"];
             lbl.text = @"足迹";
             break;
         case 1:

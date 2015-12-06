@@ -55,8 +55,6 @@
 		83465F9D1C0B0EF50039C86C /* HelloViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F9B1C0B0EF50039C86C /* HelloViewController.xib */; };
 		83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83465F9E1C0B1E780039C86C /* MapKit.framework */; };
 		8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8348E1111C0DE69300E34C6B /* XJMenuView.m */; };
-		839458CE1C107B8A00020561 /* BLETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 839458CC1C107B8A00020561 /* BLETableViewController.m */; };
-		839458CF1C107B8A00020561 /* BLETableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839458CD1C107B8A00020561 /* BLETableViewController.xib */; };
 		839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839458D11C107E0500020561 /* libBLEDevice.a */; };
 		83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931601C0C73ED00DB1AA2 /* ZZYUser.m */; };
 		83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931631C0C740400DB1AA2 /* ZZYGps.m */; };
@@ -65,6 +63,9 @@
 		83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib */; };
 		83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m */; };
 		83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib */; };
+		83FDFF871C1466DB000275AA /* BLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FDFF851C1466DB000275AA /* BLEViewController.m */; };
+		83FDFF881C1466DB000275AA /* BLEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FDFF861C1466DB000275AA /* BLEViewController.xib */; };
+		83FDFF8A1C1482F1000275AA /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FDFF891C1482F1000275AA /* location.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,9 +139,6 @@
 		83465F9E1C0B1E780039C86C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8348E1101C0DE69300E34C6B /* XJMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMenuView.h; path = ViewController/XJMenuView.h; sourceTree = "<group>"; };
 		8348E1111C0DE69300E34C6B /* XJMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMenuView.m; path = ViewController/XJMenuView.m; sourceTree = "<group>"; };
-		839458CB1C107B8A00020561 /* BLETableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLETableViewController.h; path = ViewController/BLETableViewController.h; sourceTree = "<group>"; };
-		839458CC1C107B8A00020561 /* BLETableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLETableViewController.m; path = ViewController/BLETableViewController.m; sourceTree = "<group>"; };
-		839458CD1C107B8A00020561 /* BLETableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLETableViewController.xib; path = ViewController/BLETableViewController.xib; sourceTree = "<group>"; };
 		839458D01C107D8200020561 /* BLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEDevice.h; path = BLEDevice/BLEDevice/BLEDevice.h; sourceTree = "<group>"; };
 		839458D11C107E0500020561 /* libBLEDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBLEDevice.a; path = "BLEDevice/build/Debug-iphoneos/libBLEDevice.a"; sourceTree = "<group>"; };
 		83E9315F1C0C73ED00DB1AA2 /* ZZYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUser.h; path = Model/ZZYUser.h; sourceTree = "<group>"; };
@@ -156,6 +154,10 @@
 		83E9316F1C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSMSLoginVerifyViewController.h; path = ViewController/ZZYSMSLoginVerifyViewController.h; sourceTree = "<group>"; };
 		83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSMSLoginVerifyViewController.m; path = ViewController/ZZYSMSLoginVerifyViewController.m; sourceTree = "<group>"; };
 		83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYSMSLoginVerifyViewController.xib; path = ViewController/ZZYSMSLoginVerifyViewController.xib; sourceTree = "<group>"; };
+		83FDFF841C1466DB000275AA /* BLEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEViewController.h; path = ViewController/BLEViewController.h; sourceTree = "<group>"; };
+		83FDFF851C1466DB000275AA /* BLEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLEViewController.m; path = ViewController/BLEViewController.m; sourceTree = "<group>"; };
+		83FDFF861C1466DB000275AA /* BLEViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLEViewController.xib; path = ViewController/BLEViewController.xib; sourceTree = "<group>"; };
+		83FDFF891C1482F1000275AA /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location.png; path = images/location.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,9 +324,9 @@
 				83465F991C0B0EF50039C86C /* HelloViewController.h */,
 				83465F9A1C0B0EF50039C86C /* HelloViewController.m */,
 				83465F9B1C0B0EF50039C86C /* HelloViewController.xib */,
-				839458CB1C107B8A00020561 /* BLETableViewController.h */,
-				839458CC1C107B8A00020561 /* BLETableViewController.m */,
-				839458CD1C107B8A00020561 /* BLETableViewController.xib */,
+				83FDFF841C1466DB000275AA /* BLEViewController.h */,
+				83FDFF851C1466DB000275AA /* BLEViewController.m */,
+				83FDFF861C1466DB000275AA /* BLEViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -360,6 +362,7 @@
 		83E931651C0C7F8600DB1AA2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				83FDFF891C1482F1000275AA /* location.png */,
 				83E931661C0C7F9500DB1AA2 /* empty.png */,
 			);
 			name = images;
@@ -452,14 +455,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				83465F801C0B08330039C86C /* Icon-60.png in Resources */,
-				839458CF1C107B8A00020561 /* BLETableViewController.xib in Resources */,
 				83465F8E1C0B08550039C86C /* Icon-Small@3x.png in Resources */,
 				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib in Resources */,
 				83465F8C1C0B08550039C86C /* Icon-Small.png in Resources */,
+				83FDFF8A1C1482F1000275AA /* location.png in Resources */,
 				83E931671C0C7F9500DB1AA2 /* empty.png in Resources */,
 				83465F881C0B08430039C86C /* Icon-Spotlight-40@3x.png in Resources */,
 				83465F871C0B08430039C86C /* Icon-Spotlight-40@2x.png in Resources */,
 				83465F981C0B0D8A0039C86C /* LoginViewController.xib in Resources */,
+				83FDFF881C1466DB000275AA /* BLEViewController.xib in Resources */,
 				83465F931C0B0D2F0039C86C /* ViewController.xib in Resources */,
 				83465F7B1C0B03A00039C86C /* AMap.bundle in Resources */,
 				83013E3A1C018E190065B5C2 /* LaunchScreen.xib in Resources */,
@@ -489,10 +493,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				83013E2F1C018E190065B5C2 /* AppDelegate.m in Sources */,
-				839458CE1C107B8A00020561 /* BLETableViewController.m in Sources */,
 				83013E7D1C01E7E50065B5C2 /* LocateViewController.m in Sources */,
 				83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */,
 				83013E2C1C018E190065B5C2 /* main.m in Sources */,
+				83FDFF871C1466DB000275AA /* BLEViewController.m in Sources */,
 				83465F9C1C0B0EF50039C86C /* HelloViewController.m in Sources */,
 				83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */,
 				83465F921C0B0D2F0039C86C /* ViewController.m in Sources */,

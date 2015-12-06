@@ -20,9 +20,6 @@ typedef enum{
     CBPeripheral          *_heartRateDevice;
     NSTimer               *_timer;
     id                    _heartRateDelegate;
-    // simulator support
-    NSTimer               *_timerForSimulator;
-    NSDate                *_simulatorStartTime;
 }
 @end
 
@@ -93,6 +90,7 @@ typedef enum{
     }
     //
     NSLog(@"trying to find devices");
+#ifdef GET_DEVICE_FROM_SYSTEM
     NSArray *heartRateDevices = [_heartRateManager retrieveConnectedPeripheralsWithServices:@[[CBUUID UUIDWithString:LUGGAGE_SERVICE_UUID]]];
     if([heartRateDevices count] != 0)
     {
@@ -107,8 +105,20 @@ typedef enum{
        // [_heartRateDelegate isheartRateAvailable:NO];
         [self startTimer];
     }
+#else
+    [central scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"A961"]]
+                                               options:nil];
+#endif
 }
 
+
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI{
+    NSLog(@"%@ %d", peripheral.name, [RSSI integerValue]);
+    
+    [_heartRateDelegate onDeviceDiscovered:peripheral.name rssi:[RSSI integerValue]];
+    [central stopScan];
+    
+}
 -(void)startTimer
 {
     if (_heartRateManager.state == CBCentralManagerStatePoweredOff) {

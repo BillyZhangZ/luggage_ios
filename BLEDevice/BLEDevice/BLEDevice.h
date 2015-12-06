@@ -13,6 +13,7 @@
 -(void)onLuggageNtfChar:(NSString *) recData;
 -(void)onLuggageDeviceDissconnected;
 -(void)onLuggageDeviceConected;
+-(void)onDeviceDiscovered:(NSString *)deviceName rssi:(NSInteger)rssi;
 @end
 
 

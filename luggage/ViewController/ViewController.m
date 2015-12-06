@@ -11,10 +11,11 @@
 #import "ViewController.h"
 #import "LocateViewController.h"
 #import <MessageUI/MFMessageComposeViewController.h>
-#import "BLEDevice.h"
-@interface ViewController ()<MFMessageComposeViewControllerDelegate, LuggageDelegate>
+//#import "BLEDevice.h"
+#import "BLEViewController.h"
+@interface ViewController ()<MFMessageComposeViewControllerDelegate>
 {
-    LuggageDevice *_luggageDevice;
+   // LuggageDevice *_luggageDevice;
     BOOL _enableLostMode;
 }
 @end
@@ -23,11 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _luggageDevice = [[LuggageDevice alloc]init:self];
+   // _luggageDevice = [[LuggageDevice alloc]init:self];
     _enableLostMode = false;
     // Do any additional setup after loading the view from its nib.
     [self.navigatorBar setBackgroundImage:[UIImage imageNamed:@"empty.png"] forBarMetrics:UIBarMetricsDefault];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -50,9 +50,11 @@
     AppDelegate *app =[[UIApplication sharedApplication]delegate];
     [app showMenu];
 }
-- (IBAction)onShareButton:(id)sender {
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
-    [app sendTextContent:@"Luggage, 让旅行更放心" withScene:WXSceneSession];
+- (IBAction)onAddDeviceButton:(id)sender {
+    //AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    //[app sendTextContent:@"Luggage, 让旅行更放心" withScene:WXSceneSession];
+    BLEViewController *vc = [[BLEViewController alloc]init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 - (IBAction)onRemoteUnlock:(id)sender {
     NSArray *recipientList = [[NSArray alloc]initWithObjects:@"+8613817219941", nil];

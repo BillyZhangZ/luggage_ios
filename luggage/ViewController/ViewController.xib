@@ -58,11 +58,11 @@
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nH1-Md-X7b">
                                     <rect key="frame" x="540" y="7" width="40" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="分享">
+                                    <state key="normal" title="添加">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
-                                        <action selector="onShareButton:" destination="-1" eventType="touchUpInside" id="IRv-MX-ExF"/>
+                                        <action selector="onAddDeviceButton:" destination="-1" eventType="touchUpInside" id="t6o-Dx-6ha"/>
                                     </connections>
                                 </button>
                             </barButtonItem>
