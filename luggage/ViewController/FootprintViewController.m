@@ -1,17 +1,20 @@
 //
-//  MainViewController.m
+//  FootprintViewController.m
 //  luggage
 //
-//  Created by 张志阳 on 11/22/15.
-//  Copyright (c) 2015 张志阳. All rights reserved.
+//  Created by 张志阳 on 12/7/15.
+//  Copyright © 2015 张志阳. All rights reserved.
 //
 
-#import "LocateViewController.h"
+#import "FootprintViewController.h"
 #import <MAMapKit/MAMapKit.H>
 #import "config.h"
+#import "AppDelegate.h"
+#import "GdTrackOverlay.h"
+#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-
-@interface LocateViewController ()<MAMapViewDelegate, UIGestureRecognizerDelegate>
+@interface FootprintViewController ()<MAMapViewDelegate, UIGestureRecognizerDelegate>
 {
     MAMapView *_mapView;
     UIButton  *_currentLocationButton;
@@ -20,10 +23,11 @@
     
     CLLocationDegrees _longtitude;
     CLLocationDegrees _latitude;
+    CLLocationDistance _altitude;
 }
 @end
 
-@implementation LocateViewController
+@implementation FootprintViewController
 
 
 - (void)viewDidLoad {
@@ -74,9 +78,9 @@
     
     
     [self getLatestLocation:1];
-    [self.view addSubview:_mapModeButton];
+    //[self.view addSubview:_mapModeButton];
     [self.view addSubview:_mapView];
-    [self.view bringSubviewToFront:_mapModeButton];
+    //[self.view bringSubviewToFront:_mapModeButton];
 }
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
@@ -98,7 +102,7 @@
         default:
             _mapView.mapType = MAMapTypeStandard;
             [_mapModeButton setTitle:@"夜间模式" forState:UIControlStateNormal];
-
+            
             break;
     }
 }
@@ -106,11 +110,11 @@
 
 -(void)zoomToAnnotations
 {
-
+    
     MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
     //annotation.coordinate = CLLocationCoordinate2DMake(31.43715199999999, 121.13612);
     annotation.coordinate = CLLocationCoordinate2DMake(_latitude, _longtitude);
-
+    
     annotation.title = @"东仓花园";
     annotation.subtitle = @"中国机械加工网";
     // 指定新的显示区域
@@ -125,27 +129,6 @@
     NSLog(@"annotation selected\n");
 }
 
-#if 0
--(MAAnnotationView*)mapView:(MAMapView *)mapView viewForAnnotation:(id)annotation
-{
-    if ([annotation isKindOfClass:[MAPointAnnotation class]])
-    {
-        static NSString *pointReuseIndetifier = @"pointReuseIndetifier";
-        MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
-        if (annotationView == nil)
-        {
-            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
-            annotationView.canShowCallout= YES;      //设置气泡可以弹出，默认为NO
-            annotationView.animatesDrop = YES;       //设置标注动画显示，默认为NO
-            annotationView.draggable = NO;           //设置标注可以拖动，默认为NO
-            annotationView.rightCalloutAccessoryView=[UIButton buttonWithType:UIButtonTypeDetailDisclosure];  //设置气泡右侧按钮
-        }
-        //annotationView.pinColor = [self.annotations indexOfObject:annotation];
-        return annotationView;
-    }
-    return nil;
-}
-#endif
 
 - (IBAction)onBackButton:(id)sender {
     [self dismissViewControllerAnimated:YES
@@ -169,43 +152,89 @@
 -(void)getLatestLocation:(NSInteger)userId
 {
     
-    NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_GET_GPS];
-    [urlPost appendFormat:@"%lu",(unsigned long)userId];
-    NSURL *url = [NSURL URLWithString:urlPost];
+    NSMutableString *urlGet = [[NSMutableString alloc] initWithString:URL_GET_GPS];
+    [urlGet appendFormat:@"%lu/%@/%@",(unsigned long)userId, @"2015-12-07%2011:56:51", @"2015-12-07%2015:56:51"/*stringFromDate([NSDate date])*/];
+    //[urlGet appendFormat:@"%lu/%@/%@",(unsigned long)userId, stringFromDate([[NSDate date] dateByAddingTimeInterval:-3600]), stringFromDate([NSDate date])];
+
+    NSURL *url = [NSURL URLWithString:urlGet];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSOperationQueue *queue = [NSOperationQueue mainQueue];
     [request setHTTPMethod:@"GET"];
-
-    [request setTimeoutInterval:10.0f];
+    
+    [request setTimeoutInterval:100.0f];
     
     void (^onDone)(NSData *data) = ^(NSData *data) {
         if(data == nil)
         {
             NSLog(@"获取gps数据失败%d",userId);
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"获取位置失败" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
-                        
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okAction];
+
             [self presentViewController:alert animated:YES completion:nil];
             return;
         }
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-        if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
+        NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        NSArray *dicts = [allData valueForKey:@"gps"];
+        if (dicts == nil) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
-             [self presentViewController:alert animated:YES completion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
         }
-        //GPGGA ddmm.mm -> ddd.ddddd
-        float lat = [[dict valueForKey:@"latitude"] floatValue];
-        _latitude = ((int)lat)/100;
-        lat = ((int)(lat*10000))%1000000;
-        lat /= (60*10000);
-        _latitude += lat;
         
-        float lon = [[dict valueForKey:@"longtitude"] floatValue];
-        _longtitude = ((int)lon)/100;
-        lon = ((int)(lon*10000))%1000000;
-        lon /= (60*10000);
-        _longtitude += lon;
-        [self zoomToAnnotations];
-        NSLog(@"gps raw data %@",dict);
+        
+        
+        NSMutableArray *locList = [[NSMutableArray alloc]init];
+        int i = 0;
+        CLLocationCoordinate2D pointsToUse[[dicts count]];
+
+        for (NSDictionary *dict in dicts) {
+            //GPGGA ddmm.mm -> ddd.ddddd
+            float lat = [[dict valueForKey:@"latitude"] floatValue];
+            _latitude = ((int)lat)/100;
+            lat = ((int)(lat*10000))%1000000;
+            lat /= (60*10000);
+            _latitude += lat;
+        
+            float lon = [[dict valueForKey:@"longtitude"] floatValue];
+            _longtitude = ((int)lon)/100;
+            lon = ((int)(lon*10000))%1000000;
+            lon /= (60*10000);
+            _longtitude += lon;
+            CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(_latitude, _longtitude);
+            _altitude = [[dict valueForKey:@"altitude"] floatValue];
+            CLLocationCoordinate2D coords;
+            coords.latitude = _latitude;
+            coords.longitude = _longtitude;
+            pointsToUse[i++] =  coords;
+            
+            //CLLocation *locNew = [[CLLocation alloc] initWithCoordinate:coord altitude: _altitude horizontalAccuracy:10.0     verticalAccuracy:10.0 timestamp:[NSDate date]];
+            //CLLocation *locNew = [[CLLocation alloc] initWithCoordinate:coord altitude: _altitude horizontalAccuracy:10.0 verticalAccuracy:10.0 course:0 speed:0.0 timestamp:[NSDate date]];
+            
+            
+            NSLog(@"gps raw data %@",dict);
+        }
+        NSMutableArray *overlays = [[NSMutableArray alloc] init];
+#if 0
+        CLLocationCoordinate2D coords;
+        coords.latitude = 31.841629;
+        coords.longitude = 117.203548;
+        
+        pointsToUse[0] = coords;
+        coords.latitude = 31.851629;
+        coords.longitude = 117.223548;
+        pointsToUse[1] = coords;
+        coords.latitude = 31.861629;
+        coords.longitude = 117.233548;
+        pointsToUse[2] = coords;
+#endif
+        MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:pointsToUse count:[dicts count]];
+        lineOne.title = @"red";
+        [overlays addObject:lineOne];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(pointsToUse[[dicts count] - 1].latitude,pointsToUse[[dicts count] - 1].longitude);
+        MACoordinateSpan span = MACoordinateSpanMake(0.04, 0.04);
+        _mapView.region = MACoordinateRegionMake(coord, span);
+        //[self updatePaths:overlays];
+        [_mapView addOverlays:overlays];
     };
     
     [NSURLConnection sendAsynchronousRequest:request
@@ -220,7 +249,47 @@
                            }];
     
 }
+- (MAOverlayView *)mapView:(MAMapView *)mapView viewForOverlay:(id )overlay{
+   // if ([overlay isKindOfClass:[MAPolyline class]]){
+        MAPolylineView *lineView = [[MAPolylineView alloc] initWithPolyline: overlay];
+        lineView.lineWidth = 5.0f;
+        lineView.strokeColor = [UIColor redColor];
+        lineView.fillColor = [UIColor blackColor];
+        return lineView;
+  //  }
+    
+ //   return nil;
+}
 
+-(void) updatePaths:(NSMutableArray *)arrayOfPointList
+{
+    [_mapView addOverlay:[GdTrackOverlay initWithCoordinates:arrayOfPointList]];
+    
+#if 0
+    // set annotations
+    if(workoutOverlay.annotationStart == nil) {
+        for(NSUInteger i=0; i<sessionCount; i++) {
+            XJSession *session = [sessions objectAtIndex:i];
+            if(session != nil) {
+                CLLocation *firstLoc = session.locations.firstObject;
+                if(firstLoc != nil)
+                {
+                    workoutOverlay.annotationStart = [self setAnnotationAt:firstLoc.coordinate withTitle:@"起点" withSubTitle:stringFromDate(firstLoc.timestamp)];
+                    break;
+                }
+            }
+        }
+    }
+
+    CLLocation *lastLoc = workoutOverlay.overlay.lastLocation;
+    if(lastLoc != nil) {
+        if(workoutOverlay.annotationEnd != nil) {
+            [self.gdMapView removeAnnotation:workoutOverlay.annotationEnd];
+        }
+        workoutOverlay.annotationEnd = [self setAnnotationAt:lastLoc.coordinate withTitle:@"终点" withSubTitle:stringFromDate(lastLoc.timestamp)];
+    }
+#endif
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

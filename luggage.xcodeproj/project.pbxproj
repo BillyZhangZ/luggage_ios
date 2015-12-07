@@ -55,6 +55,12 @@
 		83465F9D1C0B0EF50039C86C /* HelloViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F9B1C0B0EF50039C86C /* HelloViewController.xib */; };
 		83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83465F9E1C0B1E780039C86C /* MapKit.framework */; };
 		8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8348E1111C0DE69300E34C6B /* XJMenuView.m */; };
+		83933F851C15C9E300A7AA6F /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F831C15C9E300A7AA6F /* BookViewController.m */; };
+		83933F861C15C9E300A7AA6F /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83933F841C15C9E300A7AA6F /* BookViewController.xib */; };
+		83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F881C15CDC500A7AA6F /* FootprintViewController.m */; };
+		83933F8B1C15CDC500A7AA6F /* FootprintViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83933F891C15CDC500A7AA6F /* FootprintViewController.xib */; };
+		83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F8D1C15D55000A7AA6F /* GdTrackOverlay.m */; };
+		83933F911C15D55000A7AA6F /* GdTrackOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */; };
 		839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839458D11C107E0500020561 /* libBLEDevice.a */; };
 		83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931601C0C73ED00DB1AA2 /* ZZYUser.m */; };
 		83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931631C0C740400DB1AA2 /* ZZYGps.m */; };
@@ -139,6 +145,16 @@
 		83465F9E1C0B1E780039C86C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8348E1101C0DE69300E34C6B /* XJMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMenuView.h; path = ViewController/XJMenuView.h; sourceTree = "<group>"; };
 		8348E1111C0DE69300E34C6B /* XJMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMenuView.m; path = ViewController/XJMenuView.m; sourceTree = "<group>"; };
+		83933F821C15C9E300A7AA6F /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookViewController.h; path = ViewController/BookViewController.h; sourceTree = "<group>"; };
+		83933F831C15C9E300A7AA6F /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookViewController.m; path = ViewController/BookViewController.m; sourceTree = "<group>"; };
+		83933F841C15C9E300A7AA6F /* BookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookViewController.xib; path = ViewController/BookViewController.xib; sourceTree = "<group>"; };
+		83933F871C15CDC500A7AA6F /* FootprintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FootprintViewController.h; path = ViewController/FootprintViewController.h; sourceTree = "<group>"; };
+		83933F881C15CDC500A7AA6F /* FootprintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FootprintViewController.m; path = ViewController/FootprintViewController.m; sourceTree = "<group>"; };
+		83933F891C15CDC500A7AA6F /* FootprintViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FootprintViewController.xib; path = ViewController/FootprintViewController.xib; sourceTree = "<group>"; };
+		83933F8C1C15D55000A7AA6F /* GdTrackOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GdTrackOverlay.h; path = ViewController/GdTrackOverlay.h; sourceTree = "<group>"; };
+		83933F8D1C15D55000A7AA6F /* GdTrackOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GdTrackOverlay.m; path = ViewController/GdTrackOverlay.m; sourceTree = "<group>"; };
+		83933F8E1C15D55000A7AA6F /* GdTrackOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GdTrackOverlayView.h; path = ViewController/GdTrackOverlayView.h; sourceTree = "<group>"; };
+		83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GdTrackOverlayView.m; path = ViewController/GdTrackOverlayView.m; sourceTree = "<group>"; };
 		839458D01C107D8200020561 /* BLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEDevice.h; path = BLEDevice/BLEDevice/BLEDevice.h; sourceTree = "<group>"; };
 		839458D11C107E0500020561 /* libBLEDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBLEDevice.a; path = "BLEDevice/build/Debug-iphoneos/libBLEDevice.a"; sourceTree = "<group>"; };
 		83E9315F1C0C73ED00DB1AA2 /* ZZYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUser.h; path = Model/ZZYUser.h; sourceTree = "<group>"; };
@@ -304,6 +320,10 @@
 		83013E781C01E7A80065B5C2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				83933F8C1C15D55000A7AA6F /* GdTrackOverlay.h */,
+				83933F8D1C15D55000A7AA6F /* GdTrackOverlay.m */,
+				83933F8E1C15D55000A7AA6F /* GdTrackOverlayView.h */,
+				83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */,
 				8348E1101C0DE69300E34C6B /* XJMenuView.h */,
 				8348E1111C0DE69300E34C6B /* XJMenuView.m */,
 				83E9316F1C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.h */,
@@ -327,6 +347,12 @@
 				83FDFF841C1466DB000275AA /* BLEViewController.h */,
 				83FDFF851C1466DB000275AA /* BLEViewController.m */,
 				83FDFF861C1466DB000275AA /* BLEViewController.xib */,
+				83933F821C15C9E300A7AA6F /* BookViewController.h */,
+				83933F831C15C9E300A7AA6F /* BookViewController.m */,
+				83933F841C15C9E300A7AA6F /* BookViewController.xib */,
+				83933F871C15CDC500A7AA6F /* FootprintViewController.h */,
+				83933F881C15CDC500A7AA6F /* FootprintViewController.m */,
+				83933F891C15CDC500A7AA6F /* FootprintViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -459,6 +485,7 @@
 				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib in Resources */,
 				83465F8C1C0B08550039C86C /* Icon-Small.png in Resources */,
 				83FDFF8A1C1482F1000275AA /* location.png in Resources */,
+				83933F861C15C9E300A7AA6F /* BookViewController.xib in Resources */,
 				83E931671C0C7F9500DB1AA2 /* empty.png in Resources */,
 				83465F881C0B08430039C86C /* Icon-Spotlight-40@3x.png in Resources */,
 				83465F871C0B08430039C86C /* Icon-Spotlight-40@2x.png in Resources */,
@@ -467,6 +494,7 @@
 				83465F931C0B0D2F0039C86C /* ViewController.xib in Resources */,
 				83465F7B1C0B03A00039C86C /* AMap.bundle in Resources */,
 				83013E3A1C018E190065B5C2 /* LaunchScreen.xib in Resources */,
+				83933F8B1C15CDC500A7AA6F /* FootprintViewController.xib in Resources */,
 				83013E7E1C01E7E50065B5C2 /* LocateViewController.xib in Resources */,
 				83465F821C0B08330039C86C /* Icon-60@3x.png in Resources */,
 				83465F9D1C0B0EF50039C86C /* HelloViewController.xib in Resources */,
@@ -497,10 +525,14 @@
 				83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */,
 				83013E2C1C018E190065B5C2 /* main.m in Sources */,
 				83FDFF871C1466DB000275AA /* BLEViewController.m in Sources */,
+				83933F851C15C9E300A7AA6F /* BookViewController.m in Sources */,
 				83465F9C1C0B0EF50039C86C /* HelloViewController.m in Sources */,
 				83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */,
+				83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */,
+				83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */,
 				83465F921C0B0D2F0039C86C /* ViewController.m in Sources */,
 				83465F971C0B0D8A0039C86C /* LoginViewController.m in Sources */,
+				83933F911C15D55000A7AA6F /* GdTrackOverlayView.m in Sources */,
 				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m in Sources */,
 				8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */,
 				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m in Sources */,

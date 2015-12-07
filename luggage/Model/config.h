@@ -8,6 +8,10 @@
 
 #ifndef __config_h
 #define __config_h
+
+#define MAPAPIKEY     @"ba3f5f63c0cbc81301bd286207e2edb0";
+
+
 #define IOS_DEVICE 1
 #define ANDROID_DEVICE 2
 #define SERVER @"http://121.40.128.16/api"

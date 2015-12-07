@@ -32,7 +32,7 @@
         leftPart = frame;
         leftPart.size.width = lo_menu_width * rate_pixel_to_point;
         _maskArea = [[UILabel alloc] initWithFrame:leftPart];
-        _maskArea.backgroundColor = [UIColor orangeColor];//[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
+        _maskArea.backgroundColor = [UIColor colorWithRed:59/255.0 green:104/255.0 blue:252/255.0 alpha:1.0];
         [self addSubview:_maskArea];
 
         UIImageView *bk = [[UIImageView alloc] initWithFrame:leftPart];
@@ -65,8 +65,8 @@
         rcPhoto.size.height = lo_menu_nickname_height * rate_pixel_to_point;
         _lblName = [[UILabel alloc] initWithFrame:rcPhoto];
         [_lblName setText:@"穿越时空的小碎步"];
-        _lblName.textColor = MENU_NICKNAME_FONT_COLOR;
-        _lblName.font = [UIFont systemFontOfSize:MENU_USER_NICKNAME_FONT_SIZE];
+        _lblName.textColor = [UIColor blackColor];//MENU_NICKNAME_FONT_COLOR;
+        _lblName.font = [UIFont systemFontOfSize:/*MENU_USER_NICKNAME_FONT_SIZE*/16];
         _lblName.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_ivPhoto];
         [self addSubview:_lblName];
@@ -117,12 +117,12 @@
     rc.size.height /= 2;
     UILabel *lbl = [[UILabel alloc] initWithFrame:rc];
     lbl.textAlignment = NSTextAlignmentCenter;
-    lbl.textColor = MENU_NICKNAME_FONT_COLOR;
-    lbl.font = [UIFont systemFontOfSize:MENU_ITEM_TITLE_FONT_SIZE];
+    lbl.textColor = [UIColor blackColor];// MENU_NICKNAME_FONT_COLOR;
+    lbl.font = [UIFont systemFontOfSize:/*MENU_ITEM_TITLE_FONT_SIZE*/16];
 
     switch(index) {
         case 0:
-            icon.image = [UIImage imageNamed:@"location.png"];
+            icon.image = [UIImage imageNamed:@"icon1.png"];
             lbl.text = @"足迹";
             break;
         case 1:
@@ -135,7 +135,7 @@
             break;
         case 3:
             icon.image = [UIImage imageNamed:@"icon4.png"];
-            lbl.text = @"我的好友";
+            lbl.text = @"预留3";
             break;
         case 4:
             icon.image = [UIImage imageNamed:@"icon5.png"];
@@ -198,7 +198,7 @@
         case 0: itemName = @"足迹"; break;
         case 1: itemName = @"航班信息"; break;
         case 2: itemName = @"预留1"; break;
-        case 3: itemName = @"好友们"; break;
+        case 3: itemName = @"预留3"; break;
         case 4: itemName = @"预留2"; break;
         case 5: itemName = @"设置"; break;
         default: return; break;

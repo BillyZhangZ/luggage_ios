@@ -106,8 +106,11 @@ typedef enum{
         [self startTimer];
     }
 #else
-    [central scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"A961"]]
+    [central scanForPeripheralsWithServices:nil
                                                options:nil];
+    //[central scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"FEE0"]]
+    //                                options:nil];
+
 #endif
 }
 
@@ -116,7 +119,7 @@ typedef enum{
     NSLog(@"%@ %d", peripheral.name, [RSSI integerValue]);
     
     [_heartRateDelegate onDeviceDiscovered:peripheral.name rssi:[RSSI integerValue]];
-    [central stopScan];
+    //[central stopScan];
     
 }
 -(void)startTimer

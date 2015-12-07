@@ -20,5 +20,6 @@
 - (void) onMenuItemClicked:(NSString *)itemName;
 -(void)jumpToMainVC;
 void say(NSString *sth);
+NSString * stringFromDate(NSDate *date);
 @end
 

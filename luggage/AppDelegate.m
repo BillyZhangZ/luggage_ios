@@ -16,7 +16,8 @@
 #import <SMS_SDK/SMS_SDK.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AVFoundation/AVFoundation.h>
-
+#import "BookViewController.h"
+#import "FootprintViewController.h"
 @interface AppDelegate ()<WXApiDelegate>
 {
     ViewController * _mainVC;
@@ -32,6 +33,7 @@
     
     _mainVC = [[ViewController alloc] init];
     _loginVC = [[ZZYSMSLoginViewController alloc]init];
+    
     CGRect rc = [[UIScreen mainScreen] bounds];
     _menuView = [[XJMenuView alloc]initWithFrame:rc];
     [WXApi registerApp:@"wx9d60ab46bfa2d903" withDescription:@"luggage"];
@@ -129,18 +131,20 @@
     else if([itemName compare:@"足迹"] == NSOrderedSame)
     {
         //_window.rootViewController = _mainVC;
-        LocateViewController *vc = [[LocateViewController alloc]init];
+        FootprintViewController *vc = [[FootprintViewController alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     else if([itemName compare:@"航班信息"] == NSOrderedSame)
     {
        // _window.rootViewController = _histVC;
+        BookViewController *vc = [[BookViewController alloc]init];
+        [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     else if([itemName compare:@"预留1"] == NSOrderedSame)
     {
 
     }
-    else if([itemName compare:@"好友们"] == NSOrderedSame)
+    else if([itemName compare:@"预留3"] == NSOrderedSame)
     {
         
     }
@@ -286,4 +290,20 @@ void say(NSString *sth)
     _window.rootViewController = _mainVC;
 }
 
+
+NSString * stringFromDate(NSDate *date)
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if(dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        
+        // zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+        // [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
+    }
+    
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    return destDateString;
+}
 @end
