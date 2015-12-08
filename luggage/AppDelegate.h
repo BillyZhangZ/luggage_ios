@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <MAMapKit/MAMapKit.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -21,5 +21,6 @@
 -(void)jumpToMainVC;
 void say(NSString *sth);
 NSString * stringFromDate(NSDate *date);
+CLLocationCoordinate2D  transformFromWGSToGCJ(CLLocationCoordinate2D wgLoc);
 @end
 

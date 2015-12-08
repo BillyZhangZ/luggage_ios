@@ -187,6 +187,8 @@
         
         NSMutableArray *locList = [[NSMutableArray alloc]init];
         int i = 0;
+        AppDelegate *app = [[UIApplication sharedApplication]delegate];
+        
         CLLocationCoordinate2D pointsToUse[[dicts count]];
 
         for (NSDictionary *dict in dicts) {
@@ -208,12 +210,14 @@
             _latitude = [[dict valueForKey:@"latitude"] floatValue];
 #endif
             _altitude = [[dict valueForKey:@"altitude"] floatValue];
-
+            
             CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(_latitude, _longtitude);
             CLLocationCoordinate2D coords;
             coords.latitude = _latitude;
             coords.longitude = _longtitude;
-            pointsToUse[i++] =  coords;
+            //coord convert
+            coord = transformFromWGSToGCJ(coords);
+            pointsToUse[i++] =  coord;
             
             //CLLocation *locNew = [[CLLocation alloc] initWithCoordinate:coord altitude: _altitude horizontalAccuracy:10.0     verticalAccuracy:10.0 timestamp:[NSDate date]];
             //CLLocation *locNew = [[CLLocation alloc] initWithCoordinate:coord altitude: _altitude horizontalAccuracy:10.0 verticalAccuracy:10.0 course:0 speed:0.0 timestamp:[NSDate date]];
