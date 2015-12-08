@@ -12,4 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITextView *logText;
 @end

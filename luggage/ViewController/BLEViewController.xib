@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLEViewController">
             <connections>
+                <outlet property="logText" destination="mXt-rX-aGx" id="g2Q-DJ-bcS"/>
                 <outlet property="navigator" destination="aqC-t1-pGi" id="bWy-bk-SXQ"/>
                 <outlet property="tableView" destination="LeM-uT-hUe" id="Rvn-e6-rnq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -45,23 +46,35 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LeM-uT-hUe">
-                    <rect key="frame" x="0.0" y="74" width="600" height="526"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LeM-uT-hUe">
+                    <rect key="frame" x="0.0" y="74" width="600" height="516"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Isq-Cm-C2U"/>
                         <outlet property="delegate" destination="-1" id="2a6-kp-wyl"/>
                     </connections>
                 </tableView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mXt-rX-aGx">
+                    <rect key="frame" x="0.0" y="450" width="600" height="150"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="BQ5-MQ-cnU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="LeM-uT-hUe" secondAttribute="trailing" id="1c0-6R-gNE"/>
                 <constraint firstItem="aqC-t1-pGi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="45e-aW-aTd"/>
-                <constraint firstAttribute="bottom" secondItem="LeM-uT-hUe" secondAttribute="bottom" id="Ap5-WY-2hG"/>
+                <constraint firstItem="mXt-rX-aGx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Su-Kj-M8V"/>
                 <constraint firstItem="aqC-t1-pGi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Exz-cQ-6Ij"/>
+                <constraint firstAttribute="bottom" secondItem="LeM-uT-hUe" secondAttribute="bottom" constant="10" id="JS6-O8-yyT"/>
                 <constraint firstAttribute="trailing" secondItem="aqC-t1-pGi" secondAttribute="trailing" id="KxM-yd-oRX"/>
                 <constraint firstItem="LeM-uT-hUe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Xf2-P8-OHy"/>
+                <constraint firstAttribute="bottom" secondItem="mXt-rX-aGx" secondAttribute="bottom" id="acm-EH-wwZ"/>
+                <constraint firstAttribute="trailing" secondItem="mXt-rX-aGx" secondAttribute="trailing" id="eV8-r2-0gd"/>
                 <constraint firstItem="LeM-uT-hUe" firstAttribute="top" secondItem="aqC-t1-pGi" secondAttribute="bottom" constant="10" id="gEo-Di-so2"/>
             </constraints>
         </view>

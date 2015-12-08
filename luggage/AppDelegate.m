@@ -18,6 +18,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "BookViewController.h"
 #import "FootprintViewController.h"
+#import "WebsiteViewController.h"
 @interface AppDelegate ()<WXApiDelegate>
 {
     ViewController * _mainVC;
@@ -140,9 +141,10 @@
         BookViewController *vc = [[BookViewController alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
-    else if([itemName compare:@"预留1"] == NSOrderedSame)
+    else if([itemName compare:@"新品上市"] == NSOrderedSame)
     {
-
+        WebsiteViewController *vc = [[WebsiteViewController alloc]init];
+        [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     else if([itemName compare:@"预留3"] == NSOrderedSame)
     {

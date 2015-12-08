@@ -13,7 +13,10 @@
 -(void)onLuggageNtfChar:(NSString *) recData;
 -(void)onLuggageDeviceDissconnected;
 -(void)onLuggageDeviceConected;
--(void)onDeviceDiscovered:(NSString *)deviceName rssi:(NSInteger)rssi;
+-(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
+-(void)onNtfCharateristicFound;
+-(void)onWriteCharateristicFound;
+-(void)onSubscribeDone;
 @end
 
 
@@ -25,5 +28,6 @@
  **/
 -(instancetype)init:(id)delegate;
 -(void)LuggageWriteChar:(NSString *)txData;
+-(void)BLEConectTo:(CBPeripheral *)peripheral;
 @end
 

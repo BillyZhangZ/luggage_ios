@@ -153,7 +153,7 @@
 {
     
     NSMutableString *urlGet = [[NSMutableString alloc] initWithString:URL_GET_GPS];
-    [urlGet appendFormat:@"%lu/%@/%@",(unsigned long)userId, @"2015-12-07%2011:56:51", @"2015-12-07%2015:56:51"/*stringFromDate([NSDate date])*/];
+    [urlGet appendFormat:@"%lu/%d",(unsigned long)userId, 100/*stringFromDate([NSDate date])*/];
     //[urlGet appendFormat:@"%lu/%@/%@",(unsigned long)userId, stringFromDate([[NSDate date] dateByAddingTimeInterval:-3600]), stringFromDate([NSDate date])];
 
     NSURL *url = [NSURL URLWithString:urlGet];
@@ -178,6 +178,8 @@
         NSArray *dicts = [allData valueForKey:@"gps"];
         if (dicts == nil) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
         }
         
@@ -189,6 +191,7 @@
 
         for (NSDictionary *dict in dicts) {
             //GPGGA ddmm.mm -> ddd.ddddd
+#if 0
             float lat = [[dict valueForKey:@"latitude"] floatValue];
             _latitude = ((int)lat)/100;
             lat = ((int)(lat*10000))%1000000;
@@ -200,8 +203,13 @@
             lon = ((int)(lon*10000))%1000000;
             lon /= (60*10000);
             _longtitude += lon;
-            CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(_latitude, _longtitude);
+#else
+            _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
+            _latitude = [[dict valueForKey:@"latitude"] floatValue];
+#endif
             _altitude = [[dict valueForKey:@"altitude"] floatValue];
+
+            CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(_latitude, _longtitude);
             CLLocationCoordinate2D coords;
             coords.latitude = _latitude;
             coords.longitude = _longtitude;
@@ -214,19 +222,7 @@
             NSLog(@"gps raw data %@",dict);
         }
         NSMutableArray *overlays = [[NSMutableArray alloc] init];
-#if 0
-        CLLocationCoordinate2D coords;
-        coords.latitude = 31.841629;
-        coords.longitude = 117.203548;
-        
-        pointsToUse[0] = coords;
-        coords.latitude = 31.851629;
-        coords.longitude = 117.223548;
-        pointsToUse[1] = coords;
-        coords.latitude = 31.861629;
-        coords.longitude = 117.233548;
-        pointsToUse[2] = coords;
-#endif
+
         MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:pointsToUse count:[dicts count]];
         lineOne.title = @"red";
         [overlays addObject:lineOne];

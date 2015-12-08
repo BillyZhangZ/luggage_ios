@@ -51,10 +51,10 @@
 		83465F931C0B0D2F0039C86C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F911C0B0D2F0039C86C /* ViewController.xib */; };
 		83465F971C0B0D8A0039C86C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83465F951C0B0D8A0039C86C /* LoginViewController.m */; };
 		83465F981C0B0D8A0039C86C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F961C0B0D8A0039C86C /* LoginViewController.xib */; };
-		83465F9C1C0B0EF50039C86C /* HelloViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83465F9A1C0B0EF50039C86C /* HelloViewController.m */; };
-		83465F9D1C0B0EF50039C86C /* HelloViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F9B1C0B0EF50039C86C /* HelloViewController.xib */; };
 		83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83465F9E1C0B1E780039C86C /* MapKit.framework */; };
 		8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8348E1111C0DE69300E34C6B /* XJMenuView.m */; };
+		8355F90B1C17156C001E7352 /* WebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8355F9091C17156C001E7352 /* WebsiteViewController.m */; };
+		8355F90C1C17156C001E7352 /* WebsiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8355F90A1C17156C001E7352 /* WebsiteViewController.xib */; };
 		83933F851C15C9E300A7AA6F /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F831C15C9E300A7AA6F /* BookViewController.m */; };
 		83933F861C15C9E300A7AA6F /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83933F841C15C9E300A7AA6F /* BookViewController.xib */; };
 		83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F881C15CDC500A7AA6F /* FootprintViewController.m */; };
@@ -139,12 +139,12 @@
 		83465F941C0B0D8A0039C86C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ViewController/LoginViewController.h; sourceTree = "<group>"; };
 		83465F951C0B0D8A0039C86C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ViewController/LoginViewController.m; sourceTree = "<group>"; };
 		83465F961C0B0D8A0039C86C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = ViewController/LoginViewController.xib; sourceTree = "<group>"; };
-		83465F991C0B0EF50039C86C /* HelloViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloViewController.h; path = ViewController/HelloViewController.h; sourceTree = "<group>"; };
-		83465F9A1C0B0EF50039C86C /* HelloViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelloViewController.m; path = ViewController/HelloViewController.m; sourceTree = "<group>"; };
-		83465F9B1C0B0EF50039C86C /* HelloViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelloViewController.xib; path = ViewController/HelloViewController.xib; sourceTree = "<group>"; };
 		83465F9E1C0B1E780039C86C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8348E1101C0DE69300E34C6B /* XJMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMenuView.h; path = ViewController/XJMenuView.h; sourceTree = "<group>"; };
 		8348E1111C0DE69300E34C6B /* XJMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMenuView.m; path = ViewController/XJMenuView.m; sourceTree = "<group>"; };
+		8355F9081C17156C001E7352 /* WebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebsiteViewController.h; path = ViewController/WebsiteViewController.h; sourceTree = "<group>"; };
+		8355F9091C17156C001E7352 /* WebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebsiteViewController.m; path = ViewController/WebsiteViewController.m; sourceTree = "<group>"; };
+		8355F90A1C17156C001E7352 /* WebsiteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebsiteViewController.xib; path = ViewController/WebsiteViewController.xib; sourceTree = "<group>"; };
 		83933F821C15C9E300A7AA6F /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookViewController.h; path = ViewController/BookViewController.h; sourceTree = "<group>"; };
 		83933F831C15C9E300A7AA6F /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookViewController.m; path = ViewController/BookViewController.m; sourceTree = "<group>"; };
 		83933F841C15C9E300A7AA6F /* BookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookViewController.xib; path = ViewController/BookViewController.xib; sourceTree = "<group>"; };
@@ -341,9 +341,6 @@
 				83465F941C0B0D8A0039C86C /* LoginViewController.h */,
 				83465F951C0B0D8A0039C86C /* LoginViewController.m */,
 				83465F961C0B0D8A0039C86C /* LoginViewController.xib */,
-				83465F991C0B0EF50039C86C /* HelloViewController.h */,
-				83465F9A1C0B0EF50039C86C /* HelloViewController.m */,
-				83465F9B1C0B0EF50039C86C /* HelloViewController.xib */,
 				83FDFF841C1466DB000275AA /* BLEViewController.h */,
 				83FDFF851C1466DB000275AA /* BLEViewController.m */,
 				83FDFF861C1466DB000275AA /* BLEViewController.xib */,
@@ -353,6 +350,9 @@
 				83933F871C15CDC500A7AA6F /* FootprintViewController.h */,
 				83933F881C15CDC500A7AA6F /* FootprintViewController.m */,
 				83933F891C15CDC500A7AA6F /* FootprintViewController.xib */,
+				8355F9081C17156C001E7352 /* WebsiteViewController.h */,
+				8355F9091C17156C001E7352 /* WebsiteViewController.m */,
+				8355F90A1C17156C001E7352 /* WebsiteViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -497,9 +497,9 @@
 				83933F8B1C15CDC500A7AA6F /* FootprintViewController.xib in Resources */,
 				83013E7E1C01E7E50065B5C2 /* LocateViewController.xib in Resources */,
 				83465F821C0B08330039C86C /* Icon-60@3x.png in Resources */,
-				83465F9D1C0B0EF50039C86C /* HelloViewController.xib in Resources */,
 				83465F861C0B08430039C86C /* Icon-Spotlight-40.png in Resources */,
 				83465F8D1C0B08550039C86C /* Icon-Small@2x.png in Resources */,
+				8355F90C1C17156C001E7352 /* WebsiteViewController.xib in Resources */,
 				83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib in Resources */,
 				83013E371C018E190065B5C2 /* Images.xcassets in Resources */,
 				83465F811C0B08330039C86C /* Icon-60@2x.png in Resources */,
@@ -526,7 +526,7 @@
 				83013E2C1C018E190065B5C2 /* main.m in Sources */,
 				83FDFF871C1466DB000275AA /* BLEViewController.m in Sources */,
 				83933F851C15C9E300A7AA6F /* BookViewController.m in Sources */,
-				83465F9C1C0B0EF50039C86C /* HelloViewController.m in Sources */,
+				8355F90B1C17156C001E7352 /* WebsiteViewController.m in Sources */,
 				83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */,
 				83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */,
 				83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */,

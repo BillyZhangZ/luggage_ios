@@ -1,27 +1,32 @@
 //
-//  HelloViewController.m
+//  WebsiteViewController.m
 //  luggage
 //
-//  Created by 张志阳 on 11/29/15.
+//  Created by 张志阳 on 12/8/15.
 //  Copyright © 2015 张志阳. All rights reserved.
 //
 
-#import "HelloViewController.h"
+#import "WebsiteViewController.h"
 
-@interface HelloViewController ()
+@interface WebsiteViewController ()
 
 @end
 
-@implementation HelloViewController
+@implementation WebsiteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.americantourister.com.cn/pub1/Products.aspx"]];
+    [self.webView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)onBackButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

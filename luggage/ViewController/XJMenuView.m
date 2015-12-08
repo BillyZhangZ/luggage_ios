@@ -131,7 +131,7 @@
             break;
         case 2:
             icon.image = [UIImage imageNamed:@"icon3.png"];
-            lbl.text = @"预留1";
+            lbl.text = @"新品上市";
             break;
         case 3:
             icon.image = [UIImage imageNamed:@"icon4.png"];
@@ -197,7 +197,7 @@
     switch(btn.tag) {
         case 0: itemName = @"足迹"; break;
         case 1: itemName = @"航班信息"; break;
-        case 2: itemName = @"预留1"; break;
+        case 2: itemName = @"新品上市"; break;
         case 3: itemName = @"预留3"; break;
         case 4: itemName = @"预留2"; break;
         case 5: itemName = @"设置"; break;

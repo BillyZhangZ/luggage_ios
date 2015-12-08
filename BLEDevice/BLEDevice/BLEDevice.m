@@ -20,6 +20,7 @@ typedef enum{
     CBPeripheral          *_heartRateDevice;
     NSTimer               *_timer;
     id                    _heartRateDelegate;
+    CBCharacteristic *_writeChar;
 }
 @end
 
@@ -31,6 +32,7 @@ typedef enum{
     if (self) {
         _heartRateDelegate = delegate;
         _heartRateManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        _writeChar = nil;
         if (_heartRateDelegate == nil || _heartRateManager == nil) {
             NSLog(@"Exception in heart rate lib, delegate or manager is nil");
         }
@@ -45,6 +47,9 @@ typedef enum{
 
 -(void)LuggageWriteChar:(NSString *)txData
 {
+    if (_writeChar) {
+        [_heartRateDevice writeValue:[txData dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:_writeChar type:CBCharacteristicWriteWithResponse];
+    }
     NSLog(@"write character");
 }
 /** centralManagerDidUpdateState is a required protocol method.
@@ -70,7 +75,8 @@ typedef enum{
         case CBCentralManagerStatePoweredOff:
             NSLog(@"HeartLib: CBCentralManagerStatePoweredOff");
             //maybe ble is closed in process
-            [self stopTimer];
+            //[self stopTimer];
+            [_heartRateDelegate onLuggageDeviceDissconnected];
             break;
         case CBCentralManagerStatePoweredOn:
             NSLog(@"HeartLib: CBCentralManagerStatePoweredOn");
@@ -114,11 +120,15 @@ typedef enum{
 #endif
 }
 
-
+-(void)BLEConectTo:(CBPeripheral *)peripheral
+{
+    [_heartRateManager stopScan];
+    [_heartRateManager connectPeripheral:peripheral options:nil];
+}
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI{
     NSLog(@"%@ %d", peripheral.name, [RSSI integerValue]);
     
-    [_heartRateDelegate onDeviceDiscovered:peripheral.name rssi:[RSSI integerValue]];
+    [_heartRateDelegate onDeviceDiscovered:peripheral rssi:[RSSI integerValue]];
     //[central stopScan];
     
 }
@@ -190,6 +200,8 @@ typedef enum{
     // Loop through the newly filled peripheral.services array, just in case there's more than one.
     for (CBService *service in peripheral.services) {
         [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:LUGGAGE_NTF_CHARACTERISTIC_UUID]] forService:service];
+        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:LUGGAGE_WRITE_CHARACTERISTIC_UUID]] forService:service];
+
     }
 }
 
@@ -209,10 +221,15 @@ typedef enum{
         
         // And check if it's the right one
         if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:LUGGAGE_NTF_CHARACTERISTIC_UUID]]) {
-            
+            [_heartRateDelegate onNtfCharateristicFound];
             // If it is, subscribe to it
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
         }
+        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:LUGGAGE_WRITE_CHARACTERISTIC_UUID]]) {
+            [_heartRateDelegate onWriteCharateristicFound];
+            _writeChar = characteristic;
+        }
+        
     }
     
     // Once this is complete, we just need to wait for the data to come in.
@@ -265,13 +282,16 @@ typedef enum{
     // Notification has started
     if (characteristic.isNotifying) {
         NSLog(@"HeartLib: Notification began on %@", characteristic);
+        [_heartRateDelegate onSubscribeDone];
     }
     
     // Notification has stopped
     else {
         // so disconnect from the peripheral
         NSLog(@"HeartLib: Notification stopped on %@.  Disconnecting", characteristic);
-        [_heartRateManager cancelPeripheralConnection:peripheral];
+        //[_heartRateManager cancelPeripheralConnection:peripheral];
+        //[_heartRateDelegate onSubscribeDone];
+
     }
 }
 
@@ -281,7 +301,8 @@ typedef enum{
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"HeartLib: Peripheral Disconnected");
-    [self startTimer];
+    [_heartRateDelegate onLuggageDeviceDissconnected];
+    //[self startTimer];
 }
 
 

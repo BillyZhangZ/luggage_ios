@@ -19,9 +19,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gH0-JF-AE6">
-                    <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                    <rect key="frame" x="160" y="274" width="100" height="100"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="Rat-hY-hcv"/>
+                        <constraint firstAttribute="height" constant="100" id="m4c-gN-sY7"/>
+                        <constraint firstAttribute="width" constant="100" id="ur7-2O-nt0"/>
                     </constraints>
                     <state key="normal" title="luggage定位">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -70,9 +72,11 @@
                     </items>
                 </navigationBar>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbK-yB-v1j">
-                    <rect key="frame" x="0.0" y="144" width="600" height="40"/>
+                    <rect key="frame" x="50" y="164" width="100" height="100"/>
+                    <color key="backgroundColor" red="0.2256591365" green="0.41020442969999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="7UQ-Xg-aal"/>
+                        <constraint firstAttribute="width" constant="100" id="Wiw-ir-0HD"/>
+                        <constraint firstAttribute="height" constant="100" id="YCz-xa-va9"/>
                     </constraints>
                     <state key="normal" title="远程开锁">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -82,20 +86,22 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c93-3U-GQO">
-                    <rect key="frame" x="0.0" y="84" width="600" height="40"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="160" y="164" width="100" height="100"/>
+                    <color key="backgroundColor" red="1" green="0.092533442310000005" blue="0.066853115579999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="m9X-Jh-EoI"/>
+                        <constraint firstAttribute="width" constant="100" id="2LQ-y8-at4"/>
+                        <constraint firstAttribute="height" constant="100" id="LE8-0g-QqA"/>
                     </constraints>
                     <state key="normal" title="蓝牙开锁">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCB-Cv-j5u">
-                    <rect key="frame" x="0.0" y="194" width="600" height="40"/>
+                    <rect key="frame" x="50" y="274" width="100" height="100"/>
+                    <color key="backgroundColor" red="0.1223861772" green="0.60690893310000005" blue="0.055834649489999999" alpha="0.85999999999999999" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="WZJ-Wq-VOU"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Xxr-iA-cQJ"/>
+                        <constraint firstAttribute="height" constant="100" id="5IN-E8-Rn1"/>
+                        <constraint firstAttribute="width" constant="100" id="G84-Mu-td4"/>
                     </constraints>
                     <state key="normal" title="防丢模式">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -108,20 +114,16 @@
             <color key="backgroundColor" red="1" green="0.79451358299836328" blue="0.21677502401332149" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="yZn-N6-e7X" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="1nS-sL-9rx"/>
-                <constraint firstAttribute="trailing" secondItem="xCB-Cv-j5u" secondAttribute="trailing" id="4FJ-sv-NFD"/>
-                <constraint firstItem="c93-3U-GQO" firstAttribute="top" secondItem="yZn-N6-e7X" secondAttribute="bottom" constant="20" id="ASk-Op-EcD"/>
-                <constraint firstAttribute="bottom" secondItem="gH0-JF-AE6" secondAttribute="bottom" id="D7n-Q3-LOd"/>
-                <constraint firstItem="c93-3U-GQO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dz5-e9-te0"/>
-                <constraint firstAttribute="trailing" secondItem="gH0-JF-AE6" secondAttribute="trailing" id="Jbs-Ib-ePu"/>
-                <constraint firstAttribute="trailing" secondItem="cbK-yB-v1j" secondAttribute="trailing" id="Sw2-6w-ved"/>
-                <constraint firstItem="gH0-JF-AE6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aWo-gf-pji"/>
-                <constraint firstAttribute="trailing" secondItem="c93-3U-GQO" secondAttribute="trailing" id="bXg-KV-JHn"/>
-                <constraint firstItem="xCB-Cv-j5u" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iAE-yp-TGy"/>
-                <constraint firstItem="xCB-Cv-j5u" firstAttribute="top" secondItem="cbK-yB-v1j" secondAttribute="bottom" constant="10" id="oWb-Nh-9Bh"/>
-                <constraint firstItem="cbK-yB-v1j" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qKg-yk-vpM"/>
+                <constraint firstItem="cbK-yB-v1j" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="JI8-q5-G6z"/>
+                <constraint firstItem="xCB-Cv-j5u" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="KPp-R3-jkg"/>
+                <constraint firstItem="c93-3U-GQO" firstAttribute="top" secondItem="yZn-N6-e7X" secondAttribute="bottom" constant="100" id="THc-Jf-l8G"/>
+                <constraint firstItem="cbK-yB-v1j" firstAttribute="top" secondItem="yZn-N6-e7X" secondAttribute="bottom" constant="100" id="d80-Vg-aZZ"/>
+                <constraint firstItem="gH0-JF-AE6" firstAttribute="top" secondItem="c93-3U-GQO" secondAttribute="bottom" constant="10" id="gVK-CO-kjS"/>
+                <constraint firstItem="gH0-JF-AE6" firstAttribute="leading" secondItem="xCB-Cv-j5u" secondAttribute="trailing" constant="10" id="hBT-tW-m9g"/>
+                <constraint firstItem="xCB-Cv-j5u" firstAttribute="top" secondItem="yZn-N6-e7X" secondAttribute="bottom" constant="210" id="qLo-Wy-Z60"/>
+                <constraint firstItem="c93-3U-GQO" firstAttribute="leading" secondItem="cbK-yB-v1j" secondAttribute="trailing" constant="10" id="tNy-w9-fYa"/>
                 <constraint firstItem="yZn-N6-e7X" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uup-Kq-0CD"/>
                 <constraint firstAttribute="trailing" secondItem="yZn-N6-e7X" secondAttribute="trailing" id="yni-Bw-NGA"/>
-                <constraint firstItem="cbK-yB-v1j" firstAttribute="top" secondItem="c93-3U-GQO" secondAttribute="bottom" constant="20" id="znV-Pt-PtG"/>
             </constraints>
         </view>
     </objects>
