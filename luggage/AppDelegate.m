@@ -19,6 +19,8 @@
 #import "BookViewController.h"
 #import "FootprintViewController.h"
 #import "WebsiteViewController.h"
+#import "XJSettingsVC.h"
+#import "XJUserHomeViewController.h"
 @interface AppDelegate ()<WXApiDelegate>
 {
     ViewController * _mainVC;
@@ -127,6 +129,10 @@
         {
             _window.rootViewController = _userVC;
         }
+#else
+        XJUserHomeViewController *vc = [[XJUserHomeViewController alloc]init];
+        [_window.rootViewController presentViewController:vc
+                                                 animated:YES completion:nil];
 #endif
     }
     else if([itemName compare:@"足迹"] == NSOrderedSame)
@@ -157,6 +163,8 @@
     else if([itemName compare:@"设置"] == NSOrderedSame)
     {
        // _window.rootViewController = _settingsVC;
+        XJSettingsVC *vc = [[XJSettingsVC alloc]init];
+        [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     
     [self hideMenu];

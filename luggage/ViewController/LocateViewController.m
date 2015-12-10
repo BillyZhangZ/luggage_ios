@@ -9,7 +9,7 @@
 #import "LocateViewController.h"
 #import <MAMapKit/MAMapKit.H>
 #import "config.h"
-
+#import "AppDelegate.h"
 
 @interface LocateViewController ()<MAMapViewDelegate, UIGestureRecognizerDelegate>
 {
@@ -183,13 +183,17 @@
         {
             NSLog(@"获取gps数据失败%d",userId);
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"获取位置失败" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
-                        
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okAction];
+            
             [self presentViewController:alert animated:YES completion:nil];
             return;
         }
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okAction];
              [self presentViewController:alert animated:YES completion:nil];
         }
 #if 0
@@ -209,6 +213,10 @@
         _latitude = [[dict valueForKey:@"latitude"] floatValue];
         _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
 #endif
+        CLLocationCoordinate2D coordWGS = CLLocationCoordinate2DMake(_latitude, _longtitude);
+        CLLocationCoordinate2D coordGCJ = transformFromWGSToGCJ(coordWGS);
+        _longtitude = coordGCJ.longitude;
+        _latitude = coordGCJ.latitude;
         [self zoomToAnnotations];
         NSLog(@"gps raw data %@",dict);
     };

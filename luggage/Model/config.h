@@ -63,6 +63,20 @@
 #define lo_menu_nickname_y_offset   422/4
 #define lo_menu_nickname_height   54/4
 #define lo_menu_item_size   305/4
+#define TITLEBARHEIGHT 44
+
+//---- XJSettingsVC ----
+#define  lo_settings_icon_size   205/4
+#define  lo_settings_icon_x_center_offset   224/4
+#define  lo_settings_icon_y_center_offset  342/4
+#define  lo_settings_table_y_offset  (569 - 160)/4
+#define  lo_settings_cell_switch_width  104/4
+#define  lo_settings_cell_switch_height   64/4
+
+#define DEFBKCOLOR [UIColor colorWithRed:0x24/255.0 green:0x25/255.0 blue:0x2a/255.0 alpha:1.0]
+
+#define STATUSBARTINTCOLOR [UIColor colorWithRed:0.5 green:0.0 blue:0.5 alpha:0.0] // transparent
+#define DEFFGCOLOR [UIColor colorWithRed:0xf0/255.0 green:0x65/255.0 blue:0x22/255.0 alpha:1.0]
 
 #define MENU_NICKNAME_FONT_COLOR [UIColor whiteColor]
 #define MENU_USER_NICKNAME_FONT_SIZE (23*2*rate_pixel_to_point/4)
@@ -70,9 +84,19 @@
 #define MENU_ITEM_TITLE_FONT_SIZE (21*2*rate_pixel_to_point/4)
 
 // Parameters for settings
-#define SETTINGS_NICKNAME_FONT_SIZE (22*2*rate_pixel_to_point)
-#define SETTINGS_CELL_TITLE_FONT_SIZE (20*2*rate_pixel_to_point)
-#define SETTINGS_CELL_SUBTITLE_FONT_SIZE (16*2*rate_pixel_to_point)
+#define SETTINGS_NICKNAME_FONT_SIZE (22*2*rate_pixel_to_point/2)
+#define SETTINGS_CELL_TITLE_FONT_SIZE (20*2*rate_pixel_to_point/2)
+#define SETTINGS_CELL_SUBTITLE_FONT_SIZE (16*2*rate_pixel_to_point/4)
+
+#define MAJORDATA_TITLE_ABS_Y ((481.0-10)*rate_pixel_to_point)
+#define MAJORDATA_TITLE_FONT_NAME @"Roboto-Light"
+#define MAJORDATA_TITLE_FONT_SIZE (82*2*rate_pixel_to_point) // psd file: uses 2x DPI
+#define NAVIGATIONBAR_LEFT_ICON_SIZE 44
+
+#define NAVIGATIONBAR_TITLE_FONT_NAME @"UniSansThinCAPS"
+//#define NAVIGATIONBAR_TITLE_FONT_NAME @"Helvetica"
+#define NAVIGATIONBAR_TITLE_FONT_SIZE (26*2*rate_pixel_to_point)
+#define NAVIGATIONBAR_SIDE_FONT_SIZE (20*2*rate_pixel_to_point)
 
 #define USERID 14
 

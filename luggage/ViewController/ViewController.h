@@ -13,4 +13,5 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *lostButton;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigatorBar;
+@property (weak, nonatomic) IBOutlet UILabel *weightLabel;
 @end

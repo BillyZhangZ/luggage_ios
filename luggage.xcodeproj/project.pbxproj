@@ -62,6 +62,12 @@
 		83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F8D1C15D55000A7AA6F /* GdTrackOverlay.m */; };
 		83933F911C15D55000A7AA6F /* GdTrackOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */; };
 		839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839458D11C107E0500020561 /* libBLEDevice.a */; };
+		83D1D9ED1C18EF45005F4F63 /* XJSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EC1C18EF45005F4F63 /* XJSettingsVC.m */; };
+		83D1D9F01C18EFC7005F4F63 /* XJBaseNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EF1C18EFC7005F4F63 /* XJBaseNavVC.m */; };
+		83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F21C18F889005F4F63 /* basicInfoCel.m */; };
+		83D1D9F81C18F889005F4F63 /* basicInfoCel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D1D9F31C18F889005F4F63 /* basicInfoCel.xib */; };
+		83D1D9F91C18F889005F4F63 /* XJUserHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F51C18F889005F4F63 /* XJUserHomeViewController.m */; };
+		83D1D9FA1C18F889005F4F63 /* XJUserHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D1D9F61C18F889005F4F63 /* XJUserHomeViewController.xib */; };
 		83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931601C0C73ED00DB1AA2 /* ZZYUser.m */; };
 		83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931631C0C740400DB1AA2 /* ZZYGps.m */; };
 		83E931671C0C7F9500DB1AA2 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E931661C0C7F9500DB1AA2 /* empty.png */; };
@@ -157,6 +163,16 @@
 		83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GdTrackOverlayView.m; path = ViewController/GdTrackOverlayView.m; sourceTree = "<group>"; };
 		839458D01C107D8200020561 /* BLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEDevice.h; path = BLEDevice/BLEDevice/BLEDevice.h; sourceTree = "<group>"; };
 		839458D11C107E0500020561 /* libBLEDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBLEDevice.a; path = "BLEDevice/build/Debug-iphoneos/libBLEDevice.a"; sourceTree = "<group>"; };
+		83D1D9EB1C18EF45005F4F63 /* XJSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJSettingsVC.h; path = ViewController/XJSettingsVC.h; sourceTree = "<group>"; };
+		83D1D9EC1C18EF45005F4F63 /* XJSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJSettingsVC.m; path = ViewController/XJSettingsVC.m; sourceTree = "<group>"; };
+		83D1D9EE1C18EFC7005F4F63 /* XJBaseNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJBaseNavVC.h; path = ViewController/XJBaseNavVC.h; sourceTree = "<group>"; };
+		83D1D9EF1C18EFC7005F4F63 /* XJBaseNavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJBaseNavVC.m; path = ViewController/XJBaseNavVC.m; sourceTree = "<group>"; };
+		83D1D9F11C18F889005F4F63 /* basicInfoCel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = basicInfoCel.h; path = ViewController/basicInfoCel.h; sourceTree = "<group>"; };
+		83D1D9F21C18F889005F4F63 /* basicInfoCel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = basicInfoCel.m; path = ViewController/basicInfoCel.m; sourceTree = "<group>"; };
+		83D1D9F31C18F889005F4F63 /* basicInfoCel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = basicInfoCel.xib; path = ViewController/basicInfoCel.xib; sourceTree = "<group>"; };
+		83D1D9F41C18F889005F4F63 /* XJUserHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJUserHomeViewController.h; path = ViewController/XJUserHomeViewController.h; sourceTree = "<group>"; };
+		83D1D9F51C18F889005F4F63 /* XJUserHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJUserHomeViewController.m; path = ViewController/XJUserHomeViewController.m; sourceTree = "<group>"; };
+		83D1D9F61C18F889005F4F63 /* XJUserHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XJUserHomeViewController.xib; path = ViewController/XJUserHomeViewController.xib; sourceTree = "<group>"; };
 		83E9315F1C0C73ED00DB1AA2 /* ZZYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUser.h; path = Model/ZZYUser.h; sourceTree = "<group>"; };
 		83E931601C0C73ED00DB1AA2 /* ZZYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYUser.m; path = Model/ZZYUser.m; sourceTree = "<group>"; };
 		83E931621C0C740400DB1AA2 /* ZZYGps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYGps.h; path = Model/ZZYGps.h; sourceTree = "<group>"; };
@@ -320,6 +336,16 @@
 		83013E781C01E7A80065B5C2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				83D1D9F11C18F889005F4F63 /* basicInfoCel.h */,
+				83D1D9F21C18F889005F4F63 /* basicInfoCel.m */,
+				83D1D9F31C18F889005F4F63 /* basicInfoCel.xib */,
+				83D1D9F41C18F889005F4F63 /* XJUserHomeViewController.h */,
+				83D1D9F51C18F889005F4F63 /* XJUserHomeViewController.m */,
+				83D1D9F61C18F889005F4F63 /* XJUserHomeViewController.xib */,
+				83D1D9EE1C18EFC7005F4F63 /* XJBaseNavVC.h */,
+				83D1D9EF1C18EFC7005F4F63 /* XJBaseNavVC.m */,
+				83D1D9EB1C18EF45005F4F63 /* XJSettingsVC.h */,
+				83D1D9EC1C18EF45005F4F63 /* XJSettingsVC.m */,
 				83933F8C1C15D55000A7AA6F /* GdTrackOverlay.h */,
 				83933F8D1C15D55000A7AA6F /* GdTrackOverlay.m */,
 				83933F8E1C15D55000A7AA6F /* GdTrackOverlayView.h */,
@@ -484,6 +510,7 @@
 				83465F8E1C0B08550039C86C /* Icon-Small@3x.png in Resources */,
 				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib in Resources */,
 				83465F8C1C0B08550039C86C /* Icon-Small.png in Resources */,
+				83D1D9FA1C18F889005F4F63 /* XJUserHomeViewController.xib in Resources */,
 				83FDFF8A1C1482F1000275AA /* location.png in Resources */,
 				83933F861C15C9E300A7AA6F /* BookViewController.xib in Resources */,
 				83E931671C0C7F9500DB1AA2 /* empty.png in Resources */,
@@ -491,6 +518,7 @@
 				83465F871C0B08430039C86C /* Icon-Spotlight-40@2x.png in Resources */,
 				83465F981C0B0D8A0039C86C /* LoginViewController.xib in Resources */,
 				83FDFF881C1466DB000275AA /* BLEViewController.xib in Resources */,
+				83D1D9F81C18F889005F4F63 /* basicInfoCel.xib in Resources */,
 				83465F931C0B0D2F0039C86C /* ViewController.xib in Resources */,
 				83465F7B1C0B03A00039C86C /* AMap.bundle in Resources */,
 				83013E3A1C018E190065B5C2 /* LaunchScreen.xib in Resources */,
@@ -521,6 +549,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83013E2F1C018E190065B5C2 /* AppDelegate.m in Sources */,
+				83D1D9F01C18EFC7005F4F63 /* XJBaseNavVC.m in Sources */,
 				83013E7D1C01E7E50065B5C2 /* LocateViewController.m in Sources */,
 				83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */,
 				83013E2C1C018E190065B5C2 /* main.m in Sources */,
@@ -531,11 +560,14 @@
 				83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */,
 				83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */,
 				83465F921C0B0D2F0039C86C /* ViewController.m in Sources */,
+				83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */,
 				83465F971C0B0D8A0039C86C /* LoginViewController.m in Sources */,
+				83D1D9F91C18F889005F4F63 /* XJUserHomeViewController.m in Sources */,
 				83933F911C15D55000A7AA6F /* GdTrackOverlayView.m in Sources */,
 				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m in Sources */,
 				8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */,
 				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m in Sources */,
+				83D1D9ED1C18EF45005F4F63 /* XJSettingsVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
