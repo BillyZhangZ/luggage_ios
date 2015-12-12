@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <MAMapKit/MAMapKit.h>
+#import "ZZYAcount.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) ZZYAcount *account;
 
 //微信分享接口声明
 - (void) sendTextContent: (NSString *)text withScene:(int)scene;

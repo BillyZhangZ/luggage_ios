@@ -21,11 +21,13 @@
 #import "WebsiteViewController.h"
 #import "XJSettingsVC.h"
 #import "XJUserHomeViewController.h"
+
 @interface AppDelegate ()<WXApiDelegate>
 {
     ViewController * _mainVC;
     ZZYSMSLoginViewController *_loginVC;
     XJMenuView *_menuView;
+    
 }
 @end
 
@@ -36,6 +38,7 @@
     
     _mainVC = [[ViewController alloc] init];
     _loginVC = [[ZZYSMSLoginViewController alloc]init];
+    _account = [[ZZYAcount alloc]init];
     
     CGRect rc = [[UIScreen mainScreen] bounds];
     _menuView = [[XJMenuView alloc]initWithFrame:rc];
@@ -51,7 +54,13 @@
 
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = _loginVC;
+    if (_account.phoneNumber == nil) {
+        self.window.rootViewController = _loginVC;
+    }
+    else
+    {
+        self.window.rootViewController = _mainVC;
+    }
     [self.window makeKeyAndVisible];
     
     return YES;

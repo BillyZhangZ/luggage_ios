@@ -9,7 +9,7 @@
 #import "ZZYSMSLoginVerifyViewController.h"
 #import "AppDelegate.h"
 #import "config.h"
-//#import "XJAccountManager.h"
+#import "ZZYAcount.h"
 #import <SMS_SDK/SMS_SDK.h>
 #define TIME_OUT 60
 
@@ -88,6 +88,8 @@
                 [self releaseTimer];
               // [app.accountManager loginWithMobilePhone:_phoneNumber complete:^(bool ok){
                     if (true/*ok*/) {
+                        [app.account storeCurrentAccountInfo:_phoneNumber userId:@"0"];
+                        
                         [self dismissViewControllerAnimated:YES completion:nil];
                         [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
                         [app jumpToMainVC];

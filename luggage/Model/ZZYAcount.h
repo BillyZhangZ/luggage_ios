@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZZYUser : NSObject
+@interface ZZYAcount : NSObject
 @property NSString *userName;
 @property NSInteger userId;
 @property NSString *phoneNumber;
+@property NSInteger age;
+@property NSInteger sex;
+
+-(BOOL)storeCurrentAccountInfo:(NSString *)accountName userId:(NSString *)userId;
+
 @end

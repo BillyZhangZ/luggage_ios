@@ -241,11 +241,8 @@
 
 - (IBAction)logoutButtonClicked:(id)sender {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
-#if 0
-    XJAccountManager *accountManager = app.accountManager;
-    [accountManager logIn:true name:@"游客" complete:nil];
+    [app.account storeCurrentAccountInfo:@"" userId:@""];
     [app jumpToMainVC];
-#endif
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{

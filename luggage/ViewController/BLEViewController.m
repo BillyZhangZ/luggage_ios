@@ -12,6 +12,9 @@
 {
     LuggageDevice *_luggageDevice;
     NSMutableArray *_foundDevices;
+    
+    NSArray *_cmds;
+    NSInteger _cmdIndex;
 }
 @end
 
@@ -21,6 +24,9 @@
     [super viewDidLoad];
     _luggageDevice = [[LuggageDevice alloc]init:self];
     _foundDevices = [[NSMutableArray alloc]init];
+    
+    _cmds = [[NSArray alloc]initWithObjects:SET_NAME,GET_NAME, GET_BAT,GET_DEV_INFO, GET_MODE, GET_SIM_NUMBER, GET_SW_VER,GET_WEIGHT,nil];
+    _cmdIndex = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,21 +123,15 @@
 -(void)onLuggageDeviceConected
 {
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
-    [log appendString:@"connnected\n"];
+    [log appendString:@"ios:connnected\n"];
     self.logText.text  = log;
-#if 0
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"luggage已连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    [self presentViewController:alert animated:YES completion:nil];
-#endif
 }
 
 -(void)onNtfCharateristicFound
 {
     
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
-    [log appendString:@"found ntf char\n"];
+    [log appendString:@"ios:found ntf char\n"];
     self.logText.text  = log;
     
 }
@@ -139,26 +139,35 @@
 -(void)onWriteCharateristicFound
 {
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
-    [log appendString:@"found write char\n"];
+    [log appendString:@"ios:found write char\n"];
     self.logText.text  = log;
+}
+
+-(void)sendChar
+{
+   
+    if (_cmdIndex >= [_cmds count]) {
+        return;
+    }
+    NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
+    [log appendString:@"ios:"];
+    [log appendString:[_cmds objectAtIndex:_cmdIndex]];
+    self.logText.text  = log;
+    [_luggageDevice LuggageWriteChar:[_cmds objectAtIndex:_cmdIndex++] ];
+    
+  
 }
 -(void)onSubscribeDone
 {
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
-    [log appendString:@"set ntf ok\n"];
+    [log appendString:@"ios:set ntf ok\n"];
     self.logText.text  = log;
-    [_luggageDevice LuggageWriteChar:@"AT+STNAME=AAAAA\r"];
+    [self performSelector:@selector(sendChar) withObject:self afterDelay:1];
 }
 -(void)onLuggageDeviceDissconnected
 {
-#if  0
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"luggage已断开连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    [self presentViewController:alert animated:YES completion:nil];
-#endif
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
-    [log appendString:@"disconnected\n"];
+    [log appendString:@"ios:disconnected\n"];
     self.logText.text  = log;
 
 }
@@ -166,15 +175,10 @@
 -(void)onLuggageNtfChar:(NSString *)recData
 {
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
+    [log appendString:@"linkit:"];
     [log appendString:recData];
     self.logText.text  = log;
-
-#if 0
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"收到数据" message:recData preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    [self presentViewController:alert animated:YES completion:nil];
-#endif
+    [self sendChar];
     
 }
 

@@ -68,7 +68,7 @@
 		83D1D9F81C18F889005F4F63 /* basicInfoCel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D1D9F31C18F889005F4F63 /* basicInfoCel.xib */; };
 		83D1D9F91C18F889005F4F63 /* XJUserHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F51C18F889005F4F63 /* XJUserHomeViewController.m */; };
 		83D1D9FA1C18F889005F4F63 /* XJUserHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D1D9F61C18F889005F4F63 /* XJUserHomeViewController.xib */; };
-		83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931601C0C73ED00DB1AA2 /* ZZYUser.m */; };
+		83E931611C0C73ED00DB1AA2 /* ZZYAcount.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931601C0C73ED00DB1AA2 /* ZZYAcount.m */; };
 		83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931631C0C740400DB1AA2 /* ZZYGps.m */; };
 		83E931671C0C7F9500DB1AA2 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E931661C0C7F9500DB1AA2 /* empty.png */; };
 		83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m */; };
@@ -173,8 +173,8 @@
 		83D1D9F41C18F889005F4F63 /* XJUserHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJUserHomeViewController.h; path = ViewController/XJUserHomeViewController.h; sourceTree = "<group>"; };
 		83D1D9F51C18F889005F4F63 /* XJUserHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJUserHomeViewController.m; path = ViewController/XJUserHomeViewController.m; sourceTree = "<group>"; };
 		83D1D9F61C18F889005F4F63 /* XJUserHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XJUserHomeViewController.xib; path = ViewController/XJUserHomeViewController.xib; sourceTree = "<group>"; };
-		83E9315F1C0C73ED00DB1AA2 /* ZZYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUser.h; path = Model/ZZYUser.h; sourceTree = "<group>"; };
-		83E931601C0C73ED00DB1AA2 /* ZZYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYUser.m; path = Model/ZZYUser.m; sourceTree = "<group>"; };
+		83E9315F1C0C73ED00DB1AA2 /* ZZYAcount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYAcount.h; path = Model/ZZYAcount.h; sourceTree = "<group>"; };
+		83E931601C0C73ED00DB1AA2 /* ZZYAcount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYAcount.m; path = Model/ZZYAcount.m; sourceTree = "<group>"; };
 		83E931621C0C740400DB1AA2 /* ZZYGps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYGps.h; path = Model/ZZYGps.h; sourceTree = "<group>"; };
 		83E931631C0C740400DB1AA2 /* ZZYGps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYGps.m; path = Model/ZZYGps.m; sourceTree = "<group>"; };
 		83E931661C0C7F9500DB1AA2 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = empty.png; path = images/empty.png; sourceTree = "<group>"; };
@@ -387,8 +387,8 @@
 			isa = PBXGroup;
 			children = (
 				83013E821C01ED260065B5C2 /* config.h */,
-				83E9315F1C0C73ED00DB1AA2 /* ZZYUser.h */,
-				83E931601C0C73ED00DB1AA2 /* ZZYUser.m */,
+				83E9315F1C0C73ED00DB1AA2 /* ZZYAcount.h */,
+				83E931601C0C73ED00DB1AA2 /* ZZYAcount.m */,
 				83E931621C0C740400DB1AA2 /* ZZYGps.h */,
 				83E931631C0C740400DB1AA2 /* ZZYGps.m */,
 			);
@@ -556,7 +556,7 @@
 				83FDFF871C1466DB000275AA /* BLEViewController.m in Sources */,
 				83933F851C15C9E300A7AA6F /* BookViewController.m in Sources */,
 				8355F90B1C17156C001E7352 /* WebsiteViewController.m in Sources */,
-				83E931611C0C73ED00DB1AA2 /* ZZYUser.m in Sources */,
+				83E931611C0C73ED00DB1AA2 /* ZZYAcount.m in Sources */,
 				83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */,
 				83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */,
 				83465F921C0B0D2F0039C86C /* ViewController.m in Sources */,

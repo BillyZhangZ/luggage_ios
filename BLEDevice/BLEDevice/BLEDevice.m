@@ -179,7 +179,7 @@ typedef enum{
     NSLog(@"HeartLib: Peripheral Connected");
     //inform delegate and remove timer
     [_heartRateDelegate onLuggageDeviceConected];
-    
+    _heartRateDevice = peripheral;
     // Make sure we get the discovery callbacks
     peripheral.delegate = self;
     
@@ -199,8 +199,8 @@ typedef enum{
     
     // Loop through the newly filled peripheral.services array, just in case there's more than one.
     for (CBService *service in peripheral.services) {
-        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:LUGGAGE_NTF_CHARACTERISTIC_UUID]] forService:service];
-        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:LUGGAGE_WRITE_CHARACTERISTIC_UUID]] forService:service];
+        //[peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:LUGGAGE_NTF_CHARACTERISTIC_UUID]] forService:service];
+        [peripheral discoverCharacteristics:nil forService:service];
 
     }
 }
@@ -219,23 +219,26 @@ typedef enum{
     // Again, we loop through the array, just in case.
     for (CBCharacteristic *characteristic in service.characteristics) {
         
-        // And check if it's the right one
-        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:LUGGAGE_NTF_CHARACTERISTIC_UUID]]) {
-            [_heartRateDelegate onNtfCharateristicFound];
-            // If it is, subscribe to it
-            [peripheral setNotifyValue:YES forCharacteristic:characteristic];
-        }
-        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:LUGGAGE_WRITE_CHARACTERISTIC_UUID]]) {
-            [_heartRateDelegate onWriteCharateristicFound];
-            _writeChar = characteristic;
-        }
+            if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:LUGGAGE_WRITE_CHARACTERISTIC_UUID]]) {
+                _writeChar = characteristic;
+                [_heartRateDelegate onWriteCharateristicFound];
+            }
         
+            // And check if it's the right one
+            if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:LUGGAGE_NTF_CHARACTERISTIC_UUID]]) {
+                [_heartRateDelegate onNtfCharateristicFound];
+                // If it is, subscribe to it
+                [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            }
     }
     
     // Once this is complete, we just need to wait for the data to come in.
 }
 
-
+-(void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    NSLog(@"log");
+}
 /** This callback lets us know more data has arrived via notification on the characteristic
  */
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -262,7 +265,7 @@ typedef enum{
     [_heartRateDelegate onLuggageNtfChar:stringFromData];
 
     // Log it
-    NSLog(@"HeartLib: Heart Rate: %d", heartRate);
+    NSLog(@"HeartLib: Heart Rate: %@", stringFromData);
 }
 
 
@@ -288,7 +291,7 @@ typedef enum{
     // Notification has stopped
     else {
         // so disconnect from the peripheral
-        NSLog(@"HeartLib: Notification stopped on %@.  Disconnecting", characteristic);
+      //  NSLog(@"HeartLib: Notification stopped on %@.  Disconnecting", characteristic);
         //[_heartRateManager cancelPeripheralConnection:peripheral];
         //[_heartRateDelegate onSubscribeDone];
 
