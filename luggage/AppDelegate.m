@@ -54,7 +54,7 @@
 
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    if (_account.phoneNumber == nil) {
+    if (_account.localPhoneNumber == nil) {
         self.window.rootViewController = _loginVC;
     }
     else
@@ -304,6 +304,14 @@ void say(NSString *sth)
     }
 }
 
+NSString * getATContent(NSString *str)
+{
+    
+    NSRange start = [str rangeOfString:@"="];
+    NSRange end = [str rangeOfString:@"\r"];
+    NSString *string = [str substringWithRange:NSMakeRange(start.location+1, end.location -start.location)];
+    return string;
+}
 -(void)jumpToMainVC
 {
     _window.rootViewController = _mainVC;
@@ -384,4 +392,6 @@ static double transformLat(double x, double y) {
         return true;
     return false;
 }
+
+
 @end

@@ -241,7 +241,8 @@
 
 - (IBAction)logoutButtonClicked:(id)sender {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    [app.account storeCurrentAccountInfo:@"" userId:@""];
+    //[app.account storeCurrentAccountInfo:@"" userId:@""];
+    //fix me
     [app jumpToMainVC];
 }
 

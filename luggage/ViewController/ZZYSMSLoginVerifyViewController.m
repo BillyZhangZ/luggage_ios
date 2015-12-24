@@ -88,8 +88,9 @@
                 [self releaseTimer];
               // [app.accountManager loginWithMobilePhone:_phoneNumber complete:^(bool ok){
                     if (true/*ok*/) {
-                        [app.account storeCurrentAccountInfo:_phoneNumber userId:@"0"];
-                        
+                       // [app.account storeCurrentAccountInfo:_phoneNumber userId:@"0"];
+                        app.account.localPhoneNumber = _phoneNumber;
+                        app.account.userId = @"0";
                         [self dismissViewControllerAnimated:YES completion:nil];
                         [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
                         [app jumpToMainVC];
@@ -97,6 +98,9 @@
                     else
                     {
                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登陆失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+                        [alert addAction:okAction];
+
                         [self presentViewController:alert animated:YES completion:nil];
                         
                     }
@@ -107,6 +111,9 @@
             {
                 NSLog(@"验证失败");
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"验证失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:okAction];
+
                 [self presentViewController:alert animated:YES completion:nil];
                 
             }

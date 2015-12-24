@@ -8,13 +8,22 @@
 
 #import "BLEViewController.h"
 #import "BLEDevice.h"
+#import "AppDelegate.h"
+enum BLE_OPERATION
+{
+    BLE_OPERATION_NONE,
+    BLE_OPERATION_GET_LUGGAGE_NUMBER,
+    BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER,
+    
+};
+
 @interface BLEViewController ()<UITableViewDataSource,UITableViewDelegate, LuggageDelegate>
 {
     LuggageDevice *_luggageDevice;
     NSMutableArray *_foundDevices;
     
-    NSArray *_cmds;
-    NSInteger _cmdIndex;
+    
+    enum BLE_OPERATION _opration;
 }
 @end
 
@@ -25,8 +34,7 @@
     _luggageDevice = [[LuggageDevice alloc]init:self];
     _foundDevices = [[NSMutableArray alloc]init];
     
-    _cmds = [[NSArray alloc]initWithObjects:SET_NAME,GET_NAME, GET_BAT,GET_DEV_INFO, GET_MODE, GET_SIM_NUMBER, GET_SW_VER,GET_WEIGHT,nil];
-    _cmdIndex = 0;
+    _opration = BLE_OPERATION_NONE;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,6 +42,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_luggageDevice BLEDisconnect];
+    _luggageDevice = nil;
+}
 /*
 #pragma mark - Navigation
 
@@ -106,6 +120,24 @@
     return view;
 }
 
+-(void)getLuggagePhoneNumber
+{
+    [_luggageDevice LuggageWriteChar:@"AT+GTSIM\r"];
+}
+
+-(void)sendLocalPhoneNumber
+{
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    if (app.account.localPhoneNumber == nil) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"未登录" message:@"请使用手机号码登录" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    //FIX ME
+    [_luggageDevice LuggageWriteChar: app.account.localPhoneNumber];
+}
 #pragma luggage device delegate
 -(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
 {
@@ -125,6 +157,7 @@
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
     [log appendString:@"ios:connnected\n"];
     self.logText.text  = log;
+    
 }
 
 -(void)onNtfCharateristicFound
@@ -143,43 +176,52 @@
     self.logText.text  = log;
 }
 
--(void)sendChar
-{
-   
-    if (_cmdIndex >= [_cmds count]) {
-        return;
-    }
-    NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
-    [log appendString:@"ios:"];
-    [log appendString:[_cmds objectAtIndex:_cmdIndex]];
-    self.logText.text  = log;
-    [_luggageDevice LuggageWriteChar:[_cmds objectAtIndex:_cmdIndex++] ];
-    
-  
-}
+
+//distance = pow(10, (rssi-49)/10*4.0)
 -(void)onSubscribeDone
 {
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
     [log appendString:@"ios:set ntf ok\n"];
     self.logText.text  = log;
-    [self performSelector:@selector(sendChar) withObject:self afterDelay:1];
+    [self getLuggagePhoneNumber];
+    _opration = BLE_OPERATION_GET_LUGGAGE_NUMBER;
 }
 -(void)onLuggageDeviceDissconnected
 {
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
     [log appendString:@"ios:disconnected\n"];
     self.logText.text  = log;
-
 }
 
 -(void)onLuggageNtfChar:(NSString *)recData
 {
+    
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
     [log appendString:@"linkit:"];
     [log appendString:recData];
     self.logText.text  = log;
-    [self sendChar];
     
+    switch (_opration) {
+        case BLE_OPERATION_NONE:
+            //error
+            break;
+        case BLE_OPERATION_GET_LUGGAGE_NUMBER:
+            app.account.remotePhoneNumber = getATContent(recData);
+           // [app.account setValue:getATContent(recData) forKey:@"remotePhoneNumber"];
+            NSLog(@"%@",app.account.remotePhoneNumber);
+          //  [self sendLocalPhoneNumber];
+           // _opration = BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER;
+            break;
+        case BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER:
+            
+            _opration = BLE_OPERATION_NONE;
+            break;
+        default:
+            break;
+    }
+    _opration = BLE_OPERATION_NONE;
 }
 
 

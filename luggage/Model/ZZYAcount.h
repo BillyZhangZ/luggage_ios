@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface ZZYAcount : NSObject
-@property NSString *userName;
-@property NSInteger userId;
-@property NSString *phoneNumber;
+@property (strong, nonatomic)  NSString *userName;
+@property (strong, nonatomic) NSString * userId;
+@property (strong, nonatomic) NSString *remotePhoneNumber;
+@property (strong, nonatomic) NSString *localPhoneNumber;
+@property (strong, nonatomic) NSString *deviceMac;
 @property NSInteger age;
 @property NSInteger sex;
 
--(BOOL)storeCurrentAccountInfo:(NSString *)accountName userId:(NSString *)userId;
+//-(BOOL)storeCurrentAccountInfo:(NSString *)accountName userId:(NSString *)userId;
 
 @end

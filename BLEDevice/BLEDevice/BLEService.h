@@ -50,8 +50,8 @@
  */
 
 
-#ifndef LE_Heart_Rate_h
-#define LE_Heart_Rate_h
+#ifndef BLE_SERVICE_H
+#define BLE_SERVICE_H
 
 #define LUGGAGE_SERVICE_UUID                 @"E20A39F4-73F5-4BC4-A12F-17D1AD07A961"
 #define LUGGAGE_WRITE_CHARACTERISTIC_UUID    @"08590F7F-DB05-467E-8757-72F6FAEB13D4"

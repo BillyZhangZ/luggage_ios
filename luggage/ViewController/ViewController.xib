@@ -7,9 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
+                <outlet property="addDeviceButton" destination="nH1-Md-X7b" id="kPD-pE-hdm"/>
+                <outlet property="bleUnlockButton" destination="c93-3U-GQO" id="gqo-eG-d3Y"/>
                 <outlet property="locateButton" destination="gH0-JF-AE6" id="ohf-nZ-rfy"/>
                 <outlet property="lostButton" destination="xCB-Cv-j5u" id="Xni-fD-ffV"/>
                 <outlet property="navigatorBar" destination="yZn-N6-e7X" id="u8L-ug-EpX"/>
+                <outlet property="smsUnlockButton" destination="cbK-yB-v1j" id="2EL-cR-E2C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weightLabel" destination="gqT-sh-zZO" id="IOW-9Z-cKN"/>
             </connections>
@@ -96,7 +99,21 @@
                     <state key="normal" title="蓝牙开锁">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="onBLEUnlock:" destination="-1" eventType="touchUpInside" id="kc3-ri-HcD"/>
+                    </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重量：0.0Kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqT-sh-zZO">
+                    <rect key="frame" x="50" y="384" width="210" height="100"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="210" id="2cL-IS-8MD"/>
+                        <constraint firstAttribute="height" constant="100" id="Naf-uw-1xv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCB-Cv-j5u">
                     <rect key="frame" x="50" y="274" width="100" height="100"/>
                     <color key="backgroundColor" red="0.1223861772" green="0.60690893310000005" blue="0.055834649489999999" alpha="0.85999999999999999" colorSpace="calibratedRGB"/>
@@ -111,17 +128,6 @@
                         <action selector="onLostButton:" destination="-1" eventType="touchUpInside" id="78d-RE-dNs"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重量：0.0Kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqT-sh-zZO">
-                    <rect key="frame" x="50" y="384" width="210" height="100"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="2cL-IS-8MD"/>
-                        <constraint firstAttribute="height" constant="100" id="Naf-uw-1xv"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="0.79451358299836328" blue="0.21677502401332149" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>

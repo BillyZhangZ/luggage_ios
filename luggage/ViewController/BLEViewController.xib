@@ -43,11 +43,21 @@
                                     </connections>
                                 </button>
                             </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" style="plain" id="PBd-h1-D1p">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZvN-kn-5sH">
+                                    <rect key="frame" x="500" y="7" width="80" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
+                                    </accessibility>
+                                    <state key="normal" title="0.0米"/>
+                                </button>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LeM-uT-hUe">
-                    <rect key="frame" x="0.0" y="74" width="600" height="516"/>
+                    <rect key="frame" x="0.0" y="74" width="600" height="326"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Isq-Cm-C2U"/>
@@ -70,13 +80,14 @@
                 <constraint firstItem="aqC-t1-pGi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="45e-aW-aTd"/>
                 <constraint firstItem="mXt-rX-aGx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Su-Kj-M8V"/>
                 <constraint firstItem="aqC-t1-pGi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Exz-cQ-6Ij"/>
-                <constraint firstAttribute="bottom" secondItem="LeM-uT-hUe" secondAttribute="bottom" constant="10" id="JS6-O8-yyT"/>
+                <constraint firstAttribute="bottom" secondItem="LeM-uT-hUe" secondAttribute="bottom" constant="200" id="JS6-O8-yyT"/>
                 <constraint firstAttribute="trailing" secondItem="aqC-t1-pGi" secondAttribute="trailing" id="KxM-yd-oRX"/>
                 <constraint firstItem="LeM-uT-hUe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Xf2-P8-OHy"/>
                 <constraint firstAttribute="bottom" secondItem="mXt-rX-aGx" secondAttribute="bottom" id="acm-EH-wwZ"/>
                 <constraint firstAttribute="trailing" secondItem="mXt-rX-aGx" secondAttribute="trailing" id="eV8-r2-0gd"/>
                 <constraint firstItem="LeM-uT-hUe" firstAttribute="top" secondItem="aqC-t1-pGi" secondAttribute="bottom" constant="10" id="gEo-Di-so2"/>
             </constraints>
+            <point key="canvasLocation" x="265" y="203"/>
         </view>
     </objects>
 </document>

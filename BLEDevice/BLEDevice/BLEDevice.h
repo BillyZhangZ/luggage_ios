@@ -29,5 +29,6 @@
 -(instancetype)init:(id)delegate;
 -(void)LuggageWriteChar:(NSString *)txData;
 -(void)BLEConectTo:(CBPeripheral *)peripheral;
+-(void)BLEDisconnect;
 @end
 
