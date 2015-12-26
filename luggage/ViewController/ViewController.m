@@ -19,7 +19,9 @@
     LuggageDevice *_luggageDevice;
     CBPeripheral *_foundDev;
     BOOL _enableLostMode;
-    
+    float _distance;
+    int _rssiCount;
+    NSTimer *_updateRssiTimer;
     ZZYAcount *_account;
 }
 @end
@@ -29,6 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    // _luggageDevice = [[LuggageDevice alloc]init:self];
+    _distance = 0;
+    _rssiCount = 0;
     _enableLostMode = false;
     // Do any additional setup after loading the view from its nib.
     [self.navigatorBar setBackgroundImage:[UIImage imageNamed:@"empty.png"] forBarMetrics:UIBarMetricsDefault];
@@ -47,13 +51,13 @@
         _luggageDevice = [[LuggageDevice alloc]init:self];
     }
 
-    if (_enableLostMode) {
+  /*  if (_enableLostMode) {
         [self.lostButton setTitle:@"关闭防丢模式" forState:UIControlStateNormal];
     }
     else
     {
         [self.lostButton setTitle:@"开启防丢模式" forState:UIControlStateNormal];
-    }
+    }*/
     
     CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
     CGColorRef color = CGColorCreate(colorSpaceRef, (CGFloat[]){1,0,0,1});
@@ -135,7 +139,7 @@
 }
 
 - (IBAction)onLostButton:(id)sender {
-    if (_enableLostMode) {
+   /* if (_enableLostMode) {
         _enableLostMode = false;
         [(UIButton *)sender setTitle:@"开启防丢模式" forState:UIControlStateNormal];
     }
@@ -143,7 +147,7 @@
     {
         _enableLostMode = true;
         [(UIButton *)sender setTitle:@"关闭防丢模式" forState:UIControlStateNormal];
-    }
+    }*/
 }
 
 #pragma sms delegate
@@ -200,9 +204,26 @@
 -(void)onLuggageDeviceConected
 {
     NSLog(@"ViewController: connected\n");
-    
+    _updateRssiTimer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onUpdateRssi) userInfo:nil repeats:YES];
 }
 
+-(void)onUpdateRssi
+{
+    [_foundDev readRSSI];
+}
+
+-(void)onRssiRead:(NSNumber*)rssi
+{
+    NSLog(@"%@\n", rssi);
+    
+    float distance = powf(10, (-63-[rssi floatValue])/10.0/4.0);
+    _distance += distance;
+    _rssiCount++;
+    NSString *distanceStr = [NSString stringWithFormat:@"rssi:%@ \ndis:%.2f",rssi, distance];//_distance/_rssiCount];
+    _lostButton.titleLabel.numberOfLines = 0;
+    _lostButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [_lostButton setTitle:distanceStr forState:UIControlStateNormal];
+}
 -(void)onNtfCharateristicFound
 {
     NSLog(@"ViewController: ntf character found\n");
@@ -286,6 +307,8 @@
 -(void)onLuggageDeviceDissconnected
 {
     NSLog(@"ViewController: disconnected\n");
+    [_updateRssiTimer invalidate];
+    _updateRssiTimer = nil;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设备已断开连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];

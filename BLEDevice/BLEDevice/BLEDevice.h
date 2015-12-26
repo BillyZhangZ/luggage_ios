@@ -16,6 +16,7 @@
 -(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
 -(void)onNtfCharateristicFound;
 -(void)onWriteCharateristicFound;
+-(void)onRssiRead:(NSNumber*)rssi;
 -(void)onSubscribeDone;
 @end
 

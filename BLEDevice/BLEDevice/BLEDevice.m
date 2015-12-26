@@ -238,7 +238,10 @@ typedef enum{
     NSLog(@"BLELib: Rec data: %@", stringFromData);
 }
 
-
+- (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(nullable NSError *)error NS_AVAILABLE(NA, 8_0);
+{
+    [_luggageDelegate onRssiRead:RSSI];
+}
 /** The peripheral letting us know whether our subscribe/unsubscribe happened or not
  */
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error

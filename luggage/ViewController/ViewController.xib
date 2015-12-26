@@ -137,7 +137,7 @@
                         <constraint firstAttribute="height" constant="100" id="5IN-E8-Rn1"/>
                         <constraint firstAttribute="width" constant="100" id="G84-Mu-td4"/>
                     </constraints>
-                    <state key="normal" title="防丢模式">
+                    <state key="normal" title="距离：">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
