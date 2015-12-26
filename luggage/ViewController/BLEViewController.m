@@ -202,7 +202,10 @@ enum BLE_OPERATION
     [log appendString:@"linkit:"];
     [log appendString:recData];
     self.logText.text  = log;
-    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"绑定设备成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+
     switch (_opration) {
         case BLE_OPERATION_NONE:
             //error
@@ -211,6 +214,8 @@ enum BLE_OPERATION
             app.account.remotePhoneNumber = getATContent(recData);
            // [app.account setValue:getATContent(recData) forKey:@"remotePhoneNumber"];
             NSLog(@"%@",app.account.remotePhoneNumber);
+            [self presentViewController:alert animated:YES completion:nil];
+
           //  [self sendLocalPhoneNumber];
            // _opration = BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER;
             break;

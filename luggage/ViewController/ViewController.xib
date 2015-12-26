@@ -114,6 +114,22 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cug-Mt-HcY">
+                    <rect key="frame" x="53" y="503" width="89" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <state key="normal" title="采集指纹"/>
+                    <connections>
+                        <action selector="onRegisterFinger:" destination="-1" eventType="touchUpInside" id="kEJ-pu-6SL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0Y-ce-lex">
+                    <rect key="frame" x="171" y="503" width="89" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <state key="normal" title="删除指纹"/>
+                    <connections>
+                        <action selector="onDeleteFinger:" destination="-1" eventType="touchUpInside" id="Ecr-lY-P55"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCB-Cv-j5u">
                     <rect key="frame" x="50" y="274" width="100" height="100"/>
                     <color key="backgroundColor" red="0.1223861772" green="0.60690893310000005" blue="0.055834649489999999" alpha="0.85999999999999999" colorSpace="calibratedRGB"/>

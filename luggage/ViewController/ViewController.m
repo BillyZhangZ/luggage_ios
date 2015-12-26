@@ -122,6 +122,12 @@
 - (IBAction)onBLEUnlock:(id)sender {
     [self bleSendUnlock];
 }
+- (IBAction)onRegisterFinger:(id)sender {
+    [self bleSendRegisterFinger];
+}
+- (IBAction)onDeleteFinger:(id)sender {
+    [self bleSendDeleteFinger];
+}
 
 - (IBAction)onLocateButton:(id)sender {
     LocateViewController *vc = [[LocateViewController alloc]init];
@@ -247,6 +253,18 @@
     [_luggageDevice LuggageWriteChar:@"AT+LOCKOFF\r"];
 }
 
+-(void)bleSendRegisterFinger
+{
+    NSLog(@"ViewController: send character\n");
+    [_luggageDevice LuggageWriteChar:@"AT+FINGERREG\r"];
+}
+
+-(void)bleSendDeleteFinger
+{
+    NSLog(@"ViewController: send character\n");
+    [_luggageDevice LuggageWriteChar:@"AT+FINGERDEL\r"];
+}
+
 -(void)bleSendLock
 {
     NSLog(@"ViewController: send character\n");
@@ -271,6 +289,7 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设备已断开连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
+    
 
 }
 
