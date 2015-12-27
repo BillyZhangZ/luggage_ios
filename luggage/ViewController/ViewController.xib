@@ -8,13 +8,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="addDeviceButton" destination="nH1-Md-X7b" id="kPD-pE-hdm"/>
+                <outlet property="battButton" destination="w71-Ob-AGc" id="H5C-Y3-5Wv"/>
                 <outlet property="bleUnlockButton" destination="c93-3U-GQO" id="gqo-eG-d3Y"/>
+                <outlet property="delFingerButton" destination="m0Y-ce-lex" id="M2k-uk-AXO"/>
                 <outlet property="locateButton" destination="gH0-JF-AE6" id="ohf-nZ-rfy"/>
                 <outlet property="lostButton" destination="xCB-Cv-j5u" id="Xni-fD-ffV"/>
                 <outlet property="navigatorBar" destination="yZn-N6-e7X" id="u8L-ug-EpX"/>
+                <outlet property="regFingerButton" destination="Cug-Mt-HcY" id="Jdb-Ch-C3D"/>
                 <outlet property="smsUnlockButton" destination="cbK-yB-v1j" id="2EL-cR-E2C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="weightLabel" destination="gqT-sh-zZO" id="IOW-9Z-cKN"/>
+                <outlet property="weightButton" destination="yRD-Qp-d91" id="Gw1-jW-agH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -103,17 +106,6 @@
                         <action selector="onBLEUnlock:" destination="-1" eventType="touchUpInside" id="kc3-ri-HcD"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重量：0.0Kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqT-sh-zZO">
-                    <rect key="frame" x="50" y="384" width="210" height="100"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="2cL-IS-8MD"/>
-                        <constraint firstAttribute="height" constant="100" id="Naf-uw-1xv"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cug-Mt-HcY">
                     <rect key="frame" x="53" y="503" width="89" height="30"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -144,6 +136,22 @@
                         <action selector="onLostButton:" destination="-1" eventType="touchUpInside" id="78d-RE-dNs"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRD-Qp-d91">
+                    <rect key="frame" x="53" y="392" width="207" height="40"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="点我查看重量"/>
+                    <connections>
+                        <action selector="onWeightButton:" destination="-1" eventType="touchUpInside" id="k6t-D8-7ct"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w71-Ob-AGc">
+                    <rect key="frame" x="53" y="445" width="207" height="36"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="点我查看电量"/>
+                    <connections>
+                        <action selector="onBattButton:" destination="-1" eventType="touchUpInside" id="4dd-Sz-MFl"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="0.79451358299836328" blue="0.21677502401332149" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -154,9 +162,7 @@
                 <constraint firstItem="cbK-yB-v1j" firstAttribute="top" secondItem="yZn-N6-e7X" secondAttribute="bottom" constant="100" id="d80-Vg-aZZ"/>
                 <constraint firstItem="gH0-JF-AE6" firstAttribute="top" secondItem="c93-3U-GQO" secondAttribute="bottom" constant="10" id="gVK-CO-kjS"/>
                 <constraint firstItem="gH0-JF-AE6" firstAttribute="leading" secondItem="xCB-Cv-j5u" secondAttribute="trailing" constant="10" id="hBT-tW-m9g"/>
-                <constraint firstItem="gqT-sh-zZO" firstAttribute="top" secondItem="xCB-Cv-j5u" secondAttribute="bottom" constant="10" id="hPe-6a-gvq"/>
                 <constraint firstItem="xCB-Cv-j5u" firstAttribute="top" secondItem="yZn-N6-e7X" secondAttribute="bottom" constant="210" id="qLo-Wy-Z60"/>
-                <constraint firstItem="gqT-sh-zZO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="tJS-K6-ggC"/>
                 <constraint firstItem="c93-3U-GQO" firstAttribute="leading" secondItem="cbK-yB-v1j" secondAttribute="trailing" constant="10" id="tNy-w9-fYa"/>
                 <constraint firstItem="yZn-N6-e7X" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uup-Kq-0CD"/>
                 <constraint firstAttribute="trailing" secondItem="yZn-N6-e7X" secondAttribute="trailing" id="yni-Bw-NGA"/>

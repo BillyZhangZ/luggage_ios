@@ -15,8 +15,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *addDeviceButton;
 @property (weak, nonatomic) IBOutlet UIButton *bleUnlockButton;
 @property (weak, nonatomic) IBOutlet UIButton *smsUnlockButton;
+@property (weak, nonatomic) IBOutlet UIButton *weightButton;
+@property (weak, nonatomic) IBOutlet UIButton *battButton;
+@property (weak, nonatomic) IBOutlet UIButton *regFingerButton;
+@property (weak, nonatomic) IBOutlet UIButton *delFingerButton;
 
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigatorBar;
-@property (weak, nonatomic) IBOutlet UILabel *weightLabel;
 @end

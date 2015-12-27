@@ -197,7 +197,7 @@ enum BLE_OPERATION
 {
     
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    
+    NSLog(@"%@", getATCmd(recData));
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
     [log appendString:@"linkit:"];
     [log appendString:recData];

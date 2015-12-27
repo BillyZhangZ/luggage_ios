@@ -23,6 +23,8 @@
 -(void)jumpToMainVC;
 void say(NSString *sth);
 NSString * getATContent(NSString *str);
+NSString * getATCmd(NSString *str);
+
 
 NSString * stringFromDate(NSDate *date);
 CLLocationCoordinate2D  transformFromWGSToGCJ(CLLocationCoordinate2D wgLoc);

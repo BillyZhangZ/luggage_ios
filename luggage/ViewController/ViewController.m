@@ -77,10 +77,21 @@
     [_smsUnlockButton.layer setCornerRadius:10];
     [_smsUnlockButton.layer setBorderWidth:2];//设置边界的宽度
     
-    [_weightLabel.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
-    [_weightLabel.layer setCornerRadius:10];
-    [_weightLabel.layer setBorderWidth:2];//设置边界的宽度
+    [_weightButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
+    [_weightButton.layer setCornerRadius:10];
+    [_weightButton.layer setBorderWidth:2];//设置边界的宽度
     
+    [_battButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
+    [_battButton.layer setCornerRadius:10];
+    [_battButton.layer setBorderWidth:2];//设置边界的宽度
+
+    [_regFingerButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
+    [_regFingerButton.layer setCornerRadius:10];
+    [_regFingerButton.layer setBorderWidth:2];//设置边界的宽度
+
+    [_delFingerButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
+    [_delFingerButton.layer setCornerRadius:10];
+    [_delFingerButton.layer setBorderWidth:2];//设置边界的宽度
 
     // [_locateButton.layer setBorderColor:color];
     //[_lostButton.layer setBorderColor:color];
@@ -131,6 +142,12 @@
 }
 - (IBAction)onDeleteFinger:(id)sender {
     [self bleSendDeleteFinger];
+}
+- (IBAction)onWeightButton:(id)sender {
+    [self bleSendGetWeight];
+}
+- (IBAction)onBattButton:(id)sender {
+    [_luggageDevice LuggageWriteChar:@"AT+GTBAT\r"];
 }
 
 - (IBAction)onLocateButton:(id)sender {
@@ -237,34 +254,14 @@
 -(void)onLuggageNtfChar:(NSString *)recData
 {
     NSLog(@"ViewController: receive %@", recData);
-#if 0
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    
-    NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
-    [log appendString:@"linkit:"];
-    [log appendString:recData];
-    self.logText.text  = log;
-    
-    switch (_opration) {
-        case BLE_OPERATION_NONE:
-            //error
-            break;
-        case BLE_OPERATION_GET_LUGGAGE_NUMBER:
-            app.account.remotePhoneNumber = getATContent(recData);
-            // [app.account setValue:getATContent(recData) forKey:@"remotePhoneNumber"];
-            NSLog(@"%@",app.account.remotePhoneNumber);
-            //  [self sendLocalPhoneNumber];
-            // _opration = BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER;
-            break;
-        case BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER:
-            
-            _opration = BLE_OPERATION_NONE;
-            break;
-        default:
-            break;
+    if ([getATCmd(recData) isEqualToString:@"AT+WT"]) {
+        
+        [_weightButton setTitle:[NSString stringWithFormat:@"重量：%@千克", getATContent(recData)]  forState:UIControlStateNormal];
     }
-    _opration = BLE_OPERATION_NONE;
-#endif
+    if ([getATCmd(recData) isEqualToString:@"AT+BAT"]) {
+        [_battButton setTitle:[NSString stringWithFormat:@"电量：%@%%", getATContent(recData)]  forState:UIControlStateNormal];
+    }
+    
 }
 
 #pragma BLE FUNCTION CALL
@@ -292,7 +289,11 @@
     [_luggageDevice LuggageWriteChar:@"AT+LOCKON\r"];
 }
 
-
+-(void)bleSendGetWeight
+{
+    NSLog(@"ViewController: send character\n");
+    [_luggageDevice LuggageWriteChar:@"AT+GTWT\r"];
+}
 
 
 //distance = pow(10, (rssi-49)/10*4.0)

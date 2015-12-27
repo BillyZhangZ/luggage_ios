@@ -304,14 +304,24 @@ void say(NSString *sth)
     }
 }
 
+NSString * getATCmd(NSString *str)
+{
+    
+    NSRange end = [str rangeOfString:@"="];
+    NSString *string = [str substringWithRange:NSMakeRange(0, end.location)];
+    return string;
+}
+
 NSString * getATContent(NSString *str)
 {
     
     NSRange start = [str rangeOfString:@"="];
     NSRange end = [str rangeOfString:@"\r"];
-    NSString *string = [str substringWithRange:NSMakeRange(start.location+1, end.location -start.location)];
+    NSString *string = [str substringWithRange:NSMakeRange(start.location+1, end.location -start.location-1)];
     return string;
 }
+
+
 -(void)jumpToMainVC
 {
     _window.rootViewController = _mainVC;
