@@ -21,7 +21,7 @@
 #import "WebsiteViewController.h"
 #import "XJSettingsVC.h"
 #import "XJUserHomeViewController.h"
-
+#import "UserGuideViewController.h"
 @interface AppDelegate ()<WXApiDelegate>
 {
     ViewController * _mainVC;
@@ -54,6 +54,45 @@
 
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+   
+    
+    float sysVersion=[[UIDevice currentDevice]systemVersion].floatValue;
+    if (sysVersion>=8.0) {
+        UIUserNotificationType type=UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound;
+        UIUserNotificationSettings *setting=[UIUserNotificationSettings settingsForTypes:type categories:nil];
+        [[UIApplication sharedApplication]registerUserNotificationSettings:setting];
+    }
+    
+    //判断是不是第一次启动应用
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"])
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+        NSLog(@"第一次启动");
+        //如果是第一次启动的话,使用UserGuideViewController (用户引导页面) 作为根视图
+        UserGuideViewController *userGuideViewController = [[UserGuideViewController alloc] init];
+        self.window.rootViewController = userGuideViewController;
+        self.window.backgroundColor = [UIColor whiteColor];
+
+    }
+    else
+    {
+        NSLog(@"不是第一次启动");
+        if (_account.localPhoneNumber == nil) {
+            self.window.rootViewController = _loginVC;
+        }
+        else
+        {
+            self.window.rootViewController = _mainVC;
+        }
+    }
+    
+    [self.window makeKeyAndVisible];
+
+    return YES;
+}
+
+-(void)setViewControllerAfterGuide
+{
     if (_account.localPhoneNumber == nil) {
         self.window.rootViewController = _loginVC;
     }
@@ -61,11 +100,7 @@
     {
         self.window.rootViewController = _mainVC;
     }
-    [self.window makeKeyAndVisible];
-    
-    return YES;
 }
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -74,6 +109,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -86,6 +122,15 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"收到通知" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    // 图标上的数字减1
+    application.applicationIconBadgeNumber -= 1;
 }
 
 - (void) showMenu

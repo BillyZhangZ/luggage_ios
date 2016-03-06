@@ -33,7 +33,7 @@
                         <constraint firstAttribute="width" constant="100" id="ur7-2O-nt0"/>
                     </constraints>
                     <state key="normal" title="luggage定位">
-                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="onLocateButton:" destination="-1" eventType="touchUpInside" id="GbG-xZ-RKB"/>
@@ -150,6 +150,13 @@
                     <state key="normal" title="点我查看电量"/>
                     <connections>
                         <action selector="onBattButton:" destination="-1" eventType="touchUpInside" id="4dd-Sz-MFl"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Nx-cx-79K">
+                    <rect key="frame" x="74" y="108" width="46" height="30"/>
+                    <state key="normal" title="测试"/>
+                    <connections>
+                        <action selector="onTestButton:" destination="-1" eventType="touchUpInside" id="ceT-ZY-QPR"/>
                     </connections>
                 </button>
             </subviews>

@@ -55,6 +55,8 @@
 		8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8348E1111C0DE69300E34C6B /* XJMenuView.m */; };
 		8355F90B1C17156C001E7352 /* WebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8355F9091C17156C001E7352 /* WebsiteViewController.m */; };
 		8355F90C1C17156C001E7352 /* WebsiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8355F90A1C17156C001E7352 /* WebsiteViewController.xib */; };
+		8376EE1B1C872C8B00C190FF /* UserGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8376EE1A1C872C8B00C190FF /* UserGuideView.m */; };
+		8376EE1E1C87367500C190FF /* UserGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8376EE1D1C87367500C190FF /* UserGuideViewController.m */; };
 		83933F851C15C9E300A7AA6F /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F831C15C9E300A7AA6F /* BookViewController.m */; };
 		83933F861C15C9E300A7AA6F /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83933F841C15C9E300A7AA6F /* BookViewController.xib */; };
 		83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F881C15CDC500A7AA6F /* FootprintViewController.m */; };
@@ -151,6 +153,10 @@
 		8355F9081C17156C001E7352 /* WebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebsiteViewController.h; path = ViewController/WebsiteViewController.h; sourceTree = "<group>"; };
 		8355F9091C17156C001E7352 /* WebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebsiteViewController.m; path = ViewController/WebsiteViewController.m; sourceTree = "<group>"; };
 		8355F90A1C17156C001E7352 /* WebsiteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebsiteViewController.xib; path = ViewController/WebsiteViewController.xib; sourceTree = "<group>"; };
+		8376EE191C872C8B00C190FF /* UserGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserGuideView.h; path = ViewController/UserGuideView.h; sourceTree = "<group>"; };
+		8376EE1A1C872C8B00C190FF /* UserGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserGuideView.m; path = ViewController/UserGuideView.m; sourceTree = "<group>"; };
+		8376EE1C1C87367500C190FF /* UserGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserGuideViewController.h; path = ViewController/UserGuideViewController.h; sourceTree = "<group>"; };
+		8376EE1D1C87367500C190FF /* UserGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserGuideViewController.m; path = ViewController/UserGuideViewController.m; sourceTree = "<group>"; };
 		83933F821C15C9E300A7AA6F /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookViewController.h; path = ViewController/BookViewController.h; sourceTree = "<group>"; };
 		83933F831C15C9E300A7AA6F /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookViewController.m; path = ViewController/BookViewController.m; sourceTree = "<group>"; };
 		83933F841C15C9E300A7AA6F /* BookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookViewController.xib; path = ViewController/BookViewController.xib; sourceTree = "<group>"; };
@@ -379,6 +385,10 @@
 				8355F9081C17156C001E7352 /* WebsiteViewController.h */,
 				8355F9091C17156C001E7352 /* WebsiteViewController.m */,
 				8355F90A1C17156C001E7352 /* WebsiteViewController.xib */,
+				8376EE191C872C8B00C190FF /* UserGuideView.h */,
+				8376EE1A1C872C8B00C190FF /* UserGuideView.m */,
+				8376EE1C1C87367500C190FF /* UserGuideViewController.h */,
+				8376EE1D1C87367500C190FF /* UserGuideViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -474,6 +484,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					83013E3E1C018E190065B5C2 = {
@@ -558,6 +571,7 @@
 				8355F90B1C17156C001E7352 /* WebsiteViewController.m in Sources */,
 				83E931611C0C73ED00DB1AA2 /* ZZYAcount.m in Sources */,
 				83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */,
+				8376EE1B1C872C8B00C190FF /* UserGuideView.m in Sources */,
 				83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */,
 				83465F921C0B0D2F0039C86C /* ViewController.m in Sources */,
 				83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */,
@@ -567,6 +581,7 @@
 				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m in Sources */,
 				8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */,
 				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m in Sources */,
+				8376EE1E1C87367500C190FF /* UserGuideViewController.m in Sources */,
 				83D1D9ED1C18EF45005F4F63 /* XJSettingsVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

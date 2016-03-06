@@ -134,6 +134,9 @@
     NSArray *recipientList = [[NSArray alloc]initWithObjects:_account.remotePhoneNumber, nil];
     [self sendSMS:@"KS" recipientList:recipientList];
 }
+- (IBAction)onTestButton:(id)sender {
+    [self test];
+}
 - (IBAction)onBLEUnlock:(id)sender {
     [self bleSendUnlock];
 }
@@ -222,6 +225,7 @@
 {
     NSLog(@"ViewController: connected\n");
     _updateRssiTimer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onUpdateRssi) userInfo:nil repeats:YES];
+
 }
 
 -(void)onUpdateRssi
@@ -236,6 +240,9 @@
     float distance = powf(10, (-63-[rssi floatValue])/10.0/4.0);
     _distance += distance;
     _rssiCount++;
+    if (distance > 1) {
+        //[self pushLocalNotification];
+    }
     NSString *distanceStr = [NSString stringWithFormat:@"rssi:%@ \ndis:%.2f",rssi, distance];//_distance/_rssiCount];
     _lostButton.titleLabel.numberOfLines = 0;
     _lostButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -317,4 +324,208 @@
 
 }
 
+-(NSString *) stringFromDate:(NSDate *)date
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if(dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        
+        // zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+        // [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
+    }
+    
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    return destDateString;
+}
+
+-(NSDate *) getDateFromString:(NSString *)string
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if(dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
+    }
+    
+    NSDate *tm = [dateFormatter dateFromString:string];
+    return tm;
+}
+
+-(void)pushLocalNotification
+{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    //设置1秒之后
+    NSDate *pushDate = [NSDate date];
+    
+    NSString *destDateString = [self stringFromDate:pushDate];
+    
+    NSDate *pushDate1 =[self getDateFromString:destDateString];
+    
+    if (notification != nil) {
+        // 设置推送时间
+        notification.fireDate = pushDate1;
+        // 设置时区
+        notification.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+        // 设置重复间隔
+        notification.repeatInterval = kCFCalendarUnitDay;
+        // 推送声音
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        // 推送内容
+        notification.alertBody = @"请注意luggage";
+        //显示在icon上的红色圈中的数子
+        notification.applicationIconBadgeNumber = 1;
+        //设置userinfo 方便在之后需要撤销的时候使用
+        NSDictionary *info = [NSDictionary dictionaryWithObject:@"name"forKey:@"key"];
+        notification.userInfo = info;
+        //添加推送到UIApplication
+        UIApplication *app = [UIApplication sharedApplication];
+        [app scheduleLocalNotification:notification];   
+        
+    }
+}
+
+// 进行推送的方法
+// 设置本地推送参数，并进行推送
+- (void)scheduleNotification{
+    UILocalNotification *notification=[[UILocalNotification alloc] init];
+    if (notification!=nil) {
+        NSDate *now=[NSDate new];
+      //  NSDate *now1 = [self getNowDateFromatAnDate:now];
+        //notification.fireDate=[now dateByAddingTimeInterval:10];//10秒后通知
+        NSLog(@"fireDate=%@",notification.fireDate);
+        [notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+
+        notification.repeatInterval=0;//循环次数，kCFCalendarUnitWeekday一周一次
+        notification.timeZone=[NSTimeZone defaultTimeZone];
+        NSLog(@"%@", notification.timeZone);
+        //notification.applicationIconBadgeNumber=0; //应用的红色数字
+        notification.soundName= UILocalNotificationDefaultSoundName;//声音，可以换成alarm.soundName = @"myMusic.caf"
+        //去掉下面2行就不会弹出提示框
+        notification.alertBody=@"距离太近，请保护眼睛";//提示信息 弹出提示框
+        notification.alertAction = @"打开";  //提示框按钮
+        notification.hasAction = YES; //是否显示额外的按钮，为no时alertAction消失
+        
+        NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"someValue" forKey:@"someKey"];
+        notification.userInfo = infoDict; //添加额外的信息
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+}
+
+- (void)test
+{
+    //初始化action
+    UIMutableUserNotificationAction* action1 =         [[UIMutableUserNotificationAction alloc] init];
+    //设置action的identifier
+    [action1 setIdentifier:@"action1"];
+    //title就是按钮上的文字
+    [action1 setTitle:@"title1"];
+    //设置点击后在后台处理,还是打开APP
+    [action1 setActivationMode:UIUserNotificationActivationModeBackground];
+    //是不是像UIActionSheet那样的Destructive样式
+    [action1 setDestructive:NO];
+    //在锁屏界面操作时，是否需要解锁
+    [action1 setAuthenticationRequired:NO];
+    
+    UIMutableUserNotificationAction* action2 = [[UIMutableUserNotificationAction alloc] init];
+    [action2 setIdentifier:@"action2"];
+    [action2 setTitle:@"title2"];
+    [action2 setActivationMode:UIUserNotificationActivationModeForeground];
+    [action2 setDestructive:NO];
+    [action2 setAuthenticationRequired:NO];
+    
+    //一个category包含一组action，作为一种显示样式
+    UIMutableUserNotificationCategory* category = [[UIMutableUserNotificationCategory alloc] init];
+    [category setIdentifier:@"category1"];
+    //minimal作为banner样式时使用，最多只能有2个actions；default最多可以有4个actions
+    [category setActions:@[action1,action2] forContext:UIUserNotificationActionContextMinimal];
+    
+    NSSet* set = [NSSet setWithObject:category];
+    UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound
+                                                                             categories:set];
+    //注册notification设置
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    
+    //添加一个notification，10秒后触发
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    //设置notifiction的样式为"category1"
+    [notification setCategory:@"category1"];
+    [notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    [notification setAlertBody:@"111111"];
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+- (NSDate *)getNowDateFromatAnDate:(NSDate *)anyDate
+{
+    //设置源日期时区
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];//或GMT
+    //设置转换后的目标日期时区
+    NSTimeZone* destinationTimeZone = [NSTimeZone localTimeZone];
+    //得到源日期与世界标准时间的偏移量
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:anyDate];
+    //目标日期与本地时区的偏移量
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:anyDate];
+    //得到时间偏移量的差值
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    //转为现在时间
+    NSDate* destinationDateNow = [[NSDate alloc] initWithTimeInterval:interval sinceDate:anyDate];
+    return destinationDateNow;
+}
+
+-(void)cancleLocalNotification
+{
+    // 获得 UIApplication
+    UIApplication *app = [UIApplication sharedApplication];
+    //获取本地推送数组
+    NSArray *localArray = [app scheduledLocalNotifications];
+    //声明本地通知对象
+    UILocalNotification *localNotification;
+    if (localArray) {
+        for (UILocalNotification *noti in localArray) {
+            NSDictionary *dict = noti.userInfo;
+            if (dict) {
+                NSString *inKey = [dict objectForKey:@"key"];
+                if ([inKey isEqualToString:@"对应的key值"]) {
+                    if (localNotification){
+                        localNotification = nil;
+                    }
+                    break;
+                }
+            }
+        }
+        
+        //判断是否找到已经存在的相同key的推送
+        if (!localNotification) {
+            //不存在初始化
+            localNotification = [[UILocalNotification alloc] init];
+        }
+        
+        if (localNotification) {
+            //不推送 取消推送
+            [app cancelLocalNotification:localNotification];
+            return;
+        }  
+    }
+}
+
+#pragma mark - disable landscape
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIDeviceOrientationPortrait);
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
 @end
