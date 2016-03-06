@@ -7,26 +7,26 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
-#import "LocateViewController.h"
-#import "ZZYSMSLoginViewController.h"
+#import "ZZYMainVC.h"
+#import "ZZYLocateVC.h"
+#import "ZZYSMSLoginVC.h"
 #import "WXApi.h"
 #import "config.h"
-#import "XJMenuView.h"
+#import "ZZYMenuView.h"
 #import <SMS_SDK/SMS_SDK.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "BookViewController.h"
-#import "FootprintViewController.h"
-#import "WebsiteViewController.h"
-#import "XJSettingsVC.h"
-#import "XJUserHomeViewController.h"
-#import "UserGuideViewController.h"
+#import "ZZYBookTicketVC.h"
+#import "ZZYFootprintVC.h"
+#import "ZZYWebsiteVC.h"
+#import "ZZYSettingsVC.h"
+#import "ZZYUserVC.h"
+#import "ZZYUserGuideVC.h"
 @interface AppDelegate ()<WXApiDelegate>
 {
-    ViewController * _mainVC;
-    ZZYSMSLoginViewController *_loginVC;
-    XJMenuView *_menuView;
+    ZZYMainVC * _mainVC;
+    ZZYSMSLoginVC *_loginVC;
+    ZZYMenuView *_menuView;
     
 }
 @end
@@ -36,12 +36,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    _mainVC = [[ViewController alloc] init];
-    _loginVC = [[ZZYSMSLoginViewController alloc]init];
+    _mainVC = [[ZZYMainVC alloc] init];
+    _loginVC = [[ZZYSMSLoginVC alloc]init];
     _account = [[ZZYAcount alloc]init];
     
     CGRect rc = [[UIScreen mainScreen] bounds];
-    _menuView = [[XJMenuView alloc]initWithFrame:rc];
+    _menuView = [[ZZYMenuView alloc]initWithFrame:rc];
     [WXApi registerApp:@"wx9d60ab46bfa2d903" withDescription:@"luggage"];
     [SMS_SDK registerApp:@"cdabbcf0f504"  withSecret:@"ccbe1fa6a1f8f17075f03951b29d1618"];
 
@@ -69,7 +69,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         NSLog(@"第一次启动");
         //如果是第一次启动的话,使用UserGuideViewController (用户引导页面) 作为根视图
-        UserGuideViewController *userGuideViewController = [[UserGuideViewController alloc] init];
+        ZZYUserGuideVC *userGuideViewController = [[ZZYUserGuideVC alloc] init];
         self.window.rootViewController = userGuideViewController;
         self.window.backgroundColor = [UIColor whiteColor];
 
@@ -184,7 +184,7 @@
             _window.rootViewController = _userVC;
         }
 #else
-        XJUserHomeViewController *vc = [[XJUserHomeViewController alloc]init];
+        ZZYUserVC *vc = [[ZZYUserVC alloc]init];
         [_window.rootViewController presentViewController:vc
                                                  animated:YES completion:nil];
 #endif
@@ -192,18 +192,18 @@
     else if([itemName compare:@"足迹"] == NSOrderedSame)
     {
         //_window.rootViewController = _mainVC;
-        FootprintViewController *vc = [[FootprintViewController alloc]init];
+        ZZYFootprintVC *vc = [[ZZYFootprintVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     else if([itemName compare:@"航班信息"] == NSOrderedSame)
     {
        // _window.rootViewController = _histVC;
-        BookViewController *vc = [[BookViewController alloc]init];
+        ZZYBookTicketVC *vc = [[ZZYBookTicketVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     else if([itemName compare:@"新品上市"] == NSOrderedSame)
     {
-        WebsiteViewController *vc = [[WebsiteViewController alloc]init];
+        ZZYWebsiteVC *vc = [[ZZYWebsiteVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     else if([itemName compare:@"预留3"] == NSOrderedSame)
@@ -217,7 +217,7 @@
     else if([itemName compare:@"设置"] == NSOrderedSame)
     {
        // _window.rootViewController = _settingsVC;
-        XJSettingsVC *vc = [[XJSettingsVC alloc]init];
+        ZZYSettingsVC *vc = [[ZZYSettingsVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     

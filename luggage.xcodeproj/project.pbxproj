@@ -24,8 +24,8 @@
 		83013E731C01DBE90065B5C2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83013E721C01DBE90065B5C2 /* SystemConfiguration.framework */; };
 		83013E751C01DC120065B5C2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83013E741C01DC120065B5C2 /* Security.framework */; };
 		83013E771C01DC5C0065B5C2 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83013E761C01DC5C0065B5C2 /* CoreTelephony.framework */; };
-		83013E7D1C01E7E50065B5C2 /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83013E7B1C01E7E50065B5C2 /* LocateViewController.m */; };
-		83013E7E1C01E7E50065B5C2 /* LocateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83013E7C1C01E7E50065B5C2 /* LocateViewController.xib */; };
+		83013E7D1C01E7E50065B5C2 /* ZZYLocateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83013E7B1C01E7E50065B5C2 /* ZZYLocateVC.m */; };
+		83013E7E1C01E7E50065B5C2 /* ZZYLocateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83013E7C1C01E7E50065B5C2 /* ZZYLocateVC.xib */; };
 		83465EF11C0377950039C86C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83013E551C01D7930065B5C2 /* libWeChatSDK.a */; };
 		83465EF21C0377A30039C86C /* libPushSDK-1.8.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83013E571C01D7A20065B5C2 /* libPushSDK-1.8.3.a */; };
 		83465F031C04BC6E0039C86C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83465F021C04BC6E0039C86C /* AVFoundation.framework */; };
@@ -47,38 +47,41 @@
 		83465F8C1C0B08550039C86C /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83465F891C0B08550039C86C /* Icon-Small.png */; };
 		83465F8D1C0B08550039C86C /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83465F8A1C0B08550039C86C /* Icon-Small@2x.png */; };
 		83465F8E1C0B08550039C86C /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83465F8B1C0B08550039C86C /* Icon-Small@3x.png */; };
-		83465F921C0B0D2F0039C86C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83465F901C0B0D2F0039C86C /* ViewController.m */; };
-		83465F931C0B0D2F0039C86C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F911C0B0D2F0039C86C /* ViewController.xib */; };
-		83465F971C0B0D8A0039C86C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83465F951C0B0D8A0039C86C /* LoginViewController.m */; };
-		83465F981C0B0D8A0039C86C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F961C0B0D8A0039C86C /* LoginViewController.xib */; };
+		83465F921C0B0D2F0039C86C /* ZZYMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83465F901C0B0D2F0039C86C /* ZZYMainVC.m */; };
+		83465F931C0B0D2F0039C86C /* ZZYMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F911C0B0D2F0039C86C /* ZZYMainVC.xib */; };
+		83465F971C0B0D8A0039C86C /* ZZYLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83465F951C0B0D8A0039C86C /* ZZYLoginVC.m */; };
+		83465F981C0B0D8A0039C86C /* ZZYLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83465F961C0B0D8A0039C86C /* ZZYLoginVC.xib */; };
 		83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83465F9E1C0B1E780039C86C /* MapKit.framework */; };
-		8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8348E1111C0DE69300E34C6B /* XJMenuView.m */; };
-		8355F90B1C17156C001E7352 /* WebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8355F9091C17156C001E7352 /* WebsiteViewController.m */; };
-		8355F90C1C17156C001E7352 /* WebsiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8355F90A1C17156C001E7352 /* WebsiteViewController.xib */; };
-		8376EE1B1C872C8B00C190FF /* UserGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8376EE1A1C872C8B00C190FF /* UserGuideView.m */; };
-		8376EE1E1C87367500C190FF /* UserGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8376EE1D1C87367500C190FF /* UserGuideViewController.m */; };
-		83933F851C15C9E300A7AA6F /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F831C15C9E300A7AA6F /* BookViewController.m */; };
-		83933F861C15C9E300A7AA6F /* BookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83933F841C15C9E300A7AA6F /* BookViewController.xib */; };
-		83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F881C15CDC500A7AA6F /* FootprintViewController.m */; };
-		83933F8B1C15CDC500A7AA6F /* FootprintViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83933F891C15CDC500A7AA6F /* FootprintViewController.xib */; };
+		8348E1121C0DE69300E34C6B /* ZZYMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8348E1111C0DE69300E34C6B /* ZZYMenuView.m */; };
+		8355F90B1C17156C001E7352 /* ZZYWebsiteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8355F9091C17156C001E7352 /* ZZYWebsiteVC.m */; };
+		8355F90C1C17156C001E7352 /* ZZYWebsiteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8355F90A1C17156C001E7352 /* ZZYWebsiteVC.xib */; };
+		8376EE1B1C872C8B00C190FF /* ZZYUserGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8376EE1A1C872C8B00C190FF /* ZZYUserGuideView.m */; };
+		8376EE1E1C87367500C190FF /* ZZYUserGuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8376EE1D1C87367500C190FF /* ZZYUserGuideVC.m */; };
+		83933F851C15C9E300A7AA6F /* ZZYBookTicketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F831C15C9E300A7AA6F /* ZZYBookTicketVC.m */; };
+		83933F861C15C9E300A7AA6F /* ZZYBookTicketVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83933F841C15C9E300A7AA6F /* ZZYBookTicketVC.xib */; };
+		83933F8A1C15CDC500A7AA6F /* ZZYFootprintVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F881C15CDC500A7AA6F /* ZZYFootprintVC.m */; };
+		83933F8B1C15CDC500A7AA6F /* ZZYFootprintVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83933F891C15CDC500A7AA6F /* ZZYFootprintVC.xib */; };
 		83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F8D1C15D55000A7AA6F /* GdTrackOverlay.m */; };
 		83933F911C15D55000A7AA6F /* GdTrackOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */; };
 		839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839458D11C107E0500020561 /* libBLEDevice.a */; };
-		83D1D9ED1C18EF45005F4F63 /* XJSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EC1C18EF45005F4F63 /* XJSettingsVC.m */; };
-		83D1D9F01C18EFC7005F4F63 /* XJBaseNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EF1C18EFC7005F4F63 /* XJBaseNavVC.m */; };
+		83B5CD8A1C8BFDF3009DFA80 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD871C8BFDF3009DFA80 /* Icon-76.png */; };
+		83B5CD8B1C8BFDF3009DFA80 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD881C8BFDF3009DFA80 /* Icon-76@2x.png */; };
+		83B5CD8C1C8BFDF3009DFA80 /* Icon-76@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD891C8BFDF3009DFA80 /* Icon-76@3x.png */; };
+		83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */; };
+		83D1D9F01C18EFC7005F4F63 /* ZZYBaseNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EF1C18EFC7005F4F63 /* ZZYBaseNavVC.m */; };
 		83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F21C18F889005F4F63 /* basicInfoCel.m */; };
 		83D1D9F81C18F889005F4F63 /* basicInfoCel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D1D9F31C18F889005F4F63 /* basicInfoCel.xib */; };
-		83D1D9F91C18F889005F4F63 /* XJUserHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F51C18F889005F4F63 /* XJUserHomeViewController.m */; };
-		83D1D9FA1C18F889005F4F63 /* XJUserHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D1D9F61C18F889005F4F63 /* XJUserHomeViewController.xib */; };
+		83D1D9F91C18F889005F4F63 /* ZZYUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F51C18F889005F4F63 /* ZZYUserVC.m */; };
+		83D1D9FA1C18F889005F4F63 /* ZZYUserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D1D9F61C18F889005F4F63 /* ZZYUserVC.xib */; };
 		83E931611C0C73ED00DB1AA2 /* ZZYAcount.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931601C0C73ED00DB1AA2 /* ZZYAcount.m */; };
 		83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931631C0C740400DB1AA2 /* ZZYGps.m */; };
 		83E931671C0C7F9500DB1AA2 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E931661C0C7F9500DB1AA2 /* empty.png */; };
-		83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m */; };
-		83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib */; };
-		83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m */; };
-		83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib */; };
-		83FDFF871C1466DB000275AA /* BLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FDFF851C1466DB000275AA /* BLEViewController.m */; };
-		83FDFF881C1466DB000275AA /* BLEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FDFF861C1466DB000275AA /* BLEViewController.xib */; };
+		83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginVC.m */; };
+		83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginVC.xib */; };
+		83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.m */; };
+		83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.xib */; };
+		83FDFF871C1466DB000275AA /* ZZYAddDeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FDFF851C1466DB000275AA /* ZZYAddDeviceVC.m */; };
+		83FDFF881C1466DB000275AA /* ZZYAddDeviceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FDFF861C1466DB000275AA /* ZZYAddDeviceVC.xib */; };
 		83FDFF8A1C1482F1000275AA /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FDFF891C1482F1000275AA /* location.png */; };
 /* End PBXBuildFile section */
 
@@ -118,9 +121,9 @@
 		83013E721C01DBE90065B5C2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		83013E741C01DC120065B5C2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83013E761C01DC5C0065B5C2 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		83013E7A1C01E7E50065B5C2 /* LocateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocateViewController.h; path = ViewController/LocateViewController.h; sourceTree = "<group>"; };
-		83013E7B1C01E7E50065B5C2 /* LocateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocateViewController.m; path = ViewController/LocateViewController.m; sourceTree = "<group>"; };
-		83013E7C1C01E7E50065B5C2 /* LocateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocateViewController.xib; path = ViewController/LocateViewController.xib; sourceTree = "<group>"; };
+		83013E7A1C01E7E50065B5C2 /* ZZYLocateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYLocateVC.h; path = ViewController/ZZYLocateVC.h; sourceTree = "<group>"; };
+		83013E7B1C01E7E50065B5C2 /* ZZYLocateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYLocateVC.m; path = ViewController/ZZYLocateVC.m; sourceTree = "<group>"; };
+		83013E7C1C01E7E50065B5C2 /* ZZYLocateVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYLocateVC.xib; path = ViewController/ZZYLocateVC.xib; sourceTree = "<group>"; };
 		83013E821C01ED260065B5C2 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = Model/config.h; sourceTree = "<group>"; };
 		83465F021C04BC6E0039C86C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		83465F041C04BC8E0039C86C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -141,44 +144,47 @@
 		83465F891C0B08550039C86C /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "icon/Icon-Small.png"; sourceTree = "<group>"; };
 		83465F8A1C0B08550039C86C /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "icon/Icon-Small@2x.png"; sourceTree = "<group>"; };
 		83465F8B1C0B08550039C86C /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@3x.png"; path = "icon/Icon-Small@3x.png"; sourceTree = "<group>"; };
-		83465F8F1C0B0D2F0039C86C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ViewController/ViewController.h; sourceTree = "<group>"; };
-		83465F901C0B0D2F0039C86C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ViewController/ViewController.m; sourceTree = "<group>"; };
-		83465F911C0B0D2F0039C86C /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = ViewController/ViewController.xib; sourceTree = "<group>"; };
-		83465F941C0B0D8A0039C86C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ViewController/LoginViewController.h; sourceTree = "<group>"; };
-		83465F951C0B0D8A0039C86C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ViewController/LoginViewController.m; sourceTree = "<group>"; };
-		83465F961C0B0D8A0039C86C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = ViewController/LoginViewController.xib; sourceTree = "<group>"; };
+		83465F8F1C0B0D2F0039C86C /* ZZYMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYMainVC.h; path = ViewController/ZZYMainVC.h; sourceTree = "<group>"; };
+		83465F901C0B0D2F0039C86C /* ZZYMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYMainVC.m; path = ViewController/ZZYMainVC.m; sourceTree = "<group>"; };
+		83465F911C0B0D2F0039C86C /* ZZYMainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYMainVC.xib; path = ViewController/ZZYMainVC.xib; sourceTree = "<group>"; };
+		83465F941C0B0D8A0039C86C /* ZZYLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYLoginVC.h; path = ViewController/ZZYLoginVC.h; sourceTree = "<group>"; };
+		83465F951C0B0D8A0039C86C /* ZZYLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYLoginVC.m; path = ViewController/ZZYLoginVC.m; sourceTree = "<group>"; };
+		83465F961C0B0D8A0039C86C /* ZZYLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYLoginVC.xib; path = ViewController/ZZYLoginVC.xib; sourceTree = "<group>"; };
 		83465F9E1C0B1E780039C86C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		8348E1101C0DE69300E34C6B /* XJMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJMenuView.h; path = ViewController/XJMenuView.h; sourceTree = "<group>"; };
-		8348E1111C0DE69300E34C6B /* XJMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJMenuView.m; path = ViewController/XJMenuView.m; sourceTree = "<group>"; };
-		8355F9081C17156C001E7352 /* WebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebsiteViewController.h; path = ViewController/WebsiteViewController.h; sourceTree = "<group>"; };
-		8355F9091C17156C001E7352 /* WebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebsiteViewController.m; path = ViewController/WebsiteViewController.m; sourceTree = "<group>"; };
-		8355F90A1C17156C001E7352 /* WebsiteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebsiteViewController.xib; path = ViewController/WebsiteViewController.xib; sourceTree = "<group>"; };
-		8376EE191C872C8B00C190FF /* UserGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserGuideView.h; path = ViewController/UserGuideView.h; sourceTree = "<group>"; };
-		8376EE1A1C872C8B00C190FF /* UserGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserGuideView.m; path = ViewController/UserGuideView.m; sourceTree = "<group>"; };
-		8376EE1C1C87367500C190FF /* UserGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserGuideViewController.h; path = ViewController/UserGuideViewController.h; sourceTree = "<group>"; };
-		8376EE1D1C87367500C190FF /* UserGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserGuideViewController.m; path = ViewController/UserGuideViewController.m; sourceTree = "<group>"; };
-		83933F821C15C9E300A7AA6F /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookViewController.h; path = ViewController/BookViewController.h; sourceTree = "<group>"; };
-		83933F831C15C9E300A7AA6F /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookViewController.m; path = ViewController/BookViewController.m; sourceTree = "<group>"; };
-		83933F841C15C9E300A7AA6F /* BookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookViewController.xib; path = ViewController/BookViewController.xib; sourceTree = "<group>"; };
-		83933F871C15CDC500A7AA6F /* FootprintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FootprintViewController.h; path = ViewController/FootprintViewController.h; sourceTree = "<group>"; };
-		83933F881C15CDC500A7AA6F /* FootprintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FootprintViewController.m; path = ViewController/FootprintViewController.m; sourceTree = "<group>"; };
-		83933F891C15CDC500A7AA6F /* FootprintViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FootprintViewController.xib; path = ViewController/FootprintViewController.xib; sourceTree = "<group>"; };
+		8348E1101C0DE69300E34C6B /* ZZYMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYMenuView.h; path = ViewController/ZZYMenuView.h; sourceTree = "<group>"; };
+		8348E1111C0DE69300E34C6B /* ZZYMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYMenuView.m; path = ViewController/ZZYMenuView.m; sourceTree = "<group>"; };
+		8355F9081C17156C001E7352 /* ZZYWebsiteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYWebsiteVC.h; path = ViewController/ZZYWebsiteVC.h; sourceTree = "<group>"; };
+		8355F9091C17156C001E7352 /* ZZYWebsiteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYWebsiteVC.m; path = ViewController/ZZYWebsiteVC.m; sourceTree = "<group>"; };
+		8355F90A1C17156C001E7352 /* ZZYWebsiteVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYWebsiteVC.xib; path = ViewController/ZZYWebsiteVC.xib; sourceTree = "<group>"; };
+		8376EE191C872C8B00C190FF /* ZZYUserGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUserGuideView.h; path = ViewController/ZZYUserGuideView.h; sourceTree = "<group>"; };
+		8376EE1A1C872C8B00C190FF /* ZZYUserGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYUserGuideView.m; path = ViewController/ZZYUserGuideView.m; sourceTree = "<group>"; };
+		8376EE1C1C87367500C190FF /* ZZYUserGuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUserGuideVC.h; path = ViewController/ZZYUserGuideVC.h; sourceTree = "<group>"; };
+		8376EE1D1C87367500C190FF /* ZZYUserGuideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYUserGuideVC.m; path = ViewController/ZZYUserGuideVC.m; sourceTree = "<group>"; };
+		83933F821C15C9E300A7AA6F /* ZZYBookTicketVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYBookTicketVC.h; path = ViewController/ZZYBookTicketVC.h; sourceTree = "<group>"; };
+		83933F831C15C9E300A7AA6F /* ZZYBookTicketVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYBookTicketVC.m; path = ViewController/ZZYBookTicketVC.m; sourceTree = "<group>"; };
+		83933F841C15C9E300A7AA6F /* ZZYBookTicketVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYBookTicketVC.xib; path = ViewController/ZZYBookTicketVC.xib; sourceTree = "<group>"; };
+		83933F871C15CDC500A7AA6F /* ZZYFootprintVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYFootprintVC.h; path = ViewController/ZZYFootprintVC.h; sourceTree = "<group>"; };
+		83933F881C15CDC500A7AA6F /* ZZYFootprintVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYFootprintVC.m; path = ViewController/ZZYFootprintVC.m; sourceTree = "<group>"; };
+		83933F891C15CDC500A7AA6F /* ZZYFootprintVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYFootprintVC.xib; path = ViewController/ZZYFootprintVC.xib; sourceTree = "<group>"; };
 		83933F8C1C15D55000A7AA6F /* GdTrackOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GdTrackOverlay.h; path = ViewController/GdTrackOverlay.h; sourceTree = "<group>"; };
 		83933F8D1C15D55000A7AA6F /* GdTrackOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GdTrackOverlay.m; path = ViewController/GdTrackOverlay.m; sourceTree = "<group>"; };
 		83933F8E1C15D55000A7AA6F /* GdTrackOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GdTrackOverlayView.h; path = ViewController/GdTrackOverlayView.h; sourceTree = "<group>"; };
 		83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GdTrackOverlayView.m; path = ViewController/GdTrackOverlayView.m; sourceTree = "<group>"; };
 		839458D01C107D8200020561 /* BLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEDevice.h; path = BLEDevice/BLEDevice/BLEDevice.h; sourceTree = "<group>"; };
 		839458D11C107E0500020561 /* libBLEDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBLEDevice.a; path = "BLEDevice/build/Debug-iphoneos/libBLEDevice.a"; sourceTree = "<group>"; };
-		83D1D9EB1C18EF45005F4F63 /* XJSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJSettingsVC.h; path = ViewController/XJSettingsVC.h; sourceTree = "<group>"; };
-		83D1D9EC1C18EF45005F4F63 /* XJSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJSettingsVC.m; path = ViewController/XJSettingsVC.m; sourceTree = "<group>"; };
-		83D1D9EE1C18EFC7005F4F63 /* XJBaseNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJBaseNavVC.h; path = ViewController/XJBaseNavVC.h; sourceTree = "<group>"; };
-		83D1D9EF1C18EFC7005F4F63 /* XJBaseNavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJBaseNavVC.m; path = ViewController/XJBaseNavVC.m; sourceTree = "<group>"; };
+		83B5CD871C8BFDF3009DFA80 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "icon/Icon-76.png"; sourceTree = "<group>"; };
+		83B5CD881C8BFDF3009DFA80 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76@2x.png"; path = "icon/Icon-76@2x.png"; sourceTree = "<group>"; };
+		83B5CD891C8BFDF3009DFA80 /* Icon-76@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76@3x.png"; path = "icon/Icon-76@3x.png"; sourceTree = "<group>"; };
+		83D1D9EB1C18EF45005F4F63 /* ZZYSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSettingsVC.h; path = ViewController/ZZYSettingsVC.h; sourceTree = "<group>"; };
+		83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSettingsVC.m; path = ViewController/ZZYSettingsVC.m; sourceTree = "<group>"; };
+		83D1D9EE1C18EFC7005F4F63 /* ZZYBaseNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYBaseNavVC.h; path = ViewController/ZZYBaseNavVC.h; sourceTree = "<group>"; };
+		83D1D9EF1C18EFC7005F4F63 /* ZZYBaseNavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYBaseNavVC.m; path = ViewController/ZZYBaseNavVC.m; sourceTree = "<group>"; };
 		83D1D9F11C18F889005F4F63 /* basicInfoCel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = basicInfoCel.h; path = ViewController/basicInfoCel.h; sourceTree = "<group>"; };
 		83D1D9F21C18F889005F4F63 /* basicInfoCel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = basicInfoCel.m; path = ViewController/basicInfoCel.m; sourceTree = "<group>"; };
 		83D1D9F31C18F889005F4F63 /* basicInfoCel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = basicInfoCel.xib; path = ViewController/basicInfoCel.xib; sourceTree = "<group>"; };
-		83D1D9F41C18F889005F4F63 /* XJUserHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XJUserHomeViewController.h; path = ViewController/XJUserHomeViewController.h; sourceTree = "<group>"; };
-		83D1D9F51C18F889005F4F63 /* XJUserHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XJUserHomeViewController.m; path = ViewController/XJUserHomeViewController.m; sourceTree = "<group>"; };
-		83D1D9F61C18F889005F4F63 /* XJUserHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XJUserHomeViewController.xib; path = ViewController/XJUserHomeViewController.xib; sourceTree = "<group>"; };
+		83D1D9F41C18F889005F4F63 /* ZZYUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUserVC.h; path = ViewController/ZZYUserVC.h; sourceTree = "<group>"; };
+		83D1D9F51C18F889005F4F63 /* ZZYUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYUserVC.m; path = ViewController/ZZYUserVC.m; sourceTree = "<group>"; };
+		83D1D9F61C18F889005F4F63 /* ZZYUserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYUserVC.xib; path = ViewController/ZZYUserVC.xib; sourceTree = "<group>"; };
 		83E9315F1C0C73ED00DB1AA2 /* ZZYAcount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYAcount.h; path = Model/ZZYAcount.h; sourceTree = "<group>"; };
 		83E931601C0C73ED00DB1AA2 /* ZZYAcount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYAcount.m; path = Model/ZZYAcount.m; sourceTree = "<group>"; };
 		83E931621C0C740400DB1AA2 /* ZZYGps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYGps.h; path = Model/ZZYGps.h; sourceTree = "<group>"; };
@@ -186,15 +192,15 @@
 		83E931661C0C7F9500DB1AA2 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = empty.png; path = images/empty.png; sourceTree = "<group>"; };
 		83E931681C0C82E100DB1AA2 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApi.h; path = luggage/Framework/WechatShare/WXApi.h; sourceTree = "<group>"; };
 		83E931691C0C82E100DB1AA2 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = luggage/Framework/WechatShare/WXApiObject.h; sourceTree = "<group>"; };
-		83E9316A1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSMSLoginViewController.h; path = ViewController/ZZYSMSLoginViewController.h; sourceTree = "<group>"; };
-		83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSMSLoginViewController.m; path = ViewController/ZZYSMSLoginViewController.m; sourceTree = "<group>"; };
-		83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYSMSLoginViewController.xib; path = ViewController/ZZYSMSLoginViewController.xib; sourceTree = "<group>"; };
-		83E9316F1C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSMSLoginVerifyViewController.h; path = ViewController/ZZYSMSLoginVerifyViewController.h; sourceTree = "<group>"; };
-		83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSMSLoginVerifyViewController.m; path = ViewController/ZZYSMSLoginVerifyViewController.m; sourceTree = "<group>"; };
-		83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYSMSLoginVerifyViewController.xib; path = ViewController/ZZYSMSLoginVerifyViewController.xib; sourceTree = "<group>"; };
-		83FDFF841C1466DB000275AA /* BLEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEViewController.h; path = ViewController/BLEViewController.h; sourceTree = "<group>"; };
-		83FDFF851C1466DB000275AA /* BLEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLEViewController.m; path = ViewController/BLEViewController.m; sourceTree = "<group>"; };
-		83FDFF861C1466DB000275AA /* BLEViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLEViewController.xib; path = ViewController/BLEViewController.xib; sourceTree = "<group>"; };
+		83E9316A1C0C90A700DB1AA2 /* ZZYSMSLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSMSLoginVC.h; path = ViewController/ZZYSMSLoginVC.h; sourceTree = "<group>"; };
+		83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSMSLoginVC.m; path = ViewController/ZZYSMSLoginVC.m; sourceTree = "<group>"; };
+		83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYSMSLoginVC.xib; path = ViewController/ZZYSMSLoginVC.xib; sourceTree = "<group>"; };
+		83E9316F1C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSMSLoginVerifyVC.h; path = ViewController/ZZYSMSLoginVerifyVC.h; sourceTree = "<group>"; };
+		83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSMSLoginVerifyVC.m; path = ViewController/ZZYSMSLoginVerifyVC.m; sourceTree = "<group>"; };
+		83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYSMSLoginVerifyVC.xib; path = ViewController/ZZYSMSLoginVerifyVC.xib; sourceTree = "<group>"; };
+		83FDFF841C1466DB000275AA /* ZZYAddDeviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYAddDeviceVC.h; path = ViewController/ZZYAddDeviceVC.h; sourceTree = "<group>"; };
+		83FDFF851C1466DB000275AA /* ZZYAddDeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYAddDeviceVC.m; path = ViewController/ZZYAddDeviceVC.m; sourceTree = "<group>"; };
+		83FDFF861C1466DB000275AA /* ZZYAddDeviceVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYAddDeviceVC.xib; path = ViewController/ZZYAddDeviceVC.xib; sourceTree = "<group>"; };
 		83FDFF891C1482F1000275AA /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location.png; path = images/location.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -345,50 +351,50 @@
 				83D1D9F11C18F889005F4F63 /* basicInfoCel.h */,
 				83D1D9F21C18F889005F4F63 /* basicInfoCel.m */,
 				83D1D9F31C18F889005F4F63 /* basicInfoCel.xib */,
-				83D1D9F41C18F889005F4F63 /* XJUserHomeViewController.h */,
-				83D1D9F51C18F889005F4F63 /* XJUserHomeViewController.m */,
-				83D1D9F61C18F889005F4F63 /* XJUserHomeViewController.xib */,
-				83D1D9EE1C18EFC7005F4F63 /* XJBaseNavVC.h */,
-				83D1D9EF1C18EFC7005F4F63 /* XJBaseNavVC.m */,
-				83D1D9EB1C18EF45005F4F63 /* XJSettingsVC.h */,
-				83D1D9EC1C18EF45005F4F63 /* XJSettingsVC.m */,
 				83933F8C1C15D55000A7AA6F /* GdTrackOverlay.h */,
 				83933F8D1C15D55000A7AA6F /* GdTrackOverlay.m */,
 				83933F8E1C15D55000A7AA6F /* GdTrackOverlayView.h */,
 				83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */,
-				8348E1101C0DE69300E34C6B /* XJMenuView.h */,
-				8348E1111C0DE69300E34C6B /* XJMenuView.m */,
-				83E9316F1C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.h */,
-				83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m */,
-				83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib */,
-				83E9316A1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.h */,
-				83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m */,
-				83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib */,
-				83013E7A1C01E7E50065B5C2 /* LocateViewController.h */,
-				83013E7B1C01E7E50065B5C2 /* LocateViewController.m */,
-				83013E7C1C01E7E50065B5C2 /* LocateViewController.xib */,
-				83465F8F1C0B0D2F0039C86C /* ViewController.h */,
-				83465F901C0B0D2F0039C86C /* ViewController.m */,
-				83465F911C0B0D2F0039C86C /* ViewController.xib */,
-				83465F941C0B0D8A0039C86C /* LoginViewController.h */,
-				83465F951C0B0D8A0039C86C /* LoginViewController.m */,
-				83465F961C0B0D8A0039C86C /* LoginViewController.xib */,
-				83FDFF841C1466DB000275AA /* BLEViewController.h */,
-				83FDFF851C1466DB000275AA /* BLEViewController.m */,
-				83FDFF861C1466DB000275AA /* BLEViewController.xib */,
-				83933F821C15C9E300A7AA6F /* BookViewController.h */,
-				83933F831C15C9E300A7AA6F /* BookViewController.m */,
-				83933F841C15C9E300A7AA6F /* BookViewController.xib */,
-				83933F871C15CDC500A7AA6F /* FootprintViewController.h */,
-				83933F881C15CDC500A7AA6F /* FootprintViewController.m */,
-				83933F891C15CDC500A7AA6F /* FootprintViewController.xib */,
-				8355F9081C17156C001E7352 /* WebsiteViewController.h */,
-				8355F9091C17156C001E7352 /* WebsiteViewController.m */,
-				8355F90A1C17156C001E7352 /* WebsiteViewController.xib */,
-				8376EE191C872C8B00C190FF /* UserGuideView.h */,
-				8376EE1A1C872C8B00C190FF /* UserGuideView.m */,
-				8376EE1C1C87367500C190FF /* UserGuideViewController.h */,
-				8376EE1D1C87367500C190FF /* UserGuideViewController.m */,
+				8376EE191C872C8B00C190FF /* ZZYUserGuideView.h */,
+				8376EE1A1C872C8B00C190FF /* ZZYUserGuideView.m */,
+				8348E1101C0DE69300E34C6B /* ZZYMenuView.h */,
+				8348E1111C0DE69300E34C6B /* ZZYMenuView.m */,
+				83FDFF841C1466DB000275AA /* ZZYAddDeviceVC.h */,
+				83FDFF851C1466DB000275AA /* ZZYAddDeviceVC.m */,
+				83FDFF861C1466DB000275AA /* ZZYAddDeviceVC.xib */,
+				83D1D9EE1C18EFC7005F4F63 /* ZZYBaseNavVC.h */,
+				83D1D9EF1C18EFC7005F4F63 /* ZZYBaseNavVC.m */,
+				83933F821C15C9E300A7AA6F /* ZZYBookTicketVC.h */,
+				83933F831C15C9E300A7AA6F /* ZZYBookTicketVC.m */,
+				83933F841C15C9E300A7AA6F /* ZZYBookTicketVC.xib */,
+				83933F871C15CDC500A7AA6F /* ZZYFootprintVC.h */,
+				83933F881C15CDC500A7AA6F /* ZZYFootprintVC.m */,
+				83933F891C15CDC500A7AA6F /* ZZYFootprintVC.xib */,
+				83013E7A1C01E7E50065B5C2 /* ZZYLocateVC.h */,
+				83013E7B1C01E7E50065B5C2 /* ZZYLocateVC.m */,
+				83013E7C1C01E7E50065B5C2 /* ZZYLocateVC.xib */,
+				83465F941C0B0D8A0039C86C /* ZZYLoginVC.h */,
+				83465F951C0B0D8A0039C86C /* ZZYLoginVC.m */,
+				83465F961C0B0D8A0039C86C /* ZZYLoginVC.xib */,
+				83465F8F1C0B0D2F0039C86C /* ZZYMainVC.h */,
+				83465F901C0B0D2F0039C86C /* ZZYMainVC.m */,
+				83465F911C0B0D2F0039C86C /* ZZYMainVC.xib */,
+				83D1D9EB1C18EF45005F4F63 /* ZZYSettingsVC.h */,
+				83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */,
+				83E9316F1C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.h */,
+				83E931701C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.m */,
+				83E931711C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.xib */,
+				83E9316A1C0C90A700DB1AA2 /* ZZYSMSLoginVC.h */,
+				83E9316B1C0C90A700DB1AA2 /* ZZYSMSLoginVC.m */,
+				83E9316C1C0C90A700DB1AA2 /* ZZYSMSLoginVC.xib */,
+				8376EE1C1C87367500C190FF /* ZZYUserGuideVC.h */,
+				8376EE1D1C87367500C190FF /* ZZYUserGuideVC.m */,
+				83D1D9F41C18F889005F4F63 /* ZZYUserVC.h */,
+				83D1D9F51C18F889005F4F63 /* ZZYUserVC.m */,
+				83D1D9F61C18F889005F4F63 /* ZZYUserVC.xib */,
+				8355F9081C17156C001E7352 /* ZZYWebsiteVC.h */,
+				8355F9091C17156C001E7352 /* ZZYWebsiteVC.m */,
+				8355F90A1C17156C001E7352 /* ZZYWebsiteVC.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -408,6 +414,9 @@
 		83465F7C1C0B07D70039C86C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				83B5CD871C8BFDF3009DFA80 /* Icon-76.png */,
+				83B5CD881C8BFDF3009DFA80 /* Icon-76@2x.png */,
+				83B5CD891C8BFDF3009DFA80 /* Icon-76@3x.png */,
 				83465F891C0B08550039C86C /* Icon-Small.png */,
 				83465F8A1C0B08550039C86C /* Icon-Small@2x.png */,
 				83465F8B1C0B08550039C86C /* Icon-Small@3x.png */,
@@ -520,28 +529,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				83465F801C0B08330039C86C /* Icon-60.png in Resources */,
+				83B5CD8A1C8BFDF3009DFA80 /* Icon-76.png in Resources */,
 				83465F8E1C0B08550039C86C /* Icon-Small@3x.png in Resources */,
-				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.xib in Resources */,
+				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginVC.xib in Resources */,
 				83465F8C1C0B08550039C86C /* Icon-Small.png in Resources */,
-				83D1D9FA1C18F889005F4F63 /* XJUserHomeViewController.xib in Resources */,
+				83D1D9FA1C18F889005F4F63 /* ZZYUserVC.xib in Resources */,
 				83FDFF8A1C1482F1000275AA /* location.png in Resources */,
-				83933F861C15C9E300A7AA6F /* BookViewController.xib in Resources */,
+				83933F861C15C9E300A7AA6F /* ZZYBookTicketVC.xib in Resources */,
 				83E931671C0C7F9500DB1AA2 /* empty.png in Resources */,
 				83465F881C0B08430039C86C /* Icon-Spotlight-40@3x.png in Resources */,
+				83B5CD8B1C8BFDF3009DFA80 /* Icon-76@2x.png in Resources */,
 				83465F871C0B08430039C86C /* Icon-Spotlight-40@2x.png in Resources */,
-				83465F981C0B0D8A0039C86C /* LoginViewController.xib in Resources */,
-				83FDFF881C1466DB000275AA /* BLEViewController.xib in Resources */,
+				83465F981C0B0D8A0039C86C /* ZZYLoginVC.xib in Resources */,
+				83FDFF881C1466DB000275AA /* ZZYAddDeviceVC.xib in Resources */,
 				83D1D9F81C18F889005F4F63 /* basicInfoCel.xib in Resources */,
-				83465F931C0B0D2F0039C86C /* ViewController.xib in Resources */,
+				83465F931C0B0D2F0039C86C /* ZZYMainVC.xib in Resources */,
 				83465F7B1C0B03A00039C86C /* AMap.bundle in Resources */,
 				83013E3A1C018E190065B5C2 /* LaunchScreen.xib in Resources */,
-				83933F8B1C15CDC500A7AA6F /* FootprintViewController.xib in Resources */,
-				83013E7E1C01E7E50065B5C2 /* LocateViewController.xib in Resources */,
+				83933F8B1C15CDC500A7AA6F /* ZZYFootprintVC.xib in Resources */,
+				83B5CD8C1C8BFDF3009DFA80 /* Icon-76@3x.png in Resources */,
+				83013E7E1C01E7E50065B5C2 /* ZZYLocateVC.xib in Resources */,
 				83465F821C0B08330039C86C /* Icon-60@3x.png in Resources */,
 				83465F861C0B08430039C86C /* Icon-Spotlight-40.png in Resources */,
 				83465F8D1C0B08550039C86C /* Icon-Small@2x.png in Resources */,
-				8355F90C1C17156C001E7352 /* WebsiteViewController.xib in Resources */,
-				83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.xib in Resources */,
+				8355F90C1C17156C001E7352 /* ZZYWebsiteVC.xib in Resources */,
+				83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.xib in Resources */,
 				83013E371C018E190065B5C2 /* Images.xcassets in Resources */,
 				83465F811C0B08330039C86C /* Icon-60@2x.png in Resources */,
 			);
@@ -562,27 +574,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				83013E2F1C018E190065B5C2 /* AppDelegate.m in Sources */,
-				83D1D9F01C18EFC7005F4F63 /* XJBaseNavVC.m in Sources */,
-				83013E7D1C01E7E50065B5C2 /* LocateViewController.m in Sources */,
+				83D1D9F01C18EFC7005F4F63 /* ZZYBaseNavVC.m in Sources */,
+				83013E7D1C01E7E50065B5C2 /* ZZYLocateVC.m in Sources */,
 				83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */,
 				83013E2C1C018E190065B5C2 /* main.m in Sources */,
-				83FDFF871C1466DB000275AA /* BLEViewController.m in Sources */,
-				83933F851C15C9E300A7AA6F /* BookViewController.m in Sources */,
-				8355F90B1C17156C001E7352 /* WebsiteViewController.m in Sources */,
+				83FDFF871C1466DB000275AA /* ZZYAddDeviceVC.m in Sources */,
+				83933F851C15C9E300A7AA6F /* ZZYBookTicketVC.m in Sources */,
+				8355F90B1C17156C001E7352 /* ZZYWebsiteVC.m in Sources */,
 				83E931611C0C73ED00DB1AA2 /* ZZYAcount.m in Sources */,
 				83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */,
-				8376EE1B1C872C8B00C190FF /* UserGuideView.m in Sources */,
-				83933F8A1C15CDC500A7AA6F /* FootprintViewController.m in Sources */,
-				83465F921C0B0D2F0039C86C /* ViewController.m in Sources */,
+				8376EE1B1C872C8B00C190FF /* ZZYUserGuideView.m in Sources */,
+				83933F8A1C15CDC500A7AA6F /* ZZYFootprintVC.m in Sources */,
+				83465F921C0B0D2F0039C86C /* ZZYMainVC.m in Sources */,
 				83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */,
-				83465F971C0B0D8A0039C86C /* LoginViewController.m in Sources */,
-				83D1D9F91C18F889005F4F63 /* XJUserHomeViewController.m in Sources */,
+				83465F971C0B0D8A0039C86C /* ZZYLoginVC.m in Sources */,
+				83D1D9F91C18F889005F4F63 /* ZZYUserVC.m in Sources */,
 				83933F911C15D55000A7AA6F /* GdTrackOverlayView.m in Sources */,
-				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyViewController.m in Sources */,
-				8348E1121C0DE69300E34C6B /* XJMenuView.m in Sources */,
-				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginViewController.m in Sources */,
-				8376EE1E1C87367500C190FF /* UserGuideViewController.m in Sources */,
-				83D1D9ED1C18EF45005F4F63 /* XJSettingsVC.m in Sources */,
+				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.m in Sources */,
+				8348E1121C0DE69300E34C6B /* ZZYMenuView.m in Sources */,
+				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginVC.m in Sources */,
+				8376EE1E1C87367500C190FF /* ZZYUserGuideVC.m in Sources */,
+				83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,7 +741,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = luggage;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../BLEDevice/**";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
 				VALID_ARCHS = armv7;
@@ -764,7 +776,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = luggage;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../BLEDevice/BLEDevice";
 				VALID_ARCHS = armv7;
 			};
