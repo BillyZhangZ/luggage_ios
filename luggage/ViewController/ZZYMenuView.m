@@ -32,12 +32,13 @@
         leftPart = frame;
         leftPart.size.width = lo_menu_width * rate_pixel_to_point;
         _maskArea = [[UILabel alloc] initWithFrame:leftPart];
-        _maskArea.backgroundColor = [UIColor colorWithRed:59/255.0 green:104/255.0 blue:252/255.0 alpha:1.0];
+        _maskArea.backgroundColor = [UIColor darkGrayColor];//[UIColor colorWithRed:59/255.0 green:104/255.0 blue:252/255.0 alpha:1.0];
         [self addSubview:_maskArea];
 
         UIImageView *bk = [[UIImageView alloc] initWithFrame:leftPart];
         bk.image = [UIImage imageNamed:@"menubg.png"];
-       // bk.backgroundColor = [UIColor grayColor];
+        //bk.backgroundColor = [UIColor grayColor];
+        bk.alpha = 0.8f;
         [self addSubview:bk];
         // Header:
         rc = leftPart;
@@ -65,7 +66,7 @@
         rcPhoto.size.height = lo_menu_nickname_height * rate_pixel_to_point;
         _lblName = [[UILabel alloc] initWithFrame:rcPhoto];
         [_lblName setText:@"穿越时空的小碎步"];
-        _lblName.textColor = [UIColor blackColor];//MENU_NICKNAME_FONT_COLOR;
+        _lblName.textColor = [UIColor whiteColor];//MENU_NICKNAME_FONT_COLOR;
         _lblName.font = [UIFont systemFontOfSize:/*MENU_USER_NICKNAME_FONT_SIZE*/16];
         _lblName.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_ivPhoto];
@@ -117,7 +118,7 @@
     rc.size.height /= 2;
     UILabel *lbl = [[UILabel alloc] initWithFrame:rc];
     lbl.textAlignment = NSTextAlignmentCenter;
-    lbl.textColor = [UIColor blackColor];// MENU_NICKNAME_FONT_COLOR;
+    lbl.textColor = [UIColor whiteColor];// MENU_NICKNAME_FONT_COLOR;
     lbl.font = [UIFont systemFontOfSize:/*MENU_ITEM_TITLE_FONT_SIZE*/16];
 
     switch(index) {

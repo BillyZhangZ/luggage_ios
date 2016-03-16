@@ -67,6 +67,7 @@
 		83B5CD8A1C8BFDF3009DFA80 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD871C8BFDF3009DFA80 /* Icon-76.png */; };
 		83B5CD8B1C8BFDF3009DFA80 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD881C8BFDF3009DFA80 /* Icon-76@2x.png */; };
 		83B5CD8C1C8BFDF3009DFA80 /* Icon-76@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD891C8BFDF3009DFA80 /* Icon-76@3x.png */; };
+		83B5CD8E1C8DB274009DFA80 /* menubg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD8D1C8DB274009DFA80 /* menubg@2x.png */; };
 		83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */; };
 		83D1D9F01C18EFC7005F4F63 /* ZZYBaseNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EF1C18EFC7005F4F63 /* ZZYBaseNavVC.m */; };
 		83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F21C18F889005F4F63 /* basicInfoCel.m */; };
@@ -175,6 +176,7 @@
 		83B5CD871C8BFDF3009DFA80 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "icon/Icon-76.png"; sourceTree = "<group>"; };
 		83B5CD881C8BFDF3009DFA80 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76@2x.png"; path = "icon/Icon-76@2x.png"; sourceTree = "<group>"; };
 		83B5CD891C8BFDF3009DFA80 /* Icon-76@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76@3x.png"; path = "icon/Icon-76@3x.png"; sourceTree = "<group>"; };
+		83B5CD8D1C8DB274009DFA80 /* menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menubg@2x.png"; path = "images/menubg@2x.png"; sourceTree = "<group>"; };
 		83D1D9EB1C18EF45005F4F63 /* ZZYSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSettingsVC.h; path = ViewController/ZZYSettingsVC.h; sourceTree = "<group>"; };
 		83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSettingsVC.m; path = ViewController/ZZYSettingsVC.m; sourceTree = "<group>"; };
 		83D1D9EE1C18EFC7005F4F63 /* ZZYBaseNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYBaseNavVC.h; path = ViewController/ZZYBaseNavVC.h; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 		83E931651C0C7F8600DB1AA2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				83B5CD8D1C8DB274009DFA80 /* menubg@2x.png */,
 				83FDFF891C1482F1000275AA /* location.png */,
 				83E931661C0C7F9500DB1AA2 /* empty.png */,
 			);
@@ -553,6 +556,7 @@
 				83465F861C0B08430039C86C /* Icon-Spotlight-40.png in Resources */,
 				83465F8D1C0B08550039C86C /* Icon-Small@2x.png in Resources */,
 				8355F90C1C17156C001E7352 /* ZZYWebsiteVC.xib in Resources */,
+				83B5CD8E1C8DB274009DFA80 /* menubg@2x.png in Resources */,
 				83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.xib in Resources */,
 				83013E371C018E190065B5C2 /* Images.xcassets in Resources */,
 				83465F811C0B08330039C86C /* Icon-60@2x.png in Resources */,

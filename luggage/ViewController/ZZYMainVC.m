@@ -209,7 +209,7 @@
 -(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
 {
     NSLog(@"ViewController: discovered\n");
-    if ([device.name isEqualToString:@"MTKBTDEVICE"]) {
+    if ([device.name isEqualToString:@"SmartLuggage"]) {
         _foundDev = device;
         [self performSelector:@selector(connectToDevice) withObject:self afterDelay:1];
         NSLog(@"ViewController: %@", device.name);

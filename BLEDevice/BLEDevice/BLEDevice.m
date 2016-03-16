@@ -192,6 +192,7 @@ typedef enum{
             if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:LUGGAGE_WRITE_CHARACTERISTIC_UUID]]) {
                 _writeChar = characteristic;
                 [_luggageDelegate onWriteCharateristicFound];
+                NSLog(@"found write char");
             }
         
             // And check if it's the right one
