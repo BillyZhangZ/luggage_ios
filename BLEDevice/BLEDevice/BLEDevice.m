@@ -95,20 +95,18 @@ typedef enum{
     }
     //
     NSLog(@"trying to find devices");
-#ifdef GET_DEVICE_FROM_SYSTEM
-    NSArray *heartRateDevices = [_heartRateManager retrieveConnectedPeripheralsWithServices:@[[CBUUID UUIDWithString:LUGGAGE_SERVICE_UUID]]];
+#if 1
+    NSArray *heartRateDevices = [_luggageManager retrieveConnectedPeripheralsWithServices:@[[CBUUID UUIDWithString:LUGGAGE_SERVICE_UUID]]];
     if([heartRateDevices count] != 0)
     {
-        _heartRateDevice = (CBPeripheral *)[heartRateDevices objectAtIndex:0];
-        [_heartRateManager connectPeripheral:_heartRateDevice options:nil];
-        [self stopTimer];
-        NSLog(@"HeartLib: find connected heartrate devices: %@", [_heartRateDevice name]);
+        _luggageDevice = (CBPeripheral *)[heartRateDevices objectAtIndex:0];
+        [_luggageManager connectPeripheral:_luggageDevice options:nil];
+        NSLog(@"HeartLib: find connected heartrate devices: %@", [_luggageDevice name]);
     }
     else
     {
-        //no connected devices
-       // [_luggageDelegate isheartRateAvailable:NO];
-        [self startTimer];
+        [central scanForPeripheralsWithServices:nil
+                                        options:nil];
     }
 #else
     [central scanForPeripheralsWithServices:nil

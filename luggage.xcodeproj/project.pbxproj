@@ -211,10 +211,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83465F0F1C04BCD50039C86C /* AudioToolbox.framework in Frameworks */,
 				839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */,
 				83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */,
 				83465F791C0B02180039C86C /* SMS_SDK.framework in Frameworks */,
-				83465F0F1C04BCD50039C86C /* AudioToolbox.framework in Frameworks */,
 				83465F0D1C04BCBC0039C86C /* OpenAL.framework in Frameworks */,
 				83465F0B1C04BCB60039C86C /* MediaPlayer.framework in Frameworks */,
 				83465F091C04BC9F0039C86C /* CoreMedia.framework in Frameworks */,
@@ -721,7 +721,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhiyang Zhang (K7LJHX8EVS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -756,7 +756,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhiyang Zhang (K7LJHX8EVS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

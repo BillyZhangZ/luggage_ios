@@ -125,12 +125,13 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"收到通知" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"注意" message:notification.alertBody preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
-    
+    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
     // 图标上的数字减1
     application.applicationIconBadgeNumber -= 1;
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 }
 
 - (void) showMenu
