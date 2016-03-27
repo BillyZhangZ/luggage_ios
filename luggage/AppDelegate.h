@@ -25,7 +25,8 @@
 void say(NSString *sth);
 NSString * getATContent(NSString *str);
 NSString * getATCmd(NSString *str);
-
+-(void)sendBLECommad:(NSString *)cmd;
+-(void)pushLocalNotification;
 
 NSString * stringFromDate(NSDate *date);
 CLLocationCoordinate2D  transformFromWGSToGCJ(CLLocationCoordinate2D wgLoc);

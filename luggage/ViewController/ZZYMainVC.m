@@ -11,17 +11,13 @@
 #import "ZZYMainVC.h"
 #import "ZZYLocateVC.h"
 #import <MessageUI/MFMessageComposeViewController.h>
-#import "BLEDevice.h"
 #import "ZZYAddDeviceVC.h"
 
-@interface ZZYMainVC ()<MFMessageComposeViewControllerDelegate, LuggageDelegate>
+@interface ZZYMainVC ()<MFMessageComposeViewControllerDelegate>
 {
-    LuggageDevice *_luggageDevice;
-    CBPeripheral *_foundDev;
     BOOL _enableLostMode;
     float _distance;
     int _rssiCount;
-    NSTimer *_updateRssiTimer;
     ZZYAcount *_account;
 }
 @end
@@ -30,27 +26,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   // _luggageDevice = [[LuggageDevice alloc]init:self];
-    _distance = 0;
-    _rssiCount = 0;
     _enableLostMode = false;
     // Do any additional setup after loading the view from its nib.
     [self.navigatorBar setBackgroundImage:[UIImage imageNamed:@"empty.png"] forBarMetrics:UIBarMetricsDefault];
     
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
     _account = app.account;
-    
-   }
+    [app addObserver:self forKeyPath:@"distance" options:NSKeyValueObservingOptionNew context:nil];
+    [app addObserver:self forKeyPath:@"battery" options:NSKeyValueObservingOptionNew context:nil];
+    [app addObserver:self forKeyPath:@"weight" options:NSKeyValueObservingOptionNew context:nil];
+
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-    if (_account.remotePhoneNumber != nil) {
-       // [self.addDeviceButton setEnabled:NO];
-        _luggageDevice = [[LuggageDevice alloc]init:self];
-    }
-
+   
   /*  if (_enableLostMode) {
         [self.lostButton setTitle:@"关闭防丢模式" forState:UIControlStateNormal];
     }
@@ -109,12 +100,47 @@
 {
     //fix me
     [super viewWillDisappear:animated];
-    [_luggageDevice BLEDisconnect];
-    _luggageDevice = nil;
 }
 - (IBAction)onMenuButton:(id)sender {
     AppDelegate *app =[[UIApplication sharedApplication]delegate];
     [app showMenu];
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    AppDelegate *app =[[UIApplication sharedApplication]delegate];
+
+    if ([keyPath isEqualToString:@"distance"]) {
+        NSString * distance = [change valueForKey:NSKeyValueChangeNewKey];
+        if ([distance floatValue] > 3) {
+          [app pushLocalNotification];
+        }
+        
+        NSString *distanceStr = [NSString stringWithFormat:@"dis:%@", distance];//_distance/_rssiCount];
+        _lostButton.titleLabel.numberOfLines = 0;
+        _lostButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        [_lostButton setTitle:distanceStr forState:UIControlStateNormal];
+
+        NSLog(@"distance is changed! new=%@", [change valueForKey:NSKeyValueChangeNewKey]);
+        
+    }
+    else if([keyPath isEqualToString:@"battery"])
+    {
+        NSString *battery = [change valueForKey:NSKeyValueChangeNewKey];
+        NSLog(@"battery is changed! new=%@", battery);
+        
+         [_battButton setTitle:[NSString stringWithFormat:@"电量：%@%%", battery]  forState:UIControlStateNormal];
+    }
+    else if([keyPath isEqualToString:@"weight"])
+    {
+        NSString *weight = [change valueForKey:NSKeyValueChangeNewKey];
+        NSLog(@"weight is changed! new=%@", weight);
+        [_weightButton setTitle:[NSString stringWithFormat:@"重量：%@千克", weight]  forState:UIControlStateNormal];
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 - (IBAction)onAddDeviceButton:(id)sender {
@@ -135,7 +161,9 @@
     [self sendSMS:@"KS" recipientList:recipientList];
 }
 - (IBAction)onTestButton:(id)sender {
-    [self pushLocalNotification];
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+
+    [app pushLocalNotification];
 }
 - (IBAction)onBLEUnlock:(id)sender {
     [self bleSendUnlock];
@@ -150,7 +178,8 @@
     [self bleSendGetWeight];
 }
 - (IBAction)onBattButton:(id)sender {
-    [_luggageDevice LuggageWriteChar:@"AT+GTBAT\r"];
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    [app sendBLECommad:@"AT+GTBAT\r"];
 }
 
 - (IBAction)onLocateButton:(id)sender {
@@ -205,240 +234,41 @@
         NSLog(@"ViewController: Message failed");
 }
 
-#pragma luggage device delegate
--(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
-{
-    NSLog(@"ViewController: discovered\n");
-    if ([device.name isEqualToString:@"SmartLuggage"]) {
-        _foundDev = device;
-        [self performSelector:@selector(connectToDevice) withObject:self afterDelay:1];
-        NSLog(@"ViewController: %@", device.name);
-
-    }
-}
--(void)connectToDevice
-{
-    [_luggageDevice BLEConectTo:_foundDev];
-
-}
--(void)onLuggageDeviceConected
-{
-    NSLog(@"ViewController: connected\n");
-    _updateRssiTimer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onUpdateRssi) userInfo:nil repeats:YES];
-
-}
-
--(void)onUpdateRssi
-{
-    [_foundDev readRSSI];
-}
-
--(void)onRssiRead:(NSNumber*)rssi
-{
-    NSLog(@"%@\n", rssi);
-    
-    float distance = powf(10, (-63-[rssi floatValue])/10.0/4.0);
-    _distance += distance;
-    _rssiCount++;
-    if (distance > 5) {
-        [self pushLocalNotification];
-    }
-    NSString *distanceStr = [NSString stringWithFormat:@"rssi:%@ \ndis:%.2f",rssi, distance];//_distance/_rssiCount];
-    _lostButton.titleLabel.numberOfLines = 0;
-    _lostButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [_lostButton setTitle:distanceStr forState:UIControlStateNormal];
-}
--(void)onNtfCharateristicFound
-{
-    NSLog(@"ViewController: ntf character found\n");
-}
-
--(void)onWriteCharateristicFound
-{
-    NSLog(@"ViewController: write character found\n");
-}
-
--(void)onLuggageNtfChar:(NSString *)recData
-{
-    NSLog(@"ViewController: receive %@", recData);
-    if ([getATCmd(recData) isEqualToString:@"AT+WT"]) {
-        
-        [_weightButton setTitle:[NSString stringWithFormat:@"重量：%@千克", getATContent(recData)]  forState:UIControlStateNormal];
-    }
-    if ([getATCmd(recData) isEqualToString:@"AT+BAT"]) {
-        [_battButton setTitle:[NSString stringWithFormat:@"电量：%@%%", getATContent(recData)]  forState:UIControlStateNormal];
-    }
-    
-}
 
 #pragma BLE FUNCTION CALL
 -(void)bleSendUnlock
 {
     NSLog(@"ViewController: send character\n");
-    [_luggageDevice LuggageWriteChar:@"AT+LOCKOFF\r"];
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    [app sendBLECommad:@"AT+LOCKOFF\r"];
 }
 
 -(void)bleSendRegisterFinger
 {
     NSLog(@"ViewController: send character\n");
-    [_luggageDevice LuggageWriteChar:@"AT+FINGERREG\r"];
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    [app sendBLECommad:@"AT+FINGERREG\r"];
 }
 
 -(void)bleSendDeleteFinger
 {
     NSLog(@"ViewController: send character\n");
-    [_luggageDevice LuggageWriteChar:@"AT+FINGERDEL\r"];
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    [app sendBLECommad:@"AT+FINGERDEL\r"];
 }
 
 -(void)bleSendLock
 {
     NSLog(@"ViewController: send character\n");
-    [_luggageDevice LuggageWriteChar:@"AT+LOCKON\r"];
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    [app sendBLECommad:@"AT+LOCKON\r"];
 }
 
 -(void)bleSendGetWeight
 {
     NSLog(@"ViewController: send character\n");
-    [_luggageDevice LuggageWriteChar:@"AT+GTWT\r"];
-}
-
-
-//distance = pow(10, (rssi-49)/10*4.0)
--(void)onSubscribeDone
-{
-    //[self performSelector:@selector(sendChar) withObject:self afterDelay:1];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设备已连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    [self presentViewController:alert animated:YES completion:nil];
-}
--(void)onLuggageDeviceDissconnected
-{
-    NSLog(@"ViewController: disconnected\n");
-    [_updateRssiTimer invalidate];
-    _updateRssiTimer = nil;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设备已断开连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    
-
-}
-
--(NSString *) stringFromDate:(NSDate *)date
-{
-    static NSDateFormatter *dateFormatter = nil;
-    if(dateFormatter == nil) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        
-        // zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
-        // [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
-    }
-    
-    NSString *destDateString = [dateFormatter stringFromDate:date];
-    return destDateString;
-}
-
--(NSDate *) getDateFromString:(NSString *)string
-{
-    static NSDateFormatter *dateFormatter = nil;
-    if(dateFormatter == nil) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
-    }
-    
-    NSDate *tm = [dateFormatter dateFromString:string];
-    return tm;
-}
-
--(void)pushLocalNotification
-{
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    //设置1秒之后
-    NSDate *pushDate = [NSDate date];
-    
-    NSString *destDateString = [self stringFromDate:pushDate];
-    
-    NSDate *pushDate1 =[self getDateFromString:destDateString];
-    
-    if (notification != nil) {
-        // 设置推送时间
-        notification.fireDate = pushDate1;
-        // 设置时区
-        notification.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
-        // 设置重复间隔
-        notification.repeatInterval = 0;
-        // 推送声音
-        notification.soundName = UILocalNotificationDefaultSoundName;
-        // 推送内容
-        notification.alertBody = @"请留意您的luggage";
-        //显示在icon上的红色圈中的数子
-        notification.applicationIconBadgeNumber = 1;
-        //设置userinfo 方便在之后需要撤销的时候使用
-        NSDictionary *info = [NSDictionary dictionaryWithObject:@"name"forKey:@"key"];
-        notification.userInfo = info;
-        //添加推送到UIApplication
-        UIApplication *app = [UIApplication sharedApplication];
-        [app scheduleLocalNotification:notification];   
-        
-    }
-}
-
-- (NSDate *)getNowDateFromatAnDate:(NSDate *)anyDate
-{
-    //设置源日期时区
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];//或GMT
-    //设置转换后的目标日期时区
-    NSTimeZone* destinationTimeZone = [NSTimeZone localTimeZone];
-    //得到源日期与世界标准时间的偏移量
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:anyDate];
-    //目标日期与本地时区的偏移量
-    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:anyDate];
-    //得到时间偏移量的差值
-    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-    //转为现在时间
-    NSDate* destinationDateNow = [[NSDate alloc] initWithTimeInterval:interval sinceDate:anyDate];
-    return destinationDateNow;
-}
-
--(void)cancleLocalNotification
-{
-    // 获得 UIApplication
-    UIApplication *app = [UIApplication sharedApplication];
-    //获取本地推送数组
-    NSArray *localArray = [app scheduledLocalNotifications];
-    //声明本地通知对象
-    UILocalNotification *localNotification;
-    if (localArray) {
-        for (UILocalNotification *noti in localArray) {
-            NSDictionary *dict = noti.userInfo;
-            if (dict) {
-                NSString *inKey = [dict objectForKey:@"key"];
-                if ([inKey isEqualToString:@"对应的key值"]) {
-                    if (localNotification){
-                        localNotification = nil;
-                    }
-                    break;
-                }
-            }
-        }
-        
-        //判断是否找到已经存在的相同key的推送
-        if (!localNotification) {
-            //不存在初始化
-            localNotification = [[UILocalNotification alloc] init];
-        }
-        
-        if (localNotification) {
-            //不推送 取消推送
-            [app cancelLocalNotification:localNotification];
-            return;
-        }  
-    }
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    [app sendBLECommad:@"AT+GTWT\r"];
 }
 
 #pragma mark - disable landscape

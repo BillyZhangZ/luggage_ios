@@ -211,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83465F031C04BC6E0039C86C /* AVFoundation.framework in Frameworks */,
 				83465F0F1C04BCD50039C86C /* AudioToolbox.framework in Frameworks */,
 				839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */,
 				83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */,
@@ -220,7 +221,6 @@
 				83465F091C04BC9F0039C86C /* CoreMedia.framework in Frameworks */,
 				83465F071C04BC970039C86C /* CoreVideo.framework in Frameworks */,
 				83465F051C04BC8E0039C86C /* CoreAudio.framework in Frameworks */,
-				83465F031C04BC6E0039C86C /* AVFoundation.framework in Frameworks */,
 				83465EF21C0377A30039C86C /* libPushSDK-1.8.3.a in Frameworks */,
 				83465EF11C0377950039C86C /* libWeChatSDK.a in Frameworks */,
 				83013E771C01DC5C0065B5C2 /* CoreTelephony.framework in Frameworks */,

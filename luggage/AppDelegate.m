@@ -21,24 +21,35 @@
 #import "ZZYWebsiteVC.h"
 #import "ZZYSettingsVC.h"
 #import "ZZYUserVC.h"
+#import "BLEDevice.h"
 #import "ZZYUserGuideVC.h"
-@interface AppDelegate ()<WXApiDelegate>
+@interface AppDelegate ()<WXApiDelegate, LuggageDelegate>
 {
     ZZYMainVC * _mainVC;
     ZZYSMSLoginVC *_loginVC;
     ZZYMenuView *_menuView;
     
+    LuggageDevice *_luggageDevice;
+    CBPeripheral *_foundDev;
+    NSTimer *_updateRssiTimer;
+
+    float distance;
+    float battery ;
+    float weight;
 }
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     _mainVC = [[ZZYMainVC alloc] init];
     _loginVC = [[ZZYSMSLoginVC alloc]init];
     _account = [[ZZYAcount alloc]init];
+    
+    distance = 0;
+    battery = 0;
+    weight = 0;
     
     CGRect rc = [[UIScreen mainScreen] bounds];
     _menuView = [[ZZYMenuView alloc]initWithFrame:rc];
@@ -83,6 +94,8 @@
         else
         {
             self.window.rootViewController = _mainVC;
+            
+            _luggageDevice = [[LuggageDevice alloc]init:self];
         }
     }
     
@@ -109,6 +122,25 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    UIApplication*   app = [UIApplication sharedApplication];
+    __block    UIBackgroundTaskIdentifier bgTask;
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    });
+    
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -130,7 +162,7 @@
     [alert addAction:okAction];
     [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
     // 图标上的数字减1
-    application.applicationIconBadgeNumber -= 1;
+    application.applicationIconBadgeNumber = 0;
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 }
 
@@ -349,6 +381,214 @@ void say(NSString *sth)
         [synth speakUtterance:utterance];
     }
 }
+
+-(void)sendBLECommad:(NSString *)cmd
+{
+    [_luggageDevice LuggageWriteChar:cmd];
+}
+#pragma luggage device delegate
+-(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
+{
+    NSLog(@"ViewController: discovered\n");
+    if ([device.name isEqualToString:@"SmartLuggage"]) {
+        _foundDev = device;
+        [self performSelector:@selector(connectToDevice) withObject:self afterDelay:1];
+        NSLog(@"ViewController: %@", device.name);
+        
+    }
+}
+-(void)connectToDevice
+{
+    [_luggageDevice BLEConectTo:_foundDev];
+    
+}
+-(void)onLuggageDeviceConected
+{
+    NSLog(@"ViewController: connected\n");
+    _updateRssiTimer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onUpdateRssi) userInfo:nil repeats:YES];
+    
+}
+
+-(void)onUpdateRssi
+{
+    [_foundDev readRSSI];
+}
+
+-(void)onRssiRead:(NSNumber*)rssi
+{
+    NSLog(@"%@\n", rssi);
+    
+    [self setValue:[NSString stringWithFormat:@"%f",  powf(10, (-63-[rssi floatValue])/10.0/4.0)] forKey:@"distance"];
+}
+-(void)onNtfCharateristicFound
+{
+    NSLog(@"ViewController: ntf character found\n");
+}
+
+-(void)onWriteCharateristicFound
+{
+    NSLog(@"ViewController: write character found\n");
+}
+
+-(void)onLuggageNtfChar:(NSString *)recData
+{
+    NSLog(@"ViewController: receive %@", recData);
+    if ([getATCmd(recData) isEqualToString:@"AT+WT"]) {
+        [self setValue:getATContent(recData) forKey:@"weight"];
+    }
+    if ([getATCmd(recData) isEqualToString:@"AT+BAT"]) {
+        [self setValue:getATContent(recData) forKey:@"battery"];
+
+    }
+    
+}
+
+//distance = pow(10, (rssi-49)/10*4.0)
+-(void)onSubscribeDone
+{
+    //[self performSelector:@selector(sendChar) withObject:self afterDelay:1];
+#if 0
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设备已连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+#endif
+    
+}
+-(void)onLuggageDeviceDissconnected
+{
+    NSLog(@"ViewController: disconnected\n");
+    [self connectToDevice];
+    [_updateRssiTimer invalidate];
+    _updateRssiTimer = nil;
+#if 0
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设备已断开连接" message:@"重新连接中" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+#endif
+    
+}
+
+
+
+-(NSString *) stringFromDate:(NSDate *)date
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if(dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        
+        // zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+        // [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
+    }
+    
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    return destDateString;
+}
+
+-(NSDate *) getDateFromString:(NSString *)string
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if(dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
+    }
+    
+    NSDate *tm = [dateFormatter dateFromString:string];
+    return tm;
+}
+
+-(void)pushLocalNotification
+{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    //设置1秒之后
+    NSDate *pushDate = [NSDate date];
+    
+    NSString *destDateString = [self stringFromDate:pushDate];
+    
+    NSDate *pushDate1 =[self getDateFromString:destDateString];
+    
+    if (notification != nil) {
+        // 设置推送时间
+        notification.fireDate = pushDate1;
+        // 设置时区
+        notification.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+        // 设置重复间隔
+        notification.repeatInterval = 0;
+        // 推送声音
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        // 推送内容
+        notification.alertBody = @"请留意您的luggage";
+        //显示在icon上的红色圈中的数子
+        notification.applicationIconBadgeNumber = 1;
+        //设置userinfo 方便在之后需要撤销的时候使用
+        NSDictionary *info = [NSDictionary dictionaryWithObject:@"name"forKey:@"key"];
+        notification.userInfo = info;
+        //添加推送到UIApplication
+        UIApplication *app = [UIApplication sharedApplication];
+        [app scheduleLocalNotification:notification];
+        
+    }
+}
+
+- (NSDate *)getNowDateFromatAnDate:(NSDate *)anyDate
+{
+    //设置源日期时区
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];//或GMT
+    //设置转换后的目标日期时区
+    NSTimeZone* destinationTimeZone = [NSTimeZone localTimeZone];
+    //得到源日期与世界标准时间的偏移量
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:anyDate];
+    //目标日期与本地时区的偏移量
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:anyDate];
+    //得到时间偏移量的差值
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    //转为现在时间
+    NSDate* destinationDateNow = [[NSDate alloc] initWithTimeInterval:interval sinceDate:anyDate];
+    return destinationDateNow;
+}
+
+-(void)cancleLocalNotification
+{
+    // 获得 UIApplication
+    UIApplication *app = [UIApplication sharedApplication];
+    //获取本地推送数组
+    NSArray *localArray = [app scheduledLocalNotifications];
+    //声明本地通知对象
+    UILocalNotification *localNotification;
+    if (localArray) {
+        for (UILocalNotification *noti in localArray) {
+            NSDictionary *dict = noti.userInfo;
+            if (dict) {
+                NSString *inKey = [dict objectForKey:@"key"];
+                if ([inKey isEqualToString:@"对应的key值"]) {
+                    if (localNotification){
+                        localNotification = nil;
+                    }
+                    break;
+                }
+            }
+        }
+        
+        //判断是否找到已经存在的相同key的推送
+        if (!localNotification) {
+            //不存在初始化
+            localNotification = [[UILocalNotification alloc] init];
+        }
+        
+        if (localNotification) {
+            //不推送 取消推送
+            [app cancelLocalNotification:localNotification];
+            return;
+        }
+    }
+}
+
 
 NSString * getATCmd(NSString *str)
 {
