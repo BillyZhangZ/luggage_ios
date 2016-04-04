@@ -23,11 +23,13 @@
 #import "ZZYUserVC.h"
 #import "BLEDevice.h"
 #import "ZZYUserGuideVC.h"
+#import "ZZYLoginVC.h"
 @interface AppDelegate ()<WXApiDelegate, LuggageDelegate>
 {
     ZZYMainVC * _mainVC;
     ZZYSMSLoginVC *_loginVC;
     ZZYMenuView *_menuView;
+    ZZYLoginVC *_loginVC1;
     
     LuggageDevice *_luggageDevice;
     CBPeripheral *_foundDev;
@@ -46,6 +48,7 @@
     _mainVC = [[ZZYMainVC alloc] init];
     _loginVC = [[ZZYSMSLoginVC alloc]init];
     _account = [[ZZYAcount alloc]init];
+    _loginVC1 = [[ZZYLoginVC alloc]init];
     
     distance = 0;
     battery = 0;
@@ -88,8 +91,8 @@
     else
     {
         NSLog(@"不是第一次启动");
-        if (_account.localPhoneNumber == nil) {
-            self.window.rootViewController = _loginVC;
+        if (_account.localPhoneNumber == nil || [_account.localPhoneNumber isEqualToString: @"0"]) {
+            self.window.rootViewController = _loginVC1;
         }
         else
         {
@@ -107,7 +110,7 @@
 -(void)setViewControllerAfterGuide
 {
     if (_account.localPhoneNumber == nil) {
-        self.window.rootViewController = _loginVC;
+        self.window.rootViewController = _loginVC1;
     }
     else
     {

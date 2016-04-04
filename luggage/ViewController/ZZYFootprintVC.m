@@ -76,8 +76,9 @@
     _mapModeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_mapModeButton addTarget:self action:@selector(onMapButtonMode) forControlEvents:UIControlEventTouchUpInside];
     
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
     
-    [self getLatestLocation:1];
+    [self getLatestLocation:1];//[app.account.userId integerValue]];
     //[self.view addSubview:_mapModeButton];
     [self.view addSubview:_mapView];
     //[self.view bringSubviewToFront:_mapModeButton];
@@ -158,11 +159,13 @@
 
     NSURL *url = [NSURL URLWithString:urlGet];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+#if 1
     NSOperationQueue *queue = [NSOperationQueue mainQueue];
+#endif
     [request setHTTPMethod:@"GET"];
     
     [request setTimeoutInterval:100.0f];
-    
+#if 1
     void (^onDone)(NSData *data) = ^(NSData *data) {
         if(data == nil)
         {
@@ -189,22 +192,9 @@
 
         for (NSDictionary *dict in dicts) {
             //GPGGA ddmm.mm -> ddd.ddddd
-#if 0
-            float lat = [[dict valueForKey:@"latitude"] floatValue];
-            _latitude = ((int)lat)/100;
-            lat = ((int)(lat*10000))%1000000;
-            lat /= (60*10000);
-            _latitude += lat;
-        
-            float lon = [[dict valueForKey:@"longtitude"] floatValue];
-            _longtitude = ((int)lon)/100;
-            lon = ((int)(lon*10000))%1000000;
-            lon /= (60*10000);
-            _longtitude += lon;
-#else
+
             _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
             _latitude = [[dict valueForKey:@"latitude"] floatValue];
-#endif
             _altitude = [[dict valueForKey:@"altitude"] floatValue];
             
             CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(_latitude, _longtitude);
@@ -243,6 +233,69 @@
                                    onDone(nil);
                                }
                            }];
+#endif
+#if 0
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            //没有错误，返回正确；
+            NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            NSArray *dicts = [allData valueForKey:@"gps"];
+            if (dicts == nil) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            
+            int i = 0;
+            
+            CLLocationCoordinate2D pointsToUse[[dicts count]];
+            
+            for (NSDictionary *dict in dicts) {
+                //GPGGA ddmm.mm -> ddd.ddddd
+                
+                _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
+                _latitude = [[dict valueForKey:@"latitude"] floatValue];
+                _altitude = [[dict valueForKey:@"altitude"] floatValue];
+                
+                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(_latitude, _longtitude);
+                CLLocationCoordinate2D coords;
+                coords.latitude = _latitude;
+                coords.longitude = _longtitude;
+                //coord convert
+                coord = transformFromWGSToGCJ(coords);
+                pointsToUse[i++] =  coord;
+                
+                //CLLocation *locNew = [[CLLocation alloc] initWithCoordinate:coord altitude: _altitude horizontalAccuracy:10.0     verticalAccuracy:10.0 timestamp:[NSDate date]];
+                //CLLocation *locNew = [[CLLocation alloc] initWithCoordinate:coord altitude: _altitude horizontalAccuracy:10.0 verticalAccuracy:10.0 course:0 speed:0.0 timestamp:[NSDate date]];
+                
+                
+                NSLog(@"gps raw data %@",dict);
+            }
+            NSMutableArray *overlays = [[NSMutableArray alloc] init];
+            
+            MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:pointsToUse count:[dicts count]];
+            lineOne.title = @"red";
+            [overlays addObject:lineOne];
+            CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(pointsToUse[[dicts count] - 1].latitude,pointsToUse[[dicts count] - 1].longitude);
+            MACoordinateSpan span = MACoordinateSpanMake(0.04, 0.04);
+            _mapView.region = MACoordinateRegionMake(coord, span);
+            //[self updatePaths:overlays];
+            [_mapView addOverlays:overlays];
+            
+        }else{
+            //出现错误；
+            NSLog(@"错误信息：%@",error);
+        }
+        
+    }];
+    
+    
+    [dataTask resume];
+#endif
     
 }
 - (MAOverlayView *)mapView:(MAMapView *)mapView viewForOverlay:(id )overlay{

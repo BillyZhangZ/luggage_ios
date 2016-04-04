@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZZYLoginVC : UIViewController
+@interface ZZYLoginVC : UIViewController<UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *signInButton;
+@property (weak, nonatomic) IBOutlet UIButton *forgotButton;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @end

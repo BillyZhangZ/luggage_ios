@@ -11,7 +11,7 @@
 @interface ZZYMainVC : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *locateButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *lostButton;
+@property (weak, nonatomic) IBOutlet UIButton *alertButton;
 @property (weak, nonatomic) IBOutlet UIButton *addDeviceButton;
 @property (weak, nonatomic) IBOutlet UIButton *bleUnlockButton;
 @property (weak, nonatomic) IBOutlet UIButton *smsUnlockButton;

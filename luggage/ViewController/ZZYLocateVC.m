@@ -72,8 +72,9 @@
     _mapModeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_mapModeButton addTarget:self action:@selector(onMapButtonMode) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    [self getLatestLocation:1];
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+
+    [self getLatestLocation:1];//[app.account.userId integerValue]];
     [self.view addSubview:_mapModeButton];
     [self.view addSubview:_mapView];
     [self.view bringSubviewToFront:_mapModeButton];
@@ -173,17 +174,19 @@
     [urlPost appendFormat:@"%lu",(unsigned long)userId];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+#if 0
     NSOperationQueue *queue = [NSOperationQueue mainQueue];
+#endif
     [request setHTTPMethod:@"GET"];
 
     [request setTimeoutInterval:10.0f];
-    
+#if 0
     void (^onDone)(NSData *data) = ^(NSData *data) {
         if(data == nil)
         {
             NSLog(@"获取gps数据失败%d",userId);
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"获取位置失败" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
             
             [self presentViewController:alert animated:YES completion:nil];
@@ -191,28 +194,15 @@
         }
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
              [self presentViewController:alert animated:YES completion:nil];
         }
-#if 0
-        //GPGGA ddmm.mm -> ddd.ddddd
-        float lat = [[dict valueForKey:@"latitude"] floatValue];
-        _latitude = ((int)lat)/100;
-        lat = ((int)(lat*10000))%1000000;
-        lat /= (60*10000);
-        _latitude += lat;
-        
-        float lon = [[dict valueForKey:@"longtitude"] floatValue];
-        _longtitude = ((int)lon)/100;
-        lon = ((int)(lon*10000))%1000000;
-        lon /= (60*10000);
-        _longtitude += lon;
-#else
+
         _latitude = [[dict valueForKey:@"latitude"] floatValue];
         _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
-#endif
+
         CLLocationCoordinate2D coordWGS = CLLocationCoordinate2DMake(_latitude, _longtitude);
         CLLocationCoordinate2D coordGCJ = transformFromWGSToGCJ(coordWGS);
         _longtitude = coordGCJ.longitude;
@@ -231,6 +221,42 @@
                                    onDone(nil);
                                }
                            }];
+#endif
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            //没有错误，返回正确；
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            
+            _latitude = [[dict valueForKey:@"latitude"] floatValue];
+            _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
+            
+            CLLocationCoordinate2D coordWGS = CLLocationCoordinate2DMake(_latitude, _longtitude);
+            CLLocationCoordinate2D coordGCJ = transformFromWGSToGCJ(coordWGS);
+            _longtitude = coordGCJ.longitude;
+            _latitude = coordGCJ.latitude;
+            [self zoomToAnnotations];
+            NSLog(@"gps raw data %@",dict);
+
+            
+        }else{
+            //出现错误；
+            NSLog(@"错误信息：%@",error);
+        }
+        
+    }];
+    
+    
+    [dataTask resume];
     
 }
 

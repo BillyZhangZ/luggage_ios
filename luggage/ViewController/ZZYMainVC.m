@@ -26,9 +26,77 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    CGRect rcScreen = [[UIScreen mainScreen] bounds];
+    CGRect rc = rcScreen;
+    rc.origin.y += 64;
+    rc.size.height -= 64;
+    UIImageView *bgView = [[UIImageView alloc] initWithFrame:rc];
+    bgView.image = [UIImage imageNamed:@"login_bg.jpg"];
+    [self.view addSubview: bgView];
+    [self.view sendSubviewToBack:bgView];
     _enableLostMode = false;
     // Do any additional setup after loading the view from its nib.
     [self.navigatorBar setBackgroundImage:[UIImage imageNamed:@"empty.png"] forBarMetrics:UIBarMetricsDefault];
+    //make it center
+    rc.origin.y = self.smsUnlockButton.frame.origin.y;
+    rc.origin.x = rcScreen.size.width/2 - (self.bleUnlockButton.frame.origin.x - self.smsUnlockButton.frame.origin.x + self.bleUnlockButton.frame.size.width)/2;
+    rc.size.width = self.smsUnlockButton.frame.size.width;
+    rc.size.height = self.smsUnlockButton.frame.size.height;
+    [self.smsUnlockButton setFrame:rc];
+    
+    rc.origin.y = self.bleUnlockButton.frame.origin.y;
+    rc.origin.x = self.smsUnlockButton.frame.origin.x + self.smsUnlockButton.frame.size.width + 10;
+    rc.size.width = self.bleUnlockButton.frame.size.width;
+    rc.size.height = self.bleUnlockButton.frame.size.height;
+    [self.bleUnlockButton setFrame:rc];
+    
+    rc.origin.y = self.alertButton.frame.origin.y;
+    rc.origin.x = rcScreen.size.width/2 - (self.locateButton.frame.origin.x - self.alertButton.frame.origin.x + self.locateButton.frame.size.width)/2;
+    rc.size.width = self.alertButton.frame.size.width;
+    rc.size.height = self.alertButton.frame.size.height;
+    [self.alertButton setFrame:rc];
+    
+    rc.origin.y = self.locateButton.frame.origin.y;
+    rc.origin.x = self.alertButton.frame.origin.x + self.alertButton.frame.size.width + 10;
+    rc.size.width = self.locateButton.frame.size.width;
+    rc.size.height = self.locateButton.frame.size.height;
+    [self.locateButton setFrame:rc];
+    
+    rc.origin.y = self.weightButton.frame.origin.y;
+    rc.origin.x = rcScreen.size.width/2 - self.weightButton.frame.size.width/2;
+    rc.size.width =  self.weightButton.frame.size.width;
+    rc.size.height = self.weightButton.frame.size.height;
+    [self.weightButton setFrame:rc];
+    
+    rc.origin.y = self.battButton.frame.origin.y;
+    rc.origin.x = rcScreen.size.width/2 - self.battButton.frame.size.width/2;
+    rc.size.width =  self.battButton.frame.size.width;
+    rc.size.height = self.battButton.frame.size.height;
+    [self.battButton setFrame:rc];
+
+    rc.origin.y = self.regFingerButton.frame.origin.y;
+    rc.origin.x = rcScreen.size.width/2 - (self.delFingerButton.frame.origin.x - self.regFingerButton.frame.origin.x + self.delFingerButton.frame.size.width)/2;
+    rc.size.width = self.regFingerButton.frame.size.width;
+    rc.size.height = self.regFingerButton.frame.size.height;
+    [self.regFingerButton setFrame:rc];
+    
+    rc.origin.y = self.delFingerButton.frame.origin.y;
+    rc.origin.x = self.regFingerButton.frame.origin.x + self.regFingerButton.frame.size.width + 30;
+    rc.size.width = self.delFingerButton.frame.size.width;
+    rc.size.height = self.delFingerButton.frame.size.height;
+    [self.delFingerButton setFrame:rc];
+    
+    rc.origin.x = 0;
+    rc.origin.y = 20;
+    rc.size.height = 44;
+    rc.size.width = rcScreen.size.width;
+    [self.navigatorBar setFrame:rc];
+    
+    rc.origin.x = self.navigatorBar.frame.size.width - self.addDeviceButton.frame.size.width;
+    rc.origin.y = self.addDeviceButton.frame.origin.y;
+    rc.size.width = self.addDeviceButton.frame.size.width;
+    rc.size.height = self.addDeviceButton.frame.size.height;
+    [self.addDeviceButton setFrame:rc];
     
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
     _account = app.account;
@@ -56,9 +124,9 @@
     [_locateButton.layer setCornerRadius:10];
     [_locateButton.layer setBorderWidth:2];//设置边界的宽度
     
-    [_lostButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
-    [_lostButton.layer setCornerRadius:10];
-    [_lostButton.layer setBorderWidth:2];//设置边界的宽度
+    [_alertButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
+    [_alertButton.layer setCornerRadius:10];
+    [_alertButton.layer setBorderWidth:2];//设置边界的宽度
     
     [_bleUnlockButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
     [_bleUnlockButton.layer setCornerRadius:10];
@@ -118,9 +186,9 @@
         }
         
         NSString *distanceStr = [NSString stringWithFormat:@"dis:%@", distance];//_distance/_rssiCount];
-        _lostButton.titleLabel.numberOfLines = 0;
-        _lostButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        [_lostButton setTitle:distanceStr forState:UIControlStateNormal];
+        _alertButton.titleLabel.numberOfLines = 0;
+        _alertButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        [_alertButton setTitle:distanceStr forState:UIControlStateNormal];
 
         NSLog(@"distance is changed! new=%@", [change valueForKey:NSKeyValueChangeNewKey]);
         
@@ -160,11 +228,7 @@
     NSArray *recipientList = [[NSArray alloc]initWithObjects:_account.remotePhoneNumber, nil];
     [self sendSMS:@"KS" recipientList:recipientList];
 }
-- (IBAction)onTestButton:(id)sender {
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
 
-    [app pushLocalNotification];
-}
 - (IBAction)onBLEUnlock:(id)sender {
     [self bleSendUnlock];
 }

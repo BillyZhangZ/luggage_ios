@@ -20,39 +20,9 @@
 #define ACCEPT_FRIEND 1
 #define REJECT_FRIEND 2
 
-#define URL_USER_LOGIN SERVER @"/user/"
-#define URL_USER_REGISTER SERVER @"/user/"
+#define URL_USER_LOGIN SERVER @"/login"
+#define URL_USER_REGISTER SERVER @"/register"
 #define URL_GET_GPS SERVER @"/gps/"
-
-#define REMOTE_SERVER  SERVER @"/xingjiansport/V1/Workout/saveWorkoutSegment/"
-#define URL_GET_WORKOUT SERVER @"/xingjiansport/V1/Workout/getWorkoutInfo/id/"
-#define URL_GET_WORKOUT_LIST SERVER @"/xingjiansport/V1/Workout/listWorkout/userid/"
-#define URL_DELETE_WORKOUT SERVER @"/xingjiansport/V1/Workout/removeWorkout/id/"
-
-#define URL_POST_DEBUGINFO SERVER @"/xingjiansport/V1/Workout/saveDebugInfo"
-#define URL_GET_USER_INFO SERVER @"/xingjiansport/V1/User/getGuestUserId/"
-
-#define URL_UPDATE_USER_INFO SERVER @"/xingjiansport/V1/User/updateUserInfo/id/"
-
-#define URL_PULL_REALTIME_WORKOUT SERVER @"/xingjiansport/V1/Workout/getLatestData/userid/"
-
-#define URL_SEARCH_USER_BY_NAME SERVER @"/xingjiansport/V1/User/searchUserByName/name/"
-#define URL_SEARCH_USERS_BY_NAME_LIST SERVER @"/xingjiansport/V1/User/searchUserByNameList/name/"
-#define URL_ADD_FRIEND SERVER @"/xingjiansport/V1/User/addFriends/id/"
-#define URL_GET_FRIEND_LIST SERVER @"/xingjiansport/V1/User/getFriendList/id/"
-#define URL_GET_APPLY_FRIEND_LIST SERVER @"/xingjiansport/V1/User/getApplyFriendList/id/"
-#define URL_APPLY_TO_ADD_FRIEND SERVER @"/xingjiansport/V1/User/applyAddFriend/"
-#define URL_APPROVE_FRIEND_APPLY SERVER @"/xingjiansport/V1/User/approveAddFriend/"
-
-#define URL_CREATE_RUN_GROUP            SERVER @"/xingjiansport/V1/Rungroup/createRungroup/userid/"
-#define URL_GET_USER_RUN_GROUP_INFO          SERVER @"/xingjiansport/V1/Rungroup/getPersonRungroupInfo/userid/"
-#define URL_SEARCH_RUN_GROUP            SERVER @"/xingjiansport/V1/Rungroup/queryRungroup/name/"
-#define URL_GET_RUN_GROUP_INFO          SERVER @"/xingjiansport/V1/Rungroup/getRungroupInfo/id/"
-#define URL_USER_APPLY_RUN_GROUP        SERVER @"/xingjiansport/V1/Rungroup/applyJoinRungroup/"
-#define URL_GET_RUN_GROUP_APPLY_INFO    SERVER @"/xingjiansport/V1/Rungroup/getRungroupApplicationList/id/"
-#define URL_GET_RUN_GROUP_MEMBERS       SERVER @"/xingjiansport/V1/Rungroup/getRungroupMemberList/id/"
-#define URL_APPROVE_JOIN_RUN_GROUP      SERVER @"/xingjiansport/V1/Rungroup/approveJoinRungroup/"
-
 
 //---- Menu ----
 #define  rate_pixel_to_point  1.0
@@ -98,7 +68,6 @@
 #define NAVIGATIONBAR_TITLE_FONT_SIZE (26*2*rate_pixel_to_point)
 #define NAVIGATIONBAR_SIDE_FONT_SIZE (20*2*rate_pixel_to_point)
 
-#define USERID 14
 
 #define EF_UPDATE_STATE 1
 #define EF_UPDATE_LOCATION 2
