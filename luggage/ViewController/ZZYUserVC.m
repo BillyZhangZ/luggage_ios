@@ -11,9 +11,6 @@
 #import "basicInfoCel.h"
 @interface ZZYUserVC ()<UIGestureRecognizerDelegate>
 {
-    NSInteger _height;
-    NSInteger _weight;
-    NSInteger _age;
     BOOL cellRegistered;
 }
 
@@ -39,26 +36,12 @@
     [super viewWillAppear:animated];
    
     self.view.userInteractionEnabled = YES;
-#if 0
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    _accountManager = app.accountManager;
-    _myAccount = app.accountManager.currentAccount;
-    
-    _height = _myAccount.height == 0 ?170:_myAccount.height;
-    _weight = _myAccount.weight == 0 ?70:_myAccount.weight;
-    _age    = _myAccount.age    == 0 ?20:_myAccount.age;
-#else
-    _height = 170;
-    _weight = 70;
-    _age = 25;
-#endif
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     cellRegistered = false;
-    [self hidePickerViewNoAnimate];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -70,58 +53,6 @@
     NSLog(@"home vc dealloc");
 }
 
-
--(void)showPickerView
-{
-    CGRect rc = [[UIScreen mainScreen]bounds];
-    self.view.userInteractionEnabled = YES;
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^(void){
-        self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
-        [self.contentView setFrame:CGRectMake(0, rc.size.height-self.contentView.frame.size.height, rc.size.width, self.contentView.frame.size.height)];
-    } completion:^(BOOL isFinished){
-        
-    }];
-}
--(void)hidePickerView
-{
-    CGRect rc = [[UIScreen mainScreen]bounds];
-    
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^(void){
-        self.view.backgroundColor = [UIColor clearColor];
-        CGRect rc1 = self.contentView.bounds;
-        [self.contentView setFrame:CGRectMake(0, rc.size.height, rc.size.width, rc1.size.height)];
-    } completion:^(BOOL isFinished){
-        // self.view.userInteractionEnabled = NO;
-    }];
-}
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    UILabel* pickerLabel = (UILabel*)view;
-    if (!pickerLabel){
-        pickerLabel = [[UILabel alloc] init];
-        //pickerLabel.minimumFontSize = 8.0;
-        //pickerLabel.adjustsFontSizeToFitWidth = YES;
-        [pickerLabel setTextAlignment:NSTextAlignmentCenter];
-        [pickerLabel setTextColor:[UIColor whiteColor]];
-        //[pickerLabel setFont:[UIFont boldSystemFontOfSize:15]];
-    }
-    // Fill the label text here
-    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
-    return pickerLabel;
-}
-
--(void)hidePickerViewNoAnimate
-{
-    CGRect rc = [[UIScreen mainScreen]bounds];
-    
-    [UIView animateWithDuration:0.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^(void){
-        self.view.backgroundColor = [UIColor clearColor];
-        CGRect rc1 = self.contentView.bounds;
-        [self.contentView setFrame:CGRectMake(0, rc.size.height, rc.size.width, rc1.size.height)];
-    } completion:^(BOOL isFinished){
-        // self.view.userInteractionEnabled = NO;
-    }];
-}
 
 #pragma mark - disable landscape
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -145,6 +76,7 @@
 {
     [[tableView cellForRowAtIndexPath:indexPath] setBackgroundColor: [UIColor clearColor]];
     switch (indexPath.section) {
+#if 0
         case 0:
             self.commonUnit.text = @"厘米";
             [_picker selectRow:_height inComponent:0 animated:NO];
@@ -157,11 +89,10 @@
             self.commonUnit.text = @"岁";
             [_picker selectRow:_age inComponent:0 animated:NO];
             break;
+#endif
         default:
             break;
     }
-    [self showPickerView];
-
 }
 
 #pragma mark - UITableViewDataSource
@@ -183,26 +114,26 @@
         [tableView registerNib:nib forCellReuseIdentifier:@"basicInfoCellIndentifier"];
         cellRegistered = true;
     }
-    
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
     basicInfoCel  *cell = [tableView dequeueReusableCellWithIdentifier:@"basicInfoCellIndentifier"];
     if(cell == nil)
         cell = [[basicInfoCel alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"basicInfoCellIndentifier"];
 
     switch (indexPath.section) {
         case 0:
-            cell.name.text = @"身高";
-            cell.value.text = [NSString stringWithFormat:@"%ld", (long)_height];
-            cell.unit.text = @"厘米";
+            cell.name.text = @"Name";
+            cell.value.text = [NSString stringWithFormat:@"%@", app.account.userName];
+            cell.unit.text = @"";
             break;
         case 1:
-            cell.name.text = @"体重";
-            cell.value.text = [NSString stringWithFormat:@"%ld", (long)_weight];
-            cell.unit.text = @"公斤";
+            cell.name.text = @"Email";
+            cell.value.text = [NSString stringWithFormat:@"%@", app.account.email];
+            cell.unit.text = @"";
             break;
         case 2:
-            cell.name.text = @"年龄";
-            cell.value.text = [NSString stringWithFormat:@"%ld", (long)_age];
-            cell.unit.text = @"岁";
+            cell.name.text = @"Phone";
+            cell.value.text = [NSString stringWithFormat:@"%@", app.account.localPhoneNumber];
+            cell.unit.text = @"";
             break;
                default:
             break;
@@ -241,9 +172,9 @@
 
 - (IBAction)logoutButtonClicked:(id)sender {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    //[app.account storeCurrentAccountInfo:@"" userId:@""];
-    //fix me
-    [app jumpToMainVC];
+    
+    //[app jumpToMainVC];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -251,31 +182,6 @@
 }
 -(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return 300;
-}
--(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [[NSString alloc] initWithFormat:@"%ld",(long)row];
-
-}
-- (IBAction)cancleButtonClicked:(id)sender {
-    [self hidePickerView];
-}
-- (IBAction)confirmButtonClicked:(id)sender {
-    if ([self.commonUnit.text isEqualToString:@"厘米"]) {
-        _height = [_picker selectedRowInComponent:0];
-    } else if ([self.commonUnit.text isEqualToString:@"公斤"]) {
-        _weight = [_picker selectedRowInComponent:0];
-    } else if ([self.commonUnit.text isEqualToString:@"岁"]) {
-        _age = [_picker selectedRowInComponent:0];
-    }
-    [self hidePickerView];
-    [self.tableView reloadData];
-#if 0
-    _myAccount.height = _height;
-    _myAccount.weight = _weight;
-    _myAccount.age = _age;
-    [_accountManager storeAccountInfoToDisk];
-    [_accountManager uploadAccountInfo:nil];
-#endif
 }
 
 - (void)handleGesture:(UIScreenEdgePanGestureRecognizer *)gesture {

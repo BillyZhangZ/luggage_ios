@@ -31,19 +31,25 @@
     rc.origin.y += 64;
     rc.size.height -= 64;
     UIImageView *bgView = [[UIImageView alloc] initWithFrame:rc];
-    bgView.image = [UIImage imageNamed:@"login_bg.jpg"];
+    bgView.image = [UIImage imageNamed:@"crazy.jpg"];
     [self.view addSubview: bgView];
     [self.view sendSubviewToBack:bgView];
     _enableLostMode = false;
+    
+    int statusBarHeight = 20;
+    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rcScreen.size.width, statusBarHeight)];
+    statusBarView.backgroundColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:70/255.0 alpha:1.0];
+    [self.view addSubview:statusBarView];
+    
     // Do any additional setup after loading the view from its nib.
     [self.navigatorBar setBackgroundImage:[UIImage imageNamed:@"empty.png"] forBarMetrics:UIBarMetricsDefault];
+    self.navigatorBar.backgroundColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:70/255.0 alpha:1.0];
     //make it center
     rc.origin.y = self.smsUnlockButton.frame.origin.y;
     rc.origin.x = rcScreen.size.width/2 - (self.bleUnlockButton.frame.origin.x - self.smsUnlockButton.frame.origin.x + self.bleUnlockButton.frame.size.width)/2;
     rc.size.width = self.smsUnlockButton.frame.size.width;
     rc.size.height = self.smsUnlockButton.frame.size.height;
     [self.smsUnlockButton setFrame:rc];
-    
     rc.origin.y = self.bleUnlockButton.frame.origin.y;
     rc.origin.x = self.smsUnlockButton.frame.origin.x + self.smsUnlockButton.frame.size.width + 10;
     rc.size.width = self.bleUnlockButton.frame.size.width;

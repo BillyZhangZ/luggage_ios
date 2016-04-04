@@ -19,14 +19,16 @@
         if (accountInfo == nil) {
             return self;
         }
-        NSString *accountName = [accountInfo valueForKey:@"localPhoneNumber"];
+        NSString *phoneNumber = [accountInfo valueForKey:@"localPhoneNumber"];
         NSString *accountId = [accountInfo valueForKey:@"id"];
-        if ([accountName isEqual: @""] || [accountId isEqual: @""]) {
+        if ([phoneNumber isEqual: @""] || [accountId isEqual: @""]) {
             return self;
         }
         _userId = accountId;
-        _localPhoneNumber = accountName;
+        _localPhoneNumber = phoneNumber;
         _remotePhoneNumber = [accountInfo objectForKey:@"remotePhoneNumber"];
+        _email = [accountInfo objectForKey:@"email"];
+        _userName = [accountInfo objectForKey:@"name"];
         _deviceMac = [accountInfo objectForKey:@"deviceId"];
         NSLog(@"login with user: %@\t id: %@\n",_localPhoneNumber, _userId);
         
@@ -48,6 +50,11 @@
     [self storeItemToDisk:@"localPhoneNumber" value:localPhoneNumber];
 }
 
+-(void)setUserName:(NSString *)userName
+{
+    _userName = userName;
+    [self storeItemToDisk:@"name" value:userName];
+}
 -(void)setDeviceMac:(NSString *)deviceMac
 {
     _deviceMac = deviceMac;
@@ -62,6 +69,11 @@
     [self storeItemToDisk:@"id" value:userId];
 }
 
+-(void)setEmail:(NSString *)email
+{
+    _email = email;
+    [self storeItemToDisk:@"email" value:_email];
+}
 -(void)dealloc
 {
 
@@ -89,7 +101,7 @@
     NSFileManager* fm = [NSFileManager defaultManager];
     if (![fm fileExistsAtPath:plistPath]) {
         [fm createFileAtPath: plistPath contents:nil attributes:nil];
-        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"id",@"0",@"localPhoneNumber",@"0", @"remotePhoneNumber", @"0", @"deviceId",nil];
+        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"id",@"",@"email",@"",@"name",@"0",@"localPhoneNumber",@"0", @"remotePhoneNumber", @"0", @"deviceId",nil];
         [dic writeToFile:plistPath atomically:YES];
     }
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
@@ -104,34 +116,4 @@
     [data writeToFile:filename atomically:YES];
     
 }
-#if 0
--(BOOL)storeCurrentAccountInfo:(NSString *)accountName userId:(NSString *)userId
-{
-    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    NSString *path=[paths objectAtIndex:0];
-    // NSLog(@"path = %@",path);
-    NSString *plistPath=[path stringByAppendingPathComponent:@"Account.plist"];
-    NSFileManager* fm = [NSFileManager defaultManager];
-    if (![fm fileExistsAtPath:plistPath]) {
-        [fm createFileAtPath: plistPath contents:nil attributes:nil];
-        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"id",@"0",@"name",nil];
-        [dic writeToFile:plistPath atomically:YES];
-    }
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-
-    [data setObject:accountName forKey:@"name"];
-    [data setObject:userId forKey:@"id"];
-    NSLog(@"%@", data);
-
-    //得到完整的文件名
-    NSString *filename=[path stringByAppendingPathComponent:@"Account.plist"];
-    //输入写入
-    [data writeToFile:filename atomically:YES];
-    
-    //NSMutableDictionary *data1 = [[NSMutableDictionary alloc] initWithContentsOfFile:filename];
-    //NSLog(@"%@", data1);
-    
-    return true;
-}
-#endif
 @end

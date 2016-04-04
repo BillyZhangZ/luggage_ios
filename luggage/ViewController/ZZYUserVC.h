@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZZYUserVC : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UITableViewDataSource,UITableViewDelegate, UIActionSheetDelegate>
+@interface ZZYUserVC : UIViewController<UITableViewDataSource,UITableViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UIPickerView *picker;
-@property (weak, nonatomic) IBOutlet UIButton *cancleButton;
-@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
-@property (weak, nonatomic) IBOutlet UILabel *commonUnit;
 @end

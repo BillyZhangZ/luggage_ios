@@ -24,6 +24,7 @@
 #import "BLEDevice.h"
 #import "ZZYUserGuideVC.h"
 #import "ZZYLoginVC.h"
+
 @interface AppDelegate ()<WXApiDelegate, LuggageDelegate>
 {
     ZZYMainVC * _mainVC;
@@ -59,7 +60,7 @@
     [WXApi registerApp:@"wx9d60ab46bfa2d903" withDescription:@"luggage"];
     [SMS_SDK registerApp:@"cdabbcf0f504"  withSecret:@"ccbe1fa6a1f8f17075f03951b29d1618"];
 
-    // let voice can be heard when app is at background, and use MIX to prevent pausing music player
+       // let voice can be heard when app is at background, and use MIX to prevent pausing music player
     NSError *error = NULL;
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayback
@@ -461,7 +462,7 @@ void say(NSString *sth)
 -(void)onLuggageDeviceDissconnected
 {
     NSLog(@"ViewController: disconnected\n");
-    [self connectToDevice];
+    //[self connectToDevice];
     [_updateRssiTimer invalidate];
     _updateRssiTimer = nil;
 #if 0

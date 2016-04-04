@@ -51,7 +51,7 @@
         rcPhoto.size.width = radius*2;
         rcPhoto.size.height = radius*2;
         _ivPhoto = [[UIImageView alloc] initWithFrame:rcPhoto];
-        _ivPhoto.image = [UIImage imageNamed:@"user.png"];
+        _ivPhoto.image = [UIImage imageNamed:@"avatar.png"];
         _ivPhoto.layer.cornerRadius = radius;
         _ivPhoto.layer.masksToBounds=YES;
 

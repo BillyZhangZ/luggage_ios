@@ -139,7 +139,9 @@
             //store user id
             AppDelegate *app = [[UIApplication sharedApplication]delegate];
             app.account.userId = [dict objectForKey:@"id"];
-            
+            app.account.localPhoneNumber = [dict objectForKey:@"phoneNumber"];
+            app.account.userName = [dict objectForKey:@"name"];
+            app.account.email = [dict objectForKey:@"email"];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pass" message:@"" preferredStyle:UIAlertControllerStyleAlert];
             void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
                 [app jumpToMainVC];

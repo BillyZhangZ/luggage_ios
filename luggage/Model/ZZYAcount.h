@@ -11,6 +11,7 @@
 @interface ZZYAcount : NSObject
 @property (strong, nonatomic)  NSString *userName;
 @property (strong, nonatomic) NSString * userId;
+@property (strong, nonatomic) NSString * email;
 @property (strong, nonatomic) NSString *remotePhoneNumber;
 @property (strong, nonatomic) NSString *localPhoneNumber;
 @property (strong, nonatomic) NSString *deviceMac;

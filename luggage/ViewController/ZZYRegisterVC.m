@@ -29,17 +29,17 @@
     bgView.image = [UIImage imageNamed:@"login_bg.jpg"];
     [self.view addSubview: bgView];
     [self.view sendSubviewToBack:bgView];
-    
+#if 0
     rc.size.height = 140;
     rc.size.width = 210;
     rc.origin.x = rcScreen.size.width/2 - rc.size.width/2;
     rc.origin.y = 100;
     _logoImageView = [[UIImageView alloc]initWithFrame:rc];
     _logoImageView.image = [UIImage imageNamed:@"location1.png"];
-    
+#endif
     rc.size.width = 210;
     rc.origin.x = rcScreen.size.width/2 - rc.size.width/2;
-    rc.origin.y = rc.origin.y + rc.size.height + 10;
+    rc.origin.y = 100;
     rc.size.height = 30;
     _nameTextField = [[UITextField alloc]initWithFrame:rc];
     
@@ -73,7 +73,7 @@
     [_confirmButton addTarget:self action:@selector(onConfirmButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:_nameTextField];
-    [self.view addSubview:_logoImageView];
+    //[self.view addSubview:_logoImageView];
     [self.view addSubview:_emailTextField];
     [self.view addSubview:_passwordTextField];
     [self.view addSubview:_confirmButton];
@@ -136,11 +136,29 @@
     
     [dataTask resume];
 }
+#pragma mark - TextField delegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    textField.textColor = [UIColor blackColor];
+    textField.text = @"";
+}
 
--(void)onAfterSignUp
+-(void)textFieldDidEndEditing:(UITextField *)textField
 {
     
 }
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    return YES;
+}
+
+
 
 #pragma mark - gesture response
 -(void)tapHandle:(UITapGestureRecognizer *)tap

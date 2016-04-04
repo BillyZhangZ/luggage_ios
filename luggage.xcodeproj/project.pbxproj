@@ -73,6 +73,8 @@
 		83B5CD981CB0E571009DFA80 /* email_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD961CB0E571009DFA80 /* email_icon.png */; };
 		83B5CD991CB0E571009DFA80 /* lock icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD971CB0E571009DFA80 /* lock icon.png */; };
 		83B5CD9C1CB2197C009DFA80 /* ZZYRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B5CD9B1CB2197C009DFA80 /* ZZYRegisterVC.m */; };
+		83B5CDA81CB2B5C9009DFA80 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CDA71CB2B5C9009DFA80 /* avatar.png */; };
+		83B5CDAA1CB2B98E009DFA80 /* crazy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CDA91CB2B98E009DFA80 /* crazy.jpg */; };
 		83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */; };
 		83D1D9F01C18EFC7005F4F63 /* ZZYBaseNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EF1C18EFC7005F4F63 /* ZZYBaseNavVC.m */; };
 		83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F21C18F889005F4F63 /* basicInfoCel.m */; };
@@ -188,6 +190,8 @@
 		83B5CD971CB0E571009DFA80 /* lock icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock icon.png"; path = "images/lock icon.png"; sourceTree = "<group>"; };
 		83B5CD9A1CB2197C009DFA80 /* ZZYRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYRegisterVC.h; path = ViewController/ZZYRegisterVC.h; sourceTree = "<group>"; };
 		83B5CD9B1CB2197C009DFA80 /* ZZYRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYRegisterVC.m; path = ViewController/ZZYRegisterVC.m; sourceTree = "<group>"; };
+		83B5CDA71CB2B5C9009DFA80 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar.png; path = images/avatar.png; sourceTree = "<group>"; };
+		83B5CDA91CB2B98E009DFA80 /* crazy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = crazy.jpg; path = images/crazy.jpg; sourceTree = "<group>"; };
 		83D1D9EB1C18EF45005F4F63 /* ZZYSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSettingsVC.h; path = ViewController/ZZYSettingsVC.h; sourceTree = "<group>"; };
 		83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSettingsVC.m; path = ViewController/ZZYSettingsVC.m; sourceTree = "<group>"; };
 		83D1D9EE1C18EFC7005F4F63 /* ZZYBaseNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYBaseNavVC.h; path = ViewController/ZZYBaseNavVC.h; sourceTree = "<group>"; };
@@ -448,6 +452,8 @@
 		83E931651C0C7F8600DB1AA2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				83B5CDA91CB2B98E009DFA80 /* crazy.jpg */,
+				83B5CDA71CB2B5C9009DFA80 /* avatar.png */,
 				83B5CD961CB0E571009DFA80 /* email_icon.png */,
 				83B5CD971CB0E571009DFA80 /* lock icon.png */,
 				83B5CD941CB0E3C7009DFA80 /* location1.png */,
@@ -551,6 +557,7 @@
 				83465F801C0B08330039C86C /* Icon-60.png in Resources */,
 				83B5CD8A1C8BFDF3009DFA80 /* Icon-76.png in Resources */,
 				83465F8E1C0B08550039C86C /* Icon-Small@3x.png in Resources */,
+				83B5CDAA1CB2B98E009DFA80 /* crazy.jpg in Resources */,
 				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginVC.xib in Resources */,
 				83465F8C1C0B08550039C86C /* Icon-Small.png in Resources */,
 				83D1D9FA1C18F889005F4F63 /* ZZYUserVC.xib in Resources */,
@@ -578,6 +585,7 @@
 				83465F8D1C0B08550039C86C /* Icon-Small@2x.png in Resources */,
 				8355F90C1C17156C001E7352 /* ZZYWebsiteVC.xib in Resources */,
 				83B5CD8E1C8DB274009DFA80 /* menubg@2x.png in Resources */,
+				83B5CDA81CB2B5C9009DFA80 /* avatar.png in Resources */,
 				83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.xib in Resources */,
 				83013E371C018E190065B5C2 /* Images.xcassets in Resources */,
 				83465F811C0B08330039C86C /* Icon-60@2x.png in Resources */,
@@ -750,6 +758,7 @@
 					"$(PROJECT_DIR)/luggage/Framework/Mamap",
 					"$(PROJECT_DIR)/luggage/Framework/Sms",
 					"$(PROJECT_DIR)/luggage/Framework/WechatShare",
+					"$(PROJECT_DIR)/luggage/Framework/KeyboardManager",
 				);
 				INFOPLIST_FILE = luggage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -785,6 +794,7 @@
 					"$(PROJECT_DIR)/luggage/Framework/Mamap",
 					"$(PROJECT_DIR)/luggage/Framework/Sms",
 					"$(PROJECT_DIR)/luggage/Framework/WechatShare",
+					"$(PROJECT_DIR)/luggage/Framework/KeyboardManager",
 				);
 				INFOPLIST_FILE = luggage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
