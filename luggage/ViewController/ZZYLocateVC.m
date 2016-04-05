@@ -67,14 +67,14 @@
     //buttons
     _mapModeButton =[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, CGRectGetHeight(self.view.bounds) - 60, 80, 40)];
     _mapModeButton.backgroundColor = [UIColor clearColor];
-    [_mapModeButton setTitle:@"夜间模式" forState:UIControlStateNormal];
+    [_mapModeButton setTitle:@"定位方式" forState:UIControlStateNormal];
     [_mapModeButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     _mapModeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_mapModeButton addTarget:self action:@selector(onMapButtonMode) forControlEvents:UIControlEventTouchUpInside];
     
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
 
-    [self getLatestLocation:1];//[app.account.userId integerValue]];
+    [self getLatestGpsLocation:1];//[app.account.userId integerValue]];
     [self.view addSubview:_mapModeButton];
     [self.view addSubview:_mapView];
     [self.view bringSubviewToFront:_mapModeButton];
@@ -91,17 +91,8 @@
 
 - (void) onMapButtonMode
 {
-    switch (_mapView.mapType) {
-        case MAMapTypeStandard:
-            _mapView.mapType = MAMapTypeStandardNight;
-            [_mapModeButton setTitle:@"标准模式" forState:UIControlStateNormal];
-            break;
-        default:
-            _mapView.mapType = MAMapTypeStandard;
-            [_mapModeButton setTitle:@"夜间模式" forState:UIControlStateNormal];
-
-            break;
-    }
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    [self getLatestCellbaseLocation:1];//[app.account.userId integerValue]];
 }
 
 
@@ -167,61 +158,16 @@
     }
 }
 
--(void)getLatestLocation:(NSInteger)userId
+-(void)getLatestGpsLocation:(NSInteger)userId
 {
     
     NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_GET_GPS];
     [urlPost appendFormat:@"%lu",(unsigned long)userId];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-#if 0
-    NSOperationQueue *queue = [NSOperationQueue mainQueue];
-#endif
     [request setHTTPMethod:@"GET"];
 
     [request setTimeoutInterval:10.0f];
-#if 0
-    void (^onDone)(NSData *data) = ^(NSData *data) {
-        if(data == nil)
-        {
-            NSLog(@"获取gps数据失败%d",userId);
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-            [alert addAction:okAction];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-            return;
-        }
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-        if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-            [alert addAction:okAction];
-             [self presentViewController:alert animated:YES completion:nil];
-        }
-
-        _latitude = [[dict valueForKey:@"latitude"] floatValue];
-        _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
-
-        CLLocationCoordinate2D coordWGS = CLLocationCoordinate2DMake(_latitude, _longtitude);
-        CLLocationCoordinate2D coordGCJ = transformFromWGSToGCJ(coordWGS);
-        _longtitude = coordGCJ.longitude;
-        _latitude = coordGCJ.latitude;
-        [self zoomToAnnotations];
-        NSLog(@"gps raw data %@",dict);
-    };
-    
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:queue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if(error == nil && data != nil) {
-                                   onDone(data);
-                               }
-                               else {
-                                   onDone(nil);
-                               }
-                           }];
-#endif
     
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -244,7 +190,9 @@
             CLLocationCoordinate2D coordGCJ = transformFromWGSToGCJ(coordWGS);
             _longtitude = coordGCJ.longitude;
             _latitude = coordGCJ.latitude;
+            dispatch_async(dispatch_get_main_queue(), ^{
             [self zoomToAnnotations];
+            });
             NSLog(@"gps raw data %@",dict);
 
             
@@ -260,6 +208,90 @@
     
 }
 
+-(void)getLatestCellbaseLocation:(NSInteger)userId
+{
+    
+    NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_GET_CELLBASE];
+    [urlPost appendFormat:@"%lu",(unsigned long)userId];
+    NSURL *url = [NSURL URLWithString:urlPost];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    
+    [request setTimeoutInterval:10.0f];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            //没有错误，返回正确；
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            
+            //int mcc = [[dict valueForKey:@"mcc"] integerValue];
+            //int mnc = [[dict valueForKey:@"mnc"] integerValue];
+            int lac = [[dict valueForKey:@"lac"] integerValue];
+            int cid = [[dict valueForKey:@"cid"] integerValue];
+            [self getGpsFromCellbase:lac Cid:cid];
+            
+            NSLog(@"gps raw data %@",dict);
+            
+            
+        }else{
+            //出现错误；
+            NSLog(@"错误信息：%@",error);
+        }
+        
+    }];
+    
+    [dataTask resume];
+    
+}
+-(void)getGpsFromCellbase:(int)lac Cid:(int)cid
+{
+    //fix me about url
+    NSString *tmp = [NSString stringWithFormat:@"http://mpro.sinaapp.com/my/jzdw.php?hex=0&lac=%d&cid=%d&map=0",lac, cid];
+    NSMutableString *urlPost = [[NSMutableString alloc] initWithString:tmp];
+    NSURL *url = [NSURL URLWithString:urlPost];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    
+    [request setTimeoutInterval:10.0f];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        /*
+        {"result":1,"format":"json","lac":10328,"cid":26997,"lat":23.13448,"lon":113.299602,"range":939,"hex":0,"src":0}
+         */
+        
+        if (!error) {
+            //没有错误，返回正确；
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            if (dict == nil || [dict objectForKey:@"result"] == NULL) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            _latitude = [[dict objectForKey:@"lat"]floatValue];
+            _longtitude = [[dict objectForKey:@"lon"]floatValue];
+            [self zoomToAnnotations];
+        }else{
+            //出现错误；
+            NSLog(@"错误信息：%@",error);
+        }
+        
+    }];
+    
+    
+    [dataTask resume];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

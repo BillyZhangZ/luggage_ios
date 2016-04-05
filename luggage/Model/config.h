@@ -23,6 +23,7 @@
 #define URL_USER_LOGIN SERVER @"/login"
 #define URL_USER_REGISTER SERVER @"/register"
 #define URL_GET_GPS SERVER @"/gps/"
+#define URL_GET_CELLBASE SERVER @"/cellbase/"
 
 //---- Menu ----
 #define  rate_pixel_to_point  1.0
