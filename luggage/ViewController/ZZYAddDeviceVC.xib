@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
@@ -51,9 +52,15 @@
                                     </accessibility>
                                     <state key="normal">
                                         <attributedString key="attributedTitle">
-                                            <fragment content="0.0米">
+                                            <fragment content="0.0">
                                                 <attributes>
                                                     <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="米">
+                                                <attributes>
+                                                    <font key="NSFont" size="15" name="STHeitiSC-Light"/>
+                                                    <font key="NSOriginalFont" size="15" name="HelveticaNeue"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>

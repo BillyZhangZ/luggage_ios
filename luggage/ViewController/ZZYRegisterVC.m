@@ -9,7 +9,7 @@
 #import "ZZYRegisterVC.h"
 #import "config.h"
 #import "AppDelegate.h"
-@interface ZZYRegisterVC()
+@interface ZZYRegisterVC()<UITextFieldDelegate>
 {
     UIImageView *_logoImageView;
     UITextField *_nameTextField;
@@ -48,7 +48,6 @@
     
     rc.origin.y += rc.size.height + 10;
     _passwordTextField = [[UITextField alloc]initWithFrame:rc];
-    
     rc.origin.y += rc.size.height + 10;
     _phoneTextField = [[UITextField alloc]initWithFrame:rc];
     _phoneTextField.textColor =
@@ -78,6 +77,7 @@
     [self.view addSubview:_passwordTextField];
     [self.view addSubview:_confirmButton];
     [self.view addSubview:_phoneTextField];
+    _nameTextField.delegate = _emailTextField.delegate = _passwordTextField.delegate = _phoneTextField.delegate = self;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHandle:)];
     tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
@@ -86,6 +86,15 @@
 
 -(void)onConfirmButton:(id)sender
 {
+    if ([_passwordTextField.text isEqualToString: @""] || [_emailTextField.text isEqualToString: @""]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed!" message:@"Items can not be null" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+
     NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_USER_REGISTER];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -116,17 +125,17 @@
             //store user id
             AppDelegate *app = [[UIApplication sharedApplication]delegate];
             app.account.userId = [dict objectForKey:@"id"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Congratulactions!" message:@"Succeed!" preferredStyle:UIAlertControllerStyleAlert];
+                void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                };
+                
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:onAfterSignUp];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
             
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Congratulactions!" message:@"Succeed!" preferredStyle:UIAlertControllerStyleAlert];
-            void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            };
-
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:onAfterSignUp];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            //[self dismissViewControllerAnimated:NO completion:nil];
         }else{
             //出现错误；
             NSLog(@"错误信息：%@",error);
@@ -146,6 +155,9 @@
 {
     textField.textColor = [UIColor blackColor];
     textField.text = @"";
+    if (_passwordTextField == textField) {
+        _passwordTextField.secureTextEntry = YES;
+    }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField

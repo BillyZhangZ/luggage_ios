@@ -30,7 +30,6 @@
     self.passwordTextField.textColor = [UIColor grayColor];
     [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
     
-    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHandle:)];
     tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
@@ -89,6 +88,9 @@
 {
     textField.textColor = [UIColor blackColor];
     textField.text = @"";
+    if (_passwordTextField == textField) {
+        self.passwordTextField.secureTextEntry = YES;
+    }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -108,6 +110,14 @@
 - (IBAction)onSignInButton:(id)sender {
     NSLog(@"Email: %@\nPassword:%@\n", self.emailTextField.text, self.passwordTextField.text);
     
+    if ([_passwordTextField.text isEqualToString: @""] || [_emailTextField.text isEqualToString: @""]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed!" message:@"Email or password can not be null" preferredStyle:UIAlertControllerStyleAlert];
+       
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_USER_LOGIN];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -142,15 +152,18 @@
             app.account.localPhoneNumber = [dict objectForKey:@"phoneNumber"];
             app.account.userName = [dict objectForKey:@"name"];
             app.account.email = [dict objectForKey:@"email"];
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pass" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
-                [app jumpToMainVC];
-            };
-            
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:onAfterSignUp];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pass" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
+                    [app jumpToMainVC];
+                };
+                
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:onAfterSignUp];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+            /*
+                        */
         }else{
             //出现错误；
             NSLog(@"错误信息：%@",error);
