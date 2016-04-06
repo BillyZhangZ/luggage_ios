@@ -78,7 +78,7 @@
     
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
     
-    [self getLatestLocation:1];//[app.account.userId integerValue]];
+    [self getLatestLocation:[app.account.userId integerValue]];
     //[self.view addSubview:_mapModeButton];
     [self.view addSubview:_mapView];
     //[self.view bringSubviewToFront:_mapModeButton];

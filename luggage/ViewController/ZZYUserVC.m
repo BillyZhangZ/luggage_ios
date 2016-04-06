@@ -172,9 +172,16 @@
 
 - (IBAction)logoutButtonClicked:(id)sender {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    app.account.userName = @"";
+    app.account.userId = @"";
+    app.account.localPhoneNumber = @"";
+    app.account.remotePhoneNumber = @"";
+    app.account.deviceMac = @"";
+    app.account.email = @"";
     
-    //[app jumpToMainVC];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
+    [app jumpToLoginVC];
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{

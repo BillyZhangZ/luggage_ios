@@ -619,6 +619,10 @@ NSString * getATContent(NSString *str)
     _window.rootViewController = _mainVC;
 }
 
+-(void)jumpToLoginVC
+{
+    _window.rootViewController = _loginVC1;
+}
 
 NSString * stringFromDate(NSDate *date)
 {

@@ -21,6 +21,7 @@
 - (void) showMenu;
 - (void) onMenuItemClicked:(NSString *)itemName;
 -(void)jumpToMainVC;
+-(void)jumpToLoginVC;
 -(void)setViewControllerAfterGuide;
 void say(NSString *sth);
 NSString * getATContent(NSString *str);

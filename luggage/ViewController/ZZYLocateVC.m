@@ -92,7 +92,7 @@
 - (void) onMapButtonMode
 {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    [self getLatestCellbaseLocation:1];//[app.account.userId integerValue]];
+    [self getLatestCellbaseLocation:[app.account.userId integerValue]];
 }
 
 
