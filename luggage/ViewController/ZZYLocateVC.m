@@ -65,16 +65,16 @@
     
     
     //buttons
-    _mapModeButton =[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, CGRectGetHeight(self.view.bounds) - 60, 80, 40)];
+    _mapModeButton =[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, CGRectGetHeight(self.view.bounds) - 120, 120, 40)];
     _mapModeButton.backgroundColor = [UIColor clearColor];
-    [_mapModeButton setTitle:@"定位方式" forState:UIControlStateNormal];
+    [_mapModeButton setTitle:@"Use cellbase" forState:UIControlStateNormal];
     [_mapModeButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     _mapModeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_mapModeButton addTarget:self action:@selector(onMapButtonMode) forControlEvents:UIControlEventTouchUpInside];
     
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
 
-    [self getLatestGpsLocation:1];//[app.account.userId integerValue]];
+    [self getLatestGpsLocation:[app.account.userId integerValue]];
     [self.view addSubview:_mapModeButton];
     [self.view addSubview:_mapView];
     [self.view bringSubviewToFront:_mapModeButton];

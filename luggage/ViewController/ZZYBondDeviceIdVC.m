@@ -33,7 +33,7 @@
     rc.size.height = 240;
     rc.size.width = 210;
     rc.origin.x = rcScreen.size.width/2 - rc.size.width/2;
-    rc.origin.y = 100;
+    rc.origin.y = 40;
     _logoImageView = [[UIImageView alloc]initWithFrame:rc];
     _logoImageView.image = [UIImage imageNamed:@"device.png"];
 #endif
