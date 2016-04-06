@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
@@ -21,16 +22,16 @@
                         <constraint firstAttribute="height" constant="44" id="GNV-U1-Q3b"/>
                     </constraints>
                     <items>
-                        <navigationItem title="订机票" id="kiG-BK-a4O">
+                        <navigationItem title="Flight" id="kiG-BK-a4O">
                             <barButtonItem key="leftBarButtonItem" id="f7D-jG-0dK">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="XQu-DQ-kuM">
                                     <rect key="frame" x="20" y="7" width="40" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal">
                                         <attributedString key="attributedTitle">
-                                            <fragment content="返回">
+                                            <fragment content="Back">
                                                 <attributes>
-                                                    <font key="NSFont" size="15" name="STHeitiSC-Light"/>
+                                                    <font key="NSFont" size="15" name="HelveticaNeue-Light"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                 </attributes>
                                             </fragment>

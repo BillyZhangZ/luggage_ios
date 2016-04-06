@@ -24,6 +24,7 @@
 #import "BLEDevice.h"
 #import "ZZYUserGuideVC.h"
 #import "ZZYLoginVC.h"
+#import "ZZYBondDeviceIdVC.h"
 
 @interface AppDelegate ()<WXApiDelegate, LuggageDelegate>
 {
@@ -180,7 +181,7 @@
     else
         _menuView.lblName.text = self.accountManager.currentAccount.nickName;
 #else
-        _menuView.lblName.text = @"用户名";
+        _menuView.lblName.text = self.account.userName;
 #endif
     CGRect rc = _menuView.frame;
     rc.origin.x = - lo_menu_width * rate_pixel_to_point;
@@ -226,32 +227,33 @@
                                                  animated:YES completion:nil];
 #endif
     }
-    else if([itemName compare:@"足迹"] == NSOrderedSame)
+    else if([itemName compare:@"Footprint"] == NSOrderedSame)
     {
         //_window.rootViewController = _mainVC;
         ZZYFootprintVC *vc = [[ZZYFootprintVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
-    else if([itemName compare:@"航班信息"] == NSOrderedSame)
+    else if([itemName compare:@"Flight"] == NSOrderedSame)
     {
        // _window.rootViewController = _histVC;
         ZZYBookTicketVC *vc = [[ZZYBookTicketVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
-    else if([itemName compare:@"新品上市"] == NSOrderedSame)
+    else if([itemName compare:@"Products"] == NSOrderedSame)
     {
         ZZYWebsiteVC *vc = [[ZZYWebsiteVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
-    else if([itemName compare:@"预留3"] == NSOrderedSame)
+    else if([itemName compare:@"Add Device"] == NSOrderedSame)
+    {
+        ZZYBondDeviceIdVC *vc = [[ZZYBondDeviceIdVC alloc]init];
+        [_window.rootViewController presentViewController:vc animated:YES completion:nil];
+    }
+    else if([itemName compare:@"Reserved"] == NSOrderedSame)
     {
         
     }
-    else if([itemName compare:@"预留2"] == NSOrderedSame)
-    {
-        
-    }
-    else if([itemName compare:@"设置"] == NSOrderedSame)
+    else if([itemName compare:@"Settings"] == NSOrderedSame)
     {
        // _window.rootViewController = _settingsVC;
         ZZYSettingsVC *vc = [[ZZYSettingsVC alloc]init];

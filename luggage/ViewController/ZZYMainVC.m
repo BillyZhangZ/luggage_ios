@@ -31,9 +31,10 @@
     rc.origin.y += 64;
     rc.size.height -= 64;
     UIImageView *bgView = [[UIImageView alloc] initWithFrame:rc];
-    bgView.image = [UIImage imageNamed:@"crazy.jpg"];
-    [self.view addSubview: bgView];
-    [self.view sendSubviewToBack:bgView];
+    bgView.image = [UIImage imageNamed:@"login_bg.jpg"];
+    //[self.view addSubview: bgView];
+    //[self.view sendSubviewToBack:bgView];
+    self.view.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
     _enableLostMode = false;
     
     int statusBarHeight = 20;

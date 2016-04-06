@@ -76,6 +76,7 @@
     // add navigation bar and configure it
     //----------------------------------------------------------------------------
     rc = rcApp;
+    rc.origin.y = 20;
     rc.size.height = TITLEBARHEIGHT;
     _navBar = [[UINavigationBar alloc] initWithFrame:rc];
 //    _navBar.barTintColor = STATUSBARTINTCOLOR;
@@ -93,8 +94,8 @@
     {
         self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.leftButton.frame = CGRectMake(0, 0, NAVIGATIONBAR_LEFT_ICON_SIZE, NAVIGATIONBAR_LEFT_ICON_SIZE);
-        [self.leftButton setTitle:@"返回" forState:UIControlStateNormal];
-        [self.leftButton setTintColor:[UIColor blackColor]];
+        [self.leftButton setTitle:@"Back" forState:UIControlStateNormal];
+        [self.leftButton setTintColor:[UIColor blueColor]];
         //[self.leftButton setBackgroundImage:[UIImage imageNamed:self.leftButtonImage] forState:UIControlStateNormal];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
         [navItem setLeftBarButtonItem:item];

@@ -65,7 +65,7 @@
         rcPhoto.size.width = lo_menu_width * rate_pixel_to_point;
         rcPhoto.size.height = lo_menu_nickname_height * rate_pixel_to_point;
         _lblName = [[UILabel alloc] initWithFrame:rcPhoto];
-        [_lblName setText:@"穿越时空的小碎步"];
+        [_lblName setText:@""];
         _lblName.textColor = [UIColor whiteColor];//MENU_NICKNAME_FONT_COLOR;
         _lblName.font = [UIFont systemFontOfSize:/*MENU_USER_NICKNAME_FONT_SIZE*/16];
         _lblName.textAlignment = NSTextAlignmentCenter;
@@ -117,35 +117,38 @@
     rc.origin.y += rc.size.height;
     rc.size.height /= 2;
     UILabel *lbl = [[UILabel alloc] initWithFrame:rc];
-    lbl.textAlignment = NSTextAlignmentCenter;
+    //lbl.numberOfLines = 2;
+    //lbl.lineBreakMode = NSLineBreakByWordWrapping;
+    lbl.textAlignment = NSTextAlignmentLeft;
+    //lbl.textAlignment = NSTextAlignmentCenter;
     lbl.textColor = [UIColor whiteColor];// MENU_NICKNAME_FONT_COLOR;
     lbl.font = [UIFont systemFontOfSize:/*MENU_ITEM_TITLE_FONT_SIZE*/16];
 
     switch(index) {
         case 0:
             icon.image = [UIImage imageNamed:@"icon1.png"];
-            lbl.text = @"足迹";
+            lbl.text = @"Footprint";
             break;
         case 1:
             icon.image = [UIImage imageNamed:@"icon2.png"];
-            lbl.text = @"航班信息";
+            lbl.text = @"Flight";
             break;
         case 2:
             icon.image = [UIImage imageNamed:@"icon3.png"];
-            lbl.text = @"新品上市";
+            lbl.text = @"Products";
             break;
         case 3:
             icon.image = [UIImage imageNamed:@"icon4.png"];
-            lbl.text = @"预留3";
+            lbl.text = @"Add Device";
             break;
         case 4:
             icon.image = [UIImage imageNamed:@"icon5.png"];
-            lbl.text = @"预留2";
+            lbl.text = @"Reserved";
             break;
         case 5:
         default:
             icon.image = [UIImage imageNamed:@"icon6.png"];
-            lbl.text = @"设置";
+            lbl.text = @"Settings";
             break;
     }
 
@@ -196,12 +199,12 @@
 
     UIButton *btn = sender;
     switch(btn.tag) {
-        case 0: itemName = @"足迹"; break;
-        case 1: itemName = @"航班信息"; break;
-        case 2: itemName = @"新品上市"; break;
-        case 3: itemName = @"预留3"; break;
-        case 4: itemName = @"预留2"; break;
-        case 5: itemName = @"设置"; break;
+        case 0: itemName = @"Footprint"; break;
+        case 1: itemName = @"Flight"; break;
+        case 2: itemName = @"Products"; break;
+        case 3: itemName = @"Add Device"; break;
+        case 4: itemName = @"Reserved"; break;
+        case 5: itemName = @"Settings"; break;
         default: return; break;
     }
 

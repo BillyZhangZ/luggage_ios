@@ -36,26 +36,18 @@
                         <constraint firstAttribute="height" constant="44" id="uR7-zc-BN9"/>
                     </constraints>
                     <textAttributes key="titleTextAttributes">
-                        <color key="textColor" red="0.94117647058823528" green="0.396078431372549" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="用户首页" id="2xR-kG-kv2">
+                        <navigationItem title="Home" id="2xR-kG-kv2">
                             <barButtonItem key="leftBarButtonItem" id="urL-fw-iqv">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="qkn-Mv-Gk5">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qkn-Mv-Gk5">
                                     <rect key="frame" x="20" y="0.0" width="44" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                     <inset key="contentEdgeInsets" minX="-13" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal">
-                                        <attributedString key="attributedTitle">
-                                            <fragment content="返回">
-                                                <attributes>
-                                                    <color key="NSColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="18" name="STHeitiSC-Light"/>
-                                                    <font key="NSOriginalFont" size="18" name="Helvetica"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="clipping" baseWritingDirection="natural"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                    <state key="normal" title="Back">
+                                        <color key="titleColor" red="0.2256591365" green="0.41020442969999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="backButtonClicked:" destination="-1" eventType="touchUpInside" id="urC-r2-d8W"/>
@@ -64,10 +56,10 @@
                             </barButtonItem>
                             <barButtonItem key="rightBarButtonItem" id="4ap-Fb-XJn">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GUs-R8-giP">
-                                    <rect key="frame" x="540" y="7" width="40" height="30"/>
+                                    <rect key="frame" x="520" y="7" width="60" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="注销">
-                                        <color key="titleColor" red="0.94117647058823528" green="0.396078431372549" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="Logout">
+                                        <color key="titleColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>

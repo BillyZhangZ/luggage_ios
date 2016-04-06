@@ -1,27 +1,25 @@
 //
-//  ZZYRegisterVC.m
+//  ZZYBondDeviceIdVC.m
 //  luggage
 //
-//  Created by 张志阳 on 4/4/16.
+//  Created by 张志阳 on 4/6/16.
 //  Copyright © 2016 张志阳. All rights reserved.
 //
 
-#import "ZZYRegisterVC.h"
-#import "config.h"
-#import "AppDelegate.h"
 #import "ZZYBondDeviceIdVC.h"
 
-@interface ZZYRegisterVC()<UITextFieldDelegate>
+#import "config.h"
+#import "AppDelegate.h"
+
+@interface ZZYBondDeviceIdVC()<UITextFieldDelegate>
 {
     UIImageView *_logoImageView;
-    UITextField *_nameTextField;
-    UITextField *_emailTextField;
-    UITextField *_passwordTextField;
-    UITextField *_phoneTextField;
+    UITextView *_deviceNameView;
+    UITextField *_deviceIdTextField;
     UIButton *_confirmButton;
 }
 @end
-@implementation ZZYRegisterVC
+@implementation ZZYBondDeviceIdVC
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -31,55 +29,49 @@
     bgView.image = [UIImage imageNamed:@"login_bg.jpg"];
     [self.view addSubview: bgView];
     [self.view sendSubviewToBack:bgView];
-#if 0
-    rc.size.height = 140;
+#if 1
+    rc.size.height = 240;
     rc.size.width = 210;
     rc.origin.x = rcScreen.size.width/2 - rc.size.width/2;
     rc.origin.y = 100;
     _logoImageView = [[UIImageView alloc]initWithFrame:rc];
-    _logoImageView.image = [UIImage imageNamed:@"location1.png"];
+    _logoImageView.image = [UIImage imageNamed:@"device.png"];
 #endif
     rc.size.width = 210;
     rc.origin.x = rcScreen.size.width/2 - rc.size.width/2;
-    rc.origin.y = 100;
+    rc.origin.y = rc.origin.y + rc.size.height + 10;
     rc.size.height = 30;
-    _nameTextField = [[UITextField alloc]initWithFrame:rc];
+    _deviceNameView = [[UITextView alloc]initWithFrame:rc];
+    _deviceNameView.text = @"Device ID";
+    [_deviceNameView.layer setBorderColor:(__bridge CGColorRef _Nullable)([UIColor redColor])];
+    [_deviceNameView.layer setBorderWidth:2.0];
+    _deviceNameView.font = [UIFont systemFontOfSize:18];
+    _deviceNameView.textColor = [UIColor whiteColor];
+    _deviceNameView.backgroundColor = [UIColor clearColor];
+    rc.origin.y += rc.size.height + 10;
+    rc.size.height = 30;
+    _deviceIdTextField = [[UITextField alloc]initWithFrame:rc];
     
-    rc.origin.y += rc.size.height + 10;
-    _emailTextField = [[UITextField alloc]initWithFrame:rc];
+    _deviceIdTextField.textColor = [UIColor grayColor];
+    [_deviceIdTextField setText:@""];
     
-    rc.origin.y += rc.size.height + 10;
-    _passwordTextField = [[UITextField alloc]initWithFrame:rc];
-    rc.origin.y += rc.size.height + 10;
-    _phoneTextField = [[UITextField alloc]initWithFrame:rc];
-    _phoneTextField.textColor =
-    _nameTextField.textColor =
-    _emailTextField.textColor =
-    _passwordTextField.textColor = [UIColor grayColor];
-    [_nameTextField setText:@"Nick name"];
-    [_emailTextField setText:@"Email"];
-    [_passwordTextField setText:@"Password"];
-    [_phoneTextField setText:@"Phone number"];
-
-    _phoneTextField.backgroundColor = _nameTextField.backgroundColor =  _emailTextField.backgroundColor = _passwordTextField.backgroundColor = [UIColor whiteColor];
-    _phoneTextField.borderStyle = _nameTextField.borderStyle = _emailTextField.borderStyle = _passwordTextField.borderStyle = UITextBorderStyleRoundedRect;
-    [_emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+    _deviceIdTextField.backgroundColor = [UIColor whiteColor];
+    _deviceIdTextField.borderStyle = UITextBorderStyleRoundedRect;
+    //[_deviceIdTextField setKeyboardType:UIKeyboardTypeEmailAddress];
     
     rc.origin.y += rc.size.height + 20;
     rc.size.height = 44;
     _confirmButton = [[UIButton alloc]initWithFrame:rc];
     _confirmButton.backgroundColor = [UIColor colorWithRed:1.0 green:0.8 blue:0.2 alpha:1.0];
-    [_confirmButton setTitle:@"Sign up" forState:UIControlStateNormal];
+    [_confirmButton setTitle:@"Done" forState:UIControlStateNormal];
     
     [_confirmButton addTarget:self action:@selector(onConfirmButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:_nameTextField];
-    //[self.view addSubview:_logoImageView];
-    [self.view addSubview:_emailTextField];
-    [self.view addSubview:_passwordTextField];
+    [self.view addSubview:_deviceNameView];
+    [self.view addSubview:_logoImageView];
+    [self.view addSubview:_deviceIdTextField];
     [self.view addSubview:_confirmButton];
-    [self.view addSubview:_phoneTextField];
-    _nameTextField.delegate = _emailTextField.delegate = _passwordTextField.delegate = _phoneTextField.delegate = self;
+    _deviceIdTextField.delegate  = self;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHandle:)];
     tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
@@ -88,23 +80,24 @@
 
 -(void)onConfirmButton:(id)sender
 {
-    if ([_passwordTextField.text isEqualToString: @""] || [_emailTextField.text isEqualToString: @""]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed!" message:@"Items can not be null" preferredStyle:UIAlertControllerStyleAlert];
+    if ([_deviceIdTextField.text isEqualToString: @""]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error!" message:@"Device ID can not be null" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-
-    NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_USER_REGISTER];
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    int userId = [app.account.userId integerValue];
+    NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_BOND_DEVICE];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setTimeoutInterval:100.0f];
     NSString *string;
     
-    string = [[NSString alloc] initWithFormat:@"{\"name\":\"%@\",\"email\":\"%@\",\"password\":\"%@\",\"phoneNumber\":\"%@\"}",_nameTextField.text, _emailTextField.text, _passwordTextField.text, _phoneTextField.text];
+    string = [[NSString alloc] initWithFormat:@"{\"userId\":\"%d\",\"deviceId\":\"%d\"}",userId, [_deviceIdTextField.text integerValue]];
     NSLog(@"%@", string);
     [request setHTTPBody:[string dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -115,35 +108,28 @@
         if (!error) {
             //没有错误，返回正确；
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-
-            if (dict == nil || [dict objectForKey:@"id"] == NULL) {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            
+            if (dict == nil || [[dict objectForKey:@"ok"] integerValue] != 1) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
             }
             
             NSLog(@"%@", [dict objectForKey:@"id"]);
-            //store user id
-            AppDelegate *app = [[UIApplication sharedApplication]delegate];
-            app.account.userId = [dict objectForKey:@"id"];
-#if 0
+           
             dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Congratulactions!" message:@"Succeed!" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bonded" message:@"Bond device OK" preferredStyle:UIAlertControllerStyleAlert];
                 void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
                     [self dismissViewControllerAnimated:YES completion:nil];
+                    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+                    
                 };
                 
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:onAfterSignUp];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:onAfterSignUp];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
             });
-#else
-            dispatch_async(dispatch_get_main_queue(), ^{
-                ZZYBondDeviceIdVC *vc = [[ZZYBondDeviceIdVC alloc]init];
-                [self presentViewController:vc animated:YES completion:nil];
-            });
-#endif
             
         }else{
             //出现错误；
@@ -164,9 +150,6 @@
 {
     textField.textColor = [UIColor blackColor];
     textField.text = @"";
-    if (_passwordTextField == textField) {
-        _passwordTextField.secureTextEntry = YES;
-    }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -184,9 +167,7 @@
 #pragma mark - gesture response
 -(void)tapHandle:(UITapGestureRecognizer *)tap
 {
-    [_emailTextField resignFirstResponder];
-    [_passwordTextField resignFirstResponder];
-    [_nameTextField resignFirstResponder];
+    [_deviceIdTextField resignFirstResponder];
 }
 
 #pragma mark - disable landscape
@@ -205,5 +186,6 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
+
 
 @end

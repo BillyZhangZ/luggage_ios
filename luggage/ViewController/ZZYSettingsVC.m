@@ -39,7 +39,7 @@
 //    [self.view addSubview:iv];
     
     // Do any additional setup after loading the view.
-    self.vcTitle = @"设置";
+    self.vcTitle = @"Settings";
     self.leftButtonImage = @"menu.png";
     
     [super constructView];

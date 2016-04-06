@@ -55,6 +55,8 @@
 		8348E1121C0DE69300E34C6B /* ZZYMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8348E1111C0DE69300E34C6B /* ZZYMenuView.m */; };
 		8355F90B1C17156C001E7352 /* ZZYWebsiteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8355F9091C17156C001E7352 /* ZZYWebsiteVC.m */; };
 		8355F90C1C17156C001E7352 /* ZZYWebsiteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8355F90A1C17156C001E7352 /* ZZYWebsiteVC.xib */; };
+		8359445A1CB538E4000AD413 /* ZZYBondDeviceIdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 835944591CB538E4000AD413 /* ZZYBondDeviceIdVC.m */; };
+		8359445C1CB55270000AD413 /* device.png in Resources */ = {isa = PBXBuildFile; fileRef = 8359445B1CB55270000AD413 /* device.png */; };
 		8376EE1B1C872C8B00C190FF /* ZZYUserGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8376EE1A1C872C8B00C190FF /* ZZYUserGuideView.m */; };
 		8376EE1E1C87367500C190FF /* ZZYUserGuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8376EE1D1C87367500C190FF /* ZZYUserGuideVC.m */; };
 		83933F851C15C9E300A7AA6F /* ZZYBookTicketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F831C15C9E300A7AA6F /* ZZYBookTicketVC.m */; };
@@ -164,6 +166,9 @@
 		8355F9081C17156C001E7352 /* ZZYWebsiteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYWebsiteVC.h; path = ViewController/ZZYWebsiteVC.h; sourceTree = "<group>"; };
 		8355F9091C17156C001E7352 /* ZZYWebsiteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYWebsiteVC.m; path = ViewController/ZZYWebsiteVC.m; sourceTree = "<group>"; };
 		8355F90A1C17156C001E7352 /* ZZYWebsiteVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYWebsiteVC.xib; path = ViewController/ZZYWebsiteVC.xib; sourceTree = "<group>"; };
+		835944581CB538E4000AD413 /* ZZYBondDeviceIdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYBondDeviceIdVC.h; path = ViewController/ZZYBondDeviceIdVC.h; sourceTree = "<group>"; };
+		835944591CB538E4000AD413 /* ZZYBondDeviceIdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYBondDeviceIdVC.m; path = ViewController/ZZYBondDeviceIdVC.m; sourceTree = "<group>"; };
+		8359445B1CB55270000AD413 /* device.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = device.png; path = images/device.png; sourceTree = "<group>"; };
 		8376EE191C872C8B00C190FF /* ZZYUserGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUserGuideView.h; path = ViewController/ZZYUserGuideView.h; sourceTree = "<group>"; };
 		8376EE1A1C872C8B00C190FF /* ZZYUserGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYUserGuideView.m; path = ViewController/ZZYUserGuideView.m; sourceTree = "<group>"; };
 		8376EE1C1C87367500C190FF /* ZZYUserGuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYUserGuideVC.h; path = ViewController/ZZYUserGuideVC.h; sourceTree = "<group>"; };
@@ -414,6 +419,8 @@
 				8355F9081C17156C001E7352 /* ZZYWebsiteVC.h */,
 				8355F9091C17156C001E7352 /* ZZYWebsiteVC.m */,
 				8355F90A1C17156C001E7352 /* ZZYWebsiteVC.xib */,
+				835944581CB538E4000AD413 /* ZZYBondDeviceIdVC.h */,
+				835944591CB538E4000AD413 /* ZZYBondDeviceIdVC.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -452,6 +459,7 @@
 		83E931651C0C7F8600DB1AA2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8359445B1CB55270000AD413 /* device.png */,
 				83B5CDA91CB2B98E009DFA80 /* crazy.jpg */,
 				83B5CDA71CB2B5C9009DFA80 /* avatar.png */,
 				83B5CD961CB0E571009DFA80 /* email_icon.png */,
@@ -575,6 +583,7 @@
 				83B5CD981CB0E571009DFA80 /* email_icon.png in Resources */,
 				83465F7B1C0B03A00039C86C /* AMap.bundle in Resources */,
 				83013E3A1C018E190065B5C2 /* LaunchScreen.xib in Resources */,
+				8359445C1CB55270000AD413 /* device.png in Resources */,
 				83933F8B1C15CDC500A7AA6F /* ZZYFootprintVC.xib in Resources */,
 				83B5CD8C1C8BFDF3009DFA80 /* Icon-76@3x.png in Resources */,
 				83013E7E1C01E7E50065B5C2 /* ZZYLocateVC.xib in Resources */,
@@ -626,6 +635,7 @@
 				83933F911C15D55000A7AA6F /* GdTrackOverlayView.m in Sources */,
 				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.m in Sources */,
 				8348E1121C0DE69300E34C6B /* ZZYMenuView.m in Sources */,
+				8359445A1CB538E4000AD413 /* ZZYBondDeviceIdVC.m in Sources */,
 				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginVC.m in Sources */,
 				8376EE1E1C87367500C190FF /* ZZYUserGuideVC.m in Sources */,
 				83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */,

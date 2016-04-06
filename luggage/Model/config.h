@@ -24,6 +24,7 @@
 #define URL_USER_REGISTER SERVER @"/register"
 #define URL_GET_GPS SERVER @"/gps/"
 #define URL_GET_CELLBASE SERVER @"/cellbase/"
+#define URL_BOND_DEVICE SERVER @"/bonddevice"
 
 //---- Menu ----
 #define  rate_pixel_to_point  1.0
@@ -32,7 +33,7 @@
 #define lo_menu_photo_y_offset   97/4
 #define lo_menu_photo_diameter   272/4
 #define lo_menu_nickname_y_offset   422/4
-#define lo_menu_nickname_height   54/4
+#define lo_menu_nickname_height   80/4
 #define lo_menu_item_size   305/4
 #define TITLEBARHEIGHT 44
 
