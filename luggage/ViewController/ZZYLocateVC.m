@@ -187,8 +187,8 @@
             
             _latitude = [[dict valueForKey:@"latitude"] floatValue];
             _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
-
-            CLLocationCoordinate2D coordWGS = CLLocationCoordinate2DMake(38.8976763000,-77.0365298000);
+//38.8976763000,-77.0365298000
+            CLLocationCoordinate2D coordWGS = CLLocationCoordinate2DMake(_latitude,_longtitude);
             CLLocationCoordinate2D coordGCJ = transformFromWGSToGCJ(coordWGS);
             _longtitude = coordGCJ.longitude;
             _latitude = coordGCJ.latitude;

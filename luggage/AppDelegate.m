@@ -29,14 +29,14 @@
 @interface AppDelegate ()<WXApiDelegate, LuggageDelegate>
 {
     ZZYMainVC * _mainVC;
-    ZZYSMSLoginVC *_loginVC;
     ZZYMenuView *_menuView;
-    ZZYLoginVC *_loginVC1;
+    ZZYLoginVC *_loginVC;
     
     LuggageDevice *_luggageDevice;
     CBPeripheral *_foundDev;
     NSTimer *_updateRssiTimer;
 
+    BOOL _bleState;
     float distance;
     float battery ;
     float weight;
@@ -48,9 +48,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     _mainVC = [[ZZYMainVC alloc] init];
-    _loginVC = [[ZZYSMSLoginVC alloc]init];
     _account = [[ZZYAcount alloc]init];
-    _loginVC1 = [[ZZYLoginVC alloc]init];
+    _loginVC = [[ZZYLoginVC alloc]init];
+    
+    _bleState = false;
     
     distance = 0;
     battery = 0;
@@ -94,7 +95,7 @@
     {
         NSLog(@"不是第一次启动");
         if (_account.localPhoneNumber == nil || [_account.localPhoneNumber isEqualToString: @"0"]) {
-            self.window.rootViewController = _loginVC1;
+            self.window.rootViewController = _loginVC;
         }
         else
         {
@@ -112,7 +113,7 @@
 -(void)setViewControllerAfterGuide
 {
     if (_account.localPhoneNumber == nil) {
-        self.window.rootViewController = _loginVC1;
+        self.window.rootViewController = _loginVC;
     }
     else
     {
@@ -461,12 +462,25 @@ void say(NSString *sth)
 #endif
     
 }
+
+-(void)onLuggageDevicePowerOn
+{
+    _bleState = true;
+}
+
+-(void)onLuggageDevicePowerOff
+{
+    _bleState = false;
+}
+
 -(void)onLuggageDeviceDissconnected
 {
     NSLog(@"ViewController: disconnected\n");
-    [self connectToDevice];
     [_updateRssiTimer invalidate];
     _updateRssiTimer = nil;
+    if (_bleState) {
+        [self connectToDevice];
+    }
 #if 0
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设备已断开连接" message:@"重新连接中" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
@@ -621,7 +635,7 @@ NSString * getATContent(NSString *str)
 
 -(void)jumpToLoginVC
 {
-    _window.rootViewController = _loginVC1;
+    _window.rootViewController = _loginVC;
 }
 
 NSString * stringFromDate(NSDate *date)

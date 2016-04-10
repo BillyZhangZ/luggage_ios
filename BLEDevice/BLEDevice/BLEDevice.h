@@ -12,6 +12,9 @@
 @required
 -(void)onLuggageNtfChar:(NSString *) recData;
 -(void)onLuggageDeviceDissconnected;
+-(void)onLuggageDevicePowerOn;
+-(void)onLuggageDevicePowerOff;
+
 -(void)onLuggageDeviceConected;
 -(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
 -(void)onNtfCharateristicFound;

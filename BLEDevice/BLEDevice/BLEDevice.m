@@ -75,10 +75,11 @@ typedef enum{
             NSLog(@"BLELib: CBCentralManagerStatePoweredOff");
             //maybe ble is closed in process
             //[self stopTimer];
-            [_luggageDelegate onLuggageDeviceDissconnected];
+            [_luggageDelegate onLuggageDevicePowerOff];
             break;
         case CBCentralManagerStatePoweredOn:
             NSLog(@"BLELib: CBCentralManagerStatePoweredOn");
+            [_luggageDelegate onLuggageDevicePowerOn];
             break;
 
         default:
