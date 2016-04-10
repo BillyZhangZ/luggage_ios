@@ -197,6 +197,16 @@ enum BLE_OPERATION
 {
     
 }
+
+-(void)onLuggageDevicePowerOn
+{
+}
+
+-(void)onLuggageDevicePowerOff
+{
+}
+
+
 -(void)onLuggageNtfChar:(NSString *)recData
 {
     

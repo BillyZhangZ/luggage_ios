@@ -75,11 +75,16 @@ typedef enum{
             NSLog(@"BLELib: CBCentralManagerStatePoweredOff");
             //maybe ble is closed in process
             //[self stopTimer];
-            [_luggageDelegate onLuggageDevicePowerOff];
+            if (_luggageDelegate) {
+                [_luggageDelegate onLuggageDevicePowerOff];
+
+            }
             break;
         case CBCentralManagerStatePoweredOn:
             NSLog(@"BLELib: CBCentralManagerStatePoweredOn");
-            [_luggageDelegate onLuggageDevicePowerOn];
+            if (_luggageDelegate) {
+                [_luggageDelegate onLuggageDevicePowerOn];
+            }
             break;
 
         default:
@@ -101,6 +106,7 @@ typedef enum{
     if([heartRateDevices count] != 0)
     {
         _luggageDevice = (CBPeripheral *)[heartRateDevices objectAtIndex:0];
+        [_luggageDelegate onDeviceDiscovered:_luggageDevice rssi:0];
         [_luggageManager connectPeripheral:_luggageDevice options:nil];
         NSLog(@"HeartLib: find connected heartrate devices: %@", [_luggageDevice name]);
     }
