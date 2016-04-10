@@ -158,11 +158,12 @@
 
 - (IBAction)logoutButtonClicked:(id)sender {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    [app setValue:@"0" forKey:@"isDeviceBonded"];
     app.account.userName = @"";
     app.account.userId = @"";
     app.account.localPhoneNumber = @"";
     app.account.remotePhoneNumber = @"";
-    app.account.deviceMac = @"";
+    app.account.deviceId = @"";
     app.account.email = @"";
     
     

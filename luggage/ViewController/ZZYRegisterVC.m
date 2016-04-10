@@ -117,10 +117,14 @@
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
 
             if (dict == nil || [dict objectForKey:@"id"] == NULL) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed" message:@"Please try later" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
+                });
+                return ;
             }
             
             NSLog(@"%@", [dict objectForKey:@"id"]);

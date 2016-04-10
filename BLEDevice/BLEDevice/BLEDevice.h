@@ -30,7 +30,7 @@
  *delegate should be responsible for implementing HeartRateDelegate protocol
  *whenever heart rate is updated, tdidUpdateHeartRate will be exected
  **/
--(instancetype)init:(id)delegate;
+-(instancetype)init:(id)delegate onlyScan:(BOOL)onlyScan;
 -(void)LuggageWriteChar:(NSString *)txData;
 -(void)BLEConectTo:(CBPeripheral *)peripheral;
 -(void)BLEDisconnect;

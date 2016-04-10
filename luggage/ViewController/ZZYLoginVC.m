@@ -139,19 +139,27 @@
             //没有错误，返回正确；
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             if (dict == nil || [dict objectForKey:@"id"] == NULL) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
+                });
+                return ;
             }
             
             NSLog(@"%@", [dict objectForKey:@"id"]);
             //store user id
             AppDelegate *app = [[UIApplication sharedApplication]delegate];
-            app.account.userId = [dict objectForKey:@"id"];
-            app.account.localPhoneNumber = [dict objectForKey:@"phoneNumber"];
-            app.account.userName = [dict objectForKey:@"name"];
-            app.account.email = [dict objectForKey:@"email"];
+            [app.account setUserId: [dict objectForKey:@"id"] ];
+            [app.account setLocalPhoneNumber: [dict objectForKey:@"phoneNumber"]];
+            [app.account setUserName:[dict objectForKey:@"name"]];
+            [app.account setEmail:  [dict objectForKey:@"email"]];
+            [app.account setDeviceId:[dict objectForKey:@"deviceId"]];
+          // if ((app.account.deviceId != nil )&& (![app.account.deviceId isEqualToString:@""]) ) {
+          //      [app setValue:@"1" forKey:@"isDeviceBonded"];
+          //  }
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Succeed" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {

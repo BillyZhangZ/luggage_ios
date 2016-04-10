@@ -179,10 +179,14 @@
             //没有错误，返回正确；
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
+                });
+                return ;
             }
             
             _latitude = [[dict valueForKey:@"latitude"] floatValue];
@@ -229,10 +233,13 @@
             //没有错误，返回正确；
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
+                });
+                return ;
             }
             
             //int mcc = [[dict valueForKey:@"mcc"] integerValue];
@@ -276,10 +283,13 @@
             //没有错误，返回正确；
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             if (dict == nil || [dict objectForKey:@"result"] == NULL) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
+                });
+                return ;
             }
             _latitude = [[dict objectForKey:@"lat"]floatValue];
             _longtitude = [[dict objectForKey:@"lon"]floatValue];

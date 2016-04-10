@@ -180,10 +180,13 @@
         NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         NSArray *dicts = [allData valueForKey:@"gps"];
         if (dicts == nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records" message:@"" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
+            });
+            return;
         }
         
         int i = 0;

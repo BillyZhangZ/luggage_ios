@@ -110,10 +110,14 @@
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             
             if (dict == nil || [[dict objectForKey:@"ok"] integerValue] != 1) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
+                });
+                return ;
             }
             
             NSLog(@"%@", [dict objectForKey:@"id"]);
@@ -123,7 +127,8 @@
                 void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self.presentingViewController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
-                    
+                    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+                    [app.account setDeviceId:_deviceIdTextField.text];
                 };
                 
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:onAfterSignUp];

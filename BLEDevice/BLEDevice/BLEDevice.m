@@ -20,16 +20,18 @@ typedef enum{
     CBPeripheral          *_luggageDevice;
     id                    _luggageDelegate;
     CBCharacteristic *_writeChar;
+    BOOL _isOnlyScan;
 }
 @end
 
 @implementation LuggageDevice
 
--(instancetype)init:(id)delegate
+-(instancetype)init:(id)delegate onlyScan:(BOOL)onlyScan
 {
     self = [super init];
     if (self) {
         _luggageDelegate = delegate;
+        _isOnlyScan = onlyScan;
         _luggageManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         _writeChar = nil;
         if (_luggageDelegate == nil || _luggageManager == nil) {
@@ -101,27 +103,21 @@ typedef enum{
     }
     //
     NSLog(@"trying to find devices");
-#if 1
-    NSArray *heartRateDevices = [_luggageManager retrieveConnectedPeripheralsWithServices:@[[CBUUID UUIDWithString:LUGGAGE_SERVICE_UUID]]];
-    if([heartRateDevices count] != 0)
-    {
-        _luggageDevice = (CBPeripheral *)[heartRateDevices objectAtIndex:0];
-        [_luggageDelegate onDeviceDiscovered:_luggageDevice rssi:0];
-        [_luggageManager connectPeripheral:_luggageDevice options:nil];
-        NSLog(@"HeartLib: find connected heartrate devices: %@", [_luggageDevice name]);
+    
+    if (!_isOnlyScan) {
+        NSArray *heartRateDevices = [_luggageManager retrieveConnectedPeripheralsWithServices:@[[CBUUID UUIDWithString:LUGGAGE_SERVICE_UUID]]];
+        if([heartRateDevices count] != 0)
+        {
+            _luggageDevice = (CBPeripheral *)[heartRateDevices objectAtIndex:0];
+            [_luggageDelegate onDeviceDiscovered:_luggageDevice rssi:0];
+            [_luggageManager connectPeripheral:_luggageDevice options:nil];
+            NSLog(@"HeartLib: find connected heartrate devices: %@", [_luggageDevice name]);
+            return;
+        }
     }
-    else
-    {
-        [central scanForPeripheralsWithServices:nil
-                                        options:nil];
-    }
-#else
+    
     [central scanForPeripheralsWithServices:nil
-                                               options:nil];
-    //[central scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"FEE0"]]
-    //                                options:nil];
-
-#endif
+                                        options:nil];
 }
 
 -(void)BLEConectTo:(CBPeripheral *)peripheral

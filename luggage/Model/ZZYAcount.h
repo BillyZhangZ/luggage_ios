@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSString * email;
 @property (strong, nonatomic) NSString *remotePhoneNumber;
 @property (strong, nonatomic) NSString *localPhoneNumber;
-@property (strong, nonatomic) NSString *deviceMac;
+@property (strong, nonatomic) NSString *deviceId;
 @property NSInteger age;
 @property NSInteger sex;
 

@@ -21,7 +21,7 @@ enum BLE_OPERATION
 {
     LuggageDevice *_luggageDevice;
     NSMutableArray *_foundDevices;
-    
+    CBPeripheral* _targetDevice;
     
     enum BLE_OPERATION _opration;
 }
@@ -31,10 +31,11 @@ enum BLE_OPERATION
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _luggageDevice = [[LuggageDevice alloc]init:self];
+    _luggageDevice = [[LuggageDevice alloc]init:self onlyScan:YES];
     _foundDevices = [[NSMutableArray alloc]init];
-    
+    _targetDevice = nil;
     _opration = BLE_OPERATION_NONE;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +48,7 @@ enum BLE_OPERATION
     [super viewWillDisappear:animated];
     [_luggageDevice BLEDisconnect];
     _luggageDevice = nil;
+    _opration = BLE_OPERATION_NONE;
 }
 /*
 #pragma mark - Navigation
@@ -93,6 +95,7 @@ enum BLE_OPERATION
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
+        _targetDevice = (CBPeripheral *)[[_foundDevices objectAtIndex:indexPath.row] valueForKey:@"device"];
         [_luggageDevice BLEConectTo:(CBPeripheral *)[[_foundDevices objectAtIndex:indexPath.row] valueForKey:@"device"]];
     }
 }
@@ -141,16 +144,19 @@ enum BLE_OPERATION
 #pragma luggage device delegate
 -(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
 {
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
     for (NSDictionary *dic in _foundDevices) {
         if ([device.name isEqualToString:[dic valueForKey:@"name"]]) {
             return;
         }
     }
-    NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:device.name, @"name", device, @"device", [NSString stringWithFormat:@"%d",rssi],@"rssi", nil];
-    [_foundDevices addObject:dic];
+    if ([device.name isEqualToString:[NSString stringWithFormat:@"Luggage%@",app.account.deviceId]]) {
     
-    [self.tableView reloadData];
+        NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:device.name, @"name", device, @"device", [NSString stringWithFormat:@"%d",rssi],@"rssi", nil];
+        [_foundDevices addObject:dic];
     
+        [self.tableView reloadData];
+    }
 }
 -(void)onLuggageDeviceConected
 {
@@ -191,6 +197,7 @@ enum BLE_OPERATION
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
     [log appendString:@"ios:disconnected\n"];
     self.logText.text  = log;
+    [_luggageDevice BLEConectTo:_targetDevice];
 }
 
 -(void)onRssiRead:(NSNumber *)rssi
@@ -206,7 +213,6 @@ enum BLE_OPERATION
 {
 }
 
-
 -(void)onLuggageNtfChar:(NSString *)recData
 {
     
@@ -216,19 +222,21 @@ enum BLE_OPERATION
     [log appendString:@"linkit:"];
     [log appendString:recData];
     self.logText.text  = log;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bond Success" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
 
     switch (_opration) {
         case BLE_OPERATION_NONE:
             //error
             break;
         case BLE_OPERATION_GET_LUGGAGE_NUMBER:
-            app.account.remotePhoneNumber = getATContent(recData);
+            //app.account.remotePhoneNumber = getATContent(recData);
+            //check it and store local and server, fix me
+            [app.account setRemotePhoneNumber:getATContent(recData)];
            // [app.account setValue:getATContent(recData) forKey:@"remotePhoneNumber"];
             NSLog(@"%@",app.account.remotePhoneNumber);
-            [self presentViewController:alert animated:YES completion:nil];
+            if (true) {
+                //continue
+            }
+            else return;
 
           //  [self sendLocalPhoneNumber];
            // _opration = BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER;
@@ -239,6 +247,24 @@ enum BLE_OPERATION
             break;
         default:
             break;
+    }
+    if (_opration == BLE_OPERATION_GET_LUGGAGE_NUMBER) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+        void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            AppDelegate *app =[[UIApplication sharedApplication]delegate];
+            //fix me
+            [app setValue:@"1" forKey:@"isDeviceBonded"];
+        };
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bond Success" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:onAfterSignUp];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        });
+
     }
     _opration = BLE_OPERATION_NONE;
 }

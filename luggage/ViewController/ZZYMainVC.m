@@ -110,8 +110,8 @@
     [app addObserver:self forKeyPath:@"distance" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"battery" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"weight" options:NSKeyValueObservingOptionNew context:nil];
-    [app addObserver:self forKeyPath:@"addFingerPrintDone" options:NSKeyValueObservingOptionNew context:nil];
-    [app addObserver:self forKeyPath:@"delFingerPrintDone" options:NSKeyValueObservingOptionNew context:nil];
+    [app addObserver:self forKeyPath:@"FINGERREG" options:NSKeyValueObservingOptionNew context:nil];
+    [app addObserver:self forKeyPath:@"FINGERDEL" options:NSKeyValueObservingOptionNew context:nil];
 
 }
 
@@ -208,22 +208,22 @@
         NSLog(@"weight is changed! new=%@", weight);
         [_weightButton setTitle:[NSString stringWithFormat:@"Weight：%@千克", weight]  forState:UIControlStateNormal];
     }
-    else if([keyPath isEqualToString:@"addFingerPrintDone"])
+    else if([keyPath isEqualToString:@"FINGERREG"])
     {
         NSString *ret = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"add finger is changed! new=%@", ret);
-        NSString *title = [NSString stringWithFormat:@"Add fingerprint %@",[ret integerValue] == 1?@"OK":@"Failed"];
+        NSString *title = [NSString stringWithFormat:@"Add fingerprint %@",[ret integerValue] != 0?@"OK":@"Failed"];
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
-    else if([keyPath isEqualToString:@"delFingerPrintDone"])
+    else if([keyPath isEqualToString:@"FINGERDEL"])
     {
         NSString *ret = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"del finger is changed! new=%@", ret);
-        NSString *title = [NSString stringWithFormat:@"Delete fingerprint %@",[ret integerValue] == 1?@"OK":@"Failed"];
+        NSString *title = [NSString stringWithFormat:@"Delete fingerprint %@",[ret integerValue] != 0?@"OK":@"Failed"];
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -236,7 +236,14 @@
 }
 
 - (IBAction)onAddDeviceButton:(id)sender {
-    //AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    if (app.isDeviceBonded) {        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Device Bonded" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     //[app sendTextContent:@"Luggage, 让旅行更放心" withScene:WXSceneSession];
     ZZYAddDeviceVC *vc = [[ZZYAddDeviceVC alloc]init];
     [self presentViewController:vc animated:YES completion:nil];

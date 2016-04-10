@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ZZYAcount *account;
+@property NSInteger isDeviceBonded;
 
 //微信分享接口声明
 - (void) sendTextContent: (NSString *)text withScene:(int)scene;

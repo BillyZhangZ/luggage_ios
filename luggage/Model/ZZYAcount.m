@@ -29,7 +29,7 @@
         _remotePhoneNumber = [accountInfo objectForKey:@"remotePhoneNumber"];
         _email = [accountInfo objectForKey:@"email"];
         _userName = [accountInfo objectForKey:@"name"];
-        _deviceMac = [accountInfo objectForKey:@"deviceId"];
+        _deviceId = [accountInfo objectForKey:@"deviceId"];
         NSLog(@"login with user: %@\t id: %@\n",_localPhoneNumber, _userId);
         
     }
@@ -55,11 +55,11 @@
     _userName = userName;
     [self storeItemToDisk:@"name" value:userName];
 }
--(void)setDeviceMac:(NSString *)deviceMac
+-(void)setDeviceId:(NSString *)deviceId
 {
-    _deviceMac = deviceMac;
+    _deviceId = deviceId;
     NSLog(@"set  device mac");
-    [self storeItemToDisk:@"deviceId" value:deviceMac];
+    [self storeItemToDisk:@"deviceId" value:deviceId];
 }
 
 -(void)setUserId:(NSString *)userId

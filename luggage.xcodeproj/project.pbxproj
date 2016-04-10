@@ -761,7 +761,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhiyang Zhang (K7LJHX8EVS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -771,7 +771,7 @@
 					"$(PROJECT_DIR)/luggage/Framework/KeyboardManager",
 				);
 				INFOPLIST_FILE = luggage/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -786,7 +786,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = luggage;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../BLEDevice/**";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
 				VALID_ARCHS = armv7;
@@ -797,7 +797,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhiyang Zhang (K7LJHX8EVS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -807,7 +807,7 @@
 					"$(PROJECT_DIR)/luggage/Framework/KeyboardManager",
 				);
 				INFOPLIST_FILE = luggage/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -822,7 +822,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = luggage;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../BLEDevice/BLEDevice";
 				VALID_ARCHS = armv7;
 			};

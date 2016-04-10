@@ -37,8 +37,8 @@
     NSTimer *_updateRssiTimer;
 
     BOOL _bleState;
-    int addFingerPrintDone;
-    int delFingerPrintDone;
+    int FINGERREG;
+    int FINGERDEL;
     float distance;
     float battery ;
     float weight;
@@ -52,15 +52,17 @@
     
     _mainVC = [[ZZYMainVC alloc] init];
     _account = [[ZZYAcount alloc]init];
+    
     _loginVC = [[ZZYLoginVC alloc]init];
     
     _bleState = false;
-    addFingerPrintDone = delFingerPrintDone = 0;
+    FINGERREG = FINGERDEL = 0;
 
     distance = 0;
     battery = 0;
     weight = 0;
-    
+    [self addObserver:self forKeyPath:@"isDeviceBonded" options:NSKeyValueObservingOptionNew context:nil];
+
     CGRect rc = [[UIScreen mainScreen] bounds];
     _menuView = [[ZZYMenuView alloc]initWithFrame:rc];
     [WXApi registerApp:@"wx9d60ab46bfa2d903" withDescription:@"luggage"];
@@ -103,9 +105,17 @@
         }
         else
         {
+            if (_account.deviceId) {
+                //_isDeviceBonded = 1;
+            }
+            if (_isDeviceBonded) {
+                _luggageDevice = [[LuggageDevice alloc]init:self onlyScan:NO];
+            }
+            else
+            {
+                
+            }
             self.window.rootViewController = _mainVC;
-            
-            _luggageDevice = [[LuggageDevice alloc]init:self];
         }
     }
     
@@ -113,7 +123,21 @@
 
     return YES;
 }
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"isDeviceBonded"]) {
+        if([[change valueForKey:NSKeyValueChangeNewKey] integerValue] == 0)
+        {
+            [_luggageDevice BLEDisconnect];
 
+            _luggageDevice = nil;
+        }
+        else
+        {
+            _luggageDevice = [[LuggageDevice alloc]init:self onlyScan:NO];
+        }
+    }
+}
 -(void)setViewControllerAfterGuide
 {
     if (_account.localPhoneNumber == nil) {
@@ -234,7 +258,6 @@
     }
     else if([itemName compare:@"Footprint"] == NSOrderedSame)
     {
-        //_window.rootViewController = _mainVC;
         ZZYFootprintVC *vc = [[ZZYFootprintVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
@@ -400,8 +423,8 @@ void say(NSString *sth)
 #pragma luggage device delegate
 -(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
 {
-    NSLog(@"ViewController: discovered\n");
-    if ([device.name isEqualToString:@"SmartLuggage"]) {
+    NSLog(@"App: discovered\n");
+    if ([device.name isEqualToString:[NSString stringWithFormat:@"Luggage%@",self.account.deviceId]]) {
         _foundDev = device;
         [self performSelector:@selector(connectToDevice) withObject:self afterDelay:1];
         NSLog(@"ViewController: %@", device.name);
@@ -449,14 +472,13 @@ void say(NSString *sth)
     }
     if ([getATCmd(recData) isEqualToString:@"AT+BAT"]) {
         [self setValue:getATContent(recData) forKey:@"battery"];
-
     }
-    if ([getATCmd(recData) isEqualToString:@"AT+ADDFINGERDONE"]) {
-        [self setValue:getATContent(recData) forKey:@"addFingerPrintDone"];
+    if ([getATCmd(recData) isEqualToString:@"AT+FINGERREG"]) {
+        [self setValue:getATContent(recData) forKey:@"FINGERREG"];
         
     }
-    if ([getATCmd(recData) isEqualToString:@"AT+DELFINGERDONE"]) {
-        [self setValue:getATContent(recData) forKey:@"delFingerPrintDone"];
+    if ([getATCmd(recData) isEqualToString:@"AT+FINGERDEL"]) {
+        [self setValue:getATContent(recData) forKey:@"FINGERDEL"];
         
     }
 
@@ -491,16 +513,9 @@ void say(NSString *sth)
     NSLog(@"ViewController: disconnected\n");
     [_updateRssiTimer invalidate];
     _updateRssiTimer = nil;
-    if (_bleState) {
+    if (_bleState && _isDeviceBonded) {
         [self connectToDevice];
     }
-#if 0
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Disconnected" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    [self presentViewController:alert animated:YES completion:nil];
-#endif
-    
 }
 
 
