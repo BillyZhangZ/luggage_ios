@@ -249,7 +249,7 @@
         ZZYBondDeviceIdVC *vc = [[ZZYBondDeviceIdVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
-    else if([itemName compare:@"Reserved"] == NSOrderedSame)
+    else if([itemName compare:@"Fingerprint Management"] == NSOrderedSame)
     {
         
     }
@@ -464,7 +464,7 @@ void say(NSString *sth)
 -(void)onLuggageDeviceDissconnected
 {
     NSLog(@"ViewController: disconnected\n");
-    //[self connectToDevice];
+    [self connectToDevice];
     [_updateRssiTimer invalidate];
     _updateRssiTimer = nil;
 #if 0

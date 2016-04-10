@@ -188,7 +188,7 @@
 
     if ([keyPath isEqualToString:@"distance"]) {
         NSString * distance = [change valueForKey:NSKeyValueChangeNewKey];
-        if ([distance floatValue] > 3) {
+        if ([distance floatValue] > 6) {
           [app pushLocalNotification];
         }
         
@@ -198,6 +198,7 @@
         [_alertButton setTitle:distanceStr forState:UIControlStateNormal];
 
         NSLog(@"distance is changed! new=%@", [change valueForKey:NSKeyValueChangeNewKey]);
+        
         
     }
     else if([keyPath isEqualToString:@"battery"])

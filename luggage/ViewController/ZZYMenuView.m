@@ -143,7 +143,7 @@
             break;
         case 4:
             icon.image = [UIImage imageNamed:@"icon5.png"];
-            lbl.text = @"Reserved";
+            lbl.text = @"Fingerprint Management";
             break;
         case 5:
         default:
@@ -203,7 +203,7 @@
         case 1: itemName = @"Flight"; break;
         case 2: itemName = @"Products"; break;
         case 3: itemName = @"Add Device"; break;
-        case 4: itemName = @"Reserved"; break;
+        case 4: itemName = @"Fingerprint Management"; break;
         case 5: itemName = @"Settings"; break;
         default: return; break;
     }
