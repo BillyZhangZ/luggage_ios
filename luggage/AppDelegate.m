@@ -14,7 +14,7 @@
 #import "config.h"
 #import "ZZYMenuView.h"
 #import <SMS_SDK/SMS_SDK.h>
-#import <MAMapKit/MAMapKit.h>
+//#import <MAMapKit/MAMapKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ZZYBookTicketVC.h"
 #import "ZZYFootprintVC.h"

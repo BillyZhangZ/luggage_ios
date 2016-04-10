@@ -16,8 +16,8 @@
     CLLocationDegrees _maxLatitude;
 }
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
-@property (nonatomic, readwrite) MAMapRect boundingMapRect;
-@property (nonatomic, readwrite) MACoordinateRegion boundingCoordRegion;
+@property (nonatomic, readwrite) MKMapRect boundingMapRect;
+@property (nonatomic, readwrite) MKCoordinateRegion boundingCoordRegion;
 @property (nonatomic, readwrite) NSArray *coordsArray;
 @end
 
@@ -126,11 +126,11 @@
 
     // FIXME! is it correct for other countries?
 
-    MAMapPoint mp1 = MAMapPointForCoordinate(topLeft);
-    MAMapPoint mp2 = MAMapPointForCoordinate(botRight);
+    MKMapPoint mp1 = MKMapPointForCoordinate(topLeft);
+    MKMapPoint mp2 = MKMapPointForCoordinate(botRight);
 
-    self.boundingMapRect = MAMapRectMake(mp1.x, mp1.y, mp2.x - mp1.x, mp2.y - mp1.y);
-    self.boundingCoordRegion = MACoordinateRegionMake(self.coordinate, MACoordinateSpanMake(_maxLatitude-_minLatitude, _maxLongitude-_minLongitude));
+    self.boundingMapRect = MKMapRectMake(mp1.x, mp1.y, mp2.x - mp1.x, mp2.y - mp1.y);
+    self.boundingCoordRegion = MKCoordinateRegionMake(self.coordinate, MKCoordinateSpanMake(_maxLatitude-_minLatitude, _maxLongitude-_minLongitude));
     
     // set initial last location (for real play, it will be fixed later)
     if(self.lastLocation == nil && _lastSessionLocation.session != -1)
@@ -142,7 +142,7 @@
     }
 }
 
-- (CGPoint)pointForMapPoint:(MAMapPoint)mapPoint
+- (CGPoint)pointForMapPoint:(MKMapPoint)mapPoint
 {
     return CGPointMake(mapPoint.x, mapPoint.y);
 }

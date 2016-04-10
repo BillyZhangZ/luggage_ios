@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 XingJian Software. All rights reserved.
 //
 
-#import <MAMapKit/MAOverlayPathView.h>
+#import <MapKit/MKOverlayPathView.h>
 #import "GdTrackOverlay.h"
 
-@interface GdTrackOverlayView : MAOverlayPathView
+@interface GdTrackOverlayView : MKOverlayPathView
 
 @property (nonatomic, readonly) GdTrackOverlay *trackOverlay;
 

@@ -7,13 +7,13 @@
 //
 
 #import "ZZYLocateVC.h"
-#import <MAMapKit/MAMapKit.H>
+//#import <MAMapKit/MAMapKit.H>
 #import "config.h"
 #import "AppDelegate.h"
-
-@interface ZZYLocateVC ()<MAMapViewDelegate, UIGestureRecognizerDelegate>
+#import <MapKit/MapKit.h>
+@interface ZZYLocateVC ()<MKMapViewDelegate,UIGestureRecognizerDelegate>
 {
-    MAMapView *_mapView;
+    MKMapView *_mapView;
     UIButton  *_currentLocationButton;
     UIButton  *_lockCompassDirectionButton;
     UIButton  *_mapModeButton;
@@ -40,16 +40,18 @@
     [super viewDidAppear:animated];
     
     // Do any additional setup after loading the view, typically from a nib. //配置用户 Key
-    [MAMapServices sharedServices].apiKey = MAPAPIKEY;
-    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-    _mapView.mapType = MAMapTypeStandard;
-    _mapView.showTraffic= NO;
+    //drop from mamap to mkmap
+   // [MAMapServices sharedServices].apiKey = MAPAPIKEY;
+    _mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+    _mapView.mapType = MKMapTypeStandard;
+    _mapView.showsTraffic= NO;
     
     //_mapView.language = MAMapLanguageEn;
     _mapView.showsUserLocation = NO;
-    [_mapView setUserTrackingMode: MAUserTrackingModeNone animated:YES]; //地图跟着位置 移动
+    [_mapView setUserTrackingMode: MKUserTrackingModeNone animated:YES]; //地图跟着位置 移动
     
-    _mapView.pausesLocationUpdatesAutomatically = NO;
+    //drop from mamap to mkmap
+    //_mapView.pausesLocationUpdatesAutomatically = NO;
 #if 0
     _mapView.userInteractionEnabled = YES;
     UITapGestureRecognizer *mapTapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onMapView:)];
@@ -58,8 +60,8 @@
     _mapView.delegate = self;
 #if 1
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(31.43715199999999,121.13612);
-    MACoordinateSpan span = MACoordinateSpanMake(0.04, 0.04);
-    _mapView.region = MACoordinateRegionMake(coord, span);
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.04, 0.04);
+    _mapView.region = MKCoordinateRegionMake(coord, span);
 #endif
     //[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(zoomToAnnotations) userInfo:nil repeats:NO];
     
@@ -80,7 +82,7 @@
     [self.view bringSubviewToFront:_mapModeButton];
 }
 
-- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
 {
     if(updatingLocation) {
         //取出当前位置的坐标
@@ -99,20 +101,20 @@
 -(void)zoomToAnnotations
 {
 
-    MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     //annotation.coordinate = CLLocationCoordinate2DMake(31.43715199999999, 121.13612);
     annotation.coordinate = CLLocationCoordinate2DMake(_latitude, _longtitude);
 
     annotation.title = @"东仓花园";
     annotation.subtitle = @"中国机械加工网";
     // 指定新的显示区域
-    [_mapView setRegion:MACoordinateRegionMake(annotation.coordinate, MACoordinateSpanMake(0.04,0.04)) animated:YES];
+    [_mapView setRegion:MKCoordinateRegionMake(annotation.coordinate, MKCoordinateSpanMake(0.04,0.04)) animated:YES];
     // 选中标注
     ///[_mapView selectAnnotation:annotation animated:YES];
     [_mapView addAnnotation:annotation];
 }
 
--(void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     NSLog(@"annotation selected\n");
 }
@@ -185,8 +187,8 @@
             
             _latitude = [[dict valueForKey:@"latitude"] floatValue];
             _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
-            
-            CLLocationCoordinate2D coordWGS = CLLocationCoordinate2DMake(_latitude, _longtitude);
+
+            CLLocationCoordinate2D coordWGS = CLLocationCoordinate2DMake(38.8976763000,-77.0365298000);
             CLLocationCoordinate2D coordGCJ = transformFromWGSToGCJ(coordWGS);
             _longtitude = coordGCJ.longitude;
             _latitude = coordGCJ.latitude;

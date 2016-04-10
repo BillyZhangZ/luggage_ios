@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MAMapKit/MAMapKit.h>
+//#import <MAMapKit/MAMapKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "ZZYAcount.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

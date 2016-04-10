@@ -7,16 +7,16 @@
 //
 
 #import "ZZYFootprintVC.h"
-#import <MAMapKit/MAMapKit.H>
+//#import <MAMapKit/MAMapKit.H>
 #import "config.h"
 #import "AppDelegate.h"
 #import "GdTrackOverlay.h"
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface ZZYFootprintVC ()<MAMapViewDelegate, UIGestureRecognizerDelegate>
+@interface ZZYFootprintVC ()<MKMapViewDelegate, UIGestureRecognizerDelegate>
 {
-    MAMapView *_mapView;
+    MKMapView *_mapView;
     UIButton  *_currentLocationButton;
     UIButton  *_lockCompassDirectionButton;
     UIButton  *_mapModeButton;
@@ -44,16 +44,16 @@
     [super viewDidAppear:animated];
     
     // Do any additional setup after loading the view, typically from a nib. //配置用户 Key
-    [MAMapServices sharedServices].apiKey = MAPAPIKEY;
-    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-    _mapView.mapType = MAMapTypeStandard;
-    _mapView.showTraffic= NO;
+   // [MAMapServices sharedServices].apiKey = MAPAPIKEY;
+    _mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+    _mapView.mapType = MKMapTypeStandard;
+    _mapView.showsTraffic= NO;
     
     //_mapView.language = MAMapLanguageEn;
     _mapView.showsUserLocation = NO;
-    [_mapView setUserTrackingMode: MAUserTrackingModeNone animated:YES]; //地图跟着位置 移动
+    [_mapView setUserTrackingMode: MKUserTrackingModeNone animated:YES]; //地图跟着位置 移动
     
-    _mapView.pausesLocationUpdatesAutomatically = NO;
+    //_mapView.pausesLocationUpdatesAutomatically = NO;
 #if 0
     _mapView.userInteractionEnabled = YES;
     UITapGestureRecognizer *mapTapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onMapView:)];
@@ -62,8 +62,8 @@
     _mapView.delegate = self;
 #if 1
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(31.43715199999999,121.13612);
-    MACoordinateSpan span = MACoordinateSpanMake(0.04, 0.04);
-    _mapView.region = MACoordinateRegionMake(coord, span);
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.04, 0.04);
+    _mapView.region = MKCoordinateRegionMake(coord, span);
 #endif
     //[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(zoomToAnnotations) userInfo:nil repeats:NO];
     
@@ -84,7 +84,7 @@
     //[self.view bringSubviewToFront:_mapModeButton];
 }
 
-- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
 {
     if(updatingLocation) {
         //取出当前位置的坐标
@@ -96,12 +96,12 @@
 - (void) onMapButtonMode
 {
     switch (_mapView.mapType) {
-        case MAMapTypeStandard:
-            _mapView.mapType = MAMapTypeStandardNight;
+        case MKMapTypeStandard:
+            _mapView.mapType = MKMapTypeStandard;
             [_mapModeButton setTitle:@"标准模式" forState:UIControlStateNormal];
             break;
         default:
-            _mapView.mapType = MAMapTypeStandard;
+            _mapView.mapType = MKMapTypeStandard;
             [_mapModeButton setTitle:@"夜间模式" forState:UIControlStateNormal];
             
             break;
@@ -112,20 +112,20 @@
 -(void)zoomToAnnotations
 {
     
-    MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     //annotation.coordinate = CLLocationCoordinate2DMake(31.43715199999999, 121.13612);
     annotation.coordinate = CLLocationCoordinate2DMake(_latitude, _longtitude);
     
     annotation.title = @"东仓花园";
     annotation.subtitle = @"中国机械加工网";
     // 指定新的显示区域
-    [_mapView setRegion:MACoordinateRegionMake(annotation.coordinate, MACoordinateSpanMake(0.04,0.04)) animated:YES];
+    [_mapView setRegion:MKCoordinateRegionMake(annotation.coordinate, MKCoordinateSpanMake(0.04,0.04)) animated:YES];
     // 选中标注
     ///[_mapView selectAnnotation:annotation animated:YES];
     [_mapView addAnnotation:annotation];
 }
 
--(void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     NSLog(@"annotation selected\n");
 }
@@ -217,8 +217,8 @@
         lineOne.title = @"red";
         [overlays addObject:lineOne];
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(pointsToUse[[dicts count] - 1].latitude,pointsToUse[[dicts count] - 1].longitude);
-        MACoordinateSpan span = MACoordinateSpanMake(0.04, 0.04);
-        _mapView.region = MACoordinateRegionMake(coord, span);
+        MKCoordinateSpan span = MKCoordinateSpanMake(0.04, 0.04);
+        _mapView.region = MKCoordinateRegionMake(coord, span);
         //[self updatePaths:overlays];
         [_mapView addOverlays:overlays];
     };
@@ -298,9 +298,9 @@
 #endif
     
 }
-- (MAOverlayView *)mapView:(MAMapView *)mapView viewForOverlay:(id )overlay{
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id )overlay{
    // if ([overlay isKindOfClass:[MAPolyline class]]){
-        MAPolylineView *lineView = [[MAPolylineView alloc] initWithPolyline: overlay];
+        MKPolylineView *lineView = [[MKPolylineView alloc] initWithPolyline: overlay];
         lineView.lineWidth = 5.0f;
         lineView.strokeColor = [UIColor redColor];
         lineView.fillColor = [UIColor blackColor];

@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 XingJian Software. All rights reserved.
 //
 
-#import <MAMapKit/MAMapKit.h>
+//#import <MAMapKit/MAMapKit.h>
+#import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
 
 typedef struct tagSessionLocationPath
@@ -15,11 +16,11 @@ typedef struct tagSessionLocationPath
     NSInteger locationInSession; // -1: invalid
 } SessionLocationPath;
 
-@interface GdTrackOverlay : MAShape<MAOverlay>
+@interface GdTrackOverlay : MKShape<MKOverlay>
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, readonly) MAMapRect boundingMapRect;
-@property (nonatomic, readonly) MACoordinateRegion boundingCoordRegion;
+@property (nonatomic, readonly) MKMapRect boundingMapRect;
+@property (nonatomic, readonly) MKCoordinateRegion boundingCoordRegion;
 @property (nonatomic, readonly) NSArray *coordsArray;
 @property CLLocation * lastLocation;
 

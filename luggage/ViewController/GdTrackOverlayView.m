@@ -7,7 +7,7 @@
 //
 
 #import "GdTrackOverlayView.h"
-
+#import <MapKit/MapKit.h>
 @interface Track : NSObject
 @property (nonatomic) CGPoint *pointList;
 @property (nonatomic) NSUInteger count; // points accumulated in pointList
@@ -61,7 +61,7 @@
 
     return self;
 }
-
+#if 0
 - (void)dealloc
 {
     NSLog(@"GdTrackOverlayView: dealloc");
@@ -150,10 +150,11 @@
 
 - (void) translate:(NSArray *)coords to:(CGPoint *)pointList start:(NSInteger)firstLocation end:(NSInteger)endLocation track:(Track *)track
 {
+    MKMapView *map = [[MKMapView alloc]init];
     for(NSInteger i=firstLocation; i<=endLocation; i++)
     {
         CLLocation *loc = [coords objectAtIndex:i];
-        pointList[i] = [self glPointForMapPoint:MAMapPointForCoordinate(loc.coordinate)];
+        pointList[i] =  [map convertCoordinate: loc.coordinate toPointToView:map];//MKMapPointForCoordinate(loc.coordinate);
     }
     
     // determine points to play
@@ -239,5 +240,5 @@
         }
     }
 }
-
+#endif
 @end
