@@ -105,8 +105,8 @@
     //annotation.coordinate = CLLocationCoordinate2DMake(31.43715199999999, 121.13612);
     annotation.coordinate = CLLocationCoordinate2DMake(_latitude, _longtitude);
 
-    annotation.title = @"东仓花园";
-    annotation.subtitle = @"中国机械加工网";
+    annotation.title = @"Dongcang Park";
+    annotation.subtitle = @"";
     // 指定新的显示区域
     [_mapView setRegion:MKCoordinateRegionMake(annotation.coordinate, MKCoordinateSpanMake(0.04,0.04)) animated:YES];
     // 选中标注
@@ -246,7 +246,7 @@
             
         }else{
             //出现错误；
-            NSLog(@"错误信息：%@",error);
+            NSLog(@"error：%@",error);
         }
         
     }];
@@ -286,7 +286,7 @@
             [self zoomToAnnotations];
         }else{
             //出现错误；
-            NSLog(@"错误信息：%@",error);
+            NSLog(@"error：%@",error);
         }
         
     }];

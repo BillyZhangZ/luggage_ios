@@ -57,7 +57,7 @@
     rc.origin.x += rc.size.width + 16;
     rc.size.width = [[UIScreen mainScreen] bounds].size.width - rc.origin.x;
     _lblNickName = [[UILabel alloc] initWithFrame:rc];
-    [_lblNickName setText:@"用户 >"];
+    [_lblNickName setText:@"User >"];
     _lblNickName.font = [UIFont systemFontOfSize:SETTINGS_NICKNAME_FONT_SIZE];
     _lblNickName.textColor = [UIColor whiteColor];
     [self.view addSubview:_lblNickName];
@@ -129,8 +129,6 @@
     else
     {
         s.on =true;
-       // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无法关闭通知" message:@"请到系统设置中关闭通知" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-         //[alert show];
     }
  }
 
@@ -170,8 +168,8 @@
         if(cell == nil)
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"settingTableCell1"];
         if(indexPath.row == 0) {
-            cell.textLabel.text = @"设置通知";
-            cell.detailTextLabel.text = @"来自系统的问候";
+            cell.textLabel.text = @"Notification";
+            cell.detailTextLabel.text = @"";
             UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, lo_settings_cell_switch_width*rate_pixel_to_point, lo_settings_cell_switch_height*rate_pixel_to_point)];
             switchView.tag = indexPath.row;
             cell.accessoryView = switchView;
@@ -183,8 +181,8 @@
             switchView.onTintColor = DEFFGCOLOR;
         }
         else if(indexPath.row == 1) {
-            cell.textLabel.text = @"语音助手";
-            cell.detailTextLabel.text = @"嫌烦了，关掉它";
+            cell.textLabel.text = @"Voice Helper";
+            cell.detailTextLabel.text = @"";
             UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, lo_settings_cell_switch_width*rate_pixel_to_point, lo_settings_cell_switch_height*rate_pixel_to_point)];
             switchView.tag = indexPath.row;
             cell.accessoryView = switchView;
@@ -204,15 +202,15 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"settingTableCell2"];
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"意见反馈";
+                cell.textLabel.text = @"Feedbacks";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
             case 1:
-                cell.textLabel.text = @"关于我们";
+                cell.textLabel.text = @"About Us";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
             case 2:
-                cell.textLabel.text = @"特别鸣谢";
+                cell.textLabel.text = @"Thanks";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
             default:

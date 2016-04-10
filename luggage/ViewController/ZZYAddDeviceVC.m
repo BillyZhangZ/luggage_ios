@@ -111,11 +111,11 @@ enum BLE_OPERATION
     
     if (section == 0) {
         
-        label.text = @"已绑定设备";
+        label.text = @"Bonded Devices";
     }
     else
     {
-        label.text = @"新设备";
+        label.text = @"Unboned Devices";
     }
     return view;
 }
@@ -129,8 +129,8 @@ enum BLE_OPERATION
 {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
     if (app.account.localPhoneNumber == nil) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"未登录" message:@"请使用手机号码登录" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please Login in" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
         return;
@@ -206,8 +206,8 @@ enum BLE_OPERATION
     [log appendString:@"linkit:"];
     [log appendString:recData];
     self.logText.text  = log;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"绑定设备成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bond Success" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
 
     switch (_opration) {

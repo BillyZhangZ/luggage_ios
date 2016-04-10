@@ -37,9 +37,12 @@
     NSTimer *_updateRssiTimer;
 
     BOOL _bleState;
+    int addFingerPrintDone;
+    int delFingerPrintDone;
     float distance;
     float battery ;
     float weight;
+    
 }
 @end
 
@@ -52,7 +55,8 @@
     _loginVC = [[ZZYLoginVC alloc]init];
     
     _bleState = false;
-    
+    addFingerPrintDone = delFingerPrintDone = 0;
+
     distance = 0;
     battery = 0;
     weight = 0;
@@ -84,7 +88,7 @@
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"])
     {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-        NSLog(@"第一次启动");
+        NSLog(@"first start");
         //如果是第一次启动的话,使用UserGuideViewController (用户引导页面) 作为根视图
         ZZYUserGuideVC *userGuideViewController = [[ZZYUserGuideVC alloc] init];
         self.window.rootViewController = userGuideViewController;
@@ -93,7 +97,7 @@
     }
     else
     {
-        NSLog(@"不是第一次启动");
+        NSLog(@"not first start");
         if (_account.localPhoneNumber == nil || [_account.localPhoneNumber isEqualToString: @"0"]) {
             self.window.rootViewController = _loginVC;
         }
@@ -163,8 +167,8 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"注意" message:notification.alertBody preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert!" message:notification.alertBody preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
     [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
     // 图标上的数字减1
@@ -447,6 +451,15 @@ void say(NSString *sth)
         [self setValue:getATContent(recData) forKey:@"battery"];
 
     }
+    if ([getATCmd(recData) isEqualToString:@"AT+ADDFINGERDONE"]) {
+        [self setValue:getATContent(recData) forKey:@"addFingerPrintDone"];
+        
+    }
+    if ([getATCmd(recData) isEqualToString:@"AT+DELFINGERDONE"]) {
+        [self setValue:getATContent(recData) forKey:@"delFingerPrintDone"];
+        
+    }
+
     
 }
 
@@ -455,8 +468,8 @@ void say(NSString *sth)
 {
     //[self performSelector:@selector(sendChar) withObject:self afterDelay:1];
 #if 0
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设备已连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Connected" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:nil];
 #endif
@@ -482,8 +495,8 @@ void say(NSString *sth)
         [self connectToDevice];
     }
 #if 0
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设备已断开连接" message:@"重新连接中" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Disconnected" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:nil];
 #endif
@@ -543,7 +556,7 @@ void say(NSString *sth)
         // 推送声音
         notification.soundName = UILocalNotificationDefaultSoundName;
         // 推送内容
-        notification.alertBody = @"请留意您的luggage";
+        notification.alertBody = @"Look your luggage";
         //显示在icon上的红色圈中的数子
         notification.applicationIconBadgeNumber = 1;
         //设置userinfo 方便在之后需要撤销的时候使用
@@ -586,7 +599,7 @@ void say(NSString *sth)
             NSDictionary *dict = noti.userInfo;
             if (dict) {
                 NSString *inKey = [dict objectForKey:@"key"];
-                if ([inKey isEqualToString:@"对应的key值"]) {
+                if ([inKey isEqualToString:@"KEY"]) {
                     if (localNotification){
                         localNotification = nil;
                     }

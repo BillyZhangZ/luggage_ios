@@ -110,20 +110,14 @@
     [app addObserver:self forKeyPath:@"distance" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"battery" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"weight" options:NSKeyValueObservingOptionNew context:nil];
+    [app addObserver:self forKeyPath:@"addFingerPrintDone" options:NSKeyValueObservingOptionNew context:nil];
+    [app addObserver:self forKeyPath:@"delFingerPrintDone" options:NSKeyValueObservingOptionNew context:nil];
 
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-   
-  /*  if (_enableLostMode) {
-        [self.lostButton setTitle:@"关闭防丢模式" forState:UIControlStateNormal];
-    }
-    else
-    {
-        [self.lostButton setTitle:@"开启防丢模式" forState:UIControlStateNormal];
-    }*/
     
    // CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
     //CGColorRef color = CGColorCreate(colorSpaceRef, (CGFloat[]){1,0,0,1});
@@ -206,13 +200,35 @@
         NSString *battery = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"battery is changed! new=%@", battery);
         
-         [_battButton setTitle:[NSString stringWithFormat:@"电量：%@%%", battery]  forState:UIControlStateNormal];
+         [_battButton setTitle:[NSString stringWithFormat:@"Batter：%@%%", battery]  forState:UIControlStateNormal];
     }
     else if([keyPath isEqualToString:@"weight"])
     {
         NSString *weight = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"weight is changed! new=%@", weight);
-        [_weightButton setTitle:[NSString stringWithFormat:@"重量：%@千克", weight]  forState:UIControlStateNormal];
+        [_weightButton setTitle:[NSString stringWithFormat:@"Weight：%@千克", weight]  forState:UIControlStateNormal];
+    }
+    else if([keyPath isEqualToString:@"addFingerPrintDone"])
+    {
+        NSString *ret = [change valueForKey:NSKeyValueChangeNewKey];
+        NSLog(@"add finger is changed! new=%@", ret);
+        NSString *title = [NSString stringWithFormat:@"Add fingerprint %@",[ret integerValue] == 1?@"OK":@"Failed"];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else if([keyPath isEqualToString:@"delFingerPrintDone"])
+    {
+        NSString *ret = [change valueForKey:NSKeyValueChangeNewKey];
+        NSLog(@"del finger is changed! new=%@", ret);
+        NSString *title = [NSString stringWithFormat:@"Delete fingerprint %@",[ret integerValue] == 1?@"OK":@"Failed"];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -227,8 +243,8 @@
 }
 - (IBAction)onRemoteUnlock:(id)sender {
     if (_account.remotePhoneNumber == nil) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"未绑定设备" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please Bond Device" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
         return;
@@ -260,15 +276,6 @@
 }
 
 - (IBAction)onLostButton:(id)sender {
-   /* if (_enableLostMode) {
-        _enableLostMode = false;
-        [(UIButton *)sender setTitle:@"开启防丢模式" forState:UIControlStateNormal];
-    }
-    else
-    {
-        _enableLostMode = true;
-        [(UIButton *)sender setTitle:@"关闭防丢模式" forState:UIControlStateNormal];
-    }*/
 }
 
 #pragma sms delegate

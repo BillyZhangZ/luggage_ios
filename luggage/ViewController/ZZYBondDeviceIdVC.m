@@ -133,7 +133,7 @@
             
         }else{
             //出现错误；
-            NSLog(@"错误信息：%@",error);
+            NSLog(@"error：%@",error);
         }
     }];
     

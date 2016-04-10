@@ -71,7 +71,7 @@
     //buttons
     _mapModeButton =[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, CGRectGetHeight(self.view.bounds) - 60, 80, 40)];
     _mapModeButton.backgroundColor = [UIColor clearColor];
-    [_mapModeButton setTitle:@"夜间模式" forState:UIControlStateNormal];
+    [_mapModeButton setTitle:@"night mode" forState:UIControlStateNormal];
     [_mapModeButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     _mapModeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_mapModeButton addTarget:self action:@selector(onMapButtonMode) forControlEvents:UIControlEventTouchUpInside];
@@ -98,11 +98,11 @@
     switch (_mapView.mapType) {
         case MKMapTypeStandard:
             _mapView.mapType = MKMapTypeStandard;
-            [_mapModeButton setTitle:@"标准模式" forState:UIControlStateNormal];
+            [_mapModeButton setTitle:@"standard mode" forState:UIControlStateNormal];
             break;
         default:
             _mapView.mapType = MKMapTypeStandard;
-            [_mapModeButton setTitle:@"夜间模式" forState:UIControlStateNormal];
+            [_mapModeButton setTitle:@"night mode" forState:UIControlStateNormal];
             
             break;
     }
@@ -116,8 +116,8 @@
     //annotation.coordinate = CLLocationCoordinate2DMake(31.43715199999999, 121.13612);
     annotation.coordinate = CLLocationCoordinate2DMake(_latitude, _longtitude);
     
-    annotation.title = @"东仓花园";
-    annotation.subtitle = @"中国机械加工网";
+    annotation.title = @"Dongcang Park";
+    annotation.subtitle = @"";
     // 指定新的显示区域
     [_mapView setRegion:MKCoordinateRegionMake(annotation.coordinate, MKCoordinateSpanMake(0.04,0.04)) animated:YES];
     // 选中标注
@@ -169,9 +169,9 @@
     void (^onDone)(NSData *data) = ^(NSData *data) {
         if(data == nil)
         {
-            NSLog(@"获取gps数据失败%d",userId);
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"获取位置失败" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            NSLog(@"get gps failded%d",userId);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed" message:@"Please try it later" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
 
             [self presentViewController:alert animated:YES completion:nil];
@@ -180,8 +180,8 @@
         NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         NSArray *dicts = [allData valueForKey:@"gps"];
         if (dicts == nil) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
         }
@@ -323,7 +323,7 @@
                 CLLocation *firstLoc = session.locations.firstObject;
                 if(firstLoc != nil)
                 {
-                    workoutOverlay.annotationStart = [self setAnnotationAt:firstLoc.coordinate withTitle:@"起点" withSubTitle:stringFromDate(firstLoc.timestamp)];
+                    workoutOverlay.annotationStart = [self setAnnotationAt:firstLoc.coordinate withTitle:@"start" withSubTitle:stringFromDate(firstLoc.timestamp)];
                     break;
                 }
             }
@@ -335,7 +335,7 @@
         if(workoutOverlay.annotationEnd != nil) {
             [self.gdMapView removeAnnotation:workoutOverlay.annotationEnd];
         }
-        workoutOverlay.annotationEnd = [self setAnnotationAt:lastLoc.coordinate withTitle:@"终点" withSubTitle:stringFromDate(lastLoc.timestamp)];
+        workoutOverlay.annotationEnd = [self setAnnotationAt:lastLoc.coordinate withTitle:@"end" withSubTitle:stringFromDate(lastLoc.timestamp)];
     }
 #endif
 }

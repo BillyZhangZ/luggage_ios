@@ -76,20 +76,6 @@
 {
     [[tableView cellForRowAtIndexPath:indexPath] setBackgroundColor: [UIColor clearColor]];
     switch (indexPath.section) {
-#if 0
-        case 0:
-            self.commonUnit.text = @"厘米";
-            [_picker selectRow:_height inComponent:0 animated:NO];
-            break;
-        case 1:
-            self.commonUnit.text = @"公斤";
-            [_picker selectRow:_weight inComponent:0 animated:NO];
-            break;
-        case 2:
-            self.commonUnit.text = @"岁";
-            [_picker selectRow:_age inComponent:0 animated:NO];
-            break;
-#endif
         default:
             break;
     }

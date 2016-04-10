@@ -117,8 +117,8 @@
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
 
             if (dict == nil || [dict objectForKey:@"id"] == NULL) {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"位置数据格式错误" message:@"请再试一下下" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed" message:@"Please try later" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
             }
@@ -147,7 +147,7 @@
             
         }else{
             //出现错误；
-            NSLog(@"错误信息：%@",error);
+            NSLog(@"error：%@",error);
         }
     }];
     
