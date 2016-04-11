@@ -77,6 +77,8 @@
 		83B5CD9C1CB2197C009DFA80 /* ZZYRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B5CD9B1CB2197C009DFA80 /* ZZYRegisterVC.m */; };
 		83B5CDA81CB2B5C9009DFA80 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CDA71CB2B5C9009DFA80 /* avatar.png */; };
 		83B5CDAA1CB2B98E009DFA80 /* crazy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CDA91CB2B98E009DFA80 /* crazy.jpg */; };
+		83B5DC421CBBFD5E00A64CE6 /* ZZYFingerManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B5DC401CBBFD5E00A64CE6 /* ZZYFingerManageVC.m */; };
+		83B5DC431CBBFD5E00A64CE6 /* ZZYFingerManageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC411CBBFD5E00A64CE6 /* ZZYFingerManageVC.xib */; };
 		83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */; };
 		83D1D9F01C18EFC7005F4F63 /* ZZYBaseNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EF1C18EFC7005F4F63 /* ZZYBaseNavVC.m */; };
 		83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F21C18F889005F4F63 /* basicInfoCel.m */; };
@@ -197,6 +199,9 @@
 		83B5CD9B1CB2197C009DFA80 /* ZZYRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYRegisterVC.m; path = ViewController/ZZYRegisterVC.m; sourceTree = "<group>"; };
 		83B5CDA71CB2B5C9009DFA80 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar.png; path = images/avatar.png; sourceTree = "<group>"; };
 		83B5CDA91CB2B98E009DFA80 /* crazy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = crazy.jpg; path = images/crazy.jpg; sourceTree = "<group>"; };
+		83B5DC3F1CBBFD5E00A64CE6 /* ZZYFingerManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYFingerManageVC.h; path = ViewController/ZZYFingerManageVC.h; sourceTree = "<group>"; };
+		83B5DC401CBBFD5E00A64CE6 /* ZZYFingerManageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYFingerManageVC.m; path = ViewController/ZZYFingerManageVC.m; sourceTree = "<group>"; };
+		83B5DC411CBBFD5E00A64CE6 /* ZZYFingerManageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYFingerManageVC.xib; path = ViewController/ZZYFingerManageVC.xib; sourceTree = "<group>"; };
 		83D1D9EB1C18EF45005F4F63 /* ZZYSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSettingsVC.h; path = ViewController/ZZYSettingsVC.h; sourceTree = "<group>"; };
 		83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSettingsVC.m; path = ViewController/ZZYSettingsVC.m; sourceTree = "<group>"; };
 		83D1D9EE1C18EFC7005F4F63 /* ZZYBaseNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYBaseNavVC.h; path = ViewController/ZZYBaseNavVC.h; sourceTree = "<group>"; };
@@ -421,6 +426,9 @@
 				8355F90A1C17156C001E7352 /* ZZYWebsiteVC.xib */,
 				835944581CB538E4000AD413 /* ZZYBondDeviceIdVC.h */,
 				835944591CB538E4000AD413 /* ZZYBondDeviceIdVC.m */,
+				83B5DC3F1CBBFD5E00A64CE6 /* ZZYFingerManageVC.h */,
+				83B5DC401CBBFD5E00A64CE6 /* ZZYFingerManageVC.m */,
+				83B5DC411CBBFD5E00A64CE6 /* ZZYFingerManageVC.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -582,6 +590,7 @@
 				83465F931C0B0D2F0039C86C /* ZZYMainVC.xib in Resources */,
 				83B5CD981CB0E571009DFA80 /* email_icon.png in Resources */,
 				83465F7B1C0B03A00039C86C /* AMap.bundle in Resources */,
+				83B5DC431CBBFD5E00A64CE6 /* ZZYFingerManageVC.xib in Resources */,
 				83013E3A1C018E190065B5C2 /* LaunchScreen.xib in Resources */,
 				8359445C1CB55270000AD413 /* device.png in Resources */,
 				83933F8B1C15CDC500A7AA6F /* ZZYFootprintVC.xib in Resources */,
@@ -636,6 +645,7 @@
 				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.m in Sources */,
 				8348E1121C0DE69300E34C6B /* ZZYMenuView.m in Sources */,
 				8359445A1CB538E4000AD413 /* ZZYBondDeviceIdVC.m in Sources */,
+				83B5DC421CBBFD5E00A64CE6 /* ZZYFingerManageVC.m in Sources */,
 				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginVC.m in Sources */,
 				8376EE1E1C87367500C190FF /* ZZYUserGuideVC.m in Sources */,
 				83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */,

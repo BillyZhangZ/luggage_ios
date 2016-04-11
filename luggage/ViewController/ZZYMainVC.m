@@ -110,8 +110,8 @@
     [app addObserver:self forKeyPath:@"distance" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"battery" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"weight" options:NSKeyValueObservingOptionNew context:nil];
-    [app addObserver:self forKeyPath:@"FINGERREG" options:NSKeyValueObservingOptionNew context:nil];
-    [app addObserver:self forKeyPath:@"FINGERDEL" options:NSKeyValueObservingOptionNew context:nil];
+    //[app addObserver:self forKeyPath:@"FINGERREG" options:NSKeyValueObservingOptionNew context:nil];
+    //[app addObserver:self forKeyPath:@"FINGERDEL" options:NSKeyValueObservingOptionNew context:nil];
 
 }
 
@@ -212,7 +212,7 @@
     {
         NSString *ret = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"add finger is changed! new=%@", ret);
-        NSString *title = [NSString stringWithFormat:@"Add fingerprint %@",[ret integerValue] != 0?@"OK":@"Failed"];
+        NSString *title = [NSString stringWithFormat:@"Add fingerprint %@",[ret integerValue] != -1?@"OK":@"Failed"];
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -223,7 +223,7 @@
     {
         NSString *ret = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"del finger is changed! new=%@", ret);
-        NSString *title = [NSString stringWithFormat:@"Delete fingerprint %@",[ret integerValue] != 0?@"OK":@"Failed"];
+        NSString *title = [NSString stringWithFormat:@"Delete fingerprint %@",[ret integerValue] != -1?@"OK":@"Failed"];
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -264,10 +264,10 @@
     [self bleSendUnlock];
 }
 - (IBAction)onRegisterFinger:(id)sender {
-    [self bleSendRegisterFinger];
+    //[self bleSendRegisterFinger];
 }
 - (IBAction)onDeleteFinger:(id)sender {
-    [self bleSendDeleteFinger];
+    //[self bleSendDeleteFinger];
 }
 - (IBAction)onWeightButton:(id)sender {
     [self bleSendGetWeight];

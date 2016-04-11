@@ -21,6 +21,7 @@
 #import "ZZYWebsiteVC.h"
 #import "ZZYSettingsVC.h"
 #import "ZZYUserVC.h"
+#import "ZZYFingerManageVC.h"
 #import "BLEDevice.h"
 #import "ZZYUserGuideVC.h"
 #import "ZZYLoginVC.h"
@@ -199,7 +200,34 @@
     application.applicationIconBadgeNumber = 0;
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 }
-
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return result;
+}
 - (void) showMenu
 {
 #if 0
@@ -277,9 +305,10 @@
         ZZYBondDeviceIdVC *vc = [[ZZYBondDeviceIdVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
-    else if([itemName compare:@"Fingerprint Management"] == NSOrderedSame)
+    else if([itemName compare:@"Fingerprint"] == NSOrderedSame)
     {
-        
+        ZZYFingerManageVC *vc = [[ZZYFingerManageVC alloc]init];
+        [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     else if([itemName compare:@"Settings"] == NSOrderedSame)
     {

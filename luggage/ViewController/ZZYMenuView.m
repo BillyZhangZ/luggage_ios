@@ -94,17 +94,20 @@
     
     int originX;
     int originY;
-    rc.size.width = rc.size.height = lo_menu_item_size * rate_pixel_to_point;
-    rc.origin.y = lo_menu_header_height * rate_pixel_to_point + index/2 * rc.size.height;
-    rc.origin.x = (lo_menu_width * rate_pixel_to_point - rc.size.width * 2 - 1) / 2;
-    if(index % 2 == 1)
-        rc.origin.x += rc.size.width + 1;
+    rc.size.width = lo_menu_width * rate_pixel_to_point - 10;
+    rc.size.height = lo_menu_item_size * rate_pixel_to_point;
+    rc.origin.y = lo_menu_header_height * rate_pixel_to_point + index * rc.size.height;
+    rc.origin.x = 10;//(lo_menu_width * rate_pixel_to_point - rc.size.width * 2 - 1) / 2;
+    //if(index % 2 == 1)
+      //  rc.origin.x += rc.size.width + 1;
     originX = rc.origin.x;
     originY = rc.origin.y;
     UIButton *btn = [[UIButton alloc] initWithFrame:rc];
+   // btn.titleLabel.textAlignment = NSTextAlignmentRight;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     btn.tag = index;
+
     [btn addTarget:self action:@selector(onBtnMenuItem:) forControlEvents:UIControlEventTouchUpInside];
-    
     // divide rc
     rc.size.height *= 2.0 / 3;
     CGRect rcIcon;
@@ -117,6 +120,7 @@
     rc.origin.y += rc.size.height;
     rc.size.height /= 2;
     UILabel *lbl = [[UILabel alloc] initWithFrame:rc];
+    lbl.backgroundColor = [UIColor yellowColor];
     //lbl.numberOfLines = 2;
     //lbl.lineBreakMode = NSLineBreakByWordWrapping;
     lbl.textAlignment = NSTextAlignmentLeft;
@@ -128,27 +132,33 @@
         case 0:
             icon.image = [UIImage imageNamed:@"icon1.png"];
             lbl.text = @"Footprint";
+            [btn setTitle:@"Footprint" forState:UIControlStateNormal];
             break;
         case 1:
             icon.image = [UIImage imageNamed:@"icon2.png"];
             lbl.text = @"Flight";
+            [btn setTitle:@"Flight" forState:UIControlStateNormal];
             break;
         case 2:
             icon.image = [UIImage imageNamed:@"icon3.png"];
             lbl.text = @"Products";
+            [btn setTitle:@"Products" forState:UIControlStateNormal];
             break;
         case 3:
             icon.image = [UIImage imageNamed:@"icon4.png"];
             lbl.text = @"Add Device";
+            [btn setTitle:@"Add Device" forState:UIControlStateNormal];
             break;
         case 4:
             icon.image = [UIImage imageNamed:@"icon5.png"];
-            lbl.text = @"Fingerprint Management";
+            lbl.text = @"Fingerprint";
+            [btn setTitle:@"Fingerprint" forState:UIControlStateNormal];
             break;
         case 5:
         default:
             icon.image = [UIImage imageNamed:@"icon6.png"];
             lbl.text = @"Settings";
+            [btn setTitle:@"Settings" forState:UIControlStateNormal];
             break;
     }
 
@@ -158,9 +168,9 @@
     lbl.frame = tightRect;
     
     [self addSubview:btn];
-    [self addSubview:icon];
-    [self addSubview:lbl];
-    
+    //[self addSubview:icon];
+    //[self addSubview:lbl];
+#if 0
     if(index == 2 || index == 4) {
         rc.size.width = lo_menu_item_size * rate_pixel_to_point * 2 + 1;
         rc.size.height = 1;
@@ -179,6 +189,7 @@
         v.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:0.8];
         [self addSubview:v];
     }
+#endif
 }
 
 - (void) onBtnUser:(id)sender
@@ -203,7 +214,7 @@
         case 1: itemName = @"Flight"; break;
         case 2: itemName = @"Products"; break;
         case 3: itemName = @"Add Device"; break;
-        case 4: itemName = @"Fingerprint Management"; break;
+        case 4: itemName = @"Fingerprint"; break;
         case 5: itemName = @"Settings"; break;
         default: return; break;
     }

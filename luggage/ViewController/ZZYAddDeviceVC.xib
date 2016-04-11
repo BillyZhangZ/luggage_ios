@@ -24,16 +24,17 @@
                         <constraint firstAttribute="height" constant="44" id="8yW-8W-NLE"/>
                     </constraints>
                     <items>
-                        <navigationItem title="搜索设备" id="b4c-A6-Xts">
+                        <navigationItem title="Bond" id="b4c-A6-Xts">
                             <barButtonItem key="leftBarButtonItem" id="8nM-PQ-eBZ">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="cHv-Ty-cd2">
                                     <rect key="frame" x="20" y="7" width="40" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal">
                                         <attributedString key="attributedTitle">
-                                            <fragment content="返回">
+                                            <fragment content="Back">
                                                 <attributes>
-                                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                    <font key="NSFont" size="15" name="ArialMT"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -51,19 +52,7 @@
                                         <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
                                     </accessibility>
                                     <state key="normal">
-                                        <attributedString key="attributedTitle">
-                                            <fragment content="0.0">
-                                                <attributes>
-                                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="米">
-                                                <attributes>
-                                                    <font key="NSFont" size="15" name="STHeitiSC-Light"/>
-                                                    <font key="NSOriginalFont" size="15" name="HelveticaNeue"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                        <attributedString key="attributedTitle"/>
                                     </state>
                                 </button>
                             </barButtonItem>

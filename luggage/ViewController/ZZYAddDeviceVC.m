@@ -118,7 +118,7 @@ enum BLE_OPERATION
     }
     else
     {
-        label.text = @"Unboned Devices";
+        label.text = @"Unbonded Devices";
     }
     return view;
 }
