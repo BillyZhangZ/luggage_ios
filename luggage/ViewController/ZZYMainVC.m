@@ -12,6 +12,7 @@
 #import "ZZYLocateVC.h"
 #import <MessageUI/MFMessageComposeViewController.h>
 #import "ZZYAddDeviceVC.h"
+#import "BatteryView.h"
 
 @interface ZZYMainVC ()<MFMessageComposeViewControllerDelegate>
 {
@@ -19,6 +20,7 @@
     float _distance;
     int _rssiCount;
     ZZYAcount *_account;
+    BatteryView *_batView;
 }
 @end
 
@@ -92,6 +94,14 @@
     rc.size.width = self.delFingerButton.frame.size.width;
     rc.size.height = self.delFingerButton.frame.size.height;
     [self.delFingerButton setFrame:rc];
+    
+    rc.origin.x = rcScreen.size.width*0.618;
+    rc.origin.y = rcScreen.size.height - 60;
+    rc.size.height = 15;
+    rc.size.width = 40;
+    _batView = [[BatteryView alloc]initWithFrame:rc];
+    
+    [self.view addSubview:_batView];
     
     rc.origin.x = 0;
     rc.origin.y = 20;
@@ -205,6 +215,7 @@
         NSLog(@"battery is changed! new=%@", battery);
         
          [_battButton setTitle:[NSString stringWithFormat:@"Batter：%@%%", battery]  forState:UIControlStateNormal];
+        [_batView setBatttery:[battery integerValue]];
     }
     else if([keyPath isEqualToString:@"weight"])
     {
@@ -279,6 +290,23 @@
 - (IBAction)onBattButton:(id)sender {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
     [app sendBLECommad:@"AT+GTBAT\r"];
+#if 0
+    switch(arc4random()%4)
+    {
+            case 0:
+            [_batView setBatttery:BATTERY_0];
+            break;
+            case 1:
+            [_batView setBatttery:BATTERY_33];
+            break;
+            case 2:
+            [_batView setBatttery:BATTERY_66];
+            break;
+            case 3:
+            [_batView setBatttery:BATTERY_100];
+            break;
+    }
+#endif
 }
 
 - (IBAction)onLocateButton:(id)sender {

@@ -86,6 +86,8 @@
 		83B5DC501CBD37B000A64CE6 /* ZZYFeedbackVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC4E1CBD37B000A64CE6 /* ZZYFeedbackVC.xib */; };
 		83B5DC541CBD37D900A64CE6 /* ZZYAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B5DC521CBD37D900A64CE6 /* ZZYAboutVC.m */; };
 		83B5DC551CBD37D900A64CE6 /* ZZYAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC531CBD37D900A64CE6 /* ZZYAboutVC.xib */; };
+		83B5DC591CBD461200A64CE6 /* BatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B5DC581CBD461200A64CE6 /* BatteryView.m */; };
+		83B5DC5B1CBD4F3500A64CE6 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC5A1CBD4F3500A64CE6 /* battery.png */; };
 		83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */; };
 		83D1D9F01C18EFC7005F4F63 /* ZZYBaseNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EF1C18EFC7005F4F63 /* ZZYBaseNavVC.m */; };
 		83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F21C18F889005F4F63 /* basicInfoCel.m */; };
@@ -220,6 +222,9 @@
 		83B5DC511CBD37D900A64CE6 /* ZZYAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYAboutVC.h; path = ViewController/ZZYAboutVC.h; sourceTree = "<group>"; };
 		83B5DC521CBD37D900A64CE6 /* ZZYAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYAboutVC.m; path = ViewController/ZZYAboutVC.m; sourceTree = "<group>"; };
 		83B5DC531CBD37D900A64CE6 /* ZZYAboutVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYAboutVC.xib; path = ViewController/ZZYAboutVC.xib; sourceTree = "<group>"; };
+		83B5DC571CBD461200A64CE6 /* BatteryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatteryView.h; path = View/BatteryView.h; sourceTree = "<group>"; };
+		83B5DC581CBD461200A64CE6 /* BatteryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BatteryView.m; path = View/BatteryView.m; sourceTree = "<group>"; };
+		83B5DC5A1CBD4F3500A64CE6 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = battery.png; path = images/battery.png; sourceTree = "<group>"; };
 		83D1D9EB1C18EF45005F4F63 /* ZZYSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSettingsVC.h; path = ViewController/ZZYSettingsVC.h; sourceTree = "<group>"; };
 		83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSettingsVC.m; path = ViewController/ZZYSettingsVC.m; sourceTree = "<group>"; };
 		83D1D9EE1C18EFC7005F4F63 /* ZZYBaseNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYBaseNavVC.h; path = ViewController/ZZYBaseNavVC.h; sourceTree = "<group>"; };
@@ -317,6 +322,7 @@
 		83013E281C018E190065B5C2 /* luggage */ = {
 			isa = PBXGroup;
 			children = (
+				83B5DC561CBD45C000A64CE6 /* View */,
 				83E931651C0C7F8600DB1AA2 /* images */,
 				83465F7C1C0B07D70039C86C /* icons */,
 				83013E791C01E7B10065B5C2 /* Model */,
@@ -493,9 +499,19 @@
 			name = icons;
 			sourceTree = "<group>";
 		};
+		83B5DC561CBD45C000A64CE6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				83B5DC571CBD461200A64CE6 /* BatteryView.h */,
+				83B5DC581CBD461200A64CE6 /* BatteryView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		83E931651C0C7F8600DB1AA2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				83B5DC5A1CBD4F3500A64CE6 /* battery.png */,
 				8359445B1CB55270000AD413 /* device.png */,
 				83B5CDA91CB2B98E009DFA80 /* crazy.jpg */,
 				83B5CDA71CB2B5C9009DFA80 /* avatar.png */,
@@ -601,6 +617,7 @@
 			files = (
 				83465F801C0B08330039C86C /* Icon-60.png in Resources */,
 				83B5CD8A1C8BFDF3009DFA80 /* Icon-76.png in Resources */,
+				83B5DC5B1CBD4F3500A64CE6 /* battery.png in Resources */,
 				83465F8E1C0B08550039C86C /* Icon-Small@3x.png in Resources */,
 				83B5CDAA1CB2B98E009DFA80 /* crazy.jpg in Resources */,
 				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginVC.xib in Resources */,
@@ -680,6 +697,7 @@
 				83933F911C15D55000A7AA6F /* GdTrackOverlayView.m in Sources */,
 				83E931721C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.m in Sources */,
 				8348E1121C0DE69300E34C6B /* ZZYMenuView.m in Sources */,
+				83B5DC591CBD461200A64CE6 /* BatteryView.m in Sources */,
 				8359445A1CB538E4000AD413 /* ZZYBondDeviceIdVC.m in Sources */,
 				83B5DC421CBBFD5E00A64CE6 /* ZZYFingerManageVC.m in Sources */,
 				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginVC.m in Sources */,

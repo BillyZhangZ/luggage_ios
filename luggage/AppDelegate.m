@@ -196,10 +196,21 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
     [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
-    // 图标上的数字减1
     application.applicationIconBadgeNumber = 0;
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 }
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void(^)(BOOL succeeded))completionHandler{
+    //check the identifier
+    if([shortcutItem.type isEqualToString:@"-11.UITouchText.share"]){
+        NSArray *arr = @[@"Hi, I am using smart luggage. Join us now!"];
+        UIActivityViewController *vc = [[UIActivityViewController alloc]initWithActivityItems:arr applicationActivities:nil];
+        //use rootviewcontroller to present
+        [self.window.rootViewController presentViewController:vc animated:YES completion:^{
+        }];
+    }
+}
+
 - (UIViewController *)getCurrentVC
 {
     UIViewController *result = nil;
