@@ -10,10 +10,13 @@
 //#import <MAMapKit/MAMapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "ZZYAcount.h"
+#import "ZZYSetting.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ZZYAcount *account;
+@property (strong, nonatomic) ZZYSetting *setting;
+
 @property NSInteger isDeviceBonded;
 
 //微信分享接口声明

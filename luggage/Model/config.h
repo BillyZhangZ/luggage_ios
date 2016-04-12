@@ -41,14 +41,14 @@
 #define  lo_settings_icon_size   205/4
 #define  lo_settings_icon_x_center_offset   224/4
 #define  lo_settings_icon_y_center_offset  342/4
-#define  lo_settings_table_y_offset  (569 - 160)/4
+#define  lo_settings_table_y_offset  (569 - 320)/4
 #define  lo_settings_cell_switch_width  104/4
 #define  lo_settings_cell_switch_height   64/4
 
 #define DEFBKCOLOR [UIColor colorWithRed:0x24/255.0 green:0x25/255.0 blue:0x2a/255.0 alpha:1.0]
 
-#define STATUSBARTINTCOLOR [UIColor colorWithRed:0.5 green:0.0 blue:0.5 alpha:0.0] // transparent
-#define DEFFGCOLOR [UIColor colorWithRed:0xf0/255.0 green:0x65/255.0 blue:0x22/255.0 alpha:1.0]
+#define STATUSBARTINTCOLOR [UIColor colorWithRed:50/255.0 green:50/255.0 blue:70/255.0 alpha:1.0] // transparent
+#define DEFFGCOLOR [UIColor colorWithRed:50/255.0 green:50/255.0 blue:70/255.0 alpha:1.0]
 
 #define MENU_NICKNAME_FONT_COLOR [UIColor whiteColor]
 #define MENU_USER_NICKNAME_FONT_SIZE (23*2*rate_pixel_to_point/4)

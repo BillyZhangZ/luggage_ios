@@ -181,6 +181,10 @@
     AppDelegate *app =[[UIApplication sharedApplication]delegate];
 
     if ([keyPath isEqualToString:@"distance"]) {
+        //check if alert according to setting
+        if (![app.setting.alertSetting boolValue]) {
+            return;
+        }
         NSString * distance = [change valueForKey:NSKeyValueChangeNewKey];
         if ([distance floatValue] > 6) {
           [app pushLocalNotification];

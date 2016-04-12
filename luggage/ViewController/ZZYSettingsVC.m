@@ -9,7 +9,9 @@
 #import "config.h"
 #import "AppDelegate.h"
 #import "ZZYSettingsVC.h"
-
+#import "ZZYFeedbackVC.h"
+#import "ZZYAboutVC.h"
+#import "ZZYPravicyVC.h"
 @interface ZZYSettingsVC ()<UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
 {
     UIImageView *_ivPhoto;
@@ -33,34 +35,13 @@
     rc = [[UIScreen mainScreen] bounds];
     UIImageView *iv = [[UIImageView alloc] initWithFrame:rc];
     iv.image = [UIImage imageNamed:@"bg.png"];
-    [self.view addSubview:iv];
-//    iv = [[UIImageView alloc] initWithFrame:rc];
-//    iv.image = [UIImage imageNamed:@"history_bg.png"];
-//    [self.view addSubview:iv];
-    
-    // Do any additional setup after loading the view.
+    //[self.view addSubview:iv];
+
     self.vcTitle = @"Settings";
     self.leftButtonImage = @"menu.png";
     
     [super constructView];
     [self.leftButton addTarget:self action:@selector(onBtnMenu) forControlEvents:UIControlEventTouchUpInside];
-
-    int x = (lo_settings_icon_x_center_offset - lo_settings_icon_size / 2) * rate_pixel_to_point;
-    int y = (lo_settings_icon_y_center_offset - lo_settings_icon_size / 2) * rate_pixel_to_point;
-    rc = CGRectMake(x, y, lo_settings_icon_size*rate_pixel_to_point, lo_settings_icon_size*rate_pixel_to_point);
-    _ivPhoto = [[UIImageView alloc] initWithFrame:rc];
-    _ivPhoto.image = [UIImage imageNamed:@"user.png"];
-    _ivPhoto.layer.cornerRadius = rc.size.width/2;
-    _ivPhoto.layer.masksToBounds=YES;
-    [self.view addSubview:_ivPhoto];
-
-    rc.origin.x += rc.size.width + 16;
-    rc.size.width = [[UIScreen mainScreen] bounds].size.width - rc.origin.x;
-    _lblNickName = [[UILabel alloc] initWithFrame:rc];
-    [_lblNickName setText:@"User >"];
-    _lblNickName.font = [UIFont systemFontOfSize:SETTINGS_NICKNAME_FONT_SIZE];
-    _lblNickName.textColor = [UIColor whiteColor];
-    [self.view addSubview:_lblNickName];
 
     rc.origin.x = 0;
     rc.origin.y = lo_settings_table_y_offset * rate_pixel_to_point;
@@ -77,7 +58,7 @@
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHandle:)];
     tapGesture.delegate = self;
-    [self.view addGestureRecognizer:tapGesture];
+    //[self.view addGestureRecognizer:tapGesture];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,11 +68,6 @@
 
 - (void) onBtnMenu
 {
-#if 0
-     [_lblNickName resignFirstResponder];
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate showMenu];
-#endif
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -105,19 +81,18 @@
 #endif
  }
 
-- (void) switchVoiceHelper:(id)sender
+- (void) switchAlertHelper:(id)sender
 {
-#if 0
      AppDelegate *app = [UIApplication sharedApplication].delegate;
-    XJAccountManager *am = app.accountManager;
+    
     UISwitch *s = (UISwitch *)sender;
-    am.currentAccount.voiceHelper = s.on;
-#endif
+    app.setting.alertSetting = [NSString stringWithFormat:@"%d",s.on];
 }
 
 -(void) switchNotification:(id)sender
 {
      UISwitch *s = (UISwitch *)sender;
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
     BOOL state = s.on;
     
     if (state) {
@@ -130,6 +105,8 @@
     {
         s.on =true;
     }
+    app.setting.notifySetting =[NSString stringWithFormat:@"%d",s.on];
+
  }
 
 - (void)handleGesture:(UIScreenEdgePanGestureRecognizer *)gesture {
@@ -163,6 +140,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
+    AppDelegate *app =[[UIApplication sharedApplication]delegate];
     if(indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"settingTableCell1"];
         if(cell == nil)
@@ -173,7 +151,7 @@
             UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, lo_settings_cell_switch_width*rate_pixel_to_point, lo_settings_cell_switch_height*rate_pixel_to_point)];
             switchView.tag = indexPath.row;
             cell.accessoryView = switchView;
-            [switchView setOn:NO animated:NO];
+            [switchView setOn:[app.setting.notifySetting boolValue] animated:NO];
             [switchView addTarget:self action:@selector(switchNotification:) forControlEvents:UIControlEventValueChanged];
             
             UIUserNotificationType types = [[[UIApplication sharedApplication] currentUserNotificationSettings] types];
@@ -181,18 +159,14 @@
             switchView.onTintColor = DEFFGCOLOR;
         }
         else if(indexPath.row == 1) {
-            cell.textLabel.text = @"Voice Helper";
+            cell.textLabel.text = @"Alert";
             cell.detailTextLabel.text = @"";
             UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, lo_settings_cell_switch_width*rate_pixel_to_point, lo_settings_cell_switch_height*rate_pixel_to_point)];
             switchView.tag = indexPath.row;
             cell.accessoryView = switchView;
-            [switchView setOn:NO animated:NO];
-            [switchView addTarget:self action:@selector(switchVoiceHelper:) forControlEvents:UIControlEventValueChanged];
-            //AppDelegate *app = [UIApplication sharedApplication].delegate;
-#if 0
-            XJAccountManager *am = app.accountManager;
-            switchView.on = am.currentAccount.voiceHelper;
-#endif
+            [switchView setOn:[app.setting.alertSetting boolValue] animated:NO];
+            [switchView addTarget:self action:@selector(switchAlertHelper:) forControlEvents:UIControlEventValueChanged];
+
             switchView.onTintColor = DEFFGCOLOR;
         }
     }
@@ -202,7 +176,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"settingTableCell2"];
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"Feedbacks";
+                cell.textLabel.text = @"Feedback";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
             case 1:
@@ -210,7 +184,7 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
             case 2:
-                cell.textLabel.text = @"Thanks";
+                cell.textLabel.text = @"Pravicy";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
             default:
@@ -227,6 +201,38 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 0:
+            {
+                ZZYFeedbackVC *vc = [[ZZYFeedbackVC alloc]init];
+                [self presentViewController:vc
+                                   animated:YES completion:nil];
+            }
+            break;
+            case 1:
+            {
+                ZZYAboutVC *vc = [[ZZYAboutVC alloc]init];
+                [self presentViewController:vc
+                                   animated:YES completion:nil];
+            }
+                break;
+                
+            case 2:
+            {
+                ZZYPravicyVC *vc = [[ZZYPravicyVC alloc]init];
+                [self presentViewController:vc
+                                   animated:YES completion:nil];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     if(indexPath.section == 0)

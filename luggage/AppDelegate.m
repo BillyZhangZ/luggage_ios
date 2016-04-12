@@ -53,7 +53,7 @@
     
     _mainVC = [[ZZYMainVC alloc] init];
     _account = [[ZZYAcount alloc]init];
-    
+    _setting = [[ZZYSetting alloc]init];
     _loginVC = [[ZZYLoginVC alloc]init];
     
     _bleState = false;
