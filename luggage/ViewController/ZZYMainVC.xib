@@ -8,13 +8,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZZYMainVC">
             <connections>
                 <outlet property="addDeviceButton" destination="nH1-Md-X7b" id="kPD-pE-hdm"/>
-                <outlet property="alertButton" destination="xCB-Cv-j5u" id="71t-uE-lOV"/>
-                <outlet property="battButton" destination="w71-Ob-AGc" id="H5C-Y3-5Wv"/>
                 <outlet property="bleUnlockButton" destination="c93-3U-GQO" id="gqo-eG-d3Y"/>
-                <outlet property="delFingerButton" destination="m0Y-ce-lex" id="M2k-uk-AXO"/>
                 <outlet property="locateButton" destination="gH0-JF-AE6" id="TgA-ng-jfg"/>
                 <outlet property="navigatorBar" destination="yZn-N6-e7X" id="u8L-ug-EpX"/>
-                <outlet property="regFingerButton" destination="Cug-Mt-HcY" id="Jdb-Ch-C3D"/>
                 <outlet property="smsUnlockButton" destination="cbK-yB-v1j" id="2EL-cR-E2C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weightButton" destination="yRD-Qp-d91" id="Gw1-jW-agH"/>
@@ -96,41 +92,6 @@
                         <action selector="onBLEUnlock:" destination="-1" eventType="touchUpInside" id="kc3-ri-HcD"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Cug-Mt-HcY">
-                    <rect key="frame" x="53" y="503" width="89" height="67"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="deplecated">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onRegisterFinger:" destination="-1" eventType="touchUpInside" id="kEJ-pu-6SL"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m0Y-ce-lex">
-                    <rect key="frame" x="171" y="503" width="89" height="65"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="deplecated">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onDeleteFinger:" destination="-1" eventType="touchUpInside" id="Ecr-lY-P55"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xCB-Cv-j5u">
-                    <rect key="frame" x="50" y="274" width="100" height="100"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="Distance：">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onLostButton:" destination="-1" eventType="touchUpInside" id="78d-RE-dNs"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yRD-Qp-d91">
                     <rect key="frame" x="53" y="392" width="207" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -140,17 +101,6 @@
                     </state>
                     <connections>
                         <action selector="onWeightButton:" destination="-1" eventType="touchUpInside" id="k6t-D8-7ct"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w71-Ob-AGc">
-                    <rect key="frame" x="53" y="445" width="207" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="Battery">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onBattButton:" destination="-1" eventType="touchUpInside" id="4dd-Sz-MFl"/>
                     </connections>
                 </button>
             </subviews>

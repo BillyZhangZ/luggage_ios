@@ -59,14 +59,9 @@
     rc.size.height = self.bleUnlockButton.frame.size.height;
     [self.bleUnlockButton setFrame:rc];
     
-    rc.origin.y = self.alertButton.frame.origin.y;
-    rc.origin.x = rcScreen.size.width/2 - (self.locateButton.frame.origin.x - self.alertButton.frame.origin.x + self.locateButton.frame.size.width)/2;
-    rc.size.width = self.alertButton.frame.size.width;
-    rc.size.height = self.alertButton.frame.size.height;
-    [self.alertButton setFrame:rc];
     
     rc.origin.y = self.locateButton.frame.origin.y;
-    rc.origin.x = self.alertButton.frame.origin.x + self.alertButton.frame.size.width + 10;
+    rc.origin.x = self.locateButton.frame.origin.x;
     rc.size.width = self.locateButton.frame.size.width;
     rc.size.height = self.locateButton.frame.size.height;
     [self.locateButton setFrame:rc];
@@ -76,24 +71,6 @@
     rc.size.width =  self.weightButton.frame.size.width;
     rc.size.height = self.weightButton.frame.size.height;
     [self.weightButton setFrame:rc];
-    
-    rc.origin.y = self.battButton.frame.origin.y;
-    rc.origin.x = rcScreen.size.width/2 - self.battButton.frame.size.width/2;
-    rc.size.width =  self.battButton.frame.size.width;
-    rc.size.height = self.battButton.frame.size.height;
-    [self.battButton setFrame:rc];
-
-    rc.origin.y = self.regFingerButton.frame.origin.y;
-    rc.origin.x = rcScreen.size.width/2 - (self.delFingerButton.frame.origin.x - self.regFingerButton.frame.origin.x + self.delFingerButton.frame.size.width)/2;
-    rc.size.width = self.regFingerButton.frame.size.width;
-    rc.size.height = self.regFingerButton.frame.size.height;
-    [self.regFingerButton setFrame:rc];
-    
-    rc.origin.y = self.delFingerButton.frame.origin.y;
-    rc.origin.x = self.regFingerButton.frame.origin.x + self.regFingerButton.frame.size.width + 30;
-    rc.size.width = self.delFingerButton.frame.size.width;
-    rc.size.height = self.delFingerButton.frame.size.height;
-    [self.delFingerButton setFrame:rc];
     
     rc.origin.x = rcScreen.size.width*0.618;
     rc.origin.y = rcScreen.size.height - 60;
@@ -135,10 +112,6 @@
     [_locateButton.layer setCornerRadius:10];
     [_locateButton.layer setBorderWidth:2];//设置边界的宽度
     
-    [_alertButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
-    [_alertButton.layer setCornerRadius:10];
-    [_alertButton.layer setBorderWidth:2];//设置边界的宽度
-    
     [_bleUnlockButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
     [_bleUnlockButton.layer setCornerRadius:10];
     [_bleUnlockButton.layer setBorderWidth:2];//设置边界的宽度
@@ -151,23 +124,6 @@
     [_weightButton.layer setCornerRadius:10];
     [_weightButton.layer setBorderWidth:2];//设置边界的宽度
     
-    [_battButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
-    [_battButton.layer setCornerRadius:10];
-    [_battButton.layer setBorderWidth:2];//设置边界的宽度
-
-    [_regFingerButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
-    [_regFingerButton.layer setCornerRadius:10];
-    [_regFingerButton.layer setBorderWidth:2];//设置边界的宽度
-
-    [_delFingerButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
-    [_delFingerButton.layer setCornerRadius:10];
-    [_delFingerButton.layer setBorderWidth:2];//设置边界的宽度
-
-    // [_locateButton.layer setBorderColor:color];
-    //[_lostButton.layer setBorderColor:color];
-    //[_locateButton.layer setBorderColor:color];
-    //[_locateButton.layer setBorderColor:color];
-
    // say(@"welcome");
 }
 - (void)didReceiveMemoryWarning {
@@ -199,29 +155,28 @@
         if ([distance floatValue] > 6) {
           [app pushLocalNotification];
         }
-        
+#if 0
         NSString *distanceStr = [NSString stringWithFormat:@"dis:%@", distance];//_distance/_rssiCount];
         _alertButton.titleLabel.numberOfLines = 0;
         _alertButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [_alertButton setTitle:distanceStr forState:UIControlStateNormal];
-
+#endif
         NSLog(@"distance is changed! new=%@", [change valueForKey:NSKeyValueChangeNewKey]);
-        
-        
     }
     else if([keyPath isEqualToString:@"battery"])
     {
         NSString *battery = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"battery is changed! new=%@", battery);
         
-         [_battButton setTitle:[NSString stringWithFormat:@"Batter：%@%%", battery]  forState:UIControlStateNormal];
-        [_batView setBatttery:[battery integerValue]];
+        if ([battery integerValue] != _batView.batttery) {
+            [_batView setBatttery:[battery integerValue]];
+        }
     }
     else if([keyPath isEqualToString:@"weight"])
     {
         NSString *weight = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"weight is changed! new=%@", weight);
-        [_weightButton setTitle:[NSString stringWithFormat:@"Weight：%@千克", weight]  forState:UIControlStateNormal];
+        [_weightButton setTitle:[NSString stringWithFormat:@"Weight：%@Kg", weight]  forState:UIControlStateNormal];
     }
     else if([keyPath isEqualToString:@"FINGERREG"])
     {
@@ -290,23 +245,6 @@
 - (IBAction)onBattButton:(id)sender {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
     [app sendBLECommad:@"AT+GTBAT\r"];
-#if 0
-    switch(arc4random()%4)
-    {
-            case 0:
-            [_batView setBatttery:BATTERY_0];
-            break;
-            case 1:
-            [_batView setBatttery:BATTERY_33];
-            break;
-            case 2:
-            [_batView setBatttery:BATTERY_66];
-            break;
-            case 3:
-            [_batView setBatttery:BATTERY_100];
-            break;
-    }
-#endif
 }
 
 - (IBAction)onLocateButton:(id)sender {

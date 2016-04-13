@@ -128,6 +128,17 @@
             }
             
             NSLog(@"%@", [dict objectForKey:@"id"]);
+            if([[dict objectForKey:@"id"]integerValue] == 0)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed" message:@"Email exists" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+                    [alert addAction:okAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                });
+                return;
+            }
             //store user id
             AppDelegate *app = [[UIApplication sharedApplication]delegate];
             app.account.userId = [dict objectForKey:@"id"];

@@ -15,7 +15,7 @@
 @property  (nonatomic) NSInteger batttery;
 
 #define BATTERY_0    0
-#define BATTERY_33   1
-#define BATTERY_66   2
-#define BATTERY_100  3
+#define BATTERY_33   33
+#define BATTERY_66   66
+#define BATTERY_100  100
 @end

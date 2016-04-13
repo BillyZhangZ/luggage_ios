@@ -486,6 +486,7 @@ void say(NSString *sth)
 -(void)onUpdateRssi
 {
     [_foundDev readRSSI];
+    [self sendBLECommad:@"AT+GTBAT\r"];
 }
 
 -(void)onRssiRead:(NSNumber*)rssi
