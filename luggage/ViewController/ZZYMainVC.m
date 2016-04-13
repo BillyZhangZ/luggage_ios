@@ -72,14 +72,6 @@
     rc.size.height = self.weightButton.frame.size.height;
     [self.weightButton setFrame:rc];
     
-    rc.origin.x = rcScreen.size.width*0.618;
-    rc.origin.y = rcScreen.size.height - 60;
-    rc.size.height = 15;
-    rc.size.width = 40;
-    _batView = [[BatteryView alloc]initWithFrame:rc];
-    
-    [self.view addSubview:_batView];
-    
     rc.origin.x = 0;
     rc.origin.y = 20;
     rc.size.height = 44;
@@ -97,9 +89,6 @@
     [app addObserver:self forKeyPath:@"distance" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"battery" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"weight" options:NSKeyValueObservingOptionNew context:nil];
-    //[app addObserver:self forKeyPath:@"FINGERREG" options:NSKeyValueObservingOptionNew context:nil];
-    //[app addObserver:self forKeyPath:@"FINGERDEL" options:NSKeyValueObservingOptionNew context:nil];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated

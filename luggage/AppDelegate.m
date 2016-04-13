@@ -55,7 +55,7 @@
     _account = [[ZZYAcount alloc]init];
     _setting = [[ZZYSetting alloc]init];
     _loginVC = [[ZZYLoginVC alloc]init];
-    
+    _isDeviceBonded = [_account.bond integerValue];
     _bleState = false;
     FINGERREG = FINGERDEL = 0;
 
@@ -106,9 +106,6 @@
         }
         else
         {
-            if (_account.deviceId) {
-                //_isDeviceBonded = 1;
-            }
             if (_isDeviceBonded) {
                 _luggageDevice = [[LuggageDevice alloc]init:self onlyScan:NO];
             }
@@ -126,6 +123,8 @@
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    _account.bond = [change valueForKey:NSKeyValueChangeNewKey];
+
     if ([keyPath isEqualToString:@"isDeviceBonded"]) {
         if([[change valueForKey:NSKeyValueChangeNewKey] integerValue] == 0)
         {

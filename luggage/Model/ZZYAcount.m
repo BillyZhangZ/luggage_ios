@@ -30,6 +30,7 @@
         _email = [accountInfo objectForKey:@"email"];
         _userName = [accountInfo objectForKey:@"name"];
         _deviceId = [accountInfo objectForKey:@"deviceId"];
+        _bond = [accountInfo objectForKey:@"bond"];
         NSLog(@"login with user: %@\t id: %@\n",_localPhoneNumber, _userId);
         
     }
@@ -72,7 +73,14 @@
 -(void)setEmail:(NSString *)email
 {
     _email = email;
-    [self storeItemToDisk:@"email" value:_email];
+    [self storeItemToDisk:@"email" value:email];
+}
+
+-(void)setBond:(NSString *)bond
+{
+    _bond = bond;
+    NSLog(@"set bond id%@",bond);
+    [self storeItemToDisk:@"bond" value:bond];
 }
 -(void)dealloc
 {
@@ -101,7 +109,7 @@
     NSFileManager* fm = [NSFileManager defaultManager];
     if (![fm fileExistsAtPath:plistPath]) {
         [fm createFileAtPath: plistPath contents:nil attributes:nil];
-        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"id",@"",@"email",@"",@"name",@"0",@"localPhoneNumber",@"0", @"remotePhoneNumber", @"0", @"deviceId",nil];
+        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"id",@"",@"email",@"",@"name",@"0",@"localPhoneNumber",@"0", @"remotePhoneNumber", @"0", @"deviceId",@"0", @"bond",nil];
         [dic writeToFile:plistPath atomically:YES];
     }
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
