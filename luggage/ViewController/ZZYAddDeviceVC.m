@@ -12,7 +12,6 @@
 enum BLE_OPERATION
 {
     BLE_OPERATION_NONE,
-    BLE_OPERATION_GET_LUGGAGE_NUMBER,
     BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER,
     
 };
@@ -123,24 +122,13 @@ enum BLE_OPERATION
     return view;
 }
 
--(void)getLuggagePhoneNumber
-{
-    [_luggageDevice LuggageWriteChar:@"AT+GTSIM\r"];
-}
-
 -(void)sendLocalPhoneNumber
 {
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    if (app.account.localPhoneNumber == nil) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please Login in" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-    //FIX ME
-    [_luggageDevice LuggageWriteChar: app.account.localPhoneNumber];
+    NSString *cmd = [NSString stringWithFormat:@"AT+STSIM=%@\r", app.account.localPhoneNumber];
+    [_luggageDevice LuggageWriteChar:cmd];
 }
+
 #pragma luggage device delegate
 -(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
 {
@@ -189,8 +177,8 @@ enum BLE_OPERATION
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
     [log appendString:@"ios:set ntf ok\n"];
     self.logText.text  = log;
-    [self getLuggagePhoneNumber];
-    _opration = BLE_OPERATION_GET_LUGGAGE_NUMBER;
+    [self sendLocalPhoneNumber];
+    _opration = BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER;
 }
 -(void)onLuggageDeviceDissconnected
 {
@@ -215,8 +203,6 @@ enum BLE_OPERATION
 
 -(void)onLuggageNtfChar:(NSString *)recData
 {
-    
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
     NSLog(@"%@", getATCmd(recData));
     NSMutableString *log = [[NSMutableString alloc]initWithString:self.logText.text];
     [log appendString:@"linkit:"];
@@ -227,28 +213,16 @@ enum BLE_OPERATION
         case BLE_OPERATION_NONE:
             //error
             break;
-        case BLE_OPERATION_GET_LUGGAGE_NUMBER:
-            //app.account.remotePhoneNumber = getATContent(recData);
-            //check it and store local and server, fix me
-            [app.account setRemotePhoneNumber:getATContent(recData)];
-           // [app.account setValue:getATContent(recData) forKey:@"remotePhoneNumber"];
-            NSLog(@"%@",app.account.remotePhoneNumber);
+        case BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER:
             if (true) {
                 //continue
             }
             else return;
-
-          //  [self sendLocalPhoneNumber];
-           // _opration = BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER;
             break;
-        case BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER:
-            
-            _opration = BLE_OPERATION_NONE;
-            break;
-        default:
+            default:
             break;
     }
-    if (_opration == BLE_OPERATION_GET_LUGGAGE_NUMBER) {
+    if (_opration == BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
 

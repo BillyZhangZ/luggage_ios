@@ -16,6 +16,9 @@
     UIImageView *_logoImageView;
     UITextView *_deviceNameView;
     UITextField *_deviceIdTextField;
+    UITextView *_deviceSimView;
+    UITextField *_deviceSimTextField;
+    
     UIButton *_confirmButton;
 }
 @end
@@ -29,14 +32,15 @@
     bgView.image = [UIImage imageNamed:@"login_bg.jpg"];
     [self.view addSubview: bgView];
     [self.view sendSubviewToBack:bgView];
-#if 1
-    rc.size.height = 240;
+
+    rc.size.height = 200;
     rc.size.width = 210;
     rc.origin.x = rcScreen.size.width/2 - rc.size.width/2;
     rc.origin.y = 40;
     _logoImageView = [[UIImageView alloc]initWithFrame:rc];
     _logoImageView.image = [UIImage imageNamed:@"device.png"];
-#endif
+
+    //device id label
     rc.size.width = 210;
     rc.origin.x = rcScreen.size.width/2 - rc.size.width/2;
     rc.origin.y = rc.origin.y + rc.size.height + 10;
@@ -48,17 +52,36 @@
     _deviceNameView.font = [UIFont systemFontOfSize:18];
     _deviceNameView.textColor = [UIColor whiteColor];
     _deviceNameView.backgroundColor = [UIColor clearColor];
-    rc.origin.y += rc.size.height + 10;
+    
+    //device id textfield
+    rc.origin.y += rc.size.height + 5;
     rc.size.height = 30;
     _deviceIdTextField = [[UITextField alloc]initWithFrame:rc];
-    
     _deviceIdTextField.textColor = [UIColor grayColor];
     [_deviceIdTextField setText:@""];
-    
     _deviceIdTextField.backgroundColor = [UIColor whiteColor];
     _deviceIdTextField.borderStyle = UITextBorderStyleRoundedRect;
-    //[_deviceIdTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+
+    //device Sim label
+    rc.origin.y += rc.size.height + 10;
+    _deviceSimView = [[UITextView alloc]initWithFrame:rc];
+    _deviceSimView.text = @"Device Sim";
+    [_deviceSimView.layer setBorderColor:(__bridge CGColorRef _Nullable)([UIColor redColor])];
+    [_deviceSimView.layer setBorderWidth:2.0];
+    _deviceSimView.font = [UIFont systemFontOfSize:18];
+    _deviceSimView.textColor = [UIColor whiteColor];
+    _deviceSimView.backgroundColor = [UIColor clearColor];
     
+    //device Sim textfield
+    rc.origin.y += rc.size.height + 5;
+    rc.size.height = 30;
+    _deviceSimTextField = [[UITextField alloc]initWithFrame:rc];
+    _deviceSimTextField.textColor = [UIColor grayColor];
+    [_deviceSimTextField setText:@""];
+    _deviceSimTextField.backgroundColor = [UIColor whiteColor];
+    _deviceSimTextField.borderStyle = UITextBorderStyleRoundedRect;
+
+    //done button
     rc.origin.y += rc.size.height + 20;
     rc.size.height = 44;
     _confirmButton = [[UIButton alloc]initWithFrame:rc];
@@ -67,9 +90,11 @@
     
     [_confirmButton addTarget:self action:@selector(onConfirmButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:_deviceNameView];
     [self.view addSubview:_logoImageView];
+    [self.view addSubview:_deviceNameView];
     [self.view addSubview:_deviceIdTextField];
+    [self.view addSubview:_deviceSimView];
+    [self.view addSubview:_deviceSimTextField];
     [self.view addSubview:_confirmButton];
     _deviceIdTextField.delegate  = self;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHandle:)];
@@ -80,7 +105,7 @@
 
 -(void)onConfirmButton:(id)sender
 {
-    if ([_deviceIdTextField.text isEqualToString: @""]) {
+    if ((_deviceIdTextField.text.length ==0) || (_deviceIdTextField.text.length == 0)) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error!" message:@"Device ID can not be null" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
@@ -97,7 +122,7 @@
     [request setTimeoutInterval:100.0f];
     NSString *string;
     
-    string = [[NSString alloc] initWithFormat:@"{\"userId\":\"%d\",\"deviceId\":\"%d\"}",userId, [_deviceIdTextField.text integerValue]];
+    string = [[NSString alloc] initWithFormat:@"{\"userId\":\"%d\",\"deviceId\":\"%d\",\"deviceSim\":\"%@\"}",userId, [_deviceIdTextField.text integerValue],_deviceSimTextField.text];
     NSLog(@"%@", string);
     [request setHTTPBody:[string dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -173,6 +198,7 @@
 -(void)tapHandle:(UITapGestureRecognizer *)tap
 {
     [_deviceIdTextField resignFirstResponder];
+    [_deviceSimTextField resignFirstResponder];
 }
 
 #pragma mark - disable landscape
@@ -191,6 +217,5 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
-
 
 @end

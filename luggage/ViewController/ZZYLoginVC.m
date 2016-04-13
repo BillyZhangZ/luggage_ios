@@ -168,9 +168,8 @@
             [app.account setUserName:[dict objectForKey:@"name"]];
             [app.account setEmail:  [dict objectForKey:@"email"]];
             [app.account setDeviceId:[dict objectForKey:@"deviceId"]];
-          // if ((app.account.deviceId != nil )&& (![app.account.deviceId isEqualToString:@""]) ) {
-          //      [app setValue:@"1" forKey:@"isDeviceBonded"];
-          //  }
+            [app.account setRemotePhoneNumber:[dict objectForKey:@"deviceSim"]];
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Succeed" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
