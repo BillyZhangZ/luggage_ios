@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "luggage/ViewController/ZZYSettingsVC.m"
-            timestampString = "482164809.604875"
+            filePath = "luggage/ViewController/ZZYRegisterVC.m"
+            timestampString = "482249750.210778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-switchNotification:"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "-textFieldShouldClear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

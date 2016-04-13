@@ -186,15 +186,53 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    
+    if (textField.text.length == 0) {
+        [self defaultTextFieldContent:textField];
+    }
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+#if 0
+    NSMutableString *newValue = [textField.text mutableCopy];
+    [newValue replaceCharactersInRange:range withString:string];
+    if ([newValue length] == 0) {
+        [self defaultTextFieldContent:textField];
+    }
+    else
+    {
+        
+    }
+#endif
     return YES;
 }
 
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    [self defaultTextFieldContent:textField];
+    return YES;
+    
+}
 
+-(void)defaultTextFieldContent:(UITextField *)textField
+{
+    textField.textColor = [UIColor grayColor];
+    if (textField == _nameTextField) {
+        [textField setText:@"Nick name"];
+    }
+    else if(textField == _emailTextField)
+    {
+        [textField setText:@"Email"];
+    }
+    else if(textField == _passwordTextField)
+    {
+        [textField setText:@"Password"];
+        [textField setSecureTextEntry:NO];
+    }
+    else if(textField == _phoneTextField)
+    {
+        [textField setText:@"Phone number"];
+    }
+}
 
 #pragma mark - gesture response
 -(void)tapHandle:(UITapGestureRecognizer *)tap

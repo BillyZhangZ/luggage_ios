@@ -95,10 +95,9 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if ([textField.text length] == 4) {
-        
+    if (textField.text.length == 0) {
+        [self defaultTextFieldContent:textField];
     }
-    
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -106,6 +105,18 @@
         return YES;
 }
 
+-(void)defaultTextFieldContent:(UITextField *)textField
+{
+    textField.textColor = [UIColor grayColor];
+    if (textField == _emailTextField) {
+        [textField setText:@"Email"];
+    }
+    else if(textField == _passwordTextField)
+    {
+        [textField setText:@"Password"];
+        [textField setSecureTextEntry:NO];
+    }
+}
 
 - (IBAction)onSignInButton:(id)sender {
     NSLog(@"Email: %@\nPassword:%@\n", self.emailTextField.text, self.passwordTextField.text);
