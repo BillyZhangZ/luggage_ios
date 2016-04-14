@@ -36,7 +36,7 @@
     LuggageDevice *_luggageDevice;
     CBPeripheral *_foundDev;
     NSTimer *_updateRssiTimer;
-
+    int readBatteryCounter;
     BOOL _bleState;
     int FINGERREG;
     int FINGERDEL;
@@ -59,6 +59,7 @@
     _bleState = false;
     FINGERREG = FINGERDEL = 0;
 
+    readBatteryCounter = 0;
     distance = 0;
     battery = 0;
     weight = 0;
@@ -478,6 +479,7 @@ void say(NSString *sth)
 -(void)onLuggageDeviceConected
 {
     NSLog(@"ViewController: connected\n");
+    readBatteryCounter = 0;
     _updateRssiTimer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onUpdateRssi) userInfo:nil repeats:YES];
     
 }
@@ -485,7 +487,11 @@ void say(NSString *sth)
 -(void)onUpdateRssi
 {
     [_foundDev readRSSI];
-    [self sendBLECommad:@"AT+GTBAT\r"];
+    if(readBatteryCounter++ == 60)
+    {
+        readBatteryCounter = 0;
+        [self sendBLECommad:@"AT+GTBAT\r"];
+    }
 }
 
 -(void)onRssiRead:(NSNumber*)rssi
@@ -553,6 +559,7 @@ void say(NSString *sth)
     NSLog(@"ViewController: disconnected\n");
     [_updateRssiTimer invalidate];
     _updateRssiTimer = nil;
+    readBatteryCounter = 0;
     if (_bleState && _isDeviceBonded) {
         [self connectToDevice];
     }

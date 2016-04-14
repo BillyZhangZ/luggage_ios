@@ -49,7 +49,7 @@
     NSFileManager* fm = [NSFileManager defaultManager];
     if (![fm fileExistsAtPath:plistPath]) {
         [fm createFileAtPath: plistPath contents:nil attributes:nil];
-        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"alert",@"0",@"notify",nil];
+        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"alert",@"0",@"notify",nil];
         [dic writeToFile:plistPath atomically:YES];
     }
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
