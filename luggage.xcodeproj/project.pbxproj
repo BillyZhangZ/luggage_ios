@@ -88,6 +88,9 @@
 		83B5DC551CBD37D900A64CE6 /* ZZYAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC531CBD37D900A64CE6 /* ZZYAboutVC.xib */; };
 		83B5DC591CBD461200A64CE6 /* BatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B5DC581CBD461200A64CE6 /* BatteryView.m */; };
 		83B5DC5B1CBD4F3500A64CE6 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC5A1CBD4F3500A64CE6 /* battery.png */; };
+		83B5DC5D1CBF45CF00A64CE6 /* outer_circle_radient.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC5C1CBF45CF00A64CE6 /* outer_circle_radient.png */; };
+		83B5DC601CBF485100A64CE6 /* UAProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B5DC5F1CBF485100A64CE6 /* UAProgressView.m */; };
+		83B5DC621CBF596100A64CE6 /* Location2.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC611CBF596100A64CE6 /* Location2.png */; };
 		83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */; };
 		83D1D9F01C18EFC7005F4F63 /* ZZYBaseNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EF1C18EFC7005F4F63 /* ZZYBaseNavVC.m */; };
 		83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F21C18F889005F4F63 /* basicInfoCel.m */; };
@@ -225,6 +228,10 @@
 		83B5DC571CBD461200A64CE6 /* BatteryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatteryView.h; path = View/BatteryView.h; sourceTree = "<group>"; };
 		83B5DC581CBD461200A64CE6 /* BatteryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BatteryView.m; path = View/BatteryView.m; sourceTree = "<group>"; };
 		83B5DC5A1CBD4F3500A64CE6 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = battery.png; path = images/battery.png; sourceTree = "<group>"; };
+		83B5DC5C1CBF45CF00A64CE6 /* outer_circle_radient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = outer_circle_radient.png; path = images/outer_circle_radient.png; sourceTree = "<group>"; };
+		83B5DC5E1CBF485100A64CE6 /* UAProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UAProgressView.h; path = View/UAProgressView.h; sourceTree = "<group>"; };
+		83B5DC5F1CBF485100A64CE6 /* UAProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UAProgressView.m; path = View/UAProgressView.m; sourceTree = "<group>"; };
+		83B5DC611CBF596100A64CE6 /* Location2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Location2.png; path = images/Location2.png; sourceTree = "<group>"; };
 		83D1D9EB1C18EF45005F4F63 /* ZZYSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSettingsVC.h; path = ViewController/ZZYSettingsVC.h; sourceTree = "<group>"; };
 		83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSettingsVC.m; path = ViewController/ZZYSettingsVC.m; sourceTree = "<group>"; };
 		83D1D9EE1C18EFC7005F4F63 /* ZZYBaseNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYBaseNavVC.h; path = ViewController/ZZYBaseNavVC.h; sourceTree = "<group>"; };
@@ -502,6 +509,8 @@
 		83B5DC561CBD45C000A64CE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				83B5DC5E1CBF485100A64CE6 /* UAProgressView.h */,
+				83B5DC5F1CBF485100A64CE6 /* UAProgressView.m */,
 				83B5DC571CBD461200A64CE6 /* BatteryView.h */,
 				83B5DC581CBD461200A64CE6 /* BatteryView.m */,
 			);
@@ -511,6 +520,8 @@
 		83E931651C0C7F8600DB1AA2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				83B5DC611CBF596100A64CE6 /* Location2.png */,
+				83B5DC5C1CBF45CF00A64CE6 /* outer_circle_radient.png */,
 				83B5DC5A1CBD4F3500A64CE6 /* battery.png */,
 				8359445B1CB55270000AD413 /* device.png */,
 				83B5CDA91CB2B98E009DFA80 /* crazy.jpg */,
@@ -630,6 +641,7 @@
 				83B5CD8B1C8BFDF3009DFA80 /* Icon-76@2x.png in Resources */,
 				83465F871C0B08430039C86C /* Icon-Spotlight-40@2x.png in Resources */,
 				83465F981C0B0D8A0039C86C /* ZZYLoginVC.xib in Resources */,
+				83B5DC621CBF596100A64CE6 /* Location2.png in Resources */,
 				83FDFF881C1466DB000275AA /* ZZYAddDeviceVC.xib in Resources */,
 				83B5CD951CB0E3C7009DFA80 /* location1.png in Resources */,
 				83D1D9F81C18F889005F4F63 /* basicInfoCel.xib in Resources */,
@@ -650,6 +662,7 @@
 				83465F8D1C0B08550039C86C /* Icon-Small@2x.png in Resources */,
 				83B5DC551CBD37D900A64CE6 /* ZZYAboutVC.xib in Resources */,
 				8355F90C1C17156C001E7352 /* ZZYWebsiteVC.xib in Resources */,
+				83B5DC5D1CBF45CF00A64CE6 /* outer_circle_radient.png in Resources */,
 				83B5CD8E1C8DB274009DFA80 /* menubg@2x.png in Resources */,
 				83B5CDA81CB2B5C9009DFA80 /* avatar.png in Resources */,
 				83B5DC501CBD37B000A64CE6 /* ZZYFeedbackVC.xib in Resources */,
@@ -689,6 +702,7 @@
 				83B5DC4A1CBD379600A64CE6 /* ZZYPravicyVC.m in Sources */,
 				83933F8A1C15CDC500A7AA6F /* ZZYFootprintVC.m in Sources */,
 				83465F921C0B0D2F0039C86C /* ZZYMainVC.m in Sources */,
+				83B5DC601CBF485100A64CE6 /* UAProgressView.m in Sources */,
 				83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */,
 				83465F971C0B0D8A0039C86C /* ZZYLoginVC.m in Sources */,
 				83B5DC461CBD1A5100A64CE6 /* ZZYSetting.m in Sources */,

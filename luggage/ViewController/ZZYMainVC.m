@@ -13,14 +13,18 @@
 #import <MessageUI/MFMessageComposeViewController.h>
 #import "ZZYAddDeviceVC.h"
 #import "BatteryView.h"
+#import "UAProgressView.h"
+
+//standard weight
+#define STANDARD_WEIGHT 20.0
 
 @interface ZZYMainVC ()<MFMessageComposeViewControllerDelegate>
 {
-    BOOL _enableLostMode;
     float _distance;
     int _rssiCount;
     ZZYAcount *_account;
     BatteryView *_batView;
+    UAProgressView *_weightView;
 }
 @end
 
@@ -37,7 +41,6 @@
     //[self.view addSubview: bgView];
     //[self.view sendSubviewToBack:bgView];
     self.view.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
-    _enableLostMode = false;
     
     int statusBarHeight = 20;
     UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rcScreen.size.width, statusBarHeight)];
@@ -47,6 +50,7 @@
     // Do any additional setup after loading the view from its nib.
     [self.navigatorBar setBackgroundImage:[UIImage imageNamed:@"empty.png"] forBarMetrics:UIBarMetricsDefault];
     self.navigatorBar.backgroundColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:70/255.0 alpha:1.0];
+    
     //make it center
     rc.origin.y = self.smsUnlockButton.frame.origin.y;
     rc.origin.x = rcScreen.size.width/2 - (self.bleUnlockButton.frame.origin.x - self.smsUnlockButton.frame.origin.x + self.bleUnlockButton.frame.size.width)/2;
@@ -59,26 +63,28 @@
     rc.size.height = self.bleUnlockButton.frame.size.height;
     [self.bleUnlockButton setFrame:rc];
     
+    rc.origin.y += rc.size.height + 20;
+    rc.size.height = rc.size.width = 150;
+    rc.origin.x = (rcScreen.size.width - rc.size.width)/2;
+    _weightView = [[UAProgressView alloc]initWithFrame:rc];
+    [self.view addSubview:_weightView];
+    [self setupWeightView];
     
-    rc.origin.y = self.locateButton.frame.origin.y;
-    rc.origin.x = self.locateButton.frame.origin.x;
-    rc.size.width = self.locateButton.frame.size.width;
-    rc.size.height = self.locateButton.frame.size.height;
-    [self.locateButton setFrame:rc];
-    
-    rc.origin.y = self.weightButton.frame.origin.y;
-    rc.origin.x = rcScreen.size.width/2 - self.weightButton.frame.size.width/2;
-    rc.size.width =  self.weightButton.frame.size.width;
-    rc.size.height = self.weightButton.frame.size.height;
-    [self.weightButton setFrame:rc];
-    
-    rc.origin.x = rcScreen.size.width*0.618;
-    rc.origin.y = rcScreen.size.height - 60;
+
+    rc.origin.x = rcScreen.size.width - 55;
+    rc.origin.y = 90;
     rc.size.height = 15;
     rc.size.width = 40;
     _batView = [[BatteryView alloc]initWithFrame:rc];
-    
     [self.view addSubview:_batView];
+    
+    rc.origin.y = 80;
+    rc.origin.x = rcScreen.size.width - 100;
+    rc.size.width = 30;
+    rc.size.height = 30;
+    [self.locateButton setImage:[UIImage imageNamed:@"Location2"] forState:UIControlStateNormal];
+    self.locateButton.tintColor = [UIColor colorWithRed:5/255.0 green:39/255.0 blue:175/255.0 alpha:1.0];
+    [self.locateButton setFrame:rc];
     
     rc.origin.x = 0;
     rc.origin.y = 20;
@@ -102,13 +108,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-   // CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-    //CGColorRef color = CGColorCreate(colorSpaceRef, (CGFloat[]){1,0,0,1});
-    [_locateButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
-    [_locateButton.layer setCornerRadius:10];
-    [_locateButton.layer setBorderWidth:2];//设置边界的宽度
-    
+
     [_bleUnlockButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
     [_bleUnlockButton.layer setCornerRadius:10];
     [_bleUnlockButton.layer setBorderWidth:2];//设置边界的宽度
@@ -117,11 +117,7 @@
     [_smsUnlockButton.layer setCornerRadius:10];
     [_smsUnlockButton.layer setBorderWidth:2];//设置边界的宽度
     
-    [_weightButton.layer setMasksToBounds:YES];//设置按钮的圆角半径不会被遮挡
-    [_weightButton.layer setCornerRadius:10];
-    [_weightButton.layer setBorderWidth:2];//设置边界的宽度
-    
-   // say(@"welcome");
+    // say(@"welcome");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -133,6 +129,33 @@
     //fix me
     [super viewWillDisappear:animated];
 }
+
+- (void)setupWeightView {
+    __weak ZZYMainVC *weakSelf = self;
+    
+    _weightView.tintColor = [UIColor colorWithRed:5/255.0 green:204/255.0 blue:197/255.0 alpha:1.0];//[UIColor colorWithRed:5/255.0 green:39/255.0 blue:175/255.0 alpha:1.0];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80.0, 100.0)];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    label.numberOfLines = 2;
+    label.textColor = [UIColor colorWithRed:5/255.0 green:204/255.0 blue:197/255.0 alpha:1.0];//[UIColor colorWithRed:5/255.0 green:39/255.0 blue:175/255.0 alpha:1.0];
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    label.userInteractionEnabled = NO; // Allows tap to pass through to the progress view.
+    label.text = @"Weight";
+    _weightView.centralView = label;
+
+    [_weightView setAnimationDuration:1.0];
+    [_weightView setLineWidth:5];
+    _weightView.progressChangedBlock = ^(UAProgressView *progressView, CGFloat progress) {
+        [(UILabel *)progressView.centralView setText:[NSString stringWithFormat:@"%2.0f%%\n%.2fKg", progress * 100,progress*STANDARD_WEIGHT]];
+    };
+
+    _weightView.didSelectBlock = ^(UAProgressView *progressView) {
+        [weakSelf bleSendGetWeight];
+        //AppDelegate* app = [[UIApplication sharedApplication]delegate];
+        //[app setValue:[NSString stringWithFormat:@"%f",31.0f] forKey:@"weight"];
+    };
+}
+
 - (IBAction)onMenuButton:(id)sender {
     AppDelegate *app =[[UIApplication sharedApplication]delegate];
     [app showMenu];
@@ -152,12 +175,6 @@
         if ([distance floatValue] > 6) {
           [app pushLocalNotification];
         }
-#if 0
-        NSString *distanceStr = [NSString stringWithFormat:@"dis:%@", distance];//_distance/_rssiCount];
-        _alertButton.titleLabel.numberOfLines = 0;
-        _alertButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        [_alertButton setTitle:distanceStr forState:UIControlStateNormal];
-#endif
         NSLog(@"distance is changed! new=%@", [change valueForKey:NSKeyValueChangeNewKey]);
     }
     else if([keyPath isEqualToString:@"battery"])
@@ -173,29 +190,7 @@
     {
         NSString *weight = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"weight is changed! new=%@", weight);
-        [_weightButton setTitle:[NSString stringWithFormat:@"Weight：%@Kg", weight]  forState:UIControlStateNormal];
-    }
-    else if([keyPath isEqualToString:@"FINGERREG"])
-    {
-        NSString *ret = [change valueForKey:NSKeyValueChangeNewKey];
-        NSLog(@"add finger is changed! new=%@", ret);
-        NSString *title = [NSString stringWithFormat:@"Add fingerprint %@",[ret integerValue] != -1?@"OK":@"Failed"];
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-    else if([keyPath isEqualToString:@"FINGERDEL"])
-    {
-        NSString *ret = [change valueForKey:NSKeyValueChangeNewKey];
-        NSLog(@"del finger is changed! new=%@", ret);
-        NSString *title = [NSString stringWithFormat:@"Delete fingerprint %@",[ret integerValue] != -1?@"OK":@"Failed"];
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        [_weightView setProgress:[weight floatValue]/STANDARD_WEIGHT animated:YES];
     }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -230,26 +225,10 @@
 - (IBAction)onBLEUnlock:(id)sender {
     [self bleSendUnlock];
 }
-- (IBAction)onRegisterFinger:(id)sender {
-    //[self bleSendRegisterFinger];
-}
-- (IBAction)onDeleteFinger:(id)sender {
-    //[self bleSendDeleteFinger];
-}
-- (IBAction)onWeightButton:(id)sender {
-    [self bleSendGetWeight];
-}
-- (IBAction)onBattButton:(id)sender {
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    [app sendBLECommad:@"AT+GTBAT\r"];
-}
 
 - (IBAction)onLocateButton:(id)sender {
     ZZYLocateVC *vc = [[ZZYLocateVC alloc]init];
     [self presentViewController:vc animated:YES completion:nil];
-}
-
-- (IBAction)onLostButton:(id)sender {
 }
 
 #pragma sms delegate
