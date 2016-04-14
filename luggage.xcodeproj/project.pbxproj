@@ -91,6 +91,7 @@
 		83B5DC5D1CBF45CF00A64CE6 /* outer_circle_radient.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC5C1CBF45CF00A64CE6 /* outer_circle_radient.png */; };
 		83B5DC601CBF485100A64CE6 /* UAProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B5DC5F1CBF485100A64CE6 /* UAProgressView.m */; };
 		83B5DC621CBF596100A64CE6 /* Location2.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC611CBF596100A64CE6 /* Location2.png */; };
+		83B5DC641CBF7F3600A64CE6 /* unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5DC631CBF7F3600A64CE6 /* unlock.png */; };
 		83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */; };
 		83D1D9F01C18EFC7005F4F63 /* ZZYBaseNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9EF1C18EFC7005F4F63 /* ZZYBaseNavVC.m */; };
 		83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1D9F21C18F889005F4F63 /* basicInfoCel.m */; };
@@ -232,6 +233,7 @@
 		83B5DC5E1CBF485100A64CE6 /* UAProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UAProgressView.h; path = View/UAProgressView.h; sourceTree = "<group>"; };
 		83B5DC5F1CBF485100A64CE6 /* UAProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UAProgressView.m; path = View/UAProgressView.m; sourceTree = "<group>"; };
 		83B5DC611CBF596100A64CE6 /* Location2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Location2.png; path = images/Location2.png; sourceTree = "<group>"; };
+		83B5DC631CBF7F3600A64CE6 /* unlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unlock.png; path = images/unlock.png; sourceTree = "<group>"; };
 		83D1D9EB1C18EF45005F4F63 /* ZZYSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYSettingsVC.h; path = ViewController/ZZYSettingsVC.h; sourceTree = "<group>"; };
 		83D1D9EC1C18EF45005F4F63 /* ZZYSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYSettingsVC.m; path = ViewController/ZZYSettingsVC.m; sourceTree = "<group>"; };
 		83D1D9EE1C18EFC7005F4F63 /* ZZYBaseNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZYBaseNavVC.h; path = ViewController/ZZYBaseNavVC.h; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 		83E931651C0C7F8600DB1AA2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				83B5DC631CBF7F3600A64CE6 /* unlock.png */,
 				83B5DC611CBF596100A64CE6 /* Location2.png */,
 				83B5DC5C1CBF45CF00A64CE6 /* outer_circle_radient.png */,
 				83B5DC5A1CBD4F3500A64CE6 /* battery.png */,
@@ -651,6 +654,7 @@
 				83465F7B1C0B03A00039C86C /* AMap.bundle in Resources */,
 				83B5DC431CBBFD5E00A64CE6 /* ZZYFingerManageVC.xib in Resources */,
 				83013E3A1C018E190065B5C2 /* LaunchScreen.xib in Resources */,
+				83B5DC641CBF7F3600A64CE6 /* unlock.png in Resources */,
 				8359445C1CB55270000AD413 /* device.png in Resources */,
 				83933F8B1C15CDC500A7AA6F /* ZZYFootprintVC.xib in Resources */,
 				83B5CD8C1C8BFDF3009DFA80 /* Icon-76@3x.png in Resources */,

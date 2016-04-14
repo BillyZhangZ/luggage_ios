@@ -12,7 +12,9 @@
 #import "ZZYFeedbackVC.h"
 #import "ZZYAboutVC.h"
 #import "ZZYPravicyVC.h"
-@interface ZZYSettingsVC ()<UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
+#import <MessageUI/MFMessageComposeViewController.h>
+
+@interface ZZYSettingsVC ()<UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource,MFMessageComposeViewControllerDelegate>
 {
     UIImageView *_ivPhoto;
     UILabel *_lblNickName;
@@ -126,13 +128,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0)
         return 2;
+    else if(section == 1)
+        return 1;
     else
         return 3;
 }
@@ -170,7 +174,15 @@
             switchView.onTintColor = DEFFGCOLOR;
         }
     }
-    else {
+    else if(indexPath.section == 1)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"settingTableCell1"];
+        if(cell == nil)
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"settingTableCell1"];
+        cell.textLabel.text = @"SMS Unlock";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    else if(indexPath.section == 2){
         cell = [tableView dequeueReusableCellWithIdentifier:@"settingTableCell2"];
         if(cell == nil)
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"settingTableCell2"];
@@ -203,7 +215,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         switch (indexPath.row) {
             case 0:
             {
@@ -232,13 +244,21 @@
                 break;
         }
     }
+    else if(indexPath.section == 1)
+    {
+        if(indexPath.row == 0)
+        {
+            [self remoteUnlock];
+        }
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     if(indexPath.section == 0)
         return 192 * rate_pixel_to_point/4;
-    else
+    else if(indexPath.section == 1)
         return 128 * rate_pixel_to_point/4;
+    else return 128 * rate_pixel_to_point/4;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -248,15 +268,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if(section == 0)
-        return 22;
-    else
+    if(section == 2)
         return 0;
+    else
+        return 22;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if(section == 0) {
+    if(section != 2) {
         UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 22)];
         view.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.7];
         return view;
@@ -264,6 +284,54 @@
     else {
         return nil;
     }
+}
+
+- (void)remoteUnlock {
+    AppDelegate*app = [[UIApplication sharedApplication]delegate];
+    if (app.account.remotePhoneNumber == nil) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please Bond Device" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    NSArray *recipientList = [[NSArray alloc]initWithObjects:app.account.remotePhoneNumber, nil];
+    [self sendSMS:@"KS" recipientList:recipientList];
+}
+
+#pragma sms delegate
+- (void)sendSMS:(NSString *)bodyOfMessage recipientList:(NSArray *)recipients
+{
+    
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    
+    if([MFMessageComposeViewController canSendText])
+        
+    {
+        
+        controller.body = bodyOfMessage;
+        
+        controller.recipients = recipients;
+        
+        controller.messageComposeDelegate = self;
+        
+        [self presentViewController:controller animated:NO completion:nil];
+        
+    }
+    
+}
+
+// 处理发送完的响应结果
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [controller dismissViewControllerAnimated:NO completion:nil];
+    
+    if (result == MessageComposeResultCancelled)
+        NSLog(@"ViewController: Message cancelled");
+    else if (result == MessageComposeResultSent)
+        NSLog(@"ViewController: Message sent");
+    else
+        NSLog(@"ViewController: Message failed");
 }
 
 #pragma mark - gesture response
