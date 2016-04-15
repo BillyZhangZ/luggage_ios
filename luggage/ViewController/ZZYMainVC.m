@@ -80,7 +80,9 @@
     rc.size.width = 30;
     rc.size.height = 30;
     [self.locateButton setImage:[UIImage imageNamed:@"Location2"] forState:UIControlStateNormal];
-    self.locateButton.tintColor = [UIColor colorWithRed:5/255.0 green:39/255.0 blue:175/255.0 alpha:1.0];
+    self.locateButton.tintColor = [UIColor colorWithRed:5/255.0 green:204/255.0 blue:197/255.0 alpha:1.0];
+    self.locateButton.layer.cornerRadius = 2;
+
     [self.locateButton setFrame:rc];
     
     
@@ -125,7 +127,7 @@
 - (void)setupWeightView {
     __weak ZZYMainVC *weakSelf = self;
     
-    _weightView.tintColor = [UIColor colorWithRed:5/255.0 green:204/255.0 blue:197/255.0 alpha:1.0];//[UIColor colorWithRed:5/255.0 green:39/255.0 blue:175/255.0 alpha:1.0];
+    _weightView.tintColor = [UIColor colorWithRed:5/255.0 green:204/255.0 blue:197/255.0 alpha:1.0];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80.0, 100.0)];
     [label setTextAlignment:NSTextAlignmentCenter];
     label.numberOfLines = 2;
@@ -174,9 +176,9 @@
         NSString *battery = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"battery is changed! new=%@", battery);
         
-        if ([battery integerValue] != _batView.batttery) {
+     //   if ([battery integerValue] != _batView.batttery) {
             [_batView setBatttery:[battery integerValue]];
-        }
+       // }
     }
     else if([keyPath isEqualToString:@"weight"])
     {

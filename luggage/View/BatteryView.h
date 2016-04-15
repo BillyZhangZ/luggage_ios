@@ -12,6 +12,7 @@
 @property (strong,nonatomic) UILabel *cell1;
 @property (strong,nonatomic) UILabel *cell2;
 @property (strong,nonatomic) UILabel *cell3;
+@property (strong,nonatomic) UILabel *cell4;
 @property  (nonatomic) NSInteger batttery;
 
 #define BATTERY_0    0

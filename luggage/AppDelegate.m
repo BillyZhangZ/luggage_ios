@@ -476,7 +476,6 @@ void say(NSString *sth)
 -(void)connectToDevice
 {
     [_luggageDevice BLEConectTo:_foundDev];
-    
 }
 -(void)onLuggageDeviceConected
 {
