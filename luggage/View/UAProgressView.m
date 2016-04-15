@@ -145,9 +145,9 @@ NSString * const UAProgressViewProgressAnimationKey = @"UAProgressViewProgressAn
     
 	//progress = MAX( MIN(progress, 1.0), 0.0); // keep it between 0 and 1
 	
-	if (_progress == progress) {
-		return;
-	}
+	//if (_progress == progress) {
+	//	return;
+	//}
 	
 	if (animated) {
 		

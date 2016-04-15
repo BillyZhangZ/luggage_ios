@@ -27,6 +27,8 @@
 #import "ZZYLoginVC.h"
 #import "ZZYBondDeviceIdVC.h"
 
+#define UPDATE_BATTERY_COUNTER 60
+
 @interface AppDelegate ()<WXApiDelegate, LuggageDelegate>
 {
     ZZYMainVC * _mainVC;
@@ -479,7 +481,8 @@ void say(NSString *sth)
 -(void)onLuggageDeviceConected
 {
     NSLog(@"ViewController: connected\n");
-    readBatteryCounter = 0;
+    //Will cause to read battery when connected
+    readBatteryCounter = UPDATE_BATTERY_COUNTER;
     _updateRssiTimer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onUpdateRssi) userInfo:nil repeats:YES];
     
 }
@@ -487,7 +490,7 @@ void say(NSString *sth)
 -(void)onUpdateRssi
 {
     [_foundDev readRSSI];
-    if(readBatteryCounter++ == 60)
+    if(readBatteryCounter++ == UPDATE_BATTERY_COUNTER)
     {
         readBatteryCounter = 0;
         [self sendBLECommad:@"AT+GTBAT\r"];
