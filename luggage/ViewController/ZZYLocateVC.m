@@ -98,14 +98,14 @@
 }
 
 
--(void)zoomToAnnotations
+-(void)zoomToAnnotations:(NSString *)souce
 {
 
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     //annotation.coordinate = CLLocationCoordinate2DMake(31.43715199999999, 121.13612);
     annotation.coordinate = CLLocationCoordinate2DMake(_latitude, _longtitude);
 
-    annotation.title = @"Dongcang Park";
+    annotation.title = souce;
     annotation.subtitle = @"";
     // 指定新的显示区域
     [_mapView setRegion:MKCoordinateRegionMake(annotation.coordinate, MKCoordinateSpanMake(0.04,0.04)) animated:YES];
@@ -197,7 +197,7 @@
             _longtitude = coordGCJ.longitude;
             _latitude = coordGCJ.latitude;
             dispatch_async(dispatch_get_main_queue(), ^{
-            [self zoomToAnnotations];
+                [self zoomToAnnotations:@"GPS location"];
             });
             NSLog(@"gps raw data %@",dict);
 
@@ -216,9 +216,9 @@
 
 -(void)getLatestCellbaseLocation:(NSInteger)userId
 {
-    
+    AppDelegate *app = [[UIApplication sharedApplication]delegate];
     NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_GET_CELLBASE];
-    [urlPost appendFormat:@"%lu",(unsigned long)userId];
+    [urlPost appendFormat:@"%d",[app.account.deviceId integerValue]];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
@@ -232,7 +232,7 @@
         if (!error) {
             //没有错误，返回正确；
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-            if (dict == nil || [dict objectForKey:@"userId"] == NULL) {
+            if (dict == nil || [dict objectForKey:@"deviceId"] == NULL) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
@@ -264,7 +264,7 @@
 -(void)getGpsFromCellbase:(int)lac Cid:(int)cid
 {
     //fix me about url
-    NSString *tmp = [NSString stringWithFormat:@"http://mpro.sinaapp.com/my/jzdw.php?hex=0&lac=%d&cid=%d&map=0",lac, cid];
+    NSString *tmp = [NSString stringWithFormat:@"http://api.cellid.cn/cellid.php?lac=%d&cell_id=%d&token=65ee7ba79d0f34da4366866d84ef3884",lac, cid];
     NSMutableString *urlPost = [[NSMutableString alloc] initWithString:tmp];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -282,7 +282,7 @@
         if (!error) {
             //没有错误，返回正确；
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-            if (dict == nil || [dict objectForKey:@"result"] == NULL) {
+            if (dict == nil || [dict objectForKey:@"lac"] == NULL) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
@@ -293,7 +293,7 @@
             }
             _latitude = [[dict objectForKey:@"lat"]floatValue];
             _longtitude = [[dict objectForKey:@"lon"]floatValue];
-            [self zoomToAnnotations];
+            [self zoomToAnnotations:@"Cellbase location"];
         }else{
             //出现错误；
             NSLog(@"error：%@",error);
