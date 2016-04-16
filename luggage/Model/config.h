@@ -25,6 +25,8 @@
 #define URL_GET_GPS SERVER @"/gps/"
 #define URL_GET_CELLBASE SERVER @"/cellbase/"
 #define URL_BOND_DEVICE SERVER @"/bonddevice"
+#define URL_REGISTER_DEVICE_TOKEN SERVER @"/deviceToken"
+#define URL_TEST_SERVER_NOTIFICATION SERVER @"/testNotification"
 
 //---- Menu ----
 #define  rate_pixel_to_point  1.0

@@ -21,7 +21,7 @@
                         <constraint firstAttribute="height" constant="44" id="Qsg-kZ-Zm1"/>
                     </constraints>
                     <items>
-                        <navigationItem title="追踪" id="ceo-8P-mWq">
+                        <navigationItem title="Location" id="ceo-8P-mWq">
                             <barButtonItem key="leftBarButtonItem" id="yvU-Nl-n24">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DaC-Db-FaC">
                                     <rect key="frame" x="20" y="7" width="44" height="30"/>

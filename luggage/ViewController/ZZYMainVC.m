@@ -17,7 +17,7 @@
 //standard weight
 #define STANDARD_WEIGHT 20.0
 
-@interface ZZYMainVC ()
+@interface ZZYMainVC ()<UIGestureRecognizerDelegate>
 {
     float _distance;
     int _rssiCount;
@@ -103,6 +103,12 @@
     [app addObserver:self forKeyPath:@"distance" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"battery" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"weight" options:NSKeyValueObservingOptionNew context:nil];
+    
+    UIScreenEdgePanGestureRecognizer * screenEdgePan
+    = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
+    screenEdgePan.delegate = self;
+    screenEdgePan.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:screenEdgePan];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -145,8 +151,9 @@
 
     _weightView.didSelectBlock = ^(UAProgressView *progressView) {
         [weakSelf bleSendGetWeight];
-        //AppDelegate* app = [[UIApplication sharedApplication]delegate];
+        AppDelegate* app = [[UIApplication sharedApplication]delegate];
         //[app setValue:[NSString stringWithFormat:@"%f",31.0f] forKey:@"weight"];
+        [app testServerNotification];
     };
 }
 
@@ -248,6 +255,19 @@
     NSLog(@"ViewController: send character\n");
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
     [app sendBLECommad:@"AT+GTWT\r"];
+}
+
+- (void)handleGesture:(UIScreenEdgePanGestureRecognizer *)gesture {
+    if(UIGestureRecognizerStateBegan == gesture.state ||
+       UIGestureRecognizerStateChanged == gesture.state)
+    {
+        
+    }
+    else
+    {
+        AppDelegate *app = [[UIApplication sharedApplication]delegate];
+        [app showMenu];
+    }
 }
 
 #pragma mark - disable landscape

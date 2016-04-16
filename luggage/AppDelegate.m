@@ -213,6 +213,128 @@
     }
 }
 
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    //    UIUserNotificationSettings *settings = [application currentUserNotificationSettings];
+    //    UIUserNotificationType types = [settings types];
+    //    //只有5跟7的时候包含了 UIUserNotificationTypeBadge
+    //    if (types == 5 || types == 7) {
+    //        application.applicationIconBadgeNumber = 0;
+    //    }
+    //注册远程通知
+    [application registerForRemoteNotifications];
+}
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"receive remote notification");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]] message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    });
+
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"%@",deviceToken);
+    NSString *deviceTokenStr = [NSString stringWithFormat:@"%@",deviceToken];
+    //modify the token, remove the  "<, >"
+    NSLog(@"    deviceTokenStr  lentgh:  %d  ->%@", [deviceTokenStr length], [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)]);
+    deviceTokenStr = [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)];
+    
+    NSLog(@"deviceTokenStr = %@",deviceTokenStr);
+    [self registerDeviceToken:deviceTokenStr];//[deviceTokenStr stringByReplacingOccurrencesOfString:@" " withString:@""]];
+}
+
+-(void)registerDeviceToken:(NSString *)deviceToken
+{
+    NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_REGISTER_DEVICE_TOKEN];
+    NSURL *url = [NSURL URLWithString:urlPost];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:100.0f];
+    
+    NSString *string;
+    int userId = [self.account.userId integerValue];
+
+    string = [[NSString alloc] initWithFormat:@"{\"userId\":\"%d\",\"deviceToken\":\"%@\"}",userId,deviceToken];
+    NSLog(@"%@", string);
+    [request setHTTPBody:[string dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            //没有错误，返回正确；
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            
+            if (dict == nil || [[dict objectForKey:@"ok"] integerValue] != 1) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Connect Server Failed" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+                    [alert addAction:okAction];
+                    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+                });
+                return ;
+            }
+            
+            NSLog(@"%@", [dict objectForKey:@"id"]);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+
+            });
+            
+        }else{
+            //出现错误；
+            NSLog(@"error：%@",error);
+        }
+    }];
+    
+    
+    [dataTask resume];
+
+}
+
+-(void)testServerNotification
+{
+    NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_TEST_SERVER_NOTIFICATION];
+    NSURL *url = [NSURL URLWithString:urlPost];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:100.0f];
+    
+    NSString *string;
+    int userId = [self.account.userId integerValue];
+    
+    string = [[NSString alloc] initWithFormat:@"{\"userId\":\"%d\"}",userId];
+    NSLog(@"%@", string);
+    [request setHTTPBody:[string dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+            });
+            
+        }else{
+            //出现错误；
+            NSLog(@"error：%@",error);
+        }
+    }];
+    
+    
+    [dataTask resume];
+    
+}
+
 - (UIViewController *)getCurrentVC
 {
     UIViewController *result = nil;
