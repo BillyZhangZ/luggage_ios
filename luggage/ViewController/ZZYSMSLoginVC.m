@@ -179,7 +179,7 @@
     //ZZYSMSRegisterViewController *vc = [[ZZYSMSRegisterViewController alloc]init];
     //[self presentViewController:vc animated:NO completion:nil];
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    [app jumpToMainVC];
+    [app jumpToMainAfterLogin];
 }
 
 

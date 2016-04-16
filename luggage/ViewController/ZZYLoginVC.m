@@ -173,7 +173,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Succeed" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                 void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
-                    [app jumpToMainVC];
+                    [app jumpToMainAfterLogin];
                 };
                 
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:onAfterSignUp];

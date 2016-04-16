@@ -35,6 +35,8 @@
     ZZYMenuView *_menuView;
     ZZYLoginVC *_loginVC;
     
+    NSString *_deviceToken;
+    
     LuggageDevice *_luggageDevice;
     CBPeripheral *_foundDev;
     NSTimer *_updateRssiTimer;
@@ -215,13 +217,6 @@
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
-    //    UIUserNotificationSettings *settings = [application currentUserNotificationSettings];
-    //    UIUserNotificationType types = [settings types];
-    //    //只有5跟7的时候包含了 UIUserNotificationTypeBadge
-    //    if (types == 5 || types == 7) {
-    //        application.applicationIconBadgeNumber = 0;
-    //    }
-    //注册远程通知
     [application registerForRemoteNotifications];
 }
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -246,7 +241,8 @@
     deviceTokenStr = [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)];
     
     NSLog(@"deviceTokenStr = %@",deviceTokenStr);
-    [self registerDeviceToken:deviceTokenStr];//[deviceTokenStr stringByReplacingOccurrencesOfString:@" " withString:@""]];
+    _deviceToken = deviceTokenStr;
+    //[self registerDeviceToken:deviceTokenStr];
 }
 
 -(void)registerDeviceToken:(NSString *)deviceToken
@@ -827,8 +823,9 @@ NSString * getATContent(NSString *str)
 }
 
 
--(void)jumpToMainVC
+-(void)jumpToMainAfterLogin
 {
+    [self registerDeviceToken:_deviceToken];
     _window.rootViewController = _mainVC;
 }
 

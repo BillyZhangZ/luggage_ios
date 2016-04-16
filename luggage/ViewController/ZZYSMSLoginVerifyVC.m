@@ -93,7 +93,7 @@
                         app.account.userId = @"0";
                         [self dismissViewControllerAnimated:YES completion:nil];
                         [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
-                        [app jumpToMainVC];
+                        [app jumpToMainAfterLogin];
                     }
                     else
                     {
