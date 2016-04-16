@@ -151,9 +151,9 @@
 
     _weightView.didSelectBlock = ^(UAProgressView *progressView) {
         [weakSelf bleSendGetWeight];
-        AppDelegate* app = [[UIApplication sharedApplication]delegate];
+        //AppDelegate* app = [[UIApplication sharedApplication]delegate];
         //[app setValue:[NSString stringWithFormat:@"%f",31.0f] forKey:@"weight"];
-        [app testServerNotification];
+        //[app testServerNotification];
     };
 }
 
