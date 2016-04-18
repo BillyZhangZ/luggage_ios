@@ -13,6 +13,7 @@
 #import "ZZYAddDeviceVC.h"
 #import "BatteryView.h"
 #import "UAProgressView.h"
+#import <AVFoundation/AVFoundation.h>
 
 //standard weight
 #define STANDARD_WEIGHT 20.0
@@ -116,8 +117,14 @@
     self.bleUnlockButton.layer.cornerRadius = self.bleUnlockButton.frame.size.width/2;
     self.bleUnlockButton.layer.borderWidth = 1;
     self.bleUnlockButton.layer.borderColor = [UIColor colorWithRed:5/255.0 green:204/255.0 blue:197/255.0 alpha:1.0].CGColor;
+    [self resignFirstResponder];
     [super viewWillAppear:YES];
     // say(@"welcome");
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self becomeFirstResponder];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -285,5 +292,19 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma -shake
+-(BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+-(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake) {
+        NSLog(@"shake");
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    }
 }
 @end
