@@ -18,7 +18,7 @@
 //standard weight
 #define STANDARD_WEIGHT 20.0
 
-@interface ZZYMainVC ()<UIGestureRecognizerDelegate>
+@interface ZZYMainVC ()<UIGestureRecognizerDelegate, UIAccelerometerDelegate>
 {
     float _distance;
     int _rssiCount;
@@ -305,6 +305,12 @@
     if (motion == UIEventSubtypeMotionShake) {
         NSLog(@"shake");
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:1.0f];
+        CGRect rc = _weightView.frame;
+        rc.origin.y += 50;
+        [_weightView setFrame:rc];
+        [UIView commitAnimations];
     }
 }
 @end
