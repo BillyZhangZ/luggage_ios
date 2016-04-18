@@ -67,6 +67,10 @@
     distance = 0;
     battery = 0;
     weight = 0;
+    
+    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(proximityChange:) name:UIDeviceProximityStateDidChangeNotification object:nil];
+    
     [self addObserver:self forKeyPath:@"isDeviceBonded" options:NSKeyValueObservingOptionNew context:nil];
 
     CGRect rc = [[UIScreen mainScreen] bounds];
@@ -909,5 +913,18 @@ static double transformLat(double x, double y) {
     return false;
 }
 
-
+-(void)proximityChange:(NSNotificationCenter *)notification
+{
+    NSArray *bk_colors = [NSArray arrayWithObjects:[UIColor greenColor],[UIColor orangeColor],[UIColor blueColor],[UIColor lightGrayColor], nil];
+    
+    if([UIDevice currentDevice].proximityState == YES)
+    {
+        self.window.rootViewController.view.backgroundColor = [bk_colors objectAtIndex:arc4random()%4];
+        NSLog(@"Near");
+    }
+    else
+    {
+        NSLog(@"Far");
+    }
+}
 @end
