@@ -36,9 +36,9 @@
         [self addSubview:_maskArea];
 
         UIImageView *bk = [[UIImageView alloc] initWithFrame:leftPart];
-        bk.image = [UIImage imageNamed:@"menubg.png"];
-        //bk.backgroundColor = [UIColor grayColor];
-        bk.alpha = 0.8f;
+        //bk.image = [UIImage imageNamed:@"menubg.png"];
+        bk.backgroundColor = [UIColor colorWithRed:29/255.0 green:176/255.0 blue:237/255.0 alpha:1.0];
+        //bk.alpha = 0.8f;
         [self addSubview:bk];
         // Header:
         rc = leftPart;
@@ -125,7 +125,7 @@
     //lbl.lineBreakMode = NSLineBreakByWordWrapping;
     lbl.textAlignment = NSTextAlignmentLeft;
     //lbl.textAlignment = NSTextAlignmentCenter;
-    lbl.textColor = [UIColor whiteColor];// MENU_NICKNAME_FONT_COLOR;
+    lbl.textColor = [UIColor blackColor];// MENU_NICKNAME_FONT_COLOR;
     lbl.font = [UIFont systemFontOfSize:/*MENU_ITEM_TITLE_FONT_SIZE*/16];
 
     switch(index) {

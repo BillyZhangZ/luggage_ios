@@ -17,6 +17,7 @@
     UIButton  *_currentLocationButton;
     UIButton  *_lockCompassDirectionButton;
     UIButton  *_mapModeButton;
+    UILabel   *_searchingLabel;
     
     CLLocationDegrees _longtitude;
     CLLocationDegrees _latitude;
@@ -67,12 +68,16 @@
     
     
     //buttons
-    _mapModeButton =[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, CGRectGetHeight(self.view.bounds) - 120, 120, 40)];
+    _mapModeButton =[[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds) - 120, CGRectGetHeight(self.view.bounds) - 80, 120, 40)];
     _mapModeButton.backgroundColor = [UIColor clearColor];
     [_mapModeButton setTitle:@"Use cellbase" forState:UIControlStateNormal];
     [_mapModeButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     _mapModeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_mapModeButton addTarget:self action:@selector(onMapButtonMode) forControlEvents:UIControlEventTouchUpInside];
+    
+    _searchingLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds)/2 - 70, CGRectGetHeight(self.view.bounds) - 50, 200, 40)];
+    [_searchingLabel setText:@" Searching Luggage "];
+    
     
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
 
@@ -80,6 +85,7 @@
     [self.view addSubview:_mapModeButton];
     [self.view addSubview:_mapView];
     [self.view bringSubviewToFront:_mapModeButton];
+    [self.view addSubview:_searchingLabel];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
@@ -191,6 +197,36 @@
             
             _latitude = [[dict valueForKey:@"latitude"] floatValue];
             _longtitude = [[dict valueForKey:@"longtitude"] floatValue];
+            
+            /* Calc time interval between the latest GPS record and current time */
+            NSString *timeStamp = [dict valueForKey:@"timeStamp"];
+            NSTimeZone* timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            [formatter setTimeZone:timeZone];
+
+            NSString *currentTime = [formatter stringFromDate:[NSDate date]];
+
+            NSDate *currentdate = [formatter dateFromString:currentTime];
+            
+            //NSString to NSDate
+            NSDate *gpsdate = [formatter dateFromString:timeStamp];
+            
+            NSCalendar *cal = [NSCalendar currentCalendar];
+            
+            unsigned int unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+            
+            NSDateComponents *d = [cal components:unitFlags fromDate:gpsdate toDate:currentdate options:0];
+            
+            int intervalHours = [d day]*24 + [d hour];
+            
+            /* if interval bigger than 1hour, give some hint */
+            if (intervalHours < 1) {
+                NSLog(@"gps raw data %@", @"Searching!");
+                [_searchingLabel setText:@""];
+            }
+ 
 //38.8976763000,-77.0365298000
             CLLocationCoordinate2D coordWGS = CLLocationCoordinate2DMake(_latitude,_longtitude);
             CLLocationCoordinate2D coordGCJ = transformFromWGSToGCJ(coordWGS);
@@ -242,11 +278,11 @@
                 return ;
             }
             
-            //int mcc = [[dict valueForKey:@"mcc"] integerValue];
-            //int mnc = [[dict valueForKey:@"mnc"] integerValue];
+            int mcc = [[dict valueForKey:@"mcc"] integerValue];
+            int mnc = [[dict valueForKey:@"mnc"] integerValue];
             int lac = [[dict valueForKey:@"lac"] integerValue];
             int cid = [[dict valueForKey:@"cid"] integerValue];
-            [self getGpsFromCellbase:lac Cid:cid];
+            [self getGpsFromCellbase:mcc Mnc:mnc Lac:lac Cid:cid];
             
             NSLog(@"gps raw data %@",dict);
             
@@ -261,10 +297,10 @@
     [dataTask resume];
     
 }
--(void)getGpsFromCellbase:(int)lac Cid:(int)cid
+-(void)getGpsFromCellbase:(int)mcc Mnc:(int)mnc Lac:(int)lac Cid:(int)cid
 {
     //fix me about url
-    NSString *tmp = [NSString stringWithFormat:@"http://api.cellid.cn/cellid.php?lac=%d&cell_id=%d&token=65ee7ba79d0f34da4366866d84ef3884",lac, cid];
+    NSString *tmp = [NSString stringWithFormat:@"http://opencellid.org/cell/get?key=4fd75e56-e2bf-4c1a-8f4f-724932ed5a39&mcc=%d&mnc=%d&lac=%d&cellid=%d",mcc, mnc, lac, cid];
     NSMutableString *urlPost = [[NSMutableString alloc] initWithString:tmp];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -278,8 +314,31 @@
         /*
         {"result":1,"format":"json","lac":10328,"cid":26997,"lat":23.13448,"lon":113.299602,"range":939,"hex":0,"src":0}
          */
+        /*
+         <rsp stat="ok">
+         <cell lat="31.270260483333335" lon="121.57923918333334" mcc="460" mnc="0" lac="6340" cellid="33986" averageSignalStrength="-10" range="238" samples="6" changeable="1" radio="GSM"/>
+         </rsp>
+         */
         
         if (!error) {
+            /* TODO: Parse XML using XML lib instead */
+            NSString *xmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"error：%@", xmlString);
+            NSString *lat = @"lat=\"";
+            NSString *lon = @"\" lon=\"";
+            NSString *mcc = @"\" mcc=\"";
+            NSRange lat_range = [xmlString rangeOfString:lat];
+            NSRange lon_range = [xmlString rangeOfString:lon];
+            NSRange mcc_range = [xmlString rangeOfString:mcc];
+            NSString *latSubString = [xmlString substringWithRange:NSMakeRange(lat_range.location + 5, lon_range.location - lat_range.location - 5)];
+            NSString *lonSubString = [xmlString substringWithRange:NSMakeRange(lon_range.location + 7, mcc_range.location - lon_range.location - 7)];
+            
+            NSLog(@"lat：%@", latSubString);
+            NSLog(@"lon：%@", lonSubString);
+            
+            _latitude = [latSubString floatValue];
+            _longtitude = [lonSubString floatValue];
+#if 0
             //没有错误，返回正确；
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             if (dict == nil || [dict objectForKey:@"lac"] == NULL) {
@@ -293,6 +352,7 @@
             }
             _latitude = [[dict objectForKey:@"lat"]floatValue];
             _longtitude = [[dict objectForKey:@"lon"]floatValue];
+#endif
             [self zoomToAnnotations:@"Cellbase location"];
         }else{
             //出现错误；

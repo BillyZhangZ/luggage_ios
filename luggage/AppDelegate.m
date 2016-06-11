@@ -915,11 +915,11 @@ static double transformLat(double x, double y) {
 
 -(void)proximityChange:(NSNotificationCenter *)notification
 {
-    NSArray *bk_colors = [NSArray arrayWithObjects:[UIColor greenColor],[UIColor orangeColor],[UIColor blueColor],[UIColor lightGrayColor], nil];
+    //NSArray *bk_colors = [NSArray arrayWithObjects:[UIColor greenColor],[UIColor orangeColor],[UIColor blueColor],[UIColor lightGrayColor], nil];
     
     if([UIDevice currentDevice].proximityState == YES)
     {
-        self.window.rootViewController.view.backgroundColor = [bk_colors objectAtIndex:arc4random()%4];
+        //self.window.rootViewController.view.backgroundColor = [bk_colors objectAtIndex:arc4random()%4];
         NSLog(@"Near");
     }
     else
