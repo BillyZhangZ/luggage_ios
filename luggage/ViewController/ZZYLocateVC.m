@@ -324,6 +324,13 @@
             /* TODO: Parse XML using XML lib instead */
             NSString *xmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"error：%@", xmlString);
+            
+            NSRange failRange = [xmlString rangeOfString:@"fail"];
+            if (failRange.length > 0) {
+                _latitude = _latitude;
+                _longtitude = _longtitude;
+                NSLog(@"error：-------");
+            } else {
             NSString *lat = @"lat=\"";
             NSString *lon = @"\" lon=\"";
             NSString *mcc = @"\" mcc=\"";
@@ -338,25 +345,13 @@
             
             _latitude = [latSubString floatValue];
             _longtitude = [lonSubString floatValue];
-#if 0
-            //没有错误，返回正确；
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-            if (dict == nil || [dict objectForKey:@"lac"] == NULL) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-                [alert addAction:okAction];
-                [self presentViewController:alert animated:YES completion:nil];
-                });
-                return ;
-            }
-            _latitude = [[dict objectForKey:@"lat"]floatValue];
-            _longtitude = [[dict objectForKey:@"lon"]floatValue];
-#endif
             [self zoomToAnnotations:@"Cellbase location"];
+            }
         }else{
             //出现错误；
             NSLog(@"error：%@",error);
+            _latitude = _latitude;//[latSubString floatValue];
+            _longtitude = _longtitude;//[lonSubString floatValue];
         }
         
     }];

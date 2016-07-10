@@ -742,7 +742,7 @@ void say(NSString *sth)
         // 推送声音
         notification.soundName = UILocalNotificationDefaultSoundName;
         // 推送内容
-        notification.alertBody = @"Look your luggage";
+        notification.alertBody = @"Attention! \nToo far away from the luggage";
         //显示在icon上的红色圈中的数子
         notification.applicationIconBadgeNumber = 1;
         //设置userinfo 方便在之后需要撤销的时候使用

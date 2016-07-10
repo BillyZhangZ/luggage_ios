@@ -22,6 +22,7 @@
 {
     float _distance;
     int _rssiCount;
+    int _weightTestConut;
     ZZYAcount *_account;
     BatteryView *_batView;
     UAProgressView *_weightView;
@@ -198,7 +199,7 @@
     {
         NSString *weight = [change valueForKey:NSKeyValueChangeNewKey];
         NSLog(@"weight is changed! new=%@", weight);
-        [_weightView setProgress:[weight floatValue]/STANDARD_WEIGHT animated:YES];
+        /*[_weightView setProgress:[weight floatValue]/STANDARD_WEIGHT animated:YES];*/
     }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -262,6 +263,23 @@
     NSLog(@"ViewController: send character\n");
     AppDelegate *app = [[UIApplication sharedApplication]delegate];
     [app sendBLECommad:@"AT+GTWT\r"];
+    NSString *weight = @"0.0";
+    if (_weightTestConut == 0) {
+        weight = @"0.0";
+        _weightTestConut++;
+    } else if (_weightTestConut == 1) {
+        weight = @"4.5";
+        _weightTestConut++;
+    } else if (_weightTestConut == 2) {
+        weight = @"16.5";
+        _weightTestConut++;
+    } else {
+        _weightTestConut = 0;
+        weight = @"23.0";
+    }
+    
+    [_weightView setProgress:[weight floatValue]/STANDARD_WEIGHT animated:YES];
+    
 }
 
 - (void)handleGesture:(UIScreenEdgePanGestureRecognizer *)gesture {
