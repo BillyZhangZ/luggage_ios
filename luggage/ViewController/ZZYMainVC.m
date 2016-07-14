@@ -16,7 +16,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 //standard weight
-#define STANDARD_WEIGHT 20.0
+#define STANDARD_WEIGHT 50.0
 
 @interface ZZYMainVC ()<UIGestureRecognizerDelegate, UIAccelerometerDelegate>
 {
@@ -154,7 +154,7 @@
     [_weightView setAnimationDuration:1.0];
     [_weightView setLineWidth:5];
     _weightView.progressChangedBlock = ^(UAProgressView *progressView, CGFloat progress) {
-        [(UILabel *)progressView.centralView setText:[NSString stringWithFormat:@"%2.0f%%\n%.2fKg", progress * 100,progress*STANDARD_WEIGHT]];
+        [(UILabel *)progressView.centralView setText:[NSString stringWithFormat:@"%2.0f%%\n%.2flbs", progress * 100,progress*STANDARD_WEIGHT]];
     };
 
     _weightView.didSelectBlock = ^(UAProgressView *progressView) {
@@ -265,7 +265,7 @@
     [app sendBLECommad:@"AT+GTWT\r"];
     NSString *weight = @"0.0";
     if (_weightTestConut == 0) {
-        weight = @"0.0";
+        weight = @"49.0";
         _weightTestConut++;
     } else if (_weightTestConut == 1) {
         weight = @"4.5";

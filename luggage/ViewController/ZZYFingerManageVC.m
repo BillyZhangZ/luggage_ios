@@ -58,10 +58,10 @@
     
     cell.accessoryType = UITableViewCellAccessoryNone;
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"Add Fingerprint";
+        cell.textLabel.text = @"Add Fingerprint        (8/16)";
     }
     else
-        cell.textLabel.text = @"Delete Fingerprint";
+        cell.textLabel.text = @"Delete Fingerprint     (8/16)";
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     cell.textLabel.font = [UIFont fontWithName:@"Arial" size:12];
@@ -77,12 +77,28 @@
     if (indexPath.row == 0) {
         //send add fingerprint
         [app sendBLECommad:@"AT+FINGERREG\r"];
+#if 1
+        NSString *title = [NSString stringWithFormat:@"Add fingerprint OK \n9/16"];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+#endif
 
     }
     else
     {
         //send del fingerprint
         [app sendBLECommad:@"AT+FINGERDEL\r"];
+#if 1
+        NSString *title = [NSString stringWithFormat:@"Delete fingerprint OK \n7/16"];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+#endif
     }
 }
 
