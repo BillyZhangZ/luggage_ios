@@ -55,7 +55,7 @@
     if (!_viewOne) {
         
         _viewOne = [[UIView alloc] initWithFrame:self.frame];
-        
+        /*
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height*.05, self.frame.size.width*.8, 60)];
         titleLabel.center = CGPointMake(self.center.x, self.frame.size.height*.1);
         titleLabel.text = [NSString stringWithFormat:@"第1页主题"];
@@ -67,7 +67,7 @@
         
         UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, self.frame.size.height*.1, self.frame.size.width*.8, self.frame.size.width)];
         imageview.contentMode = UIViewContentModeScaleAspectFit;
-        imageview.image = [UIImage imageNamed:@"Intro_Screen_One"];
+        imageview.image = [UIImage imageNamed:@"guide1"];
         [_viewOne addSubview:imageview];
         
         UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, self.frame.size.height*.7, self.frame.size.width*.8, 60)];
@@ -80,7 +80,12 @@
         [_viewOne addSubview:descriptionLabel];
         
         CGPoint labelCenter = CGPointMake(self.center.x, self.frame.size.height*.7);
-        descriptionLabel.center = labelCenter;
+        descriptionLabel.center = labelCenter;*/
+        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        
+        imageview.contentMode = UIViewContentModeScaleAspectFill;
+        imageview.image = [UIImage imageNamed:@"guide1"];
+        [_viewOne addSubview:imageview];
         
     }
     return _viewOne;
@@ -92,8 +97,9 @@
         CGFloat originWidth = self.frame.size.width;
         CGFloat originHeight = self.frame.size.height;
         
-        _viewTwo = [[UIView alloc] initWithFrame:CGRectMake(originWidth, 0, originWidth, originHeight)];
         
+        _viewTwo = [[UIView alloc] initWithFrame:CGRectMake(originWidth, 0, originWidth, originHeight)];
+        /*
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height*.05, self.frame.size.width*.8, 60)];
         titleLabel.center = CGPointMake(self.center.x, self.frame.size.height*.1);
         titleLabel.text = [NSString stringWithFormat:@"第2页主题"];
@@ -105,7 +111,7 @@
         
         UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, self.frame.size.height*.1, self.frame.size.width*.8, self.frame.size.width)];
         imageview.contentMode = UIViewContentModeScaleAspectFit;
-        imageview.image = [UIImage imageNamed:@"Intro_Screen_Two"];
+        imageview.image = [UIImage imageNamed:@"guide2"];
         [_viewTwo addSubview:imageview];
         
         UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, self.frame.size.height*.7, self.frame.size.width*.8, 60)];
@@ -118,7 +124,13 @@
         [_viewTwo addSubview:descriptionLabel];
         
         CGPoint labelCenter = CGPointMake(self.center.x, self.frame.size.height*.7);
-        descriptionLabel.center = labelCenter;
+        descriptionLabel.center = labelCenter;*/
+        
+        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        
+        imageview.contentMode = UIViewContentModeScaleAspectFill;
+        imageview.image = [UIImage imageNamed:@"guide2"];
+        [_viewTwo addSubview:imageview];
     }
     return _viewTwo;
     
@@ -131,7 +143,7 @@
         CGFloat originHeight = self.frame.size.height;
         
         _viewThree = [[UIView alloc] initWithFrame:CGRectMake(originWidth*2, 0, originWidth, originHeight)];
-        
+        /*
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height*.05, self.frame.size.width*.8, 60)];
         titleLabel.center = CGPointMake(self.center.x, self.frame.size.height*.1);
         titleLabel.text = [NSString stringWithFormat:@"第3页主题"];
@@ -143,7 +155,7 @@
         
         UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, self.frame.size.height*.1, self.frame.size.width*.8, self.frame.size.width)];
         imageview.contentMode = UIViewContentModeScaleAspectFit;
-        imageview.image = [UIImage imageNamed:@"Intro_Screen_Three"];
+        imageview.image = [UIImage imageNamed:@"guide2"];
         [_viewThree addSubview:imageview];
         
         
@@ -156,8 +168,15 @@
         [descriptionLabel sizeToFit];
         [_viewThree addSubview:descriptionLabel];
         
+        
         CGPoint labelCenter = CGPointMake(self.center.x, self.frame.size.height*.7);
-        descriptionLabel.center = labelCenter;
+        descriptionLabel.center = labelCenter;*/
+        
+        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, 0, self.frame.size.width, self.frame.size.height)];
+        
+        imageview.contentMode = UIViewContentModeScaleAspectFill;
+        imageview.image = [UIImage imageNamed:@"guide3"];
+        [_viewThree addSubview:imageview];
     }
     return _viewThree;
     
@@ -170,7 +189,7 @@
         CGFloat originHeight = self.frame.size.height;
         
         _viewFour = [[UIView alloc] initWithFrame:CGRectMake(originWidth*3, 0, originWidth, originHeight)];
-        
+        /*
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height*.05, self.frame.size.width*.8, 60)];
         titleLabel.center = CGPointMake(self.center.x, self.frame.size.height*.1);
         titleLabel.text = [NSString stringWithFormat:@"第4页主题"];
@@ -182,7 +201,7 @@
         
         UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, self.frame.size.height*.1, self.frame.size.width*.8, self.frame.size.width)];
         imageview.contentMode = UIViewContentModeScaleAspectFit;
-        imageview.image = [UIImage imageNamed:@"Intro_Screen_Four"];
+        imageview.image = [UIImage imageNamed:@"guide4"];
         [_viewFour addSubview:imageview];
         
         UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, self.frame.size.height*.7, self.frame.size.width*.8, 60)];
@@ -193,9 +212,16 @@
         descriptionLabel.numberOfLines = 0;
         [descriptionLabel sizeToFit];
         [_viewFour addSubview:descriptionLabel];
+        */
         
-        CGPoint labelCenter = CGPointMake(self.center.x, self.frame.size.height*.7);
-        descriptionLabel.center = labelCenter;
+        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, 0, self.frame.size.width, self.frame.size.height)];
+        
+        imageview.contentMode = UIViewContentModeScaleAspectFill;
+        imageview.image = [UIImage imageNamed:@"guide4"];
+        [_viewFour addSubview:imageview];
+        
+        //CGPoint labelCenter = CGPointMake(self.center.x, self.frame.size.height*.7);
+       // descriptionLabel.center = labelCenter;
         
     }
     return _viewFour;
@@ -226,7 +252,7 @@
     if (!_doneButton) {
         _doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-60, self.frame.size.width, 60)];
         [_doneButton setTintColor:[UIColor whiteColor]];
-        [_doneButton setTitle:@"开始体验!" forState:UIControlStateNormal];
+        [_doneButton setTitle:@"start!" forState:UIControlStateNormal];
         [_doneButton.titleLabel setFont:[UIFont systemFontOfSize:18.0]];
         [_doneButton setBackgroundColor:[UIColor colorWithRed:0.129 green:0.588 blue:0.953 alpha:1.000]];
         [_doneButton addTarget:self.delegate action:@selector(onDoneButtonPressed) forControlEvents:UIControlEventTouchUpInside];
