@@ -300,7 +300,7 @@
 -(void)getGpsFromCellbase:(int)mcc Mnc:(int)mnc Lac:(int)lac Cid:(int)cid
 {
     //fix me about url
-    NSString *tmp = [NSString stringWithFormat:@"http://opencellid.org/cell/get?key=4fd75e56-e2bf-4c1a-8f4f-724932ed5a39&mcc=%d&mnc=%d&lac=%d&cellid=%d",mcc, mnc, lac, cid];
+    NSString *tmp = [NSString stringWithFormat:@"http://opencellid.org/cell/get?key=087f826f-443e-4d90-8f68-e0693c73d3b8&mcc=%d&mnc=%d&lac=%d&cellid=%d",mcc, mnc, lac, cid];
     NSMutableString *urlPost = [[NSMutableString alloc] initWithString:tmp];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
