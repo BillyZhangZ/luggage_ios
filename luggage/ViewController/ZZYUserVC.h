@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 XingJian Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LBaseViewController.h"
 
-@interface ZZYUserVC : UIViewController<UITableViewDataSource,UITableViewDelegate, UIActionSheetDelegate>
+@interface ZZYUserVC : LBaseViewController<UITableViewDataSource,UITableViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZZYAboutVC">
@@ -17,6 +17,7 @@
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1IW-c1-VrK">
                     <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Kgn-GK-6TY"/>
                     </constraints>
@@ -26,6 +27,7 @@
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qbO-UZ-2gM">
                                     <rect key="frame" x="20" y="7" width="60" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
                                     <state key="normal" title="Back"/>
                                     <connections>
                                         <action selector="onBackButton:" destination="-1" eventType="touchUpInside" id="f7o-5X-1w6"/>
@@ -36,6 +38,7 @@
                     </items>
                 </navigationBar>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="1IW-c1-VrK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DY4-SF-fG4"/>

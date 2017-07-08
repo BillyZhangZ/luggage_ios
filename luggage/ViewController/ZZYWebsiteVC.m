@@ -19,6 +19,12 @@
     // Do any additional setup after loading the view from its nib.
     NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.americantourister.com.cn/pub1/Products.aspx"]];
     [self.webView loadRequest:request];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self.webView loadRequest:request];
+        
+    });
 }
 
 - (void)didReceiveMemoryWarning {

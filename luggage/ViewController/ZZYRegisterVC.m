@@ -140,7 +140,7 @@
                 return;
             }
             //store user id
-            AppDelegate *app = [[UIApplication sharedApplication]delegate];
+            AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
             app.account.userId = [dict objectForKey:@"id"];
 #if 0
             dispatch_async(dispatch_get_main_queue(), ^{

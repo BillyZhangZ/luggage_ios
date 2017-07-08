@@ -6,9 +6,9 @@
 //  Copyright © 2015 张志阳. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LBaseViewController.h"
 
-@interface ZZYBookTicketVC : UIViewController
+@interface ZZYBookTicketVC : LBaseViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end

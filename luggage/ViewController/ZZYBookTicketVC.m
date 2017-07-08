@@ -1,3 +1,4 @@
+
 //
 //  BookViewController.m
 //  luggage
@@ -18,7 +19,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.ctrip.com"]];
-    [self.webView loadRequest:request];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self.webView loadRequest:request];
+    });
 }
 
 - (void)didReceiveMemoryWarning {

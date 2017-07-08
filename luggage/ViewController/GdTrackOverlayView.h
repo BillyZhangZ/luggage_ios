@@ -9,7 +9,7 @@
 #import <MapKit/MKOverlayPathView.h>
 #import "GdTrackOverlay.h"
 
-@interface GdTrackOverlayView : MKOverlayPathView
+@interface GdTrackOverlayView : MKOverlayPathRenderer
 
 @property (nonatomic, readonly) GdTrackOverlay *trackOverlay;
 

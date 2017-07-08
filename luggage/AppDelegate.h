@@ -14,6 +14,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic,strong)UITabBarController *tabbarController;
+
 @property (strong, nonatomic) ZZYAcount *account;
 @property (strong, nonatomic) ZZYSetting *setting;
 
@@ -37,5 +39,9 @@ NSString * getATCmd(NSString *str);
 
 NSString * stringFromDate(NSDate *date);
 CLLocationCoordinate2D  transformFromWGSToGCJ(CLLocationCoordinate2D wgLoc);
+
+- (void)showLoginView;
+- (void)showMainView;
+
 @end
 

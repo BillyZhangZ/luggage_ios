@@ -162,7 +162,7 @@
             
             NSLog(@"%@", [dict objectForKey:@"id"]);
             //store user id
-            AppDelegate *app = [[UIApplication sharedApplication]delegate];
+            AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
             [app.account setUserId: [dict objectForKey:@"id"] ];
             [app.account setLocalPhoneNumber: [dict objectForKey:@"phoneNumber"]];
             [app.account setUserName:[dict objectForKey:@"name"]];

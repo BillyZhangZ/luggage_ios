@@ -6,9 +6,9 @@
 //  Copyright © 2016 张志阳. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LBaseViewController.h"
 
-@interface ZZYFingerManageVC : UIViewController
+@interface ZZYFingerManageVC : LBaseViewController
 @property (weak, nonatomic) IBOutlet UINavigationBar *nav;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 

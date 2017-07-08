@@ -79,7 +79,7 @@
     [_searchingLabel setText:@" Searching Luggage "];
     
     
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     [self getLatestGpsLocation:[app.account.userId integerValue]];
     [self.view addSubview:_mapModeButton];
@@ -99,8 +99,9 @@
 
 - (void) onMapButtonMode
 {
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    [self getLatestCellbaseLocation:[app.account.userId integerValue]];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    //[self getLatestCellbaseLocation:[app.account.userId integerValue]];
+    [self getLatestWifiLocation:[app.account.deviceId integerValue]];
 }
 
 
@@ -219,7 +220,7 @@
             
             NSDateComponents *d = [cal components:unitFlags fromDate:gpsdate toDate:currentdate options:0];
             
-            int intervalHours = [d day]*24 + [d hour];
+            NSInteger intervalHours = [d day]*24 + [d hour];
             
             /* if interval bigger than 1hour, give some hint */
             if (intervalHours < 1) {
@@ -252,9 +253,9 @@
 
 -(void)getLatestCellbaseLocation:(NSInteger)userId
 {
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_GET_CELLBASE];
-    [urlPost appendFormat:@"%d",[app.account.deviceId integerValue]];
+    [urlPost appendFormat:@"%ld",(long)[app.account.deviceId integerValue]];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
@@ -278,10 +279,10 @@
                 return ;
             }
             
-            int mcc = [[dict valueForKey:@"mcc"] integerValue];
-            int mnc = [[dict valueForKey:@"mnc"] integerValue];
-            int lac = [[dict valueForKey:@"lac"] integerValue];
-            int cid = [[dict valueForKey:@"cid"] integerValue];
+            NSInteger mcc = [[dict valueForKey:@"mcc"] integerValue];
+            NSInteger mnc = [[dict valueForKey:@"mnc"] integerValue];
+            NSInteger lac = [[dict valueForKey:@"lac"] integerValue];
+            NSInteger cid = [[dict valueForKey:@"cid"] integerValue];
             [self getGpsFromCellbase:mcc Mnc:mnc Lac:lac Cid:cid];
             
             NSLog(@"gps raw data %@",dict);
@@ -297,10 +298,10 @@
     [dataTask resume];
     
 }
--(void)getGpsFromCellbase:(int)mcc Mnc:(int)mnc Lac:(int)lac Cid:(int)cid
+-(void)getGpsFromCellbase:(NSInteger)mcc Mnc:(NSInteger)mnc Lac:(NSInteger)lac Cid:(NSInteger)cid
 {
     //fix me about url
-    NSString *tmp = [NSString stringWithFormat:@"http://opencellid.org/cell/get?key=087f826f-443e-4d90-8f68-e0693c73d3b8&mcc=%d&mnc=%d&lac=%d&cellid=%d",mcc, mnc, lac, cid];
+    NSString *tmp = [NSString stringWithFormat:@"http://opencellid.org/cell/get?key=087f826f-443e-4d90-8f68-e0693c73d3b8&mcc=%ld&mnc=%ld&lac=%ld&cellid=%ld",mcc, mnc, lac, cid];
     NSMutableString *urlPost = [[NSMutableString alloc] initWithString:tmp];
     NSURL *url = [NSURL URLWithString:urlPost];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -327,8 +328,8 @@
             
             NSRange failRange = [xmlString rangeOfString:@"fail"];
             if (failRange.length > 0) {
-                _latitude = _latitude;
-                _longtitude = _longtitude;
+                _latitude = _latitude + 0.0;
+                _longtitude = _longtitude + 0.0;
                 NSLog(@"error：-------");
             } else {
             NSString *lat = @"lat=\"";
@@ -350,8 +351,8 @@
         }else{
             //出现错误；
             NSLog(@"error：%@",error);
-            _latitude = _latitude;//[latSubString floatValue];
-            _longtitude = _longtitude;//[lonSubString floatValue];
+            _latitude = _latitude + 0.0;//[latSubString floatValue];
+            _longtitude = _longtitude + 0.0;//[lonSubString floatValue];
         }
         
     }];
@@ -359,6 +360,108 @@
     
     [dataTask resume];
 }
+
+
+-(void)getLatestWifiLocation:(NSInteger)deviceId
+{
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSMutableString *urlPost = [[NSMutableString alloc] initWithString:URL_GET_WIFI];
+    [urlPost appendFormat:@"%ld",(long)[app.account.deviceId integerValue]];
+    NSURL *url = [NSURL URLWithString:urlPost];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    
+    [request setTimeoutInterval:10.0f];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            //没有错误，返回正确；
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            if (dict == nil || [dict objectForKey:@"deviceId"] == NULL) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No records!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                    [alert addAction:okAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                });
+                return ;
+            }
+            
+            NSString *bssid1 = [dict valueForKey:@"bssid1"];
+            NSString *bssid2 = [dict valueForKey:@"bssid2"];
+            
+            [self getGpsFromWifi:bssid1 Bssid2:bssid2];
+            
+            NSLog(@"gps wifi data %@",dict);
+            
+            
+        }else{
+            //出现错误；
+            NSLog(@"error：%@",error);
+        }
+        
+    }];
+    
+    [dataTask resume];
+    
+}
+
+-(void)getGpsFromWifi:(NSString*)bssid1 Bssid2:(NSString*)bssid2
+{
+    NSDictionary *parameters = @{ @"token": @"9caa13ad80b19e",
+                                  @"wifi": @[ @{ @"bssid": bssid1, @"channel": @11, @"frequency": @2412, @"signal": @-51 }, @{ @"bssid":bssid2 } ],
+                                  @"address": @1 };
+    
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    
+    NSMutableURLRequest *request =
+        [NSMutableURLRequest requestWithURL:
+            [NSURL URLWithString:@"https://us1.unwiredlabs.com/v2/process.php"]
+         cachePolicy:NSURLRequestUseProtocolCachePolicy
+         timeoutInterval:10.0];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask =
+        [session dataTaskWithRequest:request
+            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (error) {
+                    NSLog(@"%@", error);
+                } else {
+                    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                    NSLog(@"%@", httpResponse);
+                    
+                    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+                    if (dict == nil || ![[dict objectForKey:@"status"]  isEqual: @"ok"]) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Can not locate with cellbase or wifi" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                            [alert addAction:okAction];
+                            [self presentViewController:alert animated:YES completion:nil];
+                        });
+                        return ;
+                    }
+                    
+                    float lat = [[dict valueForKey:@"lat"] floatValue];
+                    float lon = [[dict valueForKey:@"lon"] floatValue];
+                    
+                    _latitude = lat;
+                    _longtitude = lon;
+                    
+                    NSInteger accuracy = [[dict valueForKey:@"accuracy"] integerValue];
+                    NSString *address = [dict valueForKey:@"address"];
+                    NSLog(@"lat：%f, lon: %f, accuracy: %ld, address: %@", lat, lon, (long)accuracy, address);
+                    
+                }
+         }];
+    [dataTask resume];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -1,21 +1,28 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F881AFB7AC922C391D5AE8168267D7A5AB18C7F5",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4FB195B142DA06684AF279A127163518D7AB9957",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "F9FE0C9584897F74925A91E11ED11D0FD034D8A4" : 0,
-    "F881AFB7AC922C391D5AE8168267D7A5AB18C7F5" : 0
+    "4FB195B142DA06684AF279A127163518D7AB9957" : 0,
+    "F881AFB7AC922C391D5AE8168267D7A5AB18C7F5" : 0,
+    "F9FE0C9584897F74925A91E11ED11D0FD034D8A4" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "ECE66CF7-DF00-414A-A867-4D94F81E3BBD",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "F9FE0C9584897F74925A91E11ED11D0FD034D8A4" : "luggage_ios\/BLEDevice\/",
-    "F881AFB7AC922C391D5AE8168267D7A5AB18C7F5" : "luggage_ios\/"
+    "4FB195B142DA06684AF279A127163518D7AB9957" : "luggage\/",
+    "F881AFB7AC922C391D5AE8168267D7A5AB18C7F5" : "luggage_ios\/",
+    "F9FE0C9584897F74925A91E11ED11D0FD034D8A4" : "luggage_ios\/BLEDevice\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "luggage",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "luggage.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:yuhaiping\/luggage.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4FB195B142DA06684AF279A127163518D7AB9957"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/BillyZhangZ\/luggage_ios.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

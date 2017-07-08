@@ -6,7 +6,8 @@
 //  Copyright © 2015 张志阳. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LBaseViewController.h"
+
 #define SET_NAME     @"AT+STNAME=ZHIYANG\r"
 #define GET_NAME     @"AT+GTNAME\r"
 #define GET_SIM_NUMBER      @"AT+GTSIM\r"
@@ -20,7 +21,7 @@
 #define UNLOCK      @"AT+LOCKOFF\r"
 
 
-@interface ZZYAddDeviceVC : UIViewController
+@interface ZZYAddDeviceVC : LBaseViewController
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

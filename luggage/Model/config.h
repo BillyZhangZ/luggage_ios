@@ -9,6 +9,23 @@
 #ifndef __config_h
 #define __config_h
 
+#define NEW_MODIFY
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define GPS_ON_IMGE  [UIImage imageNamed:@"gps_on.png"]
+#define GPS_IMGE     [UIImage imageNamed:@"gps.png"]
+
+#define LOCK_ON_IMGE  [UIImage imageNamed:@"lock_on.png"]
+#define LOCK_IMGE     [UIImage imageNamed:@"lock_old.png"]
+
+#define WEIGHT_ON_IMGE  [UIImage imageNamed:@"weight_on.png"]
+#define WEIGHT_IMGE     [UIImage imageNamed:@"weight.png"]
+
+#define MENU_ON_IMGE  [UIImage imageNamed:@"menu_on.png"]
+#define MENU_IMGE     [UIImage imageNamed:@"menu.png"]
+
+
 #define MAPAPIKEY     @"ba3f5f63c0cbc81301bd286207e2edb0";
 
 
@@ -24,6 +41,7 @@
 #define URL_USER_REGISTER SERVER @"/register"
 #define URL_GET_GPS SERVER @"/gps/"
 #define URL_GET_CELLBASE SERVER @"/cellbase/"
+#define URL_GET_WIFI SERVER @"/wifi/"
 #define URL_BOND_DEVICE SERVER @"/bonddevice"
 #define URL_REGISTER_DEVICE_TOKEN SERVER @"/deviceToken"
 #define URL_TEST_SERVER_NOTIFICATION SERVER @"/testNotification"

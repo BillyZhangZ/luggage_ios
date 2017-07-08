@@ -127,7 +127,7 @@ typedef enum{
 }
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI{
     
-    NSLog(@"%@ %d", peripheral.name, [RSSI integerValue]);
+    NSLog(@"%@ %ld", peripheral.name, [RSSI integerValue]);
     
     [_luggageDelegate onDeviceDiscovered:peripheral rssi:[RSSI integerValue]];
     //[central stopScan];

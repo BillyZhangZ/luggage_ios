@@ -42,8 +42,11 @@
         self.introView.alpha = 0;
     } completion:^(BOOL finished) {
         [self.introView removeFromSuperview];
-        AppDelegate *app = [[UIApplication sharedApplication] delegate];
+#ifndef NEW_MODIFY
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [app setViewControllerAfterGuide];
+#endif
+        
     }];
 }
 

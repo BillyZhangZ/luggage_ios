@@ -194,13 +194,13 @@
 
 - (void) onBtnUser:(id)sender
 {
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [app onMenuItemClicked:@"User"];
 }
 
 - (void) onBtnClose:(id)sender
 {
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [app onMenuItemClicked:@"cancelled"];
 }
 
@@ -219,7 +219,7 @@
         default: return; break;
     }
 
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [app onMenuItemClicked:itemName];
 }
 

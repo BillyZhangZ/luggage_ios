@@ -7,6 +7,9 @@
 //
 
 #import "ZZYBaseNavVC.h"
-@interface ZZYSettingsVC : ZZYBaseNavVC
+
+#import "LBaseViewController.h"
+
+@interface ZZYSettingsVC : LBaseViewController
 
 @end

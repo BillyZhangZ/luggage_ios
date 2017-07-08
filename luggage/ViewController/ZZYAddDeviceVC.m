@@ -30,6 +30,12 @@ enum BLE_OPERATION
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"Bond";
+    UIView *footer = [[UIView alloc]init];
+    footer.backgroundColor = [UIColor whiteColor];
+    _tableView.tableFooterView = footer;
+    
     _luggageDevice = [[LuggageDevice alloc]init:self onlyScan:YES];
     _foundDevices = [[NSMutableArray alloc]init];
     _targetDevice = nil;
@@ -103,12 +109,12 @@ enum BLE_OPERATION
 {
     CGRect viewFrame = CGRectMake(0, 0, tableView.bounds.size.width, 30);
     UIView *view = [[UIView alloc]initWithFrame:viewFrame];
-    view.backgroundColor= [UIColor colorWithRed:31/255.0 green:31/255.0 blue:34/255.0 alpha:0.4];
+    view.backgroundColor= [UIColor whiteColor];//[UIColor colorWithRed:31/255.0 green:31/255.0 blue:34/255.0 alpha:0.4];
     CGRect LabelFrame = CGRectMake(10, 0, 150, 30);
     UILabel *label = [[UILabel alloc] initWithFrame:LabelFrame];
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentLeft;
-    label.textColor = [UIColor whiteColor];
+    label.textColor = [UIColor colorWithRed:29/255.0 green:176/255.0 blue:237/255.0 alpha:1.0];//[UIColor whiteColor];
     [view addSubview:label];
     
     if (section == 0) {
@@ -124,27 +130,29 @@ enum BLE_OPERATION
 
 -(void)sendLocalPhoneNumber
 {
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
-    NSString *cmd = [NSString stringWithFormat:@"AT+STSIM=%@\r", app.account.localPhoneNumber];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSString *PhoneNumStr = app.account.localPhoneNumber;
+    NSString *SubPhoneNumStr = [PhoneNumStr substringFromIndex:(app.account.localPhoneNumber.length)- 4];
+    NSString *cmd = [NSString stringWithFormat:@"AT+STSIM=%@\r", SubPhoneNumStr];
     [_luggageDevice LuggageWriteChar:cmd];
 }
 
 #pragma luggage device delegate
 -(void)onDeviceDiscovered:(CBPeripheral *)device rssi:(NSInteger)rssi;
 {
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    //AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     for (NSDictionary *dic in _foundDevices) {
         if ([device.name isEqualToString:[dic valueForKey:@"name"]]) {
             return;
         }
     }
-    if ([device.name isEqualToString:[NSString stringWithFormat:@"Luggage%@",app.account.deviceId]]) {
+    //if ([device.name isEqualToString:[NSString stringWithFormat:@"Luggage%@",app.account.deviceId]]) {
     
-        NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:device.name, @"name", device, @"device", [NSString stringWithFormat:@"%d",rssi],@"rssi", nil];
+        NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:device.name, @"name", device, @"device", [NSString stringWithFormat:@"%ld",(long)rssi],@"rssi", nil];
         [_foundDevices addObject:dic];
     
         [self.tableView reloadData];
-    }
+    //}
 }
 -(void)onLuggageDeviceConected
 {
@@ -179,6 +187,8 @@ enum BLE_OPERATION
     self.logText.text  = log;
     [self sendLocalPhoneNumber];
     _opration = BLE_OPERATION_SEND_LOCAL_PHONE_NUMBER;
+    [log appendString:@"ios:set ntf ok and write phone number\n"];
+    self.logText.text  = log;
 }
 -(void)onLuggageDeviceDissconnected
 {
@@ -228,7 +238,7 @@ enum BLE_OPERATION
 
         void (^onAfterSignUp)(UIAlertAction *action) = ^(UIAlertAction *action) {
             [self dismissViewControllerAnimated:YES completion:nil];
-            AppDelegate *app =[[UIApplication sharedApplication]delegate];
+            AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
             //fix me
             [app setValue:@"1" forKey:@"isDeviceBonded"];
         };

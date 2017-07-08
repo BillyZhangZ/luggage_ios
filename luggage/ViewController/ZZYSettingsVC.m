@@ -14,6 +14,11 @@
 #import "ZZYPravicyVC.h"
 #import <MessageUI/MFMessageComposeViewController.h>
 
+
+#import "LFeedbackViewController.h"
+#import "LAboutUsViewController.h"
+#import "LPravicyViewController.h"
+
 @interface ZZYSettingsVC ()<UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource,MFMessageComposeViewControllerDelegate>
 {
     UIImageView *_ivPhoto;
@@ -33,28 +38,30 @@
     screenEdgePan.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:screenEdgePan];
     
-    CGRect rc;
-    rc = [[UIScreen mainScreen] bounds];
-    UIImageView *iv = [[UIImageView alloc] initWithFrame:rc];
-    iv.image = [UIImage imageNamed:@"bg.png"];
+//    CGRect rc;
+//    rc = [[UIScreen mainScreen] bounds];
+//    UIImageView *iv = [[UIImageView alloc] initWithFrame:rc];
+//    iv.image = [UIImage imageNamed:@"bg.png"];
     //[self.view addSubview:iv];
 
-    self.vcTitle = @"Settings";
-    self.leftButtonImage = @"menu.png";
-    
-    [super constructView];
-    [self.leftButton addTarget:self action:@selector(onBtnMenu) forControlEvents:UIControlEventTouchUpInside];
+//    self.vcTitle = @"Settings";
+//    self.leftButtonImage = @"menu.png";
+//    
+//    [super constructView];
+//    [self.leftButton addTarget:self action:@selector(onBtnMenu) forControlEvents:UIControlEventTouchUpInside];
 
-    rc.origin.x = 0;
-    rc.origin.y = lo_settings_table_y_offset * rate_pixel_to_point;
-    rc.size.width = self.clientRect.size.width;
-    rc.size.height = self.clientRect.size.height + self.clientRect.origin.y - rc.origin.y;
-    _tblOptions = [[UITableView alloc] initWithFrame:rc style:UITableViewStyleGrouped];
-    _tblOptions.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+//    rc.origin.x = 0;
+//    rc.origin.y = lo_settings_table_y_offset * rate_pixel_to_point;
+//    rc.size.width = self.clientRect.size.width;
+//    rc.size.height = self.clientRect.size.height + self.clientRect.origin.y - rc.origin.y;
+    
+    
+    _tblOptions = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64) style:UITableViewStyleGrouped];
+    _tblOptions.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
     _tblOptions.delegate = self;
     _tblOptions.dataSource = self;
-    [_tblOptions setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    _tblOptions.frame = rc;
+    [_tblOptions setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+//    _tblOptions.frame = rc;
     [self.view addSubview:_tblOptions];
 
     
@@ -85,7 +92,7 @@
 
 - (void) switchAlertHelper:(id)sender
 {
-     AppDelegate *app = [UIApplication sharedApplication].delegate;
+     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     UISwitch *s = (UISwitch *)sender;
     app.setting.alertSetting = [NSString stringWithFormat:@"%d",s.on];
@@ -94,7 +101,7 @@
 -(void) switchNotification:(id)sender
 {
      UISwitch *s = (UISwitch *)sender;
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     BOOL state = s.on;
     
     if (state) {
@@ -121,7 +128,7 @@
     }
     else
     {
-        AppDelegate *app = [[UIApplication sharedApplication]delegate];
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         [app showMenu];
     }
 }
@@ -144,11 +151,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
-    AppDelegate *app =[[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if(indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"settingTableCell1"];
         if(cell == nil)
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"settingTableCell1"];
+        
+        cell.textLabel.textColor = [UIColor colorWithRed:29/255.0 green:176/255.0 blue:237/255.0 alpha:1.0];
+
         if(indexPath.row == 0) {
             cell.textLabel.text = @"Notification";
             cell.detailTextLabel.text = @"";
@@ -179,13 +189,20 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"settingTableCell1"];
         if(cell == nil)
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"settingTableCell1"];
+        
+        cell.textLabel.textColor = [UIColor colorWithRed:29/255.0 green:176/255.0 blue:237/255.0 alpha:1.0];
+
         cell.textLabel.text = @"SMS Unlock";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else if(indexPath.section == 2){
+        
         cell = [tableView dequeueReusableCellWithIdentifier:@"settingTableCell2"];
         if(cell == nil)
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"settingTableCell2"];
+        
+        cell.textLabel.textColor = [UIColor colorWithRed:29/255.0 green:176/255.0 blue:237/255.0 alpha:1.0];
+
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"Feedback";
@@ -205,8 +222,7 @@
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:SETTINGS_CELL_TITLE_FONT_SIZE];
+    cell.textLabel.font = [UIFont systemFontOfSize:SETTINGS_CELL_TITLE_FONT_SIZE];
     cell.detailTextLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:SETTINGS_CELL_SUBTITLE_FONT_SIZE];
     [cell setBackgroundColor:[UIColor colorWithRed:1.0 green:0 blue:0 alpha:0]];
@@ -219,24 +235,24 @@
         switch (indexPath.row) {
             case 0:
             {
-                ZZYFeedbackVC *vc = [[ZZYFeedbackVC alloc]init];
-                [self presentViewController:vc
-                                   animated:YES completion:nil];
+                LFeedbackViewController *feedback = [[LFeedbackViewController alloc]init];
+                [self.navigationController pushViewController:feedback animated:YES];
             }
             break;
             case 1:
             {
-                ZZYAboutVC *vc = [[ZZYAboutVC alloc]init];
-                [self presentViewController:vc
-                                   animated:YES completion:nil];
+            
+                LAboutUsViewController *abountUs = [[LAboutUsViewController alloc]init];
+                [self.navigationController pushViewController:abountUs animated:YES];
             }
                 break;
                 
             case 2:
             {
-                ZZYPravicyVC *vc = [[ZZYPravicyVC alloc]init];
-                [self presentViewController:vc
-                                   animated:YES completion:nil];
+               
+                LPravicyViewController *pravicy = [[LPravicyViewController alloc]init];
+                [self.navigationController pushViewController:pravicy animated:YES];
+                
             }
                 break;
                 
@@ -271,14 +287,14 @@
     if(section == 2)
         return 0;
     else
-        return 22;
+        return 10;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     if(section != 2) {
-        UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 22)];
-        view.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.7];
+        UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
+        view.backgroundColor = [UIColor whiteColor];
         return view;
     }
     else {
@@ -287,7 +303,7 @@
 }
 
 - (void)remoteUnlock {
-    AppDelegate*app = [[UIApplication sharedApplication]delegate];
+    AppDelegate*app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if (app.account.remotePhoneNumber == nil) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please Bond Device" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];

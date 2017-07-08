@@ -6,9 +6,8 @@
 //  Copyright © 2015 张志阳. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@interface ZZYWebsiteVC : UIViewController
+#import "LBaseViewController.h"
+@interface ZZYWebsiteVC : LBaseViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end

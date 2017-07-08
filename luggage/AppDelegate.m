@@ -27,6 +27,15 @@
 #import "ZZYLoginVC.h"
 #import "ZZYBondDeviceIdVC.h"
 
+#import "LLoginViewController.h"
+#import "LGpsViewController.h"
+#import "LLockViewController.h"
+#import "LWeightViewController.h"
+#import "LMenuViewController.h"
+#import "ZZYUserGuideView.h"
+#import "ZZYMenuView.h"
+
+
 #define UPDATE_BATTERY_COUNTER 60
 
 @interface AppDelegate ()<WXApiDelegate, LuggageDelegate>
@@ -54,15 +63,138 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+#ifdef NEW_MODIFY
+
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
     
+    [self initVaribles];
+    
+    //判断是不是第一次启动应用
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"])
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+        
+        [self showLoginView];
+        [self.window makeKeyAndVisible];
+        
+        ZZYUserGuideView *guideView = [[ZZYUserGuideView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [self.window addSubview:guideView];
+        [self.window bringSubviewToFront:guideView];
+    }
+    else
+    {
+        NSLog(@"not first start");
+        if (_account.localPhoneNumber == nil || [_account.localPhoneNumber isEqualToString: @"0"]) {
+            
+            [self showLoginView];
+        }
+        else
+        {
+            if (_isDeviceBonded) {
+                
+                _luggageDevice = [[LuggageDevice alloc]init:self onlyScan:NO];
+            }
+
+            [self showMainView];
+        
+        }
+        
+        [self.window makeKeyAndVisible];
+
+    }
+    
+    return YES;
+
+#else
+
     _mainVC = [[ZZYMainVC alloc] init];
+     _account = [[ZZYAcount alloc]init];
+     _setting = [[ZZYSetting alloc]init];
+     _loginVC = [[ZZYLoginVC alloc]init];
+     _isDeviceBonded = [_account.bond integerValue];
+     _bleState = false;
+     FINGERREG = FINGERDEL = 0;
+     
+     readBatteryCounter = 0;
+     distance = 0;
+     battery = 0;
+     weight = 0;
+     
+     [UIDevice currentDevice].proximityMonitoringEnabled = YES;
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(proximityChange:) name:UIDeviceProximityStateDidChangeNotification object:nil];
+     
+     [self addObserver:self forKeyPath:@"isDeviceBonded" options:NSKeyValueObservingOptionNew context:nil];
+     
+     CGRect rc = [[UIScreen mainScreen] bounds];
+     _menuView = [[ZZYMenuView alloc]initWithFrame:rc];
+     [WXApi registerApp:@"wx9d60ab46bfa2d903" withDescription:@"luggage"];
+     [SMS_SDK registerApp:@"cdabbcf0f504"  withSecret:@"ccbe1fa6a1f8f17075f03951b29d1618"];
+     
+     // let voice can be heard when app is at background, and use MIX to prevent pausing music player
+     NSError *error = NULL;
+     AVAudioSession *session = [AVAudioSession sharedInstance];
+     [session setCategory:AVAudioSessionCategoryPlayback
+     withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&error];
+     
+     
+     
+     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+     
+     
+     float sysVersion=[[UIDevice currentDevice]systemVersion].floatValue;
+     if (sysVersion>=8.0) {
+     UIUserNotificationType type=UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound;
+     UIUserNotificationSettings *setting=[UIUserNotificationSettings settingsForTypes:type categories:nil];
+     [[UIApplication sharedApplication]registerUserNotificationSettings:setting];
+     }
+     
+     //判断是不是第一次启动应用
+     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"])
+     {
+     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+     NSLog(@"first start");
+     //如果是第一次启动的话,使用UserGuideViewController (用户引导页面) 作为根视图
+     ZZYUserGuideVC *userGuideViewController = [[ZZYUserGuideVC alloc] init];
+     self.window.rootViewController = userGuideViewController;
+     self.window.backgroundColor = [UIColor whiteColor];
+     
+     }
+     else
+     {
+     NSLog(@"not first start");
+     if (_account.localPhoneNumber == nil || [_account.localPhoneNumber isEqualToString: @"0"]) {
+     self.window.rootViewController = _loginVC;
+     }
+     else
+     {
+     if (_isDeviceBonded) {
+     _luggageDevice = [[LuggageDevice alloc]init:self onlyScan:NO];
+     }
+     else
+     {
+     
+     }
+     self.window.rootViewController = _mainVC;
+     }
+     }
+     
+     [self.window makeKeyAndVisible];
+    
+    return YES;
+
+#endif
+
+}
+#pragma mark - initVaribles
+- (void)initVaribles {
+
     _account = [[ZZYAcount alloc]init];
-    _setting = [[ZZYSetting alloc]init];
-    _loginVC = [[ZZYLoginVC alloc]init];
     _isDeviceBonded = [_account.bond integerValue];
     _bleState = false;
     FINGERREG = FINGERDEL = 0;
-
+    
     readBatteryCounter = 0;
     distance = 0;
     battery = 0;
@@ -72,64 +204,92 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(proximityChange:) name:UIDeviceProximityStateDidChangeNotification object:nil];
     
     [self addObserver:self forKeyPath:@"isDeviceBonded" options:NSKeyValueObservingOptionNew context:nil];
-
-    CGRect rc = [[UIScreen mainScreen] bounds];
-    _menuView = [[ZZYMenuView alloc]initWithFrame:rc];
+    
+    
     [WXApi registerApp:@"wx9d60ab46bfa2d903" withDescription:@"luggage"];
     [SMS_SDK registerApp:@"cdabbcf0f504"  withSecret:@"ccbe1fa6a1f8f17075f03951b29d1618"];
-
-       // let voice can be heard when app is at background, and use MIX to prevent pausing music player
+    
+    // let voice can be heard when app is at background, and use MIX to prevent pausing music player
     NSError *error = NULL;
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayback
              withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&error];
     
-
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-   
-    
     float sysVersion=[[UIDevice currentDevice]systemVersion].floatValue;
+    
     if (sysVersion>=8.0) {
+        
         UIUserNotificationType type=UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound;
+        
         UIUserNotificationSettings *setting=[UIUserNotificationSettings settingsForTypes:type categories:nil];
+        
         [[UIApplication sharedApplication]registerUserNotificationSettings:setting];
     }
-    
-    //判断是不是第一次启动应用
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"])
-    {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-        NSLog(@"first start");
-        //如果是第一次启动的话,使用UserGuideViewController (用户引导页面) 作为根视图
-        ZZYUserGuideVC *userGuideViewController = [[ZZYUserGuideVC alloc] init];
-        self.window.rootViewController = userGuideViewController;
-        self.window.backgroundColor = [UIColor whiteColor];
 
-    }
-    else
-    {
-        NSLog(@"not first start");
-        if (_account.localPhoneNumber == nil || [_account.localPhoneNumber isEqualToString: @"0"]) {
-            self.window.rootViewController = _loginVC;
-        }
-        else
-        {
-            if (_isDeviceBonded) {
-                _luggageDevice = [[LuggageDevice alloc]init:self onlyScan:NO];
-            }
-            else
-            {
-                
-            }
-            self.window.rootViewController = _mainVC;
-        }
-    }
-    
-    [self.window makeKeyAndVisible];
-
-    return YES;
 }
+#pragma mark -
+#pragma mark - showLoginView
+- (void)showLoginView {
+
+    LLoginViewController *loginView = [[LLoginViewController alloc]init];
+    UINavigationController *rootNav = [[UINavigationController alloc]initWithRootViewController:loginView];
+    rootNav.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bar.png"]];
+    self.window.rootViewController = rootNav;
+}
+#pragma mark - 
+#pragma mark - showMainView
+- (void)showMainView {
+
+
+    LGpsViewController     *gpsView = [[LGpsViewController alloc]init];
+    gpsView.title = @"Location";
+    
+    LLockViewController    *lockView = [[LLockViewController alloc]init];
+    lockView.title = @"luggage";
+
+    LWeightViewController  *weightView = [[LWeightViewController alloc]init];
+    weightView.title = @"luggage";
+
+    LMenuViewController    *menuView = [[LMenuViewController alloc]init];
+    menuView.title = @"luggage";
+
+    
+    UINavigationController *gpsViewNav = [[UINavigationController alloc]initWithRootViewController:gpsView];
+    UINavigationController *lockViewNav = [[UINavigationController alloc]initWithRootViewController:lockView];
+    UINavigationController *weightViewNav = [[UINavigationController alloc]initWithRootViewController:weightView];
+    UINavigationController *menuViewNav = [[UINavigationController alloc]initWithRootViewController:menuView];
+
+    gpsViewNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    lockViewNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    weightViewNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    menuViewNav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+
+    
+    [gpsViewNav setTabBarItem:[[UITabBarItem alloc]initWithTitle:@"Gps" image:GPS_IMGE selectedImage:GPS_ON_IMGE]];
+
+    [lockViewNav setTabBarItem:[[UITabBarItem alloc]initWithTitle:@"Lock" image:LOCK_IMGE selectedImage:LOCK_ON_IMGE]];
+
+    [weightViewNav setTabBarItem:[[UITabBarItem alloc]initWithTitle:@"Weight" image:WEIGHT_IMGE selectedImage:WEIGHT_ON_IMGE]];
+    
+    [menuViewNav setTabBarItem:[[UITabBarItem alloc]initWithTitle:@"Menu" image:MENU_IMGE selectedImage:MENU_ON_IMGE]];
+
+    
+    self.tabbarController = [[UITabBarController alloc]init];
+
+    [UITabBarItem.appearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:11], NSFontAttributeName, UIColorFromRGB(0x929292), NSForegroundColorAttributeName,nil]   forState:UIControlStateNormal];
+    
+    [UITabBarItem.appearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:11], NSFontAttributeName,  UIColorFromRGB(0x00bcd4), NSForegroundColorAttributeName,nil] forState:UIControlStateSelected];
+    
+    self.tabbarController.tabBar.backgroundImage = [UIImage imageNamed:@"bar.png"];
+
+    
+    [self.tabbarController setViewControllers:@[gpsViewNav,lockViewNav,weightViewNav,menuViewNav]];
+    
+    self.window.rootViewController = self.tabbarController;
+
+}
+#pragma mark -
+#pragma mark - observeValueForKeyPath
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     _account.bond = [change valueForKey:NSKeyValueChangeNewKey];
@@ -241,7 +401,7 @@
     NSLog(@"%@",deviceToken);
     NSString *deviceTokenStr = [NSString stringWithFormat:@"%@",deviceToken];
     //modify the token, remove the  "<, >"
-    NSLog(@"    deviceTokenStr  lentgh:  %d  ->%@", [deviceTokenStr length], [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)]);
+    NSLog(@"    deviceTokenStr  lentgh:  %lu  ->%@", (unsigned long)[deviceTokenStr length], [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)]);
     deviceTokenStr = [[deviceTokenStr substringWithRange:NSMakeRange(0, 72)] substringWithRange:NSMakeRange(1, 71)];
     
     NSLog(@"deviceTokenStr = %@",deviceTokenStr);
@@ -258,7 +418,7 @@
     [request setTimeoutInterval:100.0f];
     
     NSString *string;
-    int userId = [self.account.userId integerValue];
+    int userId = (int)[self.account.userId integerValue];
 
     string = [[NSString alloc] initWithFormat:@"{\"userId\":\"%d\",\"deviceToken\":\"%@\"}",userId,deviceToken];
     NSLog(@"%@", string);
@@ -309,9 +469,9 @@
     [request setTimeoutInterval:100.0f];
     
     NSString *string;
-    int userId = [self.account.userId integerValue];
+    NSInteger userId = [self.account.userId integerValue];
     
-    string = [[NSString alloc] initWithFormat:@"{\"userId\":\"%d\"}",userId];
+    string = [[NSString alloc] initWithFormat:@"{\"userId\":\"%ld\"}",(long)userId];
     NSLog(@"%@", string);
     [request setHTTPBody:[string dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -363,6 +523,8 @@
     
     return result;
 }
+#pragma mark -
+#pragma mark - showMenu
 - (void) showMenu
 {
 #if 0
@@ -375,6 +537,7 @@
 #else
         _menuView.lblName.text = self.account.userName;
 #endif
+    
     CGRect rc = _menuView.frame;
     rc.origin.x = - lo_menu_width * rate_pixel_to_point;
     _menuView.frame = rc;
@@ -391,8 +554,10 @@
     _menuView.frame = rc;
     // 执行动画
     [UIView commitAnimations];
+    
 }
-
+#pragma mark - 
+#pragma mark - hideMenu
 - (void) hideMenu
 {
     CGRect rc = _menuView.frame;
@@ -400,7 +565,8 @@
     _menuView.frame = rc;
     [_menuView removeFromSuperview];
 }
-
+#pragma mark -
+#pragma mark - onMenuItemClicked
 - (void) onMenuItemClicked:(NSString *)itemName
 {
     if([itemName compare:@"User"] == NSOrderedSame)
@@ -426,7 +592,7 @@
     }
     else if([itemName compare:@"Flight"] == NSOrderedSame)
     {
-       // _window.rootViewController = _histVC;
+        // _window.rootViewController = _histVC;
         ZZYBookTicketVC *vc = [[ZZYBookTicketVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
@@ -447,12 +613,13 @@
     }
     else if([itemName compare:@"Settings"] == NSOrderedSame)
     {
-       // _window.rootViewController = _settingsVC;
+        // _window.rootViewController = _settingsVC;
         ZZYSettingsVC *vc = [[ZZYSettingsVC alloc]init];
         [_window.rootViewController presentViewController:vc animated:YES completion:nil];
     }
     
     [self hideMenu];
+
 }
 
 
@@ -811,19 +978,40 @@ void say(NSString *sth)
 
 NSString * getATCmd(NSString *str)
 {
+    NSRange fingerSuccessRange = [str rangeOfString:@"FINGERREG success"];
+    if (fingerSuccessRange.location == NSNotFound)
+    {
+        NSRange end = [str rangeOfString:@"="];
+        NSString *string = [str substringWithRange:NSMakeRange(0, end.location)];
+        return string;
+    }
     
-    NSRange end = [str rangeOfString:@"="];
-    NSString *string = [str substringWithRange:NSMakeRange(0, end.location)];
-    return string;
+    if (fingerSuccessRange.length > 0)
+    {
+        return @"AT+FINGERREG";
+    }
+    
+    return @"";
 }
 
 NSString * getATContent(NSString *str)
 {
     
-    NSRange start = [str rangeOfString:@"="];
-    NSRange end = [str rangeOfString:@"\r"];
-    NSString *string = [str substringWithRange:NSMakeRange(start.location+1, end.location -start.location-1)];
-    return string;
+    NSRange fingerSuccessRange = [str rangeOfString:@"FINGERREG success"];
+    if (fingerSuccessRange.location == NSNotFound)
+    {
+        NSRange start = [str rangeOfString:@"="];
+        NSRange end = [str rangeOfString:@"\r"];
+        NSString *string = [str substringWithRange:NSMakeRange(start.location+1, end.location -start.location-1)];
+        return string;
+    }
+    
+    if (fingerSuccessRange.length > 0)
+    {
+        return @"OK";
+    }
+    
+    return @"";
 }
 
 

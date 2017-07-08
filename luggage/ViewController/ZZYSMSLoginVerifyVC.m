@@ -79,7 +79,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if ([textField.text length] == 4) {
         [SMS_SDK commitVerifyCode:textField.text result:^(enum SMS_ResponseState state) {
             if (1==state)

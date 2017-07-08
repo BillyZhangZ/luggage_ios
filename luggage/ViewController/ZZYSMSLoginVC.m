@@ -178,7 +178,7 @@
 - (IBAction)registerButtonClicked:(id)sender {
     //ZZYSMSRegisterViewController *vc = [[ZZYSMSRegisterViewController alloc]init];
     //[self presentViewController:vc animated:NO completion:nil];
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [app jumpToMainAfterLogin];
 }
 

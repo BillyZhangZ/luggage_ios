@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Footprint";
     UIScreenEdgePanGestureRecognizer * screenEdgePan
     = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
     screenEdgePan.delegate = self;
@@ -76,7 +77,7 @@
     _mapModeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_mapModeButton addTarget:self action:@selector(onMapButtonMode) forControlEvents:UIControlEventTouchUpInside];
     
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     [self getLatestLocation:[app.account.userId integerValue]];
     //[self.view addSubview:_mapModeButton];
@@ -154,7 +155,7 @@
 {
     
     NSMutableString *urlGet = [[NSMutableString alloc] initWithString:URL_GET_GPS];
-    [urlGet appendFormat:@"%lu/%d",(unsigned long)userId, 100/*stringFromDate([NSDate date])*/];
+    [urlGet appendFormat:@"%lu/%d",(unsigned long)userId, 130/*stringFromDate([NSDate date])*/];
     //[urlGet appendFormat:@"%lu/%@/%@",(unsigned long)userId, stringFromDate([[NSDate date] dateByAddingTimeInterval:-3600]), stringFromDate([NSDate date])];
 
     NSURL *url = [NSURL URLWithString:urlGet];
@@ -169,7 +170,7 @@
     void (^onDone)(NSData *data) = ^(NSData *data) {
         if(data == nil)
         {
-            NSLog(@"get gps failded%d",userId);
+            NSLog(@"get gps failded%ld",(long)userId);
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed" message:@"Please try it later" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
@@ -205,14 +206,14 @@
             coords.latitude = _latitude;
             coords.longitude = _longtitude;
             //coord convert
-            coord = transformFromWGSToGCJ(coords);
+            //coord = transformFromWGSToGCJ(coords);
             pointsToUse[i++] =  coord;
             
             //CLLocation *locNew = [[CLLocation alloc] initWithCoordinate:coord altitude: _altitude horizontalAccuracy:10.0     verticalAccuracy:10.0 timestamp:[NSDate date]];
             //CLLocation *locNew = [[CLLocation alloc] initWithCoordinate:coord altitude: _altitude horizontalAccuracy:10.0 verticalAccuracy:10.0 course:0 speed:0.0 timestamp:[NSDate date]];
             
             
-            NSLog(@"gps raw data %@",dict);
+            //NSLog(@"gps raw data %@",dict);
         }
         NSMutableArray *overlays = [[NSMutableArray alloc] init];
 
@@ -236,6 +237,7 @@
                                    onDone(nil);
                                }
                            }];
+
 #endif
 #if 0
     NSURLSession *session = [NSURLSession sharedSession];
@@ -301,13 +303,13 @@
 #endif
     
 }
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id )overlay{
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id )overlay{
    // if ([overlay isKindOfClass:[MAPolyline class]]){
-        MKPolylineView *lineView = [[MKPolylineView alloc] initWithPolyline: overlay];
-        lineView.lineWidth = 5.0f;
-        lineView.strokeColor = [UIColor redColor];
-        lineView.fillColor = [UIColor blackColor];
-        return lineView;
+        MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline: overlay];
+        renderer.lineWidth = 5.0f;
+        renderer.strokeColor = [UIColor redColor];
+        renderer.fillColor = [UIColor blackColor];
+        return renderer;
   //  }
     
  //   return nil;

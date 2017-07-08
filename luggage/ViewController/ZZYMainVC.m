@@ -100,7 +100,7 @@
     rc.size.height = self.addDeviceButton.frame.size.height;
     [self.addDeviceButton setFrame:rc];
     
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     _account = app.account;
     [app addObserver:self forKeyPath:@"distance" options:NSKeyValueObservingOptionNew context:nil];
     [app addObserver:self forKeyPath:@"battery" options:NSKeyValueObservingOptionNew context:nil];
@@ -166,14 +166,14 @@
 }
 
 - (IBAction)onMenuButton:(id)sender {
-    AppDelegate *app =[[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [app showMenu];
 }
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    AppDelegate *app =[[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     if ([keyPath isEqualToString:@"distance"]) {
         //check if alert according to setting
@@ -207,7 +207,7 @@
 }
 
 - (IBAction)onAddDeviceButton:(id)sender {
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (app.isDeviceBonded) {        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Device Bonded" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -233,35 +233,35 @@
 -(void)bleSendUnlock
 {
     NSLog(@"ViewController: send character\n");
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [app sendBLECommad:@"AT+LOCKOFF\r"];
 }
 
 -(void)bleSendRegisterFinger
 {
     NSLog(@"ViewController: send character\n");
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [app sendBLECommad:@"AT+FINGERREG\r"];
 }
 
 -(void)bleSendDeleteFinger
 {
     NSLog(@"ViewController: send character\n");
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [app sendBLECommad:@"AT+FINGERDEL\r"];
 }
 
 -(void)bleSendLock
 {
     NSLog(@"ViewController: send character\n");
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [app sendBLECommad:@"AT+LOCKON\r"];
 }
 
 -(void)bleSendGetWeight
 {
     NSLog(@"ViewController: send character\n");
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [app sendBLECommad:@"AT+GTWT\r"];
     NSString *weight = @"0.0";
     if (_weightTestConut == 0) {
@@ -290,7 +290,7 @@
     }
     else
     {
-        AppDelegate *app = [[UIApplication sharedApplication]delegate];
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         [app showMenu];
     }
 }

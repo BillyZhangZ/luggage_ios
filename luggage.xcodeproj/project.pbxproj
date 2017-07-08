@@ -10,7 +10,6 @@
 		83013E2C1C018E190065B5C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83013E2B1C018E190065B5C2 /* main.m */; };
 		83013E2F1C018E190065B5C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83013E2E1C018E190065B5C2 /* AppDelegate.m */; };
 		83013E371C018E190065B5C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83013E361C018E190065B5C2 /* Images.xcassets */; };
-		83013E3A1C018E190065B5C2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83013E381C018E190065B5C2 /* LaunchScreen.xib */; };
 		83013E461C018E190065B5C2 /* luggageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83013E451C018E190065B5C2 /* luggageTests.m */; };
 		83013E611C01D9F40065B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83013E601C01D9F40065B5C2 /* UIKit.framework */; };
 		83013E631C01D9FB0065B5C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83013E621C01D9FB0065B5C2 /* Foundation.framework */; };
@@ -81,7 +80,6 @@
 		83933F8B1C15CDC500A7AA6F /* ZZYFootprintVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83933F891C15CDC500A7AA6F /* ZZYFootprintVC.xib */; };
 		83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F8D1C15D55000A7AA6F /* GdTrackOverlay.m */; };
 		83933F911C15D55000A7AA6F /* GdTrackOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */; };
-		839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839458D11C107E0500020561 /* libBLEDevice.a */; };
 		83B5CD8E1C8DB274009DFA80 /* menubg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD8D1C8DB274009DFA80 /* menubg@2x.png */; };
 		83B5CD931CB0C310009DFA80 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD921CB0C310009DFA80 /* login_bg.jpg */; };
 		83B5CD951CB0E3C7009DFA80 /* location1.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B5CD941CB0E3C7009DFA80 /* location1.png */; };
@@ -121,6 +119,47 @@
 		83FDFF871C1466DB000275AA /* ZZYAddDeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FDFF851C1466DB000275AA /* ZZYAddDeviceVC.m */; };
 		83FDFF881C1466DB000275AA /* ZZYAddDeviceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FDFF861C1466DB000275AA /* ZZYAddDeviceVC.xib */; };
 		83FDFF8A1C1482F1000275AA /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FDFF891C1482F1000275AA /* location.png */; };
+		90E606911F07E32C00015AC3 /* libBLEDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E606901F07E32C00015AC3 /* libBLEDevice.a */; };
+		BA08135D1D9A0E3F00D63E19 /* weight_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA08135C1D9A0E3F00D63E19 /* weight_blue@2x.png */; };
+		BA5AA4BC1D8FD842009F16A0 /* LBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA5AA4BB1D8FD842009F16A0 /* LBaseViewController.m */; };
+		BA5AA4BF1D8FD860009F16A0 /* LLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA5AA4BE1D8FD860009F16A0 /* LLoginViewController.m */; };
+		BA5AA4C51D8FD894009F16A0 /* LGpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA5AA4C41D8FD894009F16A0 /* LGpsViewController.m */; };
+		BA5AA4C81D8FD8AB009F16A0 /* LLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA5AA4C71D8FD8AB009F16A0 /* LLockViewController.m */; };
+		BA5AA4CB1D8FD8BD009F16A0 /* LWeightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA5AA4CA1D8FD8BD009F16A0 /* LWeightViewController.m */; };
+		BA5AA4CE1D8FD8D2009F16A0 /* LMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA5AA4CD1D8FD8D2009F16A0 /* LMenuViewController.m */; };
+		BA5AA4D21D900529009F16A0 /* LCommonTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BA5AA4D11D900529009F16A0 /* LCommonTools.m */; };
+		BA740FC71D9B5DB8001911F0 /* battery0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FBE1D9B5DB8001911F0 /* battery0@2x.png */; };
+		BA740FC81D9B5DB8001911F0 /* battery33@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FBF1D9B5DB8001911F0 /* battery33@2x.png */; };
+		BA740FC91D9B5DB8001911F0 /* battery66@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FC01D9B5DB8001911F0 /* battery66@2x.png */; };
+		BA740FCA1D9B5DB8001911F0 /* battery100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FC11D9B5DB8001911F0 /* battery100@2x.png */; };
+		BA740FCB1D9B5DB8001911F0 /* lock_old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FC21D9B5DB8001911F0 /* lock_old@2x.png */; };
+		BA740FCC1D9B5DB8001911F0 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FC31D9B5DB8001911F0 /* lock@2x.png */; };
+		BA740FCD1D9B5DB8001911F0 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FC41D9B5DB8001911F0 /* logo@2x.png */; };
+		BA740FCE1D9B5DB8001911F0 /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FC51D9B5DB8001911F0 /* name@2x.png */; };
+		BA740FCF1D9B5DB8001911F0 /* unlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FC61D9B5DB8001911F0 /* unlock@2x.png */; };
+		BA740FD11D9B5E62001911F0 /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FD01D9B5E62001911F0 /* phone@2x.png */; };
+		BA740FD31D9B620C001911F0 /* blue_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA740FD21D9B620C001911F0 /* blue_line@2x.png */; };
+		BA9EC2271D90CC3C00F7D5EE /* LRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9EC2261D90CC3C00F7D5EE /* LRegisterViewController.m */; };
+		BA9EC2291D91109300F7D5EE /* bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC2281D91109300F7D5EE /* bar@2x.png */; };
+		BA9EC22B1D911B6E00F7D5EE /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC22A1D911B6E00F7D5EE /* back@2x.png */; };
+		BA9EC2341D91321200F7D5EE /* gps_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC22C1D91321200F7D5EE /* gps_on@2x.png */; };
+		BA9EC2351D91321200F7D5EE /* gps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC22D1D91321200F7D5EE /* gps@2x.png */; };
+		BA9EC2361D91321200F7D5EE /* lock_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC22E1D91321200F7D5EE /* lock_on@2x.png */; };
+		BA9EC2381D91321200F7D5EE /* menu_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC2301D91321200F7D5EE /* menu_on@2x.png */; };
+		BA9EC2391D91321200F7D5EE /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC2311D91321200F7D5EE /* menu@2x.png */; };
+		BA9EC23A1D91321200F7D5EE /* weight_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC2321D91321200F7D5EE /* weight_on@2x.png */; };
+		BA9EC23B1D91321200F7D5EE /* weight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC2331D91321200F7D5EE /* weight@2x.png */; };
+		BA9EC23E1D914DC700F7D5EE /* LMainBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9EC23D1D914DC700F7D5EE /* LMainBaseViewController.m */; };
+		BA9EC2401D914F3B00F7D5EE /* battery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9EC23F1D914F3B00F7D5EE /* battery@2x.png */; };
+		BAB88D111D9517CF009D4EB2 /* addDevice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB88D0B1D9517CF009D4EB2 /* addDevice@2x.png */; };
+		BAB88D121D9517CF009D4EB2 /* finger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB88D0C1D9517CF009D4EB2 /* finger@2x.png */; };
+		BAB88D131D9517CF009D4EB2 /* Flight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB88D0D1D9517CF009D4EB2 /* Flight@2x.png */; };
+		BAB88D141D9517CF009D4EB2 /* footPrint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB88D0E1D9517CF009D4EB2 /* footPrint@2x.png */; };
+		BAB88D151D9517CF009D4EB2 /* Products@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB88D0F1D9517CF009D4EB2 /* Products@2x.png */; };
+		BAB88D161D9517CF009D4EB2 /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB88D101D9517CF009D4EB2 /* setting@2x.png */; };
+		BAB88D191D9531C2009D4EB2 /* LFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB88D181D9531C2009D4EB2 /* LFeedbackViewController.m */; };
+		BAB88D1C1D9531E4009D4EB2 /* LAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB88D1B1D9531E4009D4EB2 /* LAboutUsViewController.m */; };
+		BAB88D1F1D9531FC009D4EB2 /* LPravicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB88D1E1D9531FC009D4EB2 /* LPravicyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,7 +179,6 @@
 		83013E2D1C018E190065B5C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		83013E2E1C018E190065B5C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		83013E361C018E190065B5C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		83013E391C018E190065B5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		83013E3F1C018E190065B5C2 /* luggage.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = luggage.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83013E441C018E190065B5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83013E451C018E190065B5C2 /* luggageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = luggageTests.m; sourceTree = "<group>"; };
@@ -228,7 +266,6 @@
 		83933F8E1C15D55000A7AA6F /* GdTrackOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GdTrackOverlayView.h; path = ViewController/GdTrackOverlayView.h; sourceTree = "<group>"; };
 		83933F8F1C15D55000A7AA6F /* GdTrackOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GdTrackOverlayView.m; path = ViewController/GdTrackOverlayView.m; sourceTree = "<group>"; };
 		839458D01C107D8200020561 /* BLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEDevice.h; path = BLEDevice/BLEDevice/BLEDevice.h; sourceTree = "<group>"; };
-		839458D11C107E0500020561 /* libBLEDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBLEDevice.a; path = "BLEDevice/build/Debug-iphoneos/libBLEDevice.a"; sourceTree = "<group>"; };
 		83B5CD8D1C8DB274009DFA80 /* menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menubg@2x.png"; path = "images/menubg@2x.png"; sourceTree = "<group>"; };
 		83B5CD921CB0C310009DFA80 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = login_bg.jpg; path = images/login_bg.jpg; sourceTree = "<group>"; };
 		83B5CD941CB0E3C7009DFA80 /* location1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location1.png; path = images/location1.png; sourceTree = "<group>"; };
@@ -287,6 +324,59 @@
 		83FDFF851C1466DB000275AA /* ZZYAddDeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZZYAddDeviceVC.m; path = ViewController/ZZYAddDeviceVC.m; sourceTree = "<group>"; };
 		83FDFF861C1466DB000275AA /* ZZYAddDeviceVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZZYAddDeviceVC.xib; path = ViewController/ZZYAddDeviceVC.xib; sourceTree = "<group>"; };
 		83FDFF891C1482F1000275AA /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location.png; path = images/location.png; sourceTree = "<group>"; };
+		90E606901F07E32C00015AC3 /* libBLEDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBLEDevice.a; path = "../../../../xiazhita/Library/Developer/Xcode/DerivedData/luggage-habibwboqsmdzugmpeigirbjrxlp/Build/Products/Debug-iphonesimulator/libBLEDevice.a"; sourceTree = "<group>"; };
+		BA08135C1D9A0E3F00D63E19 /* weight_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight_blue@2x.png"; sourceTree = "<group>"; };
+		BA5AA4BA1D8FD842009F16A0 /* LBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBaseViewController.h; sourceTree = "<group>"; };
+		BA5AA4BB1D8FD842009F16A0 /* LBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBaseViewController.m; sourceTree = "<group>"; };
+		BA5AA4BD1D8FD860009F16A0 /* LLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLoginViewController.h; sourceTree = "<group>"; };
+		BA5AA4BE1D8FD860009F16A0 /* LLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLoginViewController.m; sourceTree = "<group>"; };
+		BA5AA4C31D8FD894009F16A0 /* LGpsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGpsViewController.h; sourceTree = "<group>"; };
+		BA5AA4C41D8FD894009F16A0 /* LGpsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGpsViewController.m; sourceTree = "<group>"; };
+		BA5AA4C61D8FD8AB009F16A0 /* LLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLockViewController.h; sourceTree = "<group>"; };
+		BA5AA4C71D8FD8AB009F16A0 /* LLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLockViewController.m; sourceTree = "<group>"; };
+		BA5AA4C91D8FD8BD009F16A0 /* LWeightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWeightViewController.h; sourceTree = "<group>"; };
+		BA5AA4CA1D8FD8BD009F16A0 /* LWeightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWeightViewController.m; sourceTree = "<group>"; };
+		BA5AA4CC1D8FD8D2009F16A0 /* LMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMenuViewController.h; sourceTree = "<group>"; };
+		BA5AA4CD1D8FD8D2009F16A0 /* LMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMenuViewController.m; sourceTree = "<group>"; };
+		BA5AA4D01D900529009F16A0 /* LCommonTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCommonTools.h; sourceTree = "<group>"; };
+		BA5AA4D11D900529009F16A0 /* LCommonTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCommonTools.m; sourceTree = "<group>"; };
+		BA740FBE1D9B5DB8001911F0 /* battery0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery0@2x.png"; sourceTree = "<group>"; };
+		BA740FBF1D9B5DB8001911F0 /* battery33@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery33@2x.png"; sourceTree = "<group>"; };
+		BA740FC01D9B5DB8001911F0 /* battery66@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery66@2x.png"; sourceTree = "<group>"; };
+		BA740FC11D9B5DB8001911F0 /* battery100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery100@2x.png"; sourceTree = "<group>"; };
+		BA740FC21D9B5DB8001911F0 /* lock_old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock_old@2x.png"; sourceTree = "<group>"; };
+		BA740FC31D9B5DB8001911F0 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
+		BA740FC41D9B5DB8001911F0 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
+		BA740FC51D9B5DB8001911F0 /* name@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name@2x.png"; sourceTree = "<group>"; };
+		BA740FC61D9B5DB8001911F0 /* unlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unlock@2x.png"; sourceTree = "<group>"; };
+		BA740FD01D9B5E62001911F0 /* phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@2x.png"; sourceTree = "<group>"; };
+		BA740FD21D9B620C001911F0 /* blue_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue_line@2x.png"; sourceTree = "<group>"; };
+		BA9EC2251D90CC3C00F7D5EE /* LRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRegisterViewController.h; sourceTree = "<group>"; };
+		BA9EC2261D90CC3C00F7D5EE /* LRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRegisterViewController.m; sourceTree = "<group>"; };
+		BA9EC2281D91109300F7D5EE /* bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@2x.png"; sourceTree = "<group>"; };
+		BA9EC22A1D911B6E00F7D5EE /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		BA9EC22C1D91321200F7D5EE /* gps_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps_on@2x.png"; sourceTree = "<group>"; };
+		BA9EC22D1D91321200F7D5EE /* gps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gps@2x.png"; sourceTree = "<group>"; };
+		BA9EC22E1D91321200F7D5EE /* lock_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock_on@2x.png"; sourceTree = "<group>"; };
+		BA9EC2301D91321200F7D5EE /* menu_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_on@2x.png"; sourceTree = "<group>"; };
+		BA9EC2311D91321200F7D5EE /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
+		BA9EC2321D91321200F7D5EE /* weight_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight_on@2x.png"; sourceTree = "<group>"; };
+		BA9EC2331D91321200F7D5EE /* weight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight@2x.png"; sourceTree = "<group>"; };
+		BA9EC23C1D914DC700F7D5EE /* LMainBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMainBaseViewController.h; sourceTree = "<group>"; };
+		BA9EC23D1D914DC700F7D5EE /* LMainBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMainBaseViewController.m; sourceTree = "<group>"; };
+		BA9EC23F1D914F3B00F7D5EE /* battery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery@2x.png"; sourceTree = "<group>"; };
+		BAB88D0B1D9517CF009D4EB2 /* addDevice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addDevice@2x.png"; sourceTree = "<group>"; };
+		BAB88D0C1D9517CF009D4EB2 /* finger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finger@2x.png"; sourceTree = "<group>"; };
+		BAB88D0D1D9517CF009D4EB2 /* Flight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Flight@2x.png"; sourceTree = "<group>"; };
+		BAB88D0E1D9517CF009D4EB2 /* footPrint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "footPrint@2x.png"; sourceTree = "<group>"; };
+		BAB88D0F1D9517CF009D4EB2 /* Products@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Products@2x.png"; sourceTree = "<group>"; };
+		BAB88D101D9517CF009D4EB2 /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
+		BAB88D171D9531C2009D4EB2 /* LFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFeedbackViewController.h; sourceTree = "<group>"; };
+		BAB88D181D9531C2009D4EB2 /* LFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFeedbackViewController.m; sourceTree = "<group>"; };
+		BAB88D1A1D9531E4009D4EB2 /* LAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAboutUsViewController.h; sourceTree = "<group>"; };
+		BAB88D1B1D9531E4009D4EB2 /* LAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAboutUsViewController.m; sourceTree = "<group>"; };
+		BAB88D1D1D9531FC009D4EB2 /* LPravicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPravicyViewController.h; sourceTree = "<group>"; };
+		BAB88D1E1D9531FC009D4EB2 /* LPravicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPravicyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,7 +386,6 @@
 			files = (
 				83465F031C04BC6E0039C86C /* AVFoundation.framework in Frameworks */,
 				83465F0F1C04BCD50039C86C /* AudioToolbox.framework in Frameworks */,
-				839458D21C107E0500020561 /* libBLEDevice.a in Frameworks */,
 				83465F9F1C0B1E780039C86C /* MapKit.framework in Frameworks */,
 				83465F791C0B02180039C86C /* SMS_SDK.framework in Frameworks */,
 				83465F0D1C04BCBC0039C86C /* OpenAL.framework in Frameworks */,
@@ -307,6 +396,7 @@
 				83465EF21C0377A30039C86C /* libPushSDK-1.8.3.a in Frameworks */,
 				83465EF11C0377950039C86C /* libWeChatSDK.a in Frameworks */,
 				83013E771C01DC5C0065B5C2 /* CoreTelephony.framework in Frameworks */,
+				90E606911F07E32C00015AC3 /* libBLEDevice.a in Frameworks */,
 				83013E751C01DC120065B5C2 /* Security.framework in Frameworks */,
 				83013E731C01DBE90065B5C2 /* SystemConfiguration.framework in Frameworks */,
 				83013E711C01DB9B0065B5C2 /* OpenGLES.framework in Frameworks */,
@@ -335,13 +425,14 @@
 		83013E1D1C018E190065B5C2 = {
 			isa = PBXGroup;
 			children = (
-				839458D11C107E0500020561 /* libBLEDevice.a */,
+				90E606901F07E32C00015AC3 /* libBLEDevice.a */,
 				839458D01C107D8200020561 /* BLEDevice.h */,
 				83465F7A1C0B03A00039C86C /* AMap.bundle */,
 				83013E5F1C01D98B0065B5C2 /* frameworks */,
 				83013E281C018E190065B5C2 /* luggage */,
 				83013E421C018E190065B5C2 /* luggageTests */,
 				83013E271C018E190065B5C2 /* Products */,
+				90621CA91E46FA4300560DF3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -357,6 +448,7 @@
 		83013E281C018E190065B5C2 /* luggage */ = {
 			isa = PBXGroup;
 			children = (
+				BA5AA4B41D8FD7CA009F16A0 /* NewAdd */,
 				83B5DC561CBD45C000A64CE6 /* View */,
 				83E931651C0C7F8600DB1AA2 /* images */,
 				83465F7C1C0B07D70039C86C /* icons */,
@@ -365,7 +457,6 @@
 				83013E2D1C018E190065B5C2 /* AppDelegate.h */,
 				83013E2E1C018E190065B5C2 /* AppDelegate.m */,
 				83013E361C018E190065B5C2 /* Images.xcassets */,
-				83013E381C018E190065B5C2 /* LaunchScreen.xib */,
 				83013E291C018E190065B5C2 /* Supporting Files */,
 			);
 			path = luggage;
@@ -579,6 +670,96 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		90621CA91E46FA4300560DF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA5AA4B41D8FD7CA009F16A0 /* NewAdd */ = {
+			isa = PBXGroup;
+			children = (
+				BA5AA4CF1D900501009F16A0 /* Common */,
+				BA5AA4B51D8FD7CA009F16A0 /* Controller */,
+				BA5AA4B61D8FD7CA009F16A0 /* Resources */,
+			);
+			path = NewAdd;
+			sourceTree = "<group>";
+		};
+		BA5AA4B51D8FD7CA009F16A0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BA5AA4BA1D8FD842009F16A0 /* LBaseViewController.h */,
+				BA5AA4BB1D8FD842009F16A0 /* LBaseViewController.m */,
+				BA9EC23C1D914DC700F7D5EE /* LMainBaseViewController.h */,
+				BA9EC23D1D914DC700F7D5EE /* LMainBaseViewController.m */,
+				BA5AA4BD1D8FD860009F16A0 /* LLoginViewController.h */,
+				BA5AA4BE1D8FD860009F16A0 /* LLoginViewController.m */,
+				BA9EC2251D90CC3C00F7D5EE /* LRegisterViewController.h */,
+				BA9EC2261D90CC3C00F7D5EE /* LRegisterViewController.m */,
+				BA5AA4C31D8FD894009F16A0 /* LGpsViewController.h */,
+				BA5AA4C41D8FD894009F16A0 /* LGpsViewController.m */,
+				BA5AA4C61D8FD8AB009F16A0 /* LLockViewController.h */,
+				BA5AA4C71D8FD8AB009F16A0 /* LLockViewController.m */,
+				BA5AA4C91D8FD8BD009F16A0 /* LWeightViewController.h */,
+				BA5AA4CA1D8FD8BD009F16A0 /* LWeightViewController.m */,
+				BA5AA4CC1D8FD8D2009F16A0 /* LMenuViewController.h */,
+				BA5AA4CD1D8FD8D2009F16A0 /* LMenuViewController.m */,
+				BAB88D171D9531C2009D4EB2 /* LFeedbackViewController.h */,
+				BAB88D181D9531C2009D4EB2 /* LFeedbackViewController.m */,
+				BAB88D1A1D9531E4009D4EB2 /* LAboutUsViewController.h */,
+				BAB88D1B1D9531E4009D4EB2 /* LAboutUsViewController.m */,
+				BAB88D1D1D9531FC009D4EB2 /* LPravicyViewController.h */,
+				BAB88D1E1D9531FC009D4EB2 /* LPravicyViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BA5AA4B61D8FD7CA009F16A0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BA740FD21D9B620C001911F0 /* blue_line@2x.png */,
+				BA740FD01D9B5E62001911F0 /* phone@2x.png */,
+				BA740FBE1D9B5DB8001911F0 /* battery0@2x.png */,
+				BA740FBF1D9B5DB8001911F0 /* battery33@2x.png */,
+				BA740FC01D9B5DB8001911F0 /* battery66@2x.png */,
+				BA740FC11D9B5DB8001911F0 /* battery100@2x.png */,
+				BA740FC21D9B5DB8001911F0 /* lock_old@2x.png */,
+				BA740FC31D9B5DB8001911F0 /* lock@2x.png */,
+				BA740FC41D9B5DB8001911F0 /* logo@2x.png */,
+				BA740FC51D9B5DB8001911F0 /* name@2x.png */,
+				BA740FC61D9B5DB8001911F0 /* unlock@2x.png */,
+				BA08135C1D9A0E3F00D63E19 /* weight_blue@2x.png */,
+				BAB88D0B1D9517CF009D4EB2 /* addDevice@2x.png */,
+				BAB88D0C1D9517CF009D4EB2 /* finger@2x.png */,
+				BAB88D0D1D9517CF009D4EB2 /* Flight@2x.png */,
+				BAB88D0E1D9517CF009D4EB2 /* footPrint@2x.png */,
+				BAB88D0F1D9517CF009D4EB2 /* Products@2x.png */,
+				BAB88D101D9517CF009D4EB2 /* setting@2x.png */,
+				BA9EC23F1D914F3B00F7D5EE /* battery@2x.png */,
+				BA9EC22C1D91321200F7D5EE /* gps_on@2x.png */,
+				BA9EC22D1D91321200F7D5EE /* gps@2x.png */,
+				BA9EC22E1D91321200F7D5EE /* lock_on@2x.png */,
+				BA9EC2301D91321200F7D5EE /* menu_on@2x.png */,
+				BA9EC2311D91321200F7D5EE /* menu@2x.png */,
+				BA9EC2321D91321200F7D5EE /* weight_on@2x.png */,
+				BA9EC2331D91321200F7D5EE /* weight@2x.png */,
+				BA9EC22A1D911B6E00F7D5EE /* back@2x.png */,
+				BA9EC2281D91109300F7D5EE /* bar@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BA5AA4CF1D900501009F16A0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BA5AA4D01D900529009F16A0 /* LCommonTools.h */,
+				BA5AA4D11D900529009F16A0 /* LCommonTools.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -623,18 +804,19 @@
 		83013E1E1C018E190065B5C2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "张志阳";
 				TargetAttributes = {
 					83013E251C018E190065B5C2 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 3A3Q6559K4;
+						DevelopmentTeam = 46KL4HDLYJ;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -670,9 +852,17 @@
 			files = (
 				8317D9771D6AFEEE00B9685A /* Icon.png in Resources */,
 				83B5DC5B1CBD4F3500A64CE6 /* battery.png in Resources */,
+				BA9EC2401D914F3B00F7D5EE /* battery@2x.png in Resources */,
+				BAB88D111D9517CF009D4EB2 /* addDevice@2x.png in Resources */,
+				BA9EC2391D91321200F7D5EE /* menu@2x.png in Resources */,
+				BA740FCC1D9B5DB8001911F0 /* lock@2x.png in Resources */,
 				83B5CDAA1CB2B98E009DFA80 /* crazy.jpg in Resources */,
 				83E9316E1C0C90A700DB1AA2 /* ZZYSMSLoginVC.xib in Resources */,
+				BA740FCE1D9B5DB8001911F0 /* name@2x.png in Resources */,
+				BA740FCA1D9B5DB8001911F0 /* battery100@2x.png in Resources */,
 				8317D9701D6AFEEE00B9685A /* Icon-Small-50@2x.png in Resources */,
+				BA740FC91D9B5DB8001911F0 /* battery66@2x.png in Resources */,
+				BA740FD31D9B620C001911F0 /* blue_line@2x.png in Resources */,
 				83D1D9FA1C18F889005F4F63 /* ZZYUserVC.xib in Resources */,
 				83FDFF8A1C1482F1000275AA /* location.png in Resources */,
 				83933F861C15C9E300A7AA6F /* ZZYBookTicketVC.xib in Resources */,
@@ -680,11 +870,14 @@
 				83465F981C0B0D8A0039C86C /* ZZYLoginVC.xib in Resources */,
 				83B5DC621CBF596100A64CE6 /* Location2.png in Resources */,
 				8317D9681D6AFEEE00B9685A /* Icon-60@3x.png in Resources */,
+				BA740FC71D9B5DB8001911F0 /* battery0@2x.png in Resources */,
+				BA9EC2341D91321200F7D5EE /* gps_on@2x.png in Resources */,
 				83FDFF881C1466DB000275AA /* ZZYAddDeviceVC.xib in Resources */,
 				8317D96E1D6AFEEE00B9685A /* Icon-iPadPro@2x.png in Resources */,
 				8317D96D1D6AFEEE00B9685A /* Icon-76@3x.png in Resources */,
 				83B5CD951CB0E3C7009DFA80 /* location1.png in Resources */,
 				8317D9741D6AFEEE00B9685A /* Icon-Spotlight-40.png in Resources */,
+				BA740FCD1D9B5DB8001911F0 /* logo@2x.png in Resources */,
 				83D1D9F81C18F889005F4F63 /* basicInfoCel.xib in Resources */,
 				8317D97A1D6AFEEE00B9685A /* iTunesArtwork@2x in Resources */,
 				83465F931C0B0D2F0039C86C /* ZZYMainVC.xib in Resources */,
@@ -692,36 +885,52 @@
 				83B5CD981CB0E571009DFA80 /* email_icon.png in Resources */,
 				83B5DC4B1CBD379600A64CE6 /* ZZYPravicyVC.xib in Resources */,
 				8317D96C1D6AFEEE00B9685A /* Icon-76@2x.png in Resources */,
+				BA9EC2291D91109300F7D5EE /* bar@2x.png in Resources */,
 				8317D9791D6AFEEE00B9685A /* iTunesArtwork in Resources */,
 				8317D96B1D6AFEEE00B9685A /* Icon-76.png in Resources */,
+				BA08135D1D9A0E3F00D63E19 /* weight_blue@2x.png in Resources */,
+				BAB88D161D9517CF009D4EB2 /* setting@2x.png in Resources */,
+				BA9EC2381D91321200F7D5EE /* menu_on@2x.png in Resources */,
 				83465F7B1C0B03A00039C86C /* AMap.bundle in Resources */,
 				8317D9671D6AFEEE00B9685A /* Icon-60@2x.png in Resources */,
 				83B5DC431CBBFD5E00A64CE6 /* ZZYFingerManageVC.xib in Resources */,
-				83013E3A1C018E190065B5C2 /* LaunchScreen.xib in Resources */,
+				BA740FD11D9B5E62001911F0 /* phone@2x.png in Resources */,
 				8317D96F1D6AFEEE00B9685A /* Icon-Small-50.png in Resources */,
+				BA9EC2351D91321200F7D5EE /* gps@2x.png in Resources */,
 				8317D9721D6AFEEE00B9685A /* Icon-Small@2x.png in Resources */,
 				8317D9731D6AFEEE00B9685A /* Icon-Small@3x.png in Resources */,
 				8317D9751D6AFEEE00B9685A /* Icon-Spotlight-40@2x.png in Resources */,
 				8317D9691D6AFEEE00B9685A /* Icon-72.png in Resources */,
 				83B5DC641CBF7F3600A64CE6 /* unlock.png in Resources */,
 				8359445C1CB55270000AD413 /* device.png in Resources */,
+				BA9EC2361D91321200F7D5EE /* lock_on@2x.png in Resources */,
 				83933F8B1C15CDC500A7AA6F /* ZZYFootprintVC.xib in Resources */,
+				BA9EC22B1D911B6E00F7D5EE /* back@2x.png in Resources */,
 				83013E7E1C01E7E50065B5C2 /* ZZYLocateVC.xib in Resources */,
+				BAB88D131D9517CF009D4EB2 /* Flight@2x.png in Resources */,
 				8317D9711D6AFEEE00B9685A /* Icon-Small.png in Resources */,
+				BA9EC23A1D91321200F7D5EE /* weight_on@2x.png in Resources */,
+				BA740FCB1D9B5DB8001911F0 /* lock_old@2x.png in Resources */,
+				BAB88D151D9517CF009D4EB2 /* Products@2x.png in Resources */,
 				83B5CD931CB0C310009DFA80 /* login_bg.jpg in Resources */,
 				83B5CD991CB0E571009DFA80 /* lock icon.png in Resources */,
 				83B5DC551CBD37D900A64CE6 /* ZZYAboutVC.xib in Resources */,
+				BAB88D121D9517CF009D4EB2 /* finger@2x.png in Resources */,
 				8355F90C1C17156C001E7352 /* ZZYWebsiteVC.xib in Resources */,
 				83B5DC5D1CBF45CF00A64CE6 /* outer_circle_radient.png in Resources */,
+				BAB88D141D9517CF009D4EB2 /* footPrint@2x.png in Resources */,
 				8317D96A1D6AFEEE00B9685A /* Icon-72@2x.png in Resources */,
 				83B5CD8E1C8DB274009DFA80 /* menubg@2x.png in Resources */,
 				8317D9661D6AFEEE00B9685A /* Icon-60.png in Resources */,
 				83B5CDA81CB2B5C9009DFA80 /* avatar.png in Resources */,
 				83B5DC501CBD37B000A64CE6 /* ZZYFeedbackVC.xib in Resources */,
 				83E931731C0C94F100DB1AA2 /* ZZYSMSLoginVerifyVC.xib in Resources */,
+				BA740FC81D9B5DB8001911F0 /* battery33@2x.png in Resources */,
+				BA9EC23B1D91321200F7D5EE /* weight@2x.png in Resources */,
 				8317D9781D6AFEEE00B9685A /* Icon@2x.png in Resources */,
 				83013E371C018E190065B5C2 /* Images.xcassets in Resources */,
 				8317D9261D6AEECF00B9685A /* guide1.png in Resources */,
+				BA740FCF1D9B5DB8001911F0 /* unlock@2x.png in Resources */,
 				8317D91D1D6AE78C00B9685A /* guide3.png in Resources */,
 				8317D9761D6AFEEE00B9685A /* Icon-Spotlight-40@3x.png in Resources */,
 				8317D91E1D6AE78C00B9685A /* guide4.png in Resources */,
@@ -743,23 +952,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				83013E2F1C018E190065B5C2 /* AppDelegate.m in Sources */,
+				BA5AA4CE1D8FD8D2009F16A0 /* LMenuViewController.m in Sources */,
+				BA5AA4CB1D8FD8BD009F16A0 /* LWeightViewController.m in Sources */,
+				BA9EC2271D90CC3C00F7D5EE /* LRegisterViewController.m in Sources */,
 				83D1D9F01C18EFC7005F4F63 /* ZZYBaseNavVC.m in Sources */,
 				83013E7D1C01E7E50065B5C2 /* ZZYLocateVC.m in Sources */,
 				83E931641C0C740400DB1AA2 /* ZZYGps.m in Sources */,
 				83013E2C1C018E190065B5C2 /* main.m in Sources */,
 				83B5DC4F1CBD37B000A64CE6 /* ZZYFeedbackVC.m in Sources */,
+				BAB88D1F1D9531FC009D4EB2 /* LPravicyViewController.m in Sources */,
 				83FDFF871C1466DB000275AA /* ZZYAddDeviceVC.m in Sources */,
 				83933F851C15C9E300A7AA6F /* ZZYBookTicketVC.m in Sources */,
 				8355F90B1C17156C001E7352 /* ZZYWebsiteVC.m in Sources */,
 				83E931611C0C73ED00DB1AA2 /* ZZYAcount.m in Sources */,
 				83933F901C15D55000A7AA6F /* GdTrackOverlay.m in Sources */,
 				83B5CD9C1CB2197C009DFA80 /* ZZYRegisterVC.m in Sources */,
+				BA5AA4C51D8FD894009F16A0 /* LGpsViewController.m in Sources */,
 				8376EE1B1C872C8B00C190FF /* ZZYUserGuideView.m in Sources */,
 				83B5DC4A1CBD379600A64CE6 /* ZZYPravicyVC.m in Sources */,
+				BA5AA4D21D900529009F16A0 /* LCommonTools.m in Sources */,
+				BA5AA4C81D8FD8AB009F16A0 /* LLockViewController.m in Sources */,
 				83933F8A1C15CDC500A7AA6F /* ZZYFootprintVC.m in Sources */,
 				83465F921C0B0D2F0039C86C /* ZZYMainVC.m in Sources */,
 				83B5DC601CBF485100A64CE6 /* UAProgressView.m in Sources */,
+				BA9EC23E1D914DC700F7D5EE /* LMainBaseViewController.m in Sources */,
 				83D1D9F71C18F889005F4F63 /* basicInfoCel.m in Sources */,
+				BAB88D1C1D9531E4009D4EB2 /* LAboutUsViewController.m in Sources */,
 				83465F971C0B0D8A0039C86C /* ZZYLoginVC.m in Sources */,
 				83B5DC461CBD1A5100A64CE6 /* ZZYSetting.m in Sources */,
 				83D1D9F91C18F889005F4F63 /* ZZYUserVC.m in Sources */,
@@ -769,7 +987,10 @@
 				8348E1121C0DE69300E34C6B /* ZZYMenuView.m in Sources */,
 				83B5DC591CBD461200A64CE6 /* BatteryView.m in Sources */,
 				8359445A1CB538E4000AD413 /* ZZYBondDeviceIdVC.m in Sources */,
+				BA5AA4BF1D8FD860009F16A0 /* LLoginViewController.m in Sources */,
 				83B5DC421CBBFD5E00A64CE6 /* ZZYFingerManageVC.m in Sources */,
+				BAB88D191D9531C2009D4EB2 /* LFeedbackViewController.m in Sources */,
+				BA5AA4BC1D8FD842009F16A0 /* LBaseViewController.m in Sources */,
 				83E9316D1C0C90A700DB1AA2 /* ZZYSMSLoginVC.m in Sources */,
 				8376EE1E1C87367500C190FF /* ZZYUserGuideVC.m in Sources */,
 				83D1D9ED1C18EF45005F4F63 /* ZZYSettingsVC.m in Sources */,
@@ -794,17 +1015,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		83013E381C018E190065B5C2 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				83013E391C018E190065B5C2 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		83013E471C018E190065B5C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -819,11 +1029,14 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 109321114@qq.com (XPBKLX7GX7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 109321114@qq.com (XPBKLX7GX7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -846,9 +1059,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "149401ee-4f0c-4dce-97b7-31a00491f4d7";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
@@ -865,11 +1079,14 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 109321114@qq.com (XPBKLX7GX7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 109321114@qq.com (XPBKLX7GX7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -885,9 +1102,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "149401ee-4f0c-4dce-97b7-31a00491f4d7";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};
@@ -895,8 +1113,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhiyang Zhang (K7LJHX8EVS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 46KL4HDLYJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/luggage/Framework/Mamap",
@@ -905,7 +1125,7 @@
 					"$(PROJECT_DIR)/luggage/Framework/KeyboardManager",
 				);
 				INFOPLIST_FILE = luggage/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -914,16 +1134,18 @@
 					"$(PROJECT_DIR)/luggage/Framework/JPush",
 					"$(PROJECT_DIR)/luggage/Framework/RTSP",
 					"$(PROJECT_DIR)/BLEDevice/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zzy.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = wifiunion.robotsuser.test;
 				PRODUCT_NAME = luggage;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c5ed25b1-c196-47f0-8584-bc843ad7797b";
+				PROVISIONING_PROFILE_SPECIFIER = RobotsUseTest_Dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../BLEDevice/**";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
@@ -931,8 +1153,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhiyang Zhang (K7LJHX8EVS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 46KL4HDLYJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/luggage/Framework/Mamap",
@@ -941,7 +1165,7 @@
 					"$(PROJECT_DIR)/luggage/Framework/KeyboardManager",
 				);
 				INFOPLIST_FILE = luggage/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -950,15 +1174,17 @@
 					"$(PROJECT_DIR)/luggage/Framework/JPush",
 					"$(PROJECT_DIR)/luggage/Framework/RTSP",
 					"$(PROJECT_DIR)/BLEDevice/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zzy.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = wifiunion.robotsuser.test;
 				PRODUCT_NAME = luggage;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c5ed25b1-c196-47f0-8584-bc843ad7797b";
+				PROVISIONING_PROFILE_SPECIFIER = RobotsUseTest_Dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../BLEDevice/BLEDevice";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};
@@ -966,6 +1192,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -978,6 +1205,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = luggage;
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/luggage.app/luggage";
 				VALID_ARCHS = armv7;
 			};
@@ -987,6 +1215,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -995,6 +1225,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = luggage;
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/luggage.app/luggage";
 				VALID_ARCHS = armv7;
 			};

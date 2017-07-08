@@ -29,6 +29,33 @@
     [self.view addGestureRecognizer:screenEdgePan];
 
     cellRegistered = false;
+    
+    self.title = @"Home";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIButton  *logoutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    logoutBtn.frame = CGRectMake(0, 0, 40, 40);
+    [logoutBtn setTitle:@"Logout" forState:UIControlStateNormal];
+    [logoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    logoutBtn.titleLabel.font = [UIFont systemFontOfSize:12];;
+    [logoutBtn addTarget:self action:@selector(logoutClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:logoutBtn];
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+#pragma mark
+#pragma mark -- logoutClick
+- (void)logoutClick {
+    
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [app setValue:@"0" forKey:@"isDeviceBonded"];
+    app.account.userName = @"";
+    app.account.userId = @"";
+    app.account.localPhoneNumber = @"";
+    app.account.remotePhoneNumber = @"";
+    app.account.deviceId = @"";
+    app.account.email = @"";
+    [app showLoginView];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -51,24 +78,6 @@
 -(void)dealloc
 {
     NSLog(@"home vc dealloc");
-}
-
-
-#pragma mark - disable landscape
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark -UITableViewDelegate
@@ -100,7 +109,7 @@
         [tableView registerNib:nib forCellReuseIdentifier:@"basicInfoCellIndentifier"];
         cellRegistered = true;
     }
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     basicInfoCel  *cell = [tableView dequeueReusableCellWithIdentifier:@"basicInfoCellIndentifier"];
     if(cell == nil)
         cell = [[basicInfoCel alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"basicInfoCellIndentifier"];
@@ -157,7 +166,7 @@
 }
 
 - (IBAction)logoutButtonClicked:(id)sender {
-    AppDelegate *app = [[UIApplication sharedApplication]delegate];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [app setValue:@"0" forKey:@"isDeviceBonded"];
     app.account.userName = @"";
     app.account.userId = @"";
@@ -188,7 +197,7 @@
     }
     else
     {
-        AppDelegate *app = [[UIApplication sharedApplication]delegate];
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         [app showMenu];
     }
 }

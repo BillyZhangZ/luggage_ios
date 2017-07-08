@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBaseViewController.h"
 
-@interface ZZYFootprintVC : UIViewController
+@interface ZZYFootprintVC : LBaseViewController
 
 @end

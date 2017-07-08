@@ -6,6 +6,7 @@
 //  Copyright © 2016 张志阳. All rights reserved.
 //
 #import "ZZYUserGuideView.h"
+#import "config.h"
 
 @interface ZZYUserGuideView () <UIScrollViewDelegate>
 @property (strong, nonatomic) UIScrollView *scrollView;
@@ -241,7 +242,7 @@
 
 -(UIPageControl *)pageControl {
     if (!_pageControl) {
-        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height-80, self.frame.size.width, 10)];
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height-60, self.frame.size.width, 10)];
         [_pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithRed:0.129 green:0.588 blue:0.953 alpha:1.000]];
         [_pageControl setNumberOfPages:4];
     }
@@ -250,14 +251,26 @@
 
 -(UIButton *)doneButton {
     if (!_doneButton) {
-        _doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-60, self.frame.size.width, 60)];
+        _doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
         [_doneButton setTintColor:[UIColor whiteColor]];
         [_doneButton setTitle:@"start!" forState:UIControlStateNormal];
         [_doneButton.titleLabel setFont:[UIFont systemFontOfSize:18.0]];
         [_doneButton setBackgroundColor:[UIColor colorWithRed:0.129 green:0.588 blue:0.953 alpha:1.000]];
+#ifdef NEW_MODIFY
+        [_doneButton addTarget:self action:@selector(startBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+#else
+       
         [_doneButton addTarget:self.delegate action:@selector(onDoneButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+#endif
+
     }
     return _doneButton;
+}
+
+
+- (void)startBtnPressed {
+
+    [self removeFromSuperview];
 }
 
 @end
